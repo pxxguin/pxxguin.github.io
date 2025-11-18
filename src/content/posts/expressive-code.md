@@ -1,16 +1,10 @@
 ---
-title: What is the fucking life?
+title: 안녕하세요.
 published: 2025-11-18
 description: How code blocks look in Markdown using Expressive Code.
-tags: [DeepL, ]
+tags: [DeepL, MachineL]
 category: Papers
-draft: true
+draft: false
 ---
 
-### 내가 살아가는 인생은, 조금 달랐습니다.
-But i have lived my entire life.
-
-
-```py
-print("Hello, World!")
-```
+#### This topic is sensitive.
