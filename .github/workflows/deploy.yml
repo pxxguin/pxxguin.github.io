@@ -2,9 +2,9 @@ name: Build, Check, and Deploy Astro Site
 
 on:
   push:
-    branches: [ main ] # Adjust branches as needed
+    branches: [ master ] # Adjust branches as needed
   pull_request:
-    branches: [ main ] # Adjust branches as needed
+    branches: [ master ] # Adjust branches as needed
   # GitHub Pages 재배포를 수동으로 실행할 수 있도록 추가
   workflow_dispatch:
 
