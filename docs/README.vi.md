@@ -6,7 +6,7 @@ Một mẫu blog tĩnh được xây bằng [Astro](https://astro.build).
 
 ![Hình ảnh xem trước](https://raw.githubusercontent.com/saicaca/resource/main/fuwari/home.png)
 
-## ✨ Tính năng
+## ✨ Tính năngs
 
 - [x] Được xây dựng bằng [Astro](https://astro.build) và [Tailwind CSS](https://tailwindcss.com)
 - [x] Có hoạt ảnh đổi chuyển trang mượt mà
