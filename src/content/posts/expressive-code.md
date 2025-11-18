@@ -1,10 +1,16 @@
 ---
-title: Expressive Code Example
-published: 2024-04-10
+title: What is the fucking life?
+published: 2025-11-18
 description: How code blocks look in Markdown using Expressive Code.
-tags: [Markdown, Blogging, Demo]
+tags: [DeepL, ]
 category: Papers
-draft: false
+draft: true
 ---
 
-### Test
+### 내가 살아가는 인생은, 조금 달랐습니다.
+But i have lived my entire life.
+
+
+```py
+print("Hello, World!")
+```

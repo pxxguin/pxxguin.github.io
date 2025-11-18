@@ -53,26 +53,24 @@ export const navBarConfig: NavBarConfig = {
 };
 
 export const profileConfig: ProfileConfig = {
-	avatar: "assets/images/demo-avatar.png", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
-	name: "Lorem Ipsum",
-	bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+	avatar: "assets/images/demo-avatar.jpeg", // Relative to the /src directory. Relative to the /public directory if it starts with '/'
+	name: "Hong",
+	bio: "I want to tell the story hidden behind data.",
 	links: [
 		{
-			name: "Twitter",
-			icon: "fa6-brands:twitter", // Visit https://icones.js.org/ for icon codes
-			// You will need to install the corresponding icon set if it's not already included
-			// `pnpm add @iconify-json/<icon-set-name>`
-			url: "https://twitter.com",
+			name: "GitHub",
+			icon: "skill-icons:github-dark",
+			url: "https://github.com/pxxguin",
 		},
 		{
-			name: "Steam",
-			icon: "fa6-brands:steam",
+			name: "LinkedIn",
+			icon: "logos:linkedin-icon",
 			url: "https://store.steampowered.com",
 		},
 		{
-			name: "GitHub",
-			icon: "fa6-brands:github",
-			url: "https://github.com/pxxguin",
+			name: "Mail",
+			icon: "skill-icons:gmail-light",
+			url: "mailto:janghongseo@naver.com",
 		},
 	],
 };
