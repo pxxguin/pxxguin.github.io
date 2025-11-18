@@ -1,9 +1,4 @@
 # About
-👋🏻 
+👋🏻 안녕하세요. 개발자 장홍서입니다.
 
-::github{repo="saicaca/fuwari"}
-
-> ### Sources of images used in this site
-> - [Unsplash](https://unsplash.com/)
-> - [星と少女](https://www.pixiv.net/artworks/108916539) by [Stella](https://www.pixiv.net/users/93273965)
-> - [Rabbit - v1.4 Showcase](https://civitai.com/posts/586908) by [Rabbit_YourMajesty](https://civitai.com/user/Rabbit_YourMajesty)
+저는 앞으로 기술적인 글을 써볼까 합니다. 저는 졸업하기까지 이제 한 1년정도 남아있는데요, 앞으로 취업하기 전까지 100권의 전공책과 200편의 논문을 읽는게 목표입니다. 앞으로 제가 공부하는 모든 내용을 이곳에 기록할 예정입니다. 저의 기록이 저와 같은 길을 걷는 이들에게 조금이나마 도움이 되기를 간절히 바랍니다.
