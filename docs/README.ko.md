@@ -16,7 +16,7 @@
 - [x] [Pagefind](https://pagefind.app/)를 이용한 검색 기능
 - [x] [Markdown 확장 기능](https://github.com/saicaca/fuwari?tab=readme-ov-file#-markdown-extended-syntax)
 - [x] 목차
-- [x] RSS 피드
+- [x] RSS 피드.
 
 ## 🚀 시작하기
 1. 블로그 저장소를 생성하세요:
