@@ -73,6 +73,7 @@
     "@types/sanitize-html": "^2.16.0",
     "postcss-import": "^16.1.1",
     "postcss-nesting": "^13.0.2",
+    "remark-mark": "^0.0.0",
     "ttf2woff2": "^8.0.0"
   },
   "packageManager": "pnpm@9.14.4"

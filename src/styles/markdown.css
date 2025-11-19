@@ -119,3 +119,66 @@
     }
     
 }
+
+/* Highlight (mark) styling to simulate a highlighter */
+mark {
+    background: linear-gradient(90deg, #fff9c4, #fff59d); /* pale yellow */
+    padding: 0.08em 0.28em;
+    border-radius: 0.18em;
+    color: inherit;
+    box-shadow: inset 0 -6px 0 rgba(255, 235, 59, 0.12);
+}
+
+/* Slightly stronger for dark mode */
+.dark mark {
+    background: linear-gradient(90deg, rgba(255,241,118,0.12), rgba(255,241,118,0.08));
+    box-shadow: inset 0 -6px 0 rgba(255, 213, 79, 0.06);
+}
+
+/* Math styling: use site font for KaTeX output and center display math */
+/* Math styling: use site font for KaTeX output and center display math */
+/* Apply font to katex container and all its descendants to override KaTeX font settings */
+.katex, .katex-display, .katex-html, .katex-mathml {
+    font-family: var(--font-sans) !important;
+}
+.katex * {
+    font-family: var(--font-sans) !important;
+}
+
+/* Center display math and ensure it's block-level */
+.custom-md .katex-display,
+.katex-display {
+    display: block !important;
+    text-align: center !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+/* Some KaTeX builds wrap display math in a p or div; ensure centering on parent too */
+.custom-md .katex-display, .custom-md .katex-display > .katex, .katex-display > .katex {
+    margin: 0 auto !important;
+}
+
+/* Make sure inline math doesn't break line-height */
+.katex .katex-html {
+    line-height: 1.4;
+}
+
+/* Additional KaTeX overrides: force site font on all KaTeX elements (including SVG), make math upright */
+.katex, .katex * , .katex svg, .katex svg * {
+    font-family: var(--font-sans) !important;
+    font-style: normal !important;
+}
+
+/* Some KaTeX classes for identifiers/variables use .mord/.mi; force them upright */
+.katex .mord, .katex .mi, .katex .mord * , .katex .mi * {
+    font-style: normal !important;
+    font-family: var(--font-sans) !important;
+}
+
+/* Use flex centering as a fallback to ensure display math is centered within its container */
+.katex-display {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
