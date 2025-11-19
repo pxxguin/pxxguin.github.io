@@ -1,9 +1,9 @@
 ---
-title: BERT 계열 모델은 어떤 역할을 하는가?
+title: How BERT model operate in python?
 published: 2025-11-18
 description: 영어를 다루는데 특화된 DistilBERT가 어떻게 동작하고, 코딩되는지 설명합니다.
 tags: [NLP, DeepL]
-category: Basic
+category: NLP
 draft: false
 ---
 
