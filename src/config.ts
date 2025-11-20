@@ -8,9 +8,9 @@ import type {
 import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
-	title: "Hongseo",
-	subtitle: "Study Blog",
-	lang: "en", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
+	title: "AI Atlas",
+	subtitle: "All about AI",
+	lang: "ko", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 250, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
 		fixed: false, // Hide the theme color picker for visitors
@@ -65,12 +65,17 @@ export const profileConfig: ProfileConfig = {
 		{
 			name: "LinkedIn",
 			icon: "logos:linkedin-icon",
-			url: "https://store.steampowered.com",
+			url: "https://www.linkedin.com/in/hongseojang/",
 		},
 		{
 			name: "Mail",
 			icon: "skill-icons:gmail-light",
 			url: "mailto:janghongseo@naver.com",
+		},
+		{
+			name: "Quiz",
+			icon: "streamline-ultimate-color:card-game-heart",
+			url: "https://pxxguin.github.io/quiz-app/",
 		},
 	],
 };
