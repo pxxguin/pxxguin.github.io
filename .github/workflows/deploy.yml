@@ -68,8 +68,8 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       # 1. Astro 빌드 실행
-      - name: Run Astro Build
-        run: pnpm astro build
+      - name: Run Build (Astro + Pagefind)
+        run: pnpm build
         
       # 2. GitHub Pages 환경 설정 (배포를 위한 필수 단계)
       - name: Setup Pages
