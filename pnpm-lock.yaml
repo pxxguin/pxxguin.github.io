@@ -147,6 +147,9 @@ importers:
       '@biomejs/biome':
         specifier: 2.2.5
         version: 2.2.5
+      '@iconify-json/fluent-color':
+        specifier: ^1.2.20
+        version: 1.2.20
       '@iconify-json/logos':
         specifier: ^1.2.10
         version: 1.2.10
@@ -1111,6 +1114,9 @@ packages:
 
   '@iconify-json/fa6-solid@1.2.4':
     resolution: {integrity: sha512-LmDNNdJVyvF5mPm1yxWvL8KjCc/E8LzoqnF1LNTVpyY2ZJRUlGOWuPIThdbuFBF2IovgttkIyumhyqfmlHdwKg==}
+
+  '@iconify-json/fluent-color@1.2.20':
+    resolution: {integrity: sha512-rg1WWURAjrJo4eSIz9I6Q+/9/nm6NvGKZal6R9zM71sGoPcQpUTSjeJykMuGDDQCkAjp96MjMX2E6HtLkxs7zg==}
 
   '@iconify-json/logos@1.2.10':
     resolution: {integrity: sha512-qxaXKJ6fu8jzTMPQdHtNxlfx6tBQ0jXRbHZIYy5Ilh8Lx9US9FsAdzZWUR8MXV8PnWTKGDFO4ZZee9VwerCyMA==}
@@ -6514,6 +6520,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/fa6-solid@1.2.4':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/fluent-color@1.2.20':
     dependencies:
       '@iconify/types': 2.0.0
 

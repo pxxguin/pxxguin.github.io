@@ -77,6 +77,11 @@ export const profileConfig: ProfileConfig = {
 			icon: "streamline-ultimate-color:card-game-heart",
 			url: "https://pxxguin.github.io/quiz-app/",
 		},
+		{
+			name: "Time",
+			icon: "fluent-color:clock-alarm-48",
+			url: "https://pxxguin.github.io/study-focus/",
+		},
 	],
 };
 
