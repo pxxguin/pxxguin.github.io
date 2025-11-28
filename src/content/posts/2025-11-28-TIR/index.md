@@ -47,7 +47,7 @@ draft: false
 
 그리고 텍스트로 시뮬레이션할 경우 엄청나게 길어지는 알고리즘도 코드로 표현하면 $O(1)$의 비용으로 압축됩니다. 따라서 제한된 토큰 예산 내에서 순수 텍스트 모델은 접근 불가능한 문제 해결 전략을 TIR 모델은 실행할 수 있게 됩니다.
 
-#### **B. ASPO(Advantage Shaping Policy Optimization) 알고리즘 제안 **
+#### **B. ASPO(Advantage Shaping Policy Optimization) 알고리즘 제안**
 기존의 보상(Reward) 함수를 수정하는 대신, 이점(Advantage) 함수를 직접 수정하여 모델의 행동을 유도합니다. 정답을 맞힌 경우에 한해, ==코드를 일찍 호출할수록 추가적인 이점==(Advantage)을 부여하되, 이를 ==클리핑==(clipping)하여 학습의 주 목표를 해치지 않으면서 ==안정적으로 조기 코드 실행==(early code invocation)을 유도합니다.
 
 기존의 AI를 학습시키는 방식은 GRPO(Group Relative Policy Optimization)등인데 이름에서도 알 수 있듯이 상대 평가를 사용합니다. 이 상대 평가가 왜 문제인지 살펴볼까요? 
