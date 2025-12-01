@@ -1,5 +1,4 @@
 ---
-
 import I18nKey from "../../i18n/i18nKey";
 import { i18n } from "../../i18n/translation";
 import { getTagList } from "../../utils/content-utils";
@@ -8,7 +7,6 @@ import ButtonTag from "../control/ButtonTag.astro";
 import WidgetLayout from "./WidgetLayout.astro";
 
 const tags = await getTagList();
-
 const COLLAPSED_HEIGHT = "7.5rem";
 
 const isCollapsed = tags.length >= 20;
@@ -19,12 +17,30 @@ interface Props {
 }
 const className = Astro.props.class;
 const style = Astro.props.style;
+
+/* ▼ 1. 태그 이름으로 색상을 생성하는 함수 추가 */
+function getTagColor(name: string) {
+	let hash = 0;
+	for (let i = 0; i < name.length; i++) {
+		hash = name.charCodeAt(i) + ((hash << 5) - hash);
+	}
+	// 해시값을 이용해 0~360 사이의 색상(Hue)을 추출
+	const hue = Math.abs(hash % 360);
+	// HSL 컬러로 반환 (채도 70%, 밝기 80% 정도의 파스텔톤)
+	return `background-color: hsl(${hue}, 70%, 90%); color: hsl(${hue}, 80%, 30%);`;
+}
 ---
+
 <WidgetLayout name={i18n(I18nKey.tags)} id="tags" isCollapsed={isCollapsed} collapsedHeight={COLLAPSED_HEIGHT} class={className} style={style}>
     <div class="flex gap-2 flex-wrap">
         {tags.map(t => (
-            <ButtonTag href={getTagUrl(t.name)} label={`View all posts with the ${t.name.trim()} tag`}>
-                {t.name.trim()}
+            /* ▼ 2. style 속성에 색상 함수 적용 & 태그 이름 앞에 '#' 추가 */
+            <ButtonTag 
+                href={getTagUrl(t.name)} 
+                label={`View all posts with the ${t.name.trim()} tag`}
+                style={getTagColor(t.name.trim())} 
+            >
+                #{t.name.trim()}
             </ButtonTag>
         ))}
     </div>
