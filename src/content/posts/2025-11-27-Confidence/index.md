@@ -2,7 +2,7 @@
 title: Review with Deep Think with Confidence
 published: 2025-11-27
 description: Deep Think with Confidence에 대한 논문 리뷰입니다.
-tags: [Paper Review]
+tags: [Paper, NLP]
 category: Paper
 draft: False
 ---
