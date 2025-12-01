@@ -2,7 +2,7 @@
 title: Review with The Free Transformer
 published: 2025-11-26
 description: The Free Transformer에 대한 논문 리뷰입니다.
-tags: [Paper, NLP]
+tags: [Paper, NLP, LLM]
 category: Paper
 draft: False
 ---
