@@ -47,9 +47,6 @@ importers:
       '@iconify-json/fa6-solid':
         specifier: ^1.2.4
         version: 1.2.4
-      '@iconify-json/material-symbols':
-        specifier: ^1.2.40
-        version: 1.2.40
       '@iconify/svelte':
         specifier: ^4.2.0
         version: 4.2.0(svelte@5.39.8)
@@ -150,12 +147,21 @@ importers:
       '@iconify-json/fluent-color':
         specifier: ^1.2.20
         version: 1.2.20
+      '@iconify-json/hugeicons':
+        specifier: ^1.2.18
+        version: 1.2.18
       '@iconify-json/logos':
         specifier: ^1.2.10
         version: 1.2.10
+      '@iconify-json/material-symbols':
+        specifier: ^1.2.40
+        version: 1.2.40
       '@iconify-json/skill-icons':
         specifier: ^1.2.3
         version: 1.2.3
+      '@iconify-json/streamline-plump':
+        specifier: ^1.2.0
+        version: 1.2.0
       '@iconify-json/streamline-ultimate-color':
         specifier: ^1.2.2
         version: 1.2.2
@@ -1118,6 +1124,9 @@ packages:
   '@iconify-json/fluent-color@1.2.20':
     resolution: {integrity: sha512-rg1WWURAjrJo4eSIz9I6Q+/9/nm6NvGKZal6R9zM71sGoPcQpUTSjeJykMuGDDQCkAjp96MjMX2E6HtLkxs7zg==}
 
+  '@iconify-json/hugeicons@1.2.18':
+    resolution: {integrity: sha512-25jMZADNqWhDHzU2nla8r7XRZGUms9Q4priCa8t1jqZlnqhVwVNC8LXMdX1NzSdIepcwadexXkCYNgdVXkq5mQ==}
+
   '@iconify-json/logos@1.2.10':
     resolution: {integrity: sha512-qxaXKJ6fu8jzTMPQdHtNxlfx6tBQ0jXRbHZIYy5Ilh8Lx9US9FsAdzZWUR8MXV8PnWTKGDFO4ZZee9VwerCyMA==}
 
@@ -1126,6 +1135,9 @@ packages:
 
   '@iconify-json/skill-icons@1.2.3':
     resolution: {integrity: sha512-wyoP8uwox80jEi1ABZ3Z+I+ETtIr2brAERPPDzpJ9iALk8hyeg4/kdoC7M8HduhNkSkyq5kwBF8xvbqjNldnBQ==}
+
+  '@iconify-json/streamline-plump@1.2.0':
+    resolution: {integrity: sha512-cem8ppCqUuVfargMadkWq22gaFWLnCV98nQYv8ZaFCxzLINGHLjgioQyDAclxLwowREn2yjgymTXlUE6WW/VNg==}
 
   '@iconify-json/streamline-ultimate-color@1.2.2':
     resolution: {integrity: sha512-NAbD3xLtg3069865B5CLUulp/eowPNCiDfJBxVAmA+LKLPpxU7EIEJ2+mSfWriPd+ahORWyqjRnoPVkTJopEgg==}
@@ -6527,6 +6539,10 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
+  '@iconify-json/hugeicons@1.2.18':
+    dependencies:
+      '@iconify/types': 2.0.0
+
   '@iconify-json/logos@1.2.10':
     dependencies:
       '@iconify/types': 2.0.0
@@ -6536,6 +6552,10 @@ snapshots:
       '@iconify/types': 2.0.0
 
   '@iconify-json/skill-icons@1.2.3':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify-json/streamline-plump@1.2.0':
     dependencies:
       '@iconify/types': 2.0.0
 
