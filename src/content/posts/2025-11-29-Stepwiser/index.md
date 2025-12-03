@@ -1,5 +1,5 @@
 ---
-title: Review with StepWiser, Stepwise Generative Judges for Wiser Reasoning
+title: Review with StepWiser
 published: 2025-11-29
 description: StepWiser, Stepwise Generative Judges for Wiser Reasoning에 대한 논문 리뷰입니다.
 tags: [Paper, NLP, LLM]
