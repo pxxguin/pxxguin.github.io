@@ -1,0 +1,85 @@
+---
+import type { CollectionEntry } from "astro:content";
+import path from "node:path";
+import { Icon } from "astro-icon/components";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import { getDir } from "../utils/url-utils";
+import ImageWrapper from "./misc/ImageWrapper.astro";
+import PostMetadata from "./PostMeta.astro";
+
+interface Props {
+	class?: string;
+	entry: CollectionEntry<"posts">;
+	title: string;
+	url: string;
+	published: Date;
+	updated?: Date;
+	tags: string[];
+	category: string | null;
+	image: string;
+	description: string;
+	draft: boolean;
+	style?: string;
+}
+const {
+	entry,
+	title,
+	url,
+	published,
+	updated,
+	tags,
+	category,
+	image,
+	description,
+	style,
+} = Astro.props;
+const className = Astro.props.class;
+
+const hasCover = image !== undefined && image !== null && image !== "";
+const { remarkPluginFrontmatter } = await entry.render();
+---
+<div class:list={["card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative", className]} style={style}>
+    {hasCover && <a href={url} aria-label={title}
+                    class="group w-full relative overflow-hidden active:scale-95 block h-[18rem] md:h-[22rem]" >
+        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
+        <div class="absolute pointer-events-none z-20 w-full h-full flex items-center justify-center ">
+            <Icon name="material-symbols:chevron-right-rounded"
+                  class="transition opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 text-white text-5xl">
+            </Icon>
+        </div>
+        <ImageWrapper src={image} basePath={path.join("content/posts/", getDir(entry.id))} alt="Cover Image of the Post"
+                  class="w-full h-full object-cover">
+        </ImageWrapper>
+    </a>}
+
+    <div class="px-6 md:px-9 pt-6 md:pt-7 pb-6 relative w-full">
+        <a href={url}
+           class="transition group w-full block font-bold mb-3 text-3xl text-90
+        hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+        active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
+        ">
+            {title}
+        </a>
+
+        <!-- metadata -->
+        <PostMetadata published={published} updated={updated} tags={tags} category={category} hideTagsForMobile={true} hideUpdateDate={true} class="mb-4"></PostMetadata>
+
+        <!-- description -->
+        <div class="transition text-75 mb-3.5 pr-4 line-clamp-3">
+            { description || remarkPluginFrontmatter.excerpt }
+        </div>
+
+        <!-- word count and read time  -->
+        <div class="text-sm text-black/30 dark:text-white/30 flex gap-4 transition">
+            <div>
+                {remarkPluginFrontmatter.words} {" " + i18n(remarkPluginFrontmatter.words === 1 ? I18nKey.wordCount : I18nKey.wordsCount)}
+            </div>
+            <div>|</div>
+            <div>
+                {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
+            </div>
+        </div>
+
+    </div>
+</div>

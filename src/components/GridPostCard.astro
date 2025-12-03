@@ -1,0 +1,109 @@
+---
+import type { CollectionEntry } from "astro:content";
+import path from "node:path";
+import { Icon } from "astro-icon/components";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import { getDir } from "../utils/url-utils";
+import ImageWrapper from "./misc/ImageWrapper.astro";
+import { formatDateToYYYYMMDD } from "../utils/date-utils";
+
+interface Props {
+	entry: CollectionEntry<"posts">;
+	title: string;
+	url: string;
+	published: Date;
+	tags: string[];
+	category: string | null;
+	image: string;
+	description: string;
+	class?: string;
+    style?: string;
+}
+
+const {
+	entry,
+	title,
+	url,
+	published,
+	tags,
+	category,
+	image,
+	description,
+    class: className,
+    style,
+} = Astro.props;
+
+let coverImage = image;
+if (!coverImage) {
+    const lowerCategory = category ? category.toLowerCase() : "";
+    if (lowerCategory.includes("deepl") || lowerCategory.includes("ai") || lowerCategory.includes("llm")) {
+        coverImage = "/images/default-deepl.png";
+    } else if (lowerCategory.includes("nlp")) {
+        coverImage = "/images/default-nlp.png";
+    } else if (lowerCategory.includes("paper")) {
+        coverImage = "/images/default-paper.png";
+    } else {
+        coverImage = "/images/default-cover.png";
+    }
+}
+
+const hasCover = true; // Always true as we have a default
+const { remarkPluginFrontmatter } = await entry.render();
+---
+
+<div class:list={["card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative transition hover:shadow-lg", className]} style={style}>
+    {hasCover && <a href={url} aria-label={title}
+                    class="group w-full relative overflow-hidden active:scale-95 block h-48" >
+        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/10 transition"></div>
+        
+        <!-- Tag Pill -->
+        {category && (
+            <div class="absolute top-3 left-3 z-20 bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
+                {category}
+            </div>
+        )}
+
+        <ImageWrapper src={coverImage} basePath={path.join("content/posts/", getDir(entry.id))} alt="Cover Image of the Post"
+                  class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+        </ImageWrapper>
+    </a>}
+
+    <div class="p-5 flex flex-col h-full">
+        <!-- Title -->
+        <a href={url}
+           class="transition block font-bold mb-3 text-lg text-black/90 dark:text-white/90
+        hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+        line-clamp-2
+        ">
+            {title}
+        </a>
+
+        <!-- Author & Date -->
+        <div class="flex items-center gap-2 mb-3 text-xs text-black/50 dark:text-white/50">
+            <!-- Placeholder Avatar -->
+            <div class="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
+                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Author" />
+            </div>
+            <span class="font-medium">Admin</span>
+            <span>·</span>
+            <span>{formatDateToYYYYMMDD(published)}</span>
+        </div>
+
+        <!-- Description -->
+        <!-- <div class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-2 flex-grow">
+            { description || remarkPluginFrontmatter.excerpt }
+        </div> -->
+
+        <!-- Footer -->
+        <div class="mt-auto pt-3 border-t border-black/5 dark:border-white/5 flex justify-between items-center text-black/40 dark:text-white/40 text-xs">
+            <div class="flex items-center gap-1">
+                <Icon name="material-symbols:chat-bubble-outline-rounded" class="text-base" />
+                <span>0</span>
+            </div>
+            <button class="hover:text-[var(--primary)] transition">
+                <Icon name="material-symbols:share-outline" class="text-lg" />
+            </button>
+        </div>
+    </div>
+</div>

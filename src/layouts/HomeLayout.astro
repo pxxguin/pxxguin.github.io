@@ -1,0 +1,22 @@
+---
+import Navbar from "@components/Navbar.astro";
+import { siteConfig } from "../config";
+import Layout from "./Layout.astro";
+
+interface Props {
+	title?: string;
+	description?: string;
+	lang?: string;
+}
+
+const { title, description, lang } = Astro.props;
+---
+
+<Layout title={title} description={description} lang={lang}>
+    <div class="min-h-screen w-full relative">
+        <div id="navbar-wrapper" class="absolute top-0 left-0 w-full z-50 transition-all">
+            <Navbar class="!bg-transparent !shadow-none !backdrop-blur-none" isHome={true} />
+        </div>
+        <slot />
+    </div>
+</Layout>
