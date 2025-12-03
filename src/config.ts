@@ -48,7 +48,7 @@ export const navBarConfig: NavBarConfig = {
 	links: [
 		LinkPreset.Home,
 		{
-			name: "Posts",
+			name: "포스트",
 			url: "/posts/",
 		},
 		LinkPreset.Archive,
