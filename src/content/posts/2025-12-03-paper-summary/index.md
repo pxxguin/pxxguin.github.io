@@ -4,7 +4,7 @@ published: 2025-12-03
 description: "Summary of a paper about embedding limits."
 tags: ["AI", "Paper"]
 category: "Study"
-draft: false
+draft: true
 ---
 
 ### 1) 논문의 Abstract 요약
