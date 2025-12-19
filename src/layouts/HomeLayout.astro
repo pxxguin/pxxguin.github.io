@@ -2,6 +2,7 @@
 import Navbar from "@components/Navbar.astro";
 import { siteConfig } from "../config";
 import Layout from "./Layout.astro";
+import Footer from "@components/Footer.astro";
 
 interface Props {
 	title?: string;
@@ -18,5 +19,6 @@ const { title, description, lang } = Astro.props;
             <Navbar class="!bg-transparent !shadow-none !backdrop-blur-none" isHome={true} />
         </div>
         <slot />
+        <Footer />
     </div>
 </Layout>

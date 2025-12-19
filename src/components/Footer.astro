@@ -1,21 +1,82 @@
 ---
-
 import { profileConfig } from "../config";
 import { url } from "../utils/url-utils";
+import { Icon } from "astro-icon/components";
 
 const currentYear = new Date().getFullYear();
 ---
 
-<!--<div class="border-t border-[var(&#45;&#45;primary)] mx-16 border-dashed py-8 max-w-[var(&#45;&#45;page-width)] flex flex-col items-center justify-center px-6">-->
-<div class="transition border-t border-black/10 dark:border-white/15 my-10 border-dashed mx-32"></div>
-<!--<div class="transition bg-[oklch(92%_0.01_var(&#45;&#45;hue))] dark:bg-black rounded-2xl py-8 mt-4 mb-8 flex flex-col items-center justify-center px-6">-->
-<div class="transition border-dashed border-[oklch(85%_0.01_var(--hue))] dark:border-white/15 rounded-2xl mb-12 flex flex-col items-center justify-center px-6">
-    <div class="transition text-50 text-sm text-center">
-        &copy; <span id="copyright-year">{currentYear}</span> {profileConfig.name}. All Rights Reserved. /
-        <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('rss.xml')}>RSS</a> /
-        <a class="transition link text-[var(--primary)] font-medium" target="_blank" href={url('sitemap-index.xml')}>Sitemap</a><br>
-        Powered by
-        <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://astro.build">Astro</a> &
-        <a class="transition link text-[var(--primary)] font-medium" target="_blank" href="https://github.com/saicaca/fuwari">Fuwari</a>
+<div class="w-full bg-[#0a0a0a] text-white/70 py-12 mt-12 border-t border-white/5">
+    <div class="max-w-[var(--page-width)] mx-auto px-4 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
+        <!-- Left Side -->
+        <div class="flex flex-col gap-4 text-center md:text-left w-full md:w-auto">
+            <!-- Logo / Name -->
+            <div class="flex items-center justify-center md:justify-start gap-2 mb-1">
+                <Icon name="material-symbols:deployed-code" class="text-3xl text-[var(--primary)]" />
+                <div class="text-2xl font-black text-white tracking-wider uppercase">
+                    {profileConfig.name}
+                </div>
+            </div>
+
+            <!-- Links -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-[15px] font-medium text-white/80">
+                <a href={url('/')} class="hover:text-white transition">홈</a>
+                <span class="text-white/20">|</span>
+                <a href={url('/archive/')} class="hover:text-white transition">아카이브</a>
+                <span class="text-white/20">|</span>
+                <a href="https://sites.google.com/view/hongseojang/%ED%99%88" target="_blank" class="hover:text-white transition">포트폴리오</a>
+                <span class="text-white/20">|</span>
+                <a href={url('/privacy/')} class="hover:text-white transition">개인정보처리방침</a>
+            </div>
+
+            <!-- Copyright & Info -->
+            <div class="text-xs text-white/40 mt-1 leading-relaxed font-light tracking-wide">
+                Copyright &copy; {currentYear} {profileConfig.name}. All Rights Reserved.
+                <span class="hidden sm:inline mx-2">|</span>
+                <br class="sm:hidden" />
+                E-mail : contact@example.com
+            </div>
+        </div>
+
+        <!-- Right Side -->
+        <div class="flex flex-col items-center md:items-end gap-6">
+            <!-- Social Icons (Hexagonal) -->
+            <div class="flex gap-3">
+                <!-- Github -->
+                <a href="https://github.com" target="_blank" class="group relative w-12 h-12 flex items-center justify-center">
+                    <!-- Hexagon Border SVG -->
+                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-white/30 group-hover:text-white transition duration-300" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M50 2 L93.3 27 V77 L50 102 L6.7 77 V27 Z" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <Icon name="fa6-brands:github" class="text-xl text-white/70 group-hover:text-white transition relative z-10" />
+                </a>
+                
+                <!-- LinkedIn -->
+                <a href="https://linkedin.com" target="_blank" class="group relative w-12 h-12 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-white/30 group-hover:text-[#0077B5] transition duration-300" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M50 2 L93.3 27 V77 L50 102 L6.7 77 V27 Z" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <Icon name="fa6-brands:linkedin-in" class="text-xl text-white/70 group-hover:text-[#0077B5] transition relative z-10" />
+                </a>
+
+                <!-- Email -->
+                <a href="mailto:contact@example.com" class="group relative w-12 h-12 flex items-center justify-center">
+                    <svg viewBox="0 0 100 100" class="absolute inset-0 w-full h-full text-white/30 group-hover:text-[var(--primary)] transition duration-300" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M50 2 L93.3 27 V77 L50 102 L6.7 77 V27 Z" vector-effect="non-scaling-stroke" />
+                    </svg>
+                    <Icon name="material-symbols:mail-outline" class="text-xl text-white/70 group-hover:text-[var(--primary)] transition relative z-10" />
+                </a>
+            </div>
+
+            <!-- Badge / Powered By -->
+            <div class="flex items-center gap-2 opacity-30 hover:opacity-100 transition duration-500">
+                 <a href="https://astro.build" target="_blank" class="flex items-center gap-1">
+                    <Icon name="simple-icons:astro" class="text-lg" />
+                </a>
+                <span class="text-[10px] font-medium uppercase tracking-widest border-l border-white/30 pl-2 ml-1">
+                    Powered by Astro
+                </span>
+            </div>
+        </div>
     </div>
 </div>
