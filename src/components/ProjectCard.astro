@@ -1,0 +1,49 @@
+---
+import { Icon } from "astro-icon/components";
+import type { Project } from "../data/projects";
+
+interface Props {
+  project: Project;
+}
+
+const { project } = Astro.props;
+---
+
+<div class="project-card card-base rounded-[var(--radius-large)] overflow-hidden group transition hover:shadow-lg opacity-0 translate-y-8 duration-700 ease-out">
+  <a href={project.demoUrl || project.repoUrl || "#"} target="_blank" class="block relative overflow-hidden aspect-video">
+    <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition z-10"></div>
+    <img src={project.image} alt={project.title} class="w-full h-full object-cover transition duration-500 group-hover:scale-105" />
+  </a>
+  
+  <div class="p-6">
+    <div class="flex justify-between items-start mb-4">
+      <h3 class="text-xl font-bold text-black/90 dark:text-white/90 group-hover:text-[var(--primary)] transition">
+        {project.title}
+      </h3>
+      <div class="flex gap-2">
+        {project.repoUrl && (
+          <a href={project.repoUrl} target="_blank" aria-label="GitHub Repo" class="text-black/50 dark:text-white/50 hover:text-[var(--primary)] transition">
+            <Icon name="fa6-brands:github" class="text-xl" />
+          </a>
+        )}
+        {project.demoUrl && (
+          <a href={project.demoUrl} target="_blank" aria-label="Live Demo" class="text-black/50 dark:text-white/50 hover:text-[var(--primary)] transition">
+            <Icon name="material-symbols:open-in-new" class="text-xl" />
+          </a>
+        )}
+      </div>
+    </div>
+
+    <p class="text-black/60 dark:text-white/60 mb-4 line-clamp-2 text-sm">
+      {project.description}
+    </p>
+
+    <div class="flex flex-wrap gap-2">
+      {project.tags.map((tag) => (
+        <span class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>

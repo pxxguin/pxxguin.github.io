@@ -4,6 +4,12 @@ import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
 import { getCategoryList, getSortedPosts } from "../utils/content-utils";
 import { getPostUrlBySlug } from "../utils/url-utils";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
+import ProjectCard from "../components/ProjectCard.astro";
+import { projects } from "../data/projects";
+import SkillCard from "../components/SkillCard.astro";
+import { skills } from "../data/skills";
 import CategoryCard from "../components/CategoryCard.astro";
 import GridPostCard from "../components/GridPostCard.astro";
 
@@ -98,7 +104,36 @@ const bgImage = "/images/hero-bg.gif";
         </div>
     </div>
 
-    <!-- Category Section -->
+    <!-- Tech Stack Section -->
+    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mt-8">
+        <div class="section-header text-left mb-6 opacity-0 translate-y-8 transition duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">기술 스택 🛠️</h2>
+            <p class="text-black/50 dark:text-white/50">제가 주로 사용하는 기술들입니다.</p>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+            {skills.map((skill) => (
+                <SkillCard skill={skill} />
+            ))}
+        </div>
+    </div>
+
+    <!-- Featured Projects Section -->
+    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
+        <div class="section-header text-left mb-6 opacity-0 translate-y-8 transition duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">주요 프로젝트 🚀</h2>
+            <p class="text-black/50 dark:text-white/50">제가 진행한 주요 프로젝트들을 소개합니다.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {projects.map((project) => (
+                <ProjectCard project={project} />
+            ))}
+        </div>
+    </div>
+
+    <!-- Category Section (Hidden) -->
+    <!-- 
     <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mt-8">
         <div class="text-center mb-8">
             <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Popular Categories 👑</h2>
@@ -152,8 +187,10 @@ const bgImage = "/images/hero-bg.gif";
             })}
         </div>
     </div>
+    -->
 
-    <!-- Useful Development Tools Section -->
+    <!-- Useful Development Tools Section (Hidden) -->
+    <!-- 
     <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
         <div class="text-left mb-6">
             <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">최근 포스팅 ❤️‍🔥</h2>
@@ -176,4 +213,28 @@ const bgImage = "/images/hero-bg.gif";
             ))}
         </div>
     </div>
+    -->
+
+    <script>
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.remove('opacity-0', 'translate-y-8');
+                    }, index * 100); // Staggered delay
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.project-card, .skill-card, .section-header').forEach((card) => {
+            observer.observe(card);
+        });
+    </script>
 </HomeLayout>
