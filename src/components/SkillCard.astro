@@ -9,11 +9,21 @@ interface Props {
 const { skill } = Astro.props;
 ---
 
-<div class="skill-card card-base rounded-2xl p-4 flex flex-col items-center justify-center gap-3 transition hover:scale-105 hover:bg-[var(--primary)]/5 group opacity-0 translate-y-8 duration-700 ease-out">
-  <div class="text-4xl text-[var(--primary)] transition group-hover:scale-110">
+<div 
+  class="skill-card card-base rounded-2xl p-4 flex flex-col items-center justify-center gap-3 transition hover:scale-105 group opacity-0 translate-y-8 duration-700 ease-out"
+  style={`--skill-color: ${skill.color};`}
+>
+  <div class="text-4xl transition group-hover:scale-110" style={`color: var(--skill-color);`}>
     <Icon name={skill.icon} />
   </div>
-  <span class="font-medium text-black/70 dark:text-white/70 group-hover:text-[var(--primary)] transition">
+  <span class="font-medium text-black/70 dark:text-white/70 transition" style={`color: var(--skill-color); opacity: 0.8;`}>
     {skill.name}
   </span>
+  
+  <style>
+    .skill-card:hover {
+      background-color: color-mix(in srgb, var(--skill-color), transparent 90%);
+      box-shadow: 0 4px 20px color-mix(in srgb, var(--skill-color), transparent 85%);
+    }
+  </style>
 </div>
