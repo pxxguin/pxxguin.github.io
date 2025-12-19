@@ -111,12 +111,48 @@ const description = "My Portfolio - Skills, Projects, and Story";
                 새로운 도전은 언제나 환영입니다. <br />
                 함께 멋진 것을 만들어보고 싶다면 언제든 연락주세요.
             </p>
-            <a href="mailto:contact@example.com" class="px-10 py-5 bg-white text-black text-lg font-bold rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition duration-300">
+            <a href="mailto:janghongseo@naver.com" class="px-10 py-5 bg-white text-black text-lg font-bold rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition duration-300">
                 Say Hello 👋
             </a>
         </section>
 
         <Footer />
+
+        <!-- Terminal Widget -->
+        <div id="terminal-widget" data-profile-name={profileConfig.name} class="fixed bottom-8 right-8 z-50 transition-all duration-300 transform translate-y-0">
+            <!-- Minimized State (Icon) -->
+            <button id="terminal-toggle" class="w-14 h-14 bg-black border border-white/20 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(0,0,0,0.5)] hover:scale-110 hover:border-[var(--primary)] transition group overflow-hidden">
+                <Icon name="mdi:console" class="text-2xl text-white/70 group-hover:text-[var(--primary)] transition" />
+            </button>
+
+            <!-- Maximized State (Window) -->
+            <div id="terminal-window" class="hidden absolute bottom-0 right-0 w-[90vw] max-w-[500px] h-[400px] bg-[#0a0a0a]/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl flex flex-col overflow-hidden origin-bottom-right transition-all duration-300 scale-0 opacity-0">
+                <!-- Header -->
+                <div class="h-8 bg-white/5 border-b border-white/5 flex items-center px-4 justify-between shrink-0 cursor-move" id="terminal-header">
+                    <div class="flex gap-2">
+                        <div class="w-3 h-3 rounded-full bg-red-500/80 hover:bg-red-500 cursor-pointer" id="terminal-close"></div>
+                        <div class="w-3 h-3 rounded-full bg-yellow-500/80 hover:bg-yellow-500 cursor-pointer" id="terminal-minimize"></div>
+                        <div class="w-3 h-3 rounded-full bg-green-500/80 hover:bg-green-500 cursor-pointer"></div>
+                    </div>
+                    <div class="text-xs text-white/30 font-mono">guest@portfolio:~</div>
+                    <div class="w-10"></div> <!-- Spacer for centering -->
+                </div>
+                
+                <!-- Body -->
+                <div class="flex-1 p-4 font-mono text-sm overflow-y-auto custom-scrollbar" id="terminal-body" onclick="document.getElementById('terminal-input').focus()">
+                    <div id="terminal-output" class="text-white/80 space-y-1 mb-2">
+                        <div class="text-[var(--primary)]">Welcome to Portfolio Terminal v1.0.0</div>
+                        <div>Type <span class="text-yellow-400">'help'</span> to see available commands.</div>
+                        <br/>
+                    </div>
+                    <div class="flex items-center gap-2 text-white">
+                        <span class="text-green-400">➜</span>
+                        <span class="text-cyan-400">~</span>
+                        <input type="text" id="terminal-input" class="bg-transparent border-none outline-none flex-1 text-white font-mono p-0 focus:ring-0" autocomplete="off" spellcheck="false" />
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Project Modal -->
         <div id="skill-modal" class="fixed inset-0 z-[100] hidden opacity-0 transition-opacity duration-300" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -589,6 +625,116 @@ const description = "My Portfolio - Skills, Projects, and Story";
 
     // Start typing loop after initial delay
     setTimeout(type, 2000);
+    // Terminal Widget Logic
+    const terminalWidget = document.getElementById('terminal-widget');
+    const terminalToggle = document.getElementById('terminal-toggle');
+    const terminalWindow = document.getElementById('terminal-window');
+    const terminalClose = document.getElementById('terminal-close');
+    const terminalMinimize = document.getElementById('terminal-minimize');
+    const terminalBody = document.getElementById('terminal-body');
+    const terminalOutput = document.getElementById('terminal-output');
+    const terminalInput = document.getElementById('terminal-input');
+
+    let isTerminalOpen = false;
+
+    function toggleTerminal() {
+        isTerminalOpen = !isTerminalOpen;
+        if (isTerminalOpen) {
+            terminalToggle.classList.add('hidden');
+            terminalWindow.classList.remove('hidden');
+            // Small delay to allow display:block to apply before transition
+            setTimeout(() => {
+                terminalWindow.classList.remove('scale-0', 'opacity-0');
+                terminalInput.focus();
+            }, 10);
+        } else {
+            terminalWindow.classList.add('scale-0', 'opacity-0');
+            setTimeout(() => {
+                terminalWindow.classList.add('hidden');
+                terminalToggle.classList.remove('hidden');
+            }, 300);
+        }
+    }
+
+    terminalToggle?.addEventListener('click', toggleTerminal);
+    terminalClose?.addEventListener('click', toggleTerminal);
+    terminalMinimize?.addEventListener('click', toggleTerminal);
+
+    const commands = {
+        help: () => `
+            <div class="grid grid-cols-[100px_1fr] gap-2 text-white/70">
+                <span class="text-yellow-400">whoami</span> <span>About me</span>
+                <span class="text-yellow-400">skills</span> <span>My technical skills</span>
+                <span class="text-yellow-400">contact</span> <span>Contact info</span>
+                <span class="text-yellow-400">clear</span> <span>Clear terminal</span>
+                <span class="text-yellow-400">exit</span> <span>Close terminal</span>
+            </div>
+        `,
+        whoami: () => {
+            const profileName = terminalWidget.dataset.profileName;
+            return `
+            <div>
+                Hello! I'm <span class="text-[var(--primary)] font-bold">${profileName}</span>.<br/>
+                I am an MLOps Engineer passionate about building scalable and automated machine learning systems.
+            </div>
+        `},
+        skills: () => `
+            <div class="space-y-1">
+                <div class="text-[var(--primary)] font-bold">Infrastructure & DevOps</div>
+                <div>Kubernetes, Docker, Terraform, AWS, GCP</div>
+                <div class="text-[var(--primary)] font-bold mt-2">MLOps & Data</div>
+                <div>Kubeflow, MLflow, Airflow, Prometheus, Grafana</div>
+                <div class="text-[var(--primary)] font-bold mt-2">Languages</div>
+                <div>Python, Go, SQL, TypeScript</div>
+            </div>
+        `,
+        contact: () => `
+            <div>
+                <div>📧 <a href="mailto:janghongseo@example.com" class="underline hover:text-white">janghongseo@naver.com</a></div>
+                <div>🐙 <a href="https://github.com/pxxguin" target="_blank" class="underline hover:text-white">GitHub</a></div>
+                <div>🔗 <a href="https://www.linkedin.com/in/hongseojang/" target="_blank" class="underline hover:text-white">LinkedIn</a></div>
+            </div>
+        `,
+        exit: () => {
+            toggleTerminal();
+            return 'Closing terminal...';
+        }
+    };
+
+    terminalInput?.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            const input = terminalInput.value.trim();
+            if (!input) return;
+
+            // Add command to history
+            const cmdLine = document.createElement('div');
+            cmdLine.className = 'flex items-center gap-2 text-white mb-1';
+            cmdLine.innerHTML = `<span class="text-green-400">➜</span> <span class="text-cyan-400">~</span> ${input}`;
+            terminalOutput.appendChild(cmdLine);
+
+            // Process command
+            const cmd = input.toLowerCase();
+            let response = '';
+
+            if (cmd === 'clear') {
+                terminalOutput.innerHTML = '';
+            } else if (commands[cmd]) {
+                response = commands[cmd]();
+            } else {
+                response = `<span class="text-red-400">Command not found: ${cmd}. Type 'help' for available commands.</span>`;
+            }
+
+            if (response && cmd !== 'clear') {
+                const respDiv = document.createElement('div');
+                respDiv.className = 'mb-4 text-white/80 leading-relaxed';
+                respDiv.innerHTML = response;
+                terminalOutput.appendChild(respDiv);
+            }
+
+            terminalInput.value = '';
+            terminalBody.scrollTop = terminalBody.scrollHeight;
+        }
+    });
 </script>
 
 <style>
