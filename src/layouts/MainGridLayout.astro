@@ -59,6 +59,27 @@ const mainPanelTop = siteConfig.banner.enable
     </ImageWrapper>
 </div>}
 
+<!-- Progress Bar -->
+<div id="progress-container" class="fixed top-0 left-0 w-full h-1 z-[100] bg-transparent pointer-events-none">
+    <div id="progress-bar" class="h-full bg-[var(--primary)] w-0 transition-all duration-100 ease-out"></div>
+</div>
+
+<script>
+    function updateProgress() {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = scrollTop / docHeight;
+        const progressBar = document.getElementById('progress-bar');
+        if (progressBar) {
+            progressBar.style.width = `${scrollPercent * 100}%`;
+        }
+    }
+
+    window.addEventListener('scroll', updateProgress);
+    // document.addEventListener('astro:after-swap', updateProgress); // Determine if needed for view transitions
+</script>
+
+
 <!-- Main content -->
 <div class="absolute w-full z-30 pointer-events-none" style={`top: ${mainPanelTop}`}>
     <!-- The pointer-events-none here prevent blocking the click event of the TOC -->
