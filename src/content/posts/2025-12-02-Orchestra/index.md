@@ -1,5 +1,6 @@
 ---
 title: Review with ToolOrchestra
+image: /images/test4.png
 published: 2025-12-02
 description: ToolOrchestra-Elevating Intelligence via Efficient Model and Tool Orchestration에 대한 논문 리뷰입니다.
 tags: [Paper, NLP, LLM]

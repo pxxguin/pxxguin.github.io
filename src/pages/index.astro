@@ -1,18 +1,12 @@
 ---
+import CategoryCard from "../components/CategoryCard.astro";
+import GridPostCard from "../components/GridPostCard.astro";
+
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
 import { getCategoryList, getSortedPosts } from "../utils/content-utils";
 import { getPostUrlBySlug } from "../utils/url-utils";
-import ProjectCard from "../components/ProjectCard.astro";
-import { projects } from "../data/projects";
-
-import SkillCard from "../components/SkillCard.astro";
-import { skills } from "../data/skills";
-import Timeline from "../components/Timeline.astro";
-import { experiences } from "../data/experience";
-import CategoryCard from "../components/CategoryCard.astro";
-import GridPostCard from "../components/GridPostCard.astro";
 
 const categories = await getCategoryList();
 const sortedPosts = await getSortedPosts();
@@ -85,7 +79,11 @@ const bgImage = "/images/hero-bg.gif";
                     setTimeout(typeEffect, nextSpeed);
                 }
 
+
                 typeEffect();
+
+                // Dashboard Logic
+
             </script>
 
             <!-- Quote -->
@@ -105,43 +103,9 @@ const bgImage = "/images/hero-bg.gif";
         </div>
     </div>
 
-    <!-- Tech Stack Section -->
-    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mt-8">
-        <div class="section-header text-left mb-6 opacity-0 translate-y-8 transition duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">기술 스택 🛠️</h2>
-            <p class="text-black/50 dark:text-white/50">제가 주로 사용하는 기술들입니다.</p>
-        </div>
 
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {skills.map((skill) => (
-                <SkillCard skill={skill} />
-            ))}
-        </div>
-    </div>
 
-    <!-- Featured Projects Section -->
-    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
-        <div class="section-header text-left mb-6 opacity-0 translate-y-8 transition duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">주요 프로젝트 🚀</h2>
-            <p class="text-black/50 dark:text-white/50">제가 진행한 주요 프로젝트들을 소개합니다.</p>
-        </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {projects.map((project) => (
-                <ProjectCard project={project} />
-            ))}
-        </div>
-    </div>
-
-    <!-- Experience Section -->
-    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
-        <div class="section-header text-left mb-6 opacity-0 translate-y-8 transition duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">경력 및 이력 📜</h2>
-            <p class="text-black/50 dark:text-white/50">저의 성장 과정과 전문적인 배경입니다.</p>
-        </div>
-
-        <Timeline experiences={experiences} />
-    </div>
 
     <!-- Category Section (Hidden) -->
     <!-- 
@@ -200,12 +164,11 @@ const bgImage = "/images/hero-bg.gif";
     </div>
     -->
 
-    <!-- Useful Development Tools Section (Hidden) -->
-    <!-- 
+    <!-- Recent Engineering Logs Section -->
     <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
-        <div class="text-left mb-6">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">최근 포스팅 ❤️‍🔥</h2>
-            <p class="text-black/50 dark:text-white/50">가장 최근에 작성된 포스팅을 볼까요?</p>
+        <div class="text-left mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Recent Engineering Logs 📝</h2>
+            <p class="text-black/50 dark:text-white/50">Sharing my learning journey and technical insights.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -219,12 +182,11 @@ const bgImage = "/images/hero-bg.gif";
                     url={getPostUrlBySlug(entry.slug)}
                     image={entry.data.image}
                     description={entry.data.description}
-                    class="h-full"
+                    class="h-full recent-post-card opacity-0 translate-y-8 transition duration-700 ease-out"
                 />
             ))}
         </div>
     </div>
-    -->
 
     <script>
         const observerOptions = {
@@ -244,7 +206,7 @@ const bgImage = "/images/hero-bg.gif";
             });
         }, observerOptions);
 
-        document.querySelectorAll('.project-card, .skill-card, .section-header, .timeline-item').forEach((card) => {
+        document.querySelectorAll('.project-card, .skill-card, .section-header, .timeline-item, .recent-post-card').forEach((card) => {
             observer.observe(card);
         });
     </script>

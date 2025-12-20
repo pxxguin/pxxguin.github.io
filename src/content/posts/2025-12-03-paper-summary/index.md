@@ -1,5 +1,6 @@
 ---
 title: "Paper Summary: Embedding Limits"
+image: /images/test5.png
 published: 2025-12-03
 description: "Summary of a paper about embedding limits."
 tags: ["AI", "Paper"]
