@@ -9,8 +9,8 @@ import Search from "./Search.svelte";
 import NavMenuPanel from "./widget/NavMenuPanel.astro";
 
 interface Props {
-    class?: string;
-    isHome?: boolean;
+	class?: string;
+	isHome?: boolean;
 }
 
 const { class: className, isHome } = Astro.props;
@@ -58,7 +58,7 @@ let links: NavBarLink[] = navBarConfig.links.map(
         <div class="flex gap-4 items-center">
             <!--<SearchPanel client:load>-->
             <Search client:only="svelte" isHome={isHome}></Search>
-            {!isHome && <LightDarkSwitch client:only="svelte" isHome={isHome}></LightDarkSwitch>}
+            <LightDarkSwitch client:only="svelte" isHome={isHome}></LightDarkSwitch>
             <button aria-label="Menu" name="Nav Menu" class:list={["btn-plain scale-animation rounded-lg w-11 h-11 active:scale-90 md:!hidden", { "!text-white": isHome }]} id="nav-menu-switch">
                 <Icon name="material-symbols:menu-rounded" class="text-[1.25rem]"></Icon>
             </button>
