@@ -5,6 +5,7 @@ import Navbar from "@components/Navbar.astro";
 import SideBar from "@components/widget/SideBar.astro";
 import type { MarkdownHeading } from "astro";
 import { Icon } from "astro-icon/components";
+import ZenModeButton from "../components/control/ZenModeButton.svelte";
 import ImageWrapper from "../components/misc/ImageWrapper.astro";
 import TOC from "../components/widget/TOC.astro";
 import { siteConfig } from "../config";
@@ -114,6 +115,7 @@ const mainPanelTop = siteConfig.banner.enable
 
         <BackToTop></BackToTop>
     </div>
+    <ZenModeButton client:load></ZenModeButton>
     <div class="pointer-events-auto w-full">
         <Footer />
     </div>
@@ -140,3 +142,5 @@ const mainPanelTop = siteConfig.banner.enable
     </div>
 </div>
 </Layout>
+
+

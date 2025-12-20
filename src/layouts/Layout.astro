@@ -208,6 +208,31 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 		@apply opacity-0 -translate-y-16
 	}
 }
+
+/* Zen Mode Styles */
+.zen-mode #navbar-wrapper,
+.zen-mode #sidebar,
+.zen-mode #footer,
+.zen-mode #banner-wrapper,
+.zen-mode #toc-wrapper,
+.zen-mode #banner-credit,
+.zen-mode #top-row {
+	opacity: 0 !important;
+	pointer-events: none !important;
+	visibility: hidden !important;
+	display: none !important;
+}
+
+.zen-mode #main-grid {
+	grid-template-columns: minmax(0, 1fr) !important;
+	max-width: 900px !important;
+	margin: 0 auto !important;
+	padding-top: 4rem !important;
+}
+
+.zen-mode #swup-container {
+	grid-column: span 1 !important;
+}
 </style>
 
 <script>

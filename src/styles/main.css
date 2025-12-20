@@ -150,3 +150,28 @@
     }
   }
 }
+
+/* Zen Mode Styles */
+:global(.zen-mode) #navbar-wrapper,
+:global(.zen-mode) #sidebar,
+:global(.zen-mode) #footer,
+:global(.zen-mode) #banner-wrapper,
+:global(.zen-mode) #toc-wrapper,
+:global(.zen-mode) #banner-credit,
+:global(.zen-mode) #top-row {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    visibility: hidden !important;
+    display: none !important;
+}
+
+:global(.zen-mode) #main-grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+    max-width: 900px !important;
+    margin: 0 auto !important;
+    padding-top: 4rem !important;
+}
+
+:global(.zen-mode) #swup-container {
+    grid-column: span 1 !important;
+}
