@@ -71,6 +71,19 @@ const bannerOffsetByPosition = {
 };
 const bannerOffset =
 	bannerOffsetByPosition[siteConfig.banner.position || "center"];
+
+// OG Image Logic
+let ogImage = siteConfig.banner.src; // Default to site banner
+if (banner && typeof banner === "string" && banner.trim() !== "") {
+	ogImage = banner;
+} else if (setOGTypeArticle) {
+	// If it's an article but has no banner, use dynamic OG image
+	// Remove trailing slash and get the last segment
+	const slug = Astro.url.pathname.replace(/\/$/, "").split("/").pop();
+	if (slug) {
+		ogImage = `/og/${slug}.png`;
+	}
+}
 ---
 
 <!DOCTYPE html>
@@ -89,6 +102,7 @@ const bannerOffset =
 		<meta property="og:url" content={Astro.url}>
 		<meta property="og:title" content={pageTitle}>
 		<meta property="og:description" content={description || pageTitle}>
+        <meta property="og:image" content={new URL(ogImage, Astro.site).toString()}>
 		{setOGTypeArticle ? (
         <meta property="og:type" content="article" />
         ) : (
@@ -99,6 +113,7 @@ const bannerOffset =
 		<meta property="twitter:url" content={Astro.url}>
 		<meta name="twitter:title" content={pageTitle}>
 		<meta name="twitter:description" content={description || pageTitle}>
+        <meta name="twitter:image" content={new URL(ogImage, Astro.site).toString()}>
 
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
