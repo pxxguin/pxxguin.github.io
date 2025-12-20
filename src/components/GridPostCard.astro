@@ -99,9 +99,15 @@ const { remarkPluginFrontmatter } = await entry.render();
 
         <!-- Footer -->
         <div class="mt-auto pt-3 border-t border-black/5 dark:border-white/5 flex justify-between items-center text-black/40 dark:text-white/40 text-xs">
-            <div class="flex items-center gap-1">
-                <Icon name="material-symbols:chat-bubble-outline-rounded" class="text-base" />
-                <span>0</span>
+            <div class="flex items-center gap-4">
+                <div class="flex items-center gap-1">
+                    <Icon name="material-symbols:chat-bubble-outline-rounded" class="text-base" />
+                    <span>0</span>
+                </div>
+                <div class="flex items-center gap-1">
+                    <Icon name="material-symbols:favorite-outline-rounded" class="text-base" />
+                    <span>0</span>
+                </div>
             </div>
             <button class="hover:text-[var(--primary)] transition">
                 <Icon name="material-symbols:share-outline" class="text-lg" />

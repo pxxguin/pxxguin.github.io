@@ -1,5 +1,6 @@
 import type {
 	ExpressiveCodeConfig,
+	GiscusConfig,
 	LicenseConfig,
 	NavBarConfig,
 	ProfileConfig,
@@ -104,4 +105,18 @@ export const expressiveCodeConfig: ExpressiveCodeConfig = {
 	// Note: Some styles (such as background color) are being overridden, see the astro.config.mjs file.
 	// Please select a dark theme, as this blog theme currently only supports dark background color
 	theme: "github-dark",
+};
+
+export const giscusConfig: GiscusConfig = {
+	enable: true,
+	repo: "pxxguin/pxxguin.github.io",
+	repoId: "R_kgDOQX18yg",
+	category: "Announcements", // TODO: Update this to a valid category name from your repo
+	categoryId: "DIC_kwDOQX18ys4C0B9O", // TODO: Update this to your valid category ID
+	mapping: "pathname",
+	reactionsEnabled: "1",
+	emitMetadata: "0",
+	inputPosition: "bottom",
+	lang: "ko",
+	loading: "lazy",
 };

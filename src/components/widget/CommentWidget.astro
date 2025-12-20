@@ -1,0 +1,67 @@
+---
+import { giscusConfig } from "../../config";
+
+const config = giscusConfig;
+---
+
+<div id="giscus-container"></div>
+
+<script is:inline define:vars={{ config }}>
+    function loadGiscus() {
+        if (!config.enable) return;
+
+        const container = document.getElementById('giscus-container');
+        if (!container) return;
+
+        // Prevent duplicate scripts options
+        if (container.children.length > 0) {
+            return;
+        }
+
+        const script = document.createElement('script');
+        script.src = 'https://giscus.app/client.js';
+        script.setAttribute('data-repo', config.repo);
+        script.setAttribute('data-repo-id', config.repoId);
+        script.setAttribute('data-category', config.category);
+        script.setAttribute('data-category-id', config.categoryId);
+        script.setAttribute('data-mapping', config.mapping);
+        script.setAttribute('data-strict', '0');
+        script.setAttribute('data-reactions-enabled', config.reactionsEnabled);
+        script.setAttribute('data-emit-metadata', config.emitMetadata);
+        script.setAttribute('data-input-position', config.inputPosition);
+        script.setAttribute('data-theme', document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'light');
+        script.setAttribute('data-lang', config.lang);
+        script.setAttribute('data-loading', config.loading);
+        script.crossOrigin = 'anonymous';
+        script.async = true;
+
+        container.appendChild(script);
+    }
+
+    loadGiscus();
+
+    // Re-load on theme change
+    const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                const iframe = document.querySelector('iframe.giscus-frame');
+                if (!iframe) return;
+
+                const theme = document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'light';
+                iframe.contentWindow.postMessage({
+                    giscus: {
+                        setConfig: {
+                            theme: theme
+                        }
+                    }
+                }, 'https://giscus.app');
+            }
+        });
+    });
+
+    observer.observe(document.documentElement, { attributes: true });
+    
+    // Support for View Transitions (Astro) or Swup
+    document.addEventListener('astro:page-load', loadGiscus);
+    document.addEventListener('swup:contentReplaced', loadGiscus);
+</script>
