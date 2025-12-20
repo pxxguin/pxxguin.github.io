@@ -1,8 +1,8 @@
 ---
+import { Icon } from "astro-icon/components";
 import CategoryCard from "../components/CategoryCard.astro";
-import GridPostCard from "../components/GridPostCard.astro";
 import DailyPaperWidget from "../components/DailyPaperWidget.svelte";
-
+import GridPostCard from "../components/GridPostCard.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
@@ -167,10 +167,15 @@ const bgImage = "/images/hero-bg.gif";
 
 
     <!-- Recent Engineering Logs Section -->
-    <div class="max-w-[var(--page-width)] mx-auto px-4 py-8 mb-16">
-        <div class="text-left mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Recent Engineering Logs 📝</h2>
-            <p class="text-black/50 dark:text-white/50">Sharing my learning journey and technical insights.</p>
+    <div class="max-w-[var(--page-width)] mx-auto px-4 pt-8 pb-4 mb-4">
+        <div class="flex justify-between items-end mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+            <div class="text-left">
+                <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">📝 Recent Engineering Logs</h2>
+                <p class="text-black/50 dark:text-white/50">Sharing my learning journey and technical insights.</p>
+            </div>
+            <a href="/posts/" class="text-[var(--primary)] hover:text-[var(--primary-hover)] font-medium transition flex items-center gap-1 mb-1">
+                View All <Icon name="material-symbols:arrow-forward-rounded" class="text-xl" />
+            </a>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -190,9 +195,15 @@ const bgImage = "/images/hero-bg.gif";
         </div>
     </div>
 
-    <!-- Paper of the Day Widget -->
-    <div class="daily-paper-widget opacity-0 translate-y-8 transition duration-700 ease-out">
-        <DailyPaperWidget client:visible />
+    <!-- Paper of the Day Section -->
+    <div class="max-w-[var(--page-width)] mx-auto px-4 pt-4 pb-8 mb-16">
+        <div class="text-left mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">📄 Paper of the Day</h2>
+            <p class="text-black/50 dark:text-white/50">Staying updated with the latest research.</p>
+        </div>
+        <div class="daily-paper-widget opacity-0 translate-y-8 transition duration-700 ease-out">
+            <DailyPaperWidget client:visible />
+        </div>
     </div>
 
     <script>

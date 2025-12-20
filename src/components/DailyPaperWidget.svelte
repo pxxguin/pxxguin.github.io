@@ -1,71 +1,83 @@
 <script lang="ts">
-  import { onMount } from 'svelte';
-  import Icon from '@iconify/svelte';
+import Icon from "@iconify/svelte";
+import { onMount } from "svelte";
 
-  interface Author {
-    name: string;
-  }
+interface Author {
+	name: string;
+}
 
-  interface Paper {
-    id: string;
-    title: string;
-    summary: string;
-    publishedAt: string;
-    authors: Author[];
-  }
+interface Paper {
+	id: string;
+	title: string;
+	summary: string;
+	publishedAt: string;
+	authors: Author[];
+}
 
-  let paper: Paper | null = null;
-  let loading = true;
-  let error: string | null = null;
+let paper: Paper | null = null;
+let loading = true;
+let error: string | null = null;
 
-  // Fallback paper (Attention Is All You Need)
-  const fallbackPaper: Paper = {
-    id: "1706.03762",
-    title: "Attention Is All You Need",
-    summary: "The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely...",
-    publishedAt: "2017-06-12",
-    authors: [{ name: "Ashish Vaswani" }, { name: "Noam Shazeer" }, { name: "Niki Parmar" }, { name: "et al." }]
-  };
+// Fallback paper (Attention Is All You Need)
+const fallbackPaper: Paper = {
+	id: "1706.03762",
+	title: "Attention Is All You Need",
+	summary:
+		"The dominant sequence transduction models are based on complex recurrent or convolutional neural networks that include an encoder and a decoder. The best performing models also connect the encoder and decoder through an attention mechanism. We propose a new simple network architecture, the Transformer, based solely on attention mechanisms, dispensing with recurrence and convolutions entirely...",
+	publishedAt: "2017-06-12",
+	authors: [
+		{ name: "Ashish Vaswani" },
+		{ name: "Noam Shazeer" },
+		{ name: "Niki Parmar" },
+		{ name: "et al." },
+	],
+};
 
-  onMount(async () => {
-    try {
-      // Use corsproxy.io to bypass CORS restrictions
-      const response = await fetch('https://corsproxy.io/?url=https://huggingface.co/api/daily_papers');
-      if (!response.ok) throw new Error('Failed to fetch');
-      
-      const data = await response.json();
-      if (data && data.length > 0) {
-        // The API returns an array of objects, each containing a 'paper' object
-        const latest = data[0].paper;
-        paper = {
-            id: latest.id,
-            title: latest.title,
-            summary: latest.summary.replace(/\n/g, ' '),
-            publishedAt: latest.publishedAt,
-            authors: latest.authors
-        };
-      } else {
-        throw new Error('No papers found');
-      }
-    } catch (e) {
-      console.error("Failed to fetch daily paper:", e);
-      error = "Could not load daily paper. Showing classic paper instead.";
-      paper = fallbackPaper;
-    } finally {
-      loading = false;
-    }
-  });
+onMount(async () => {
+	try {
+		// Use corsproxy.io to bypass CORS restrictions
+		const response = await fetch(
+			"https://corsproxy.io/?url=https://huggingface.co/api/daily_papers",
+		);
+		if (!response.ok) throw new Error("Failed to fetch");
 
-  function getAuthors(authors: Author[]) {
-    return authors.map(a => a.name).slice(0, 3).join(", ") + (authors.length > 3 ? " et al." : "");
-  }
+		const data = await response.json();
+		if (data && data.length > 0) {
+			// The API returns an array of objects, each containing a 'paper' object
+			const latest = data[0].paper;
+			paper = {
+				id: latest.id,
+				title: latest.title,
+				summary: latest.summary.replace(/\n/g, " "),
+				publishedAt: latest.publishedAt,
+				authors: latest.authors,
+			};
+		} else {
+			throw new Error("No papers found");
+		}
+	} catch (e) {
+		console.error("Failed to fetch daily paper:", e);
+		error = "Could not load daily paper. Showing classic paper instead.";
+		paper = fallbackPaper;
+	} finally {
+		loading = false;
+	}
+});
 
-  function cleanSummary(text: string) {
-    return text.length > 200 ? text.substring(0, 200) + "..." : text;
-  }
+function getAuthors(authors: Author[]) {
+	return (
+		authors
+			.map((a) => a.name)
+			.slice(0, 3)
+			.join(", ") + (authors.length > 3 ? " et al." : "")
+	);
+}
+
+function cleanSummary(text: string) {
+	return text.length > 200 ? `${text.substring(0, 200)}...` : text;
+}
 </script>
 
-<div class="w-full max-w-[var(--page-width)] mx-auto px-4 mb-16">
   <div class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 backdrop-blur-md p-6 sm:p-8 transition hover:border-[var(--primary)]/30 group">
     
     <!-- Background Decoration -->
@@ -139,7 +151,6 @@
 
     </div>
   </div>
-</div>
 
 <style>
   .stroke-text {
