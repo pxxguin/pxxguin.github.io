@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
-import { getPostUrlBySlug } from "../../utils/url-utils";
+import { getPostUrl } from "../../utils/url-utils";
 
 interface Props {
 	series: string;
@@ -52,7 +52,7 @@ const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
                     const isCurrent = post.id === currentPostId;
                     return (
                         <li>
-                            <a href={getPostUrlBySlug(post.slug)} 
+                            <a href={getPostUrl(post)} 
                             class={`flex items-start gap-3 p-2 rounded-lg transition group/item
                                 ${isCurrent 
                                     ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' 

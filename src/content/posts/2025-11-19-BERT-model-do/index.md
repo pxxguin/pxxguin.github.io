@@ -1,11 +1,14 @@
 ---
 title: How BERT model operate in python?
 image: /images/test2.png
-published: 2025-11-18
-description: 영어를 다루는데 특화된 DistilBERT가 어떻게 동작하고, 코딩되는지 설명합니다.
-tags: [NLP, DeepL]
+published: 2025-11-18T00:00:00.000Z
+description: '영어를 다루는데 특화된 DistilBERT가 어떻게 동작하고, 코딩되는지 설명합니다.'
+tags:
+  - NLP
+  - DeepL
 category: NLP
 draft: false
+postId: 1
 ---
 
 ### ⭐️ BERT 모델 불러오기

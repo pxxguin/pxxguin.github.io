@@ -1,11 +1,15 @@
 ---
 title: Review with StepWiser
 image: /images/test3.png
-published: 2025-11-29
-description: StepWiser, Stepwise Generative Judges for Wiser Reasoning에 대한 논문 리뷰입니다.
-tags: [Paper, NLP, LLM]
+published: 2025-11-29T00:00:00.000Z
+description: 'StepWiser, Stepwise Generative Judges for Wiser Reasoning에 대한 논문 리뷰입니다.'
+tags:
+  - Paper
+  - NLP
+  - LLM
 category: Paper
 draft: false
+postId: 9
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서...

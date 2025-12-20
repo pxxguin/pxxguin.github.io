@@ -1,11 +1,15 @@
 ---
 title: Review with Deep Think with Confidence
 image: /images/test1.png
-published: 2025-11-27
+published: 2025-11-27T00:00:00.000Z
 description: Deep Think with Confidence에 대한 논문 리뷰입니다.
-tags: [Paper, NLP, LLM]
+tags:
+  - Paper
+  - NLP
+  - LLM
 category: Paper
-draft: False
+draft: false
+postId: 7
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서...

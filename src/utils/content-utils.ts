@@ -21,11 +21,15 @@ export async function getSortedPosts() {
 	const sorted = await getRawSortedPosts();
 
 	for (let i = 1; i < sorted.length; i++) {
-		sorted[i].data.nextSlug = sorted[i - 1].slug;
+		sorted[i].data.nextSlug = sorted[i - 1].data.postId
+			? String(sorted[i - 1].data.postId)
+			: sorted[i - 1].slug;
 		sorted[i].data.nextTitle = sorted[i - 1].data.title;
 	}
 	for (let i = 0; i < sorted.length - 1; i++) {
-		sorted[i].data.prevSlug = sorted[i + 1].slug;
+		sorted[i].data.prevSlug = sorted[i + 1].data.postId
+			? String(sorted[i + 1].data.postId)
+			: sorted[i + 1].slug;
 		sorted[i].data.prevTitle = sorted[i + 1].data.title;
 	}
 
@@ -118,7 +122,7 @@ export async function getCategoryList(): Promise<Category[]> {
 export async function getRelatedPosts(
 	currentSlug: string,
 	tags: string[],
-	limit: number = 3,
+	limit = 3,
 ): Promise<PostForList[]> {
 	const allPosts = await getRawSortedPosts();
 
@@ -153,10 +157,16 @@ export async function getRelatedPosts(
 	});
 
 	// Return top N
-	return scoredPosts
-		.filter((item) => item.score > 0) // Only return posts with at least 1 matching tag? Or just fallback? Let's say at least 1 match preferred, but if not enough, maybe we usually want *something*.
-		// Actually, let's keep it strictly related for now. If user wants filler, we can adjust.
-		// If 0 matches, it returns empty list.
-		.slice(0, limit)
-		.map((item) => ({ id: item.post.id, slug: item.post.slug, data: item.post.data }));
+	return (
+		scoredPosts
+			.filter((item) => item.score > 0) // Only return posts with at least 1 matching tag? Or just fallback? Let's say at least 1 match preferred, but if not enough, maybe we usually want *something*.
+			// Actually, let's keep it strictly related for now. If user wants filler, we can adjust.
+			// If 0 matches, it returns empty list.
+			.slice(0, limit)
+			.map((item) => ({
+				id: item.post.id,
+				slug: item.post.slug,
+				data: item.post.data,
+			}))
+	);
 }

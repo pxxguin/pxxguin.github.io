@@ -1,11 +1,15 @@
 ---
 title: Review with The Free Transformer
 image: /images/test6.png
-published: 2025-11-26
+published: 2025-11-26T00:00:00.000Z
 description: The Free Transformer에 대한 논문 리뷰입니다.
-tags: [Paper, NLP, LLM]
+tags:
+  - Paper
+  - NLP
+  - LLM
 category: Paper
-draft: False
+draft: false
+postId: 6
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서...

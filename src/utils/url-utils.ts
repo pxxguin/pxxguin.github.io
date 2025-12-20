@@ -16,6 +16,15 @@ export function getPostUrlBySlug(slug: string): string {
 	return url(`/posts/${slug}/`);
 }
 
+export function getPostUrl(entry: {
+	slug: string;
+	data: { postId?: number };
+}): string {
+	return entry.data.postId
+		? url(`/posts/${entry.data.postId}/`)
+		: getPostUrlBySlug(entry.slug);
+}
+
 export function getTagUrl(tag: string): string {
 	if (!tag) return url("/archive/");
 	return url(`/archive/?tag=${encodeURIComponent(tag.trim())}`);

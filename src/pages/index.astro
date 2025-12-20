@@ -8,7 +8,7 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
 import { getCategoryList, getSortedPosts } from "../utils/content-utils";
-import { getPostUrlBySlug } from "../utils/url-utils";
+import { getPostUrl } from "../utils/url-utils";
 
 const categories = await getCategoryList();
 const sortedPosts = await getSortedPosts();
@@ -212,7 +212,7 @@ const bgImage = "/images/hero-bg.gif";
                     tags={entry.data.tags}
                     category={entry.data.category}
                     published={entry.data.published}
-                    url={getPostUrlBySlug(entry.slug)}
+                    url={getPostUrl(entry)}
                     image={entry.data.image}
                     description={entry.data.description}
                     class="h-full recent-post-card opacity-0 translate-y-8 transition duration-700 ease-out"
@@ -229,7 +229,7 @@ const bgImage = "/images/hero-bg.gif";
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             {allSeries.map(series => (
-                 <a href={getPostUrlBySlug(series.posts[0].slug)} class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1e1e1e] shadow-lg border border-black/5 dark:border-white/5 h-64 flex flex-col justify-end section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+                 <a href={getPostUrl(series.posts[0])} class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1e1e1e] shadow-lg border border-black/5 dark:border-white/5 h-64 flex flex-col justify-end section-header opacity-0 translate-y-8 transition duration-700 ease-out">
                      {/* Background Image */}
                      <div class="absolute inset-0 z-0">
                         <img src={series.image} alt={series.name} class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />

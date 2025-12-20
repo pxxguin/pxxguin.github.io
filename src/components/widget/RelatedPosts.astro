@@ -2,7 +2,7 @@
 import path from "node:path";
 import { getRelatedPosts } from "../../utils/content-utils";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
-import { getDir, getPostUrlBySlug } from "../../utils/url-utils";
+import { getDir, getPostUrl } from "../../utils/url-utils";
 import ImageWrapper from "../misc/ImageWrapper.astro";
 
 interface Props {
@@ -24,7 +24,7 @@ const relatedPosts = await getRelatedPosts(currentSlug, tags);
       {relatedPosts.map((post) => {
         const coverImage = post.data.image || "/images/default-cover.png";
         return (
-          <a href={getPostUrlBySlug(post.slug)} 
+          <a href={getPostUrl(post)} 
              class="group flex flex-col gap-2 overflow-hidden transition opacity-80 hover:opacity-100">
             <div class="relative w-full aspect-video overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
                 <ImageWrapper src={coverImage} basePath={path.join("content/posts/", getDir(post.id))} alt={post.data.title}

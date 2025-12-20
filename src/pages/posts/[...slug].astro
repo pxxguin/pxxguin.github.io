@@ -6,7 +6,7 @@ import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
-import { getDir, getPostUrlBySlug } from "@utils/url-utils";
+import { getDir, getPostUrlBySlug, url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
@@ -19,10 +19,22 @@ import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
-	return blogEntries.map((entry) => ({
-		params: { slug: entry.slug },
-		props: { entry },
-	}));
+	return blogEntries.map((entry) => {
+		// If postId exists, create a route for it (e.g. /posts/1)
+		// We can also support valid slug routes if needed, but for now let's migrate to ID if present.
+		// NOTE: [slug] param in Astro catches everything.
+		// Ideally we return { params: { slug: entry.data.postId.toString() } }
+		// But to prevent breaking old links, we might want to support both?
+		// For now, let's strictly follow the plan: Tistory style numeric IDs.
+		// If postId is missing, falling back to slug.
+		const slugValue = entry.data.postId
+			? entry.data.postId.toString()
+			: entry.slug;
+		return {
+			params: { slug: slugValue },
+			props: { entry },
+		};
+	});
 }
 
 const { entry } = Astro.props;
@@ -30,7 +42,10 @@ const { Content, headings } = await entry.render();
 
 const { remarkPluginFrontmatter } = await entry.render();
 
-const postUrl = getPostUrlBySlug(entry.slug);
+// For canonical URL, etc.
+const postUrl = entry.data.postId
+	? url(`/posts/${entry.data.postId}/`)
+	: getPostUrlBySlug(entry.slug);
 const absolutePostUrl = new URL(postUrl, Astro.site).toString();
 const absoluteImage = entry.data.image
 	? new URL(entry.data.image, Astro.site).toString()

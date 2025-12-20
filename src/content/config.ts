@@ -12,6 +12,9 @@ const postsCollection = defineCollection({
 		category: z.string().optional().nullable().default(""),
 		lang: z.string().optional().default(""),
 
+		/* Persistent ID for Tistory-style numbering */
+		postId: z.number().optional(),
+
 		/* Series */
 		series: z.string().optional(),
 		seriesOrder: z.number().optional(),
