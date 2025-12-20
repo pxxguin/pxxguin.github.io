@@ -1,7 +1,7 @@
 ---
 import CategoryCard from "../components/CategoryCard.astro";
 import GridPostCard from "../components/GridPostCard.astro";
-import PaperWidget from "../components/PaperWidget.astro";
+import DailyPaperWidget from "../components/DailyPaperWidget.svelte";
 
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
@@ -190,8 +190,8 @@ const bgImage = "/images/hero-bg.gif";
         </div>
     </div>
 
-    <!-- Paper of the Month Widget -->
-    <PaperWidget arxivId="1706.03762" />
+    <!-- Paper of the Day Widget -->
+    <DailyPaperWidget client:visible />
 
     <script>
         const observerOptions = {
