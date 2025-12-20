@@ -165,11 +165,11 @@
     display: none !important;
 }
 
-:global(.zen-mode) #main-grid {
+.zen-mode #main-grid {
     grid-template-columns: minmax(0, 1fr) !important;
-    max-width: 900px !important;
+    max-width: 1200px !important;
     margin: 0 auto !important;
-    padding-top: 4rem !important;
+    padding: 0 1rem !important;
 }
 
 :global(.zen-mode) #swup-container {
