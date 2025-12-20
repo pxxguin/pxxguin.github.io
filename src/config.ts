@@ -66,6 +66,7 @@ export const navBarConfig: NavBarConfig = {
 			name: "방명록",
 			url: "/guestbook/",
 		},
+
 		{
 			name: "GitHub",
 			url: "https://github.com/pxxguin", // Internal links should not include the base path, as it is automatically added

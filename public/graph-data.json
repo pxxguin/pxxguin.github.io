@@ -1,0 +1,298 @@
+{
+  "nodes": [
+    {
+      "id": "What is Attention Algorithms?",
+      "title": "What is Attention Algorithms?",
+      "postId": 2,
+      "tags": [
+        "NLP",
+        "DeepL"
+      ],
+      "category": "NLP",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "How BERT model operate in python?",
+      "title": "How BERT model operate in python?",
+      "postId": 1,
+      "tags": [
+        "NLP",
+        "DeepL"
+      ],
+      "category": "NLP",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Can you explain about Back Propagation?",
+      "title": "Can you explain about Back Propagation?",
+      "postId": 4,
+      "tags": [
+        "DeepL"
+      ],
+      "category": "DeepL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "How can deploy ANN in python?",
+      "title": "How can deploy ANN in python?",
+      "postId": 3,
+      "tags": [
+        "DeepL"
+      ],
+      "category": "DeepL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "What is optimizer and how they work?",
+      "title": "What is optimizer and how they work?",
+      "postId": 5,
+      "tags": [
+        "DeepL"
+      ],
+      "category": "DeepL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Review with The Free Transformer",
+      "title": "Review with The Free Transformer",
+      "postId": 6,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "Paper",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Review with Deep Think with Confidence",
+      "title": "Review with Deep Think with Confidence",
+      "postId": 7,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "Paper",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Review with TIR",
+      "title": "Review with TIR",
+      "postId": 8,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "Paper",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Review with StepWiser",
+      "title": "Review with StepWiser",
+      "postId": 9,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "Paper",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "Review with ToolOrchestra",
+      "title": "Review with ToolOrchestra",
+      "postId": 10,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "Paper",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "NLP",
+      "name": "NLP",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "DeepL",
+      "name": "DeepL",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Paper",
+      "name": "Paper",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM",
+      "name": "LLM",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "NLP",
+      "name": "NLP",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "DeepL",
+      "name": "DeepL",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Paper",
+      "name": "Paper",
+      "type": "category",
+      "val": 10
+    }
+  ],
+  "links": [
+    {
+      "source": "What is Attention Algorithms?",
+      "target": "NLP"
+    },
+    {
+      "source": "What is Attention Algorithms?",
+      "target": "DeepL"
+    },
+    {
+      "source": "What is Attention Algorithms?",
+      "target": "NLP"
+    },
+    {
+      "source": "How BERT model operate in python?",
+      "target": "NLP"
+    },
+    {
+      "source": "How BERT model operate in python?",
+      "target": "DeepL"
+    },
+    {
+      "source": "How BERT model operate in python?",
+      "target": "NLP"
+    },
+    {
+      "source": "Can you explain about Back Propagation?",
+      "target": "DeepL"
+    },
+    {
+      "source": "Can you explain about Back Propagation?",
+      "target": "DeepL"
+    },
+    {
+      "source": "How can deploy ANN in python?",
+      "target": "DeepL"
+    },
+    {
+      "source": "How can deploy ANN in python?",
+      "target": "DeepL"
+    },
+    {
+      "source": "What is optimizer and how they work?",
+      "target": "DeepL"
+    },
+    {
+      "source": "What is optimizer and how they work?",
+      "target": "DeepL"
+    },
+    {
+      "source": "Review with The Free Transformer",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with The Free Transformer",
+      "target": "NLP"
+    },
+    {
+      "source": "Review with The Free Transformer",
+      "target": "LLM"
+    },
+    {
+      "source": "Review with The Free Transformer",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with Deep Think with Confidence",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with Deep Think with Confidence",
+      "target": "NLP"
+    },
+    {
+      "source": "Review with Deep Think with Confidence",
+      "target": "LLM"
+    },
+    {
+      "source": "Review with Deep Think with Confidence",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with TIR",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with TIR",
+      "target": "NLP"
+    },
+    {
+      "source": "Review with TIR",
+      "target": "LLM"
+    },
+    {
+      "source": "Review with TIR",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with StepWiser",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with StepWiser",
+      "target": "NLP"
+    },
+    {
+      "source": "Review with StepWiser",
+      "target": "LLM"
+    },
+    {
+      "source": "Review with StepWiser",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with ToolOrchestra",
+      "target": "Paper"
+    },
+    {
+      "source": "Review with ToolOrchestra",
+      "target": "NLP"
+    },
+    {
+      "source": "Review with ToolOrchestra",
+      "target": "LLM"
+    },
+    {
+      "source": "Review with ToolOrchestra",
+      "target": "Paper"
+    }
+  ]
+}
