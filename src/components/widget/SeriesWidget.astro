@@ -1,0 +1,110 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import { getPostUrlBySlug } from "../../utils/url-utils";
+
+interface Props {
+	series: string;
+	currentPostId: string;
+}
+
+const { series, currentPostId } = Astro.props;
+
+const allPosts = await getCollection("posts");
+const seriesPosts = allPosts
+	.filter((post) => post.data.series === series)
+	.sort((a, b) => (a.data.seriesOrder || 999) - (b.data.seriesOrder || 999));
+
+const currentIndex = seriesPosts.findIndex((post) => post.id === currentPostId);
+const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
+---
+
+<div class="card-base p-6 mb-8 border-l-4 border-[var(--primary)] relative overflow-hidden group">
+    <!-- Background Decoration -->
+    <div class="absolute right-0 top-0 opacity-5 -translate-y-1/4 translate-x-1/4 group-hover:scale-110 transition duration-700">
+        <Icon name="material-symbols:playlist-play-rounded" class="text-[8rem]" />
+    </div>
+
+    <!-- Header -->
+    <div class="flex flex-col mb-4 relative z-10">
+        <div class="flex items-center gap-2 text-[var(--primary)] font-bold mb-1 uppercase text-sm tracking-wider">
+            <Icon name="material-symbols:auto-stories-outline-rounded" class="text-lg" />
+            <span>Series</span>
+        </div>
+        <h3 class="text-xl font-bold text-black/90 dark:text-white/90">
+            {series}
+        </h3>
+        <div class="text-sm text-black/50 dark:text-white/50 mt-1">
+            Part {currentIndex + 1} of {seriesPosts.length}
+        </div>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="w-full h-1.5 bg-black/5 dark:bg-white/10 rounded-full mb-6 relative z-10 overflow-hidden">
+        <div class="h-full bg-[var(--primary)] rounded-full transition-all duration-500" style={`width: ${progress}%`}></div>
+    </div>
+
+    <!-- List Container -->
+    <div id="series-list-container" class="grid grid-rows-[0fr] transition-[grid-template-rows] duration-500 ease-out">
+        <div class="overflow-hidden">
+             <ul class="space-y-1 relative z-10 p-1">
+                {seriesPosts.map((post, index) => {
+                    const isCurrent = post.id === currentPostId;
+                    return (
+                        <li>
+                            <a href={getPostUrlBySlug(post.slug)} 
+                            class={`flex items-start gap-3 p-2 rounded-lg transition group/item
+                                ${isCurrent 
+                                    ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' 
+                                    : 'hover:bg-black/5 dark:hover:bg-white/5 text-black/70 dark:text-white/70'
+                                }`} 
+                            >
+                                <div class={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5
+                                    ${isCurrent
+                                        ? 'bg-white text-[var(--primary)]'
+                                        : 'bg-black/5 dark:bg-white/10 text-black/40 dark:text-white/40 group-hover/item:bg-[var(--primary)]/10 group-hover/item:text-[var(--primary)]'
+                                    }
+                                `}>
+                                    {index + 1}
+                                </div>
+                                <div class="leading-tight text-sm font-medium py-1">
+                                    {post.data.title}
+                                </div>
+                            </a>
+                        </li>
+                    )
+                })}
+            </ul>
+        </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button id="series-toggle-btn" class="w-full flex items-center justify-center gap-2 py-3 mt-2 text-sm font-bold text-[var(--primary)] hover:bg-[var(--primary)]/5 rounded-lg transition group/btn">
+        <span>View All Posts</span>
+        <Icon name="material-symbols:keyboard-arrow-down-rounded" class="text-xl transition-transform duration-300 group-hover/btn:translate-y-0.5" id="series-toggle-icon" />
+    </button>
+</div>
+
+<script>
+    const container = document.getElementById('series-list-container');
+    const btn = document.getElementById('series-toggle-btn');
+    const icon = document.getElementById('series-toggle-icon');
+    let isExpanded = false;
+
+    if (btn && container && icon) {
+        btn.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            if (isExpanded) {
+                container.classList.remove('grid-rows-[0fr]');
+                container.classList.add('grid-rows-[1fr]');
+                btn.querySelector('span')!.textContent = 'Close List';
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                container.classList.remove('grid-rows-[1fr]');
+                container.classList.add('grid-rows-[0fr]');
+                btn.querySelector('span')!.textContent = 'View All Posts';
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    }
+</script>

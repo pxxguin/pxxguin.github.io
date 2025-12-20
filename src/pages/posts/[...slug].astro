@@ -13,6 +13,7 @@ import ImageWrapper from "../../components/misc/ImageWrapper.astro";
 import PostMetadata from "../../components/PostMeta.astro";
 import CommentWidget from "../../components/widget/CommentWidget.astro";
 import RelatedPosts from "../../components/widget/RelatedPosts.astro";
+import SeriesWidget from "../../components/widget/SeriesWidget.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 
@@ -97,7 +98,12 @@ const jsonLd = {
                 {!entry.data.image && <div class="border-[var(--line-divider)] border-dashed border-b-[1px] mb-5"></div>}
             </div>
 
-
+            <!-- Series Widget -->
+            {entry.data.series && (
+                <div class="onload-animation mb-6">
+                    <SeriesWidget series={entry.data.series} currentPostId={entry.id} />
+                </div>
+            )}
 
             <Markdown class="mb-6 markdown-content onload-animation">
                 <Content />
