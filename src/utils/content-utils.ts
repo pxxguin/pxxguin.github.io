@@ -32,6 +32,7 @@ export async function getSortedPosts() {
 	return sorted;
 }
 export type PostForList = {
+	id: string;
 	slug: string;
 	data: CollectionEntry<"posts">["data"];
 };
@@ -40,6 +41,7 @@ export async function getSortedPostsList(): Promise<PostForList[]> {
 
 	// delete post.body
 	const sortedPostsList = sortedFullPosts.map((post) => ({
+		id: post.id,
 		slug: post.slug,
 		data: post.data,
 	}));
@@ -111,4 +113,50 @@ export async function getCategoryList(): Promise<Category[]> {
 		});
 	}
 	return ret;
+}
+
+export async function getRelatedPosts(
+	currentSlug: string,
+	tags: string[],
+	limit: number = 3,
+): Promise<PostForList[]> {
+	const allPosts = await getRawSortedPosts();
+
+	// Filter out the current post
+	const otherPosts = allPosts.filter((post) => post.slug !== currentSlug);
+
+	if (tags.length === 0) {
+		// If current post has no tags, return recent posts
+		return otherPosts
+			.slice(0, limit)
+			.map((post) => ({ id: post.id, slug: post.slug, data: post.data }));
+	}
+
+	// Calculate relevance score
+	const scoredPosts = otherPosts.map((post) => {
+		const postTags = post.data.tags || [];
+		const matchingTags = postTags.filter((tag) => tags.includes(tag));
+		return {
+			post,
+			score: matchingTags.length,
+		};
+	});
+
+	// Sort by score desc, then date desc
+	scoredPosts.sort((a, b) => {
+		if (a.score !== b.score) {
+			return b.score - a.score;
+		}
+		const dateA = new Date(a.post.data.published).getTime();
+		const dateB = new Date(b.post.data.published).getTime();
+		return dateB - dateA;
+	});
+
+	// Return top N
+	return scoredPosts
+		.filter((item) => item.score > 0) // Only return posts with at least 1 matching tag? Or just fallback? Let's say at least 1 match preferred, but if not enough, maybe we usually want *something*.
+		// Actually, let's keep it strictly related for now. If user wants filler, we can adjust.
+		// If 0 matches, it returns empty list.
+		.slice(0, limit)
+		.map((item) => ({ id: item.post.id, slug: item.post.slug, data: item.post.data }));
 }

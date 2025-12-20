@@ -14,6 +14,7 @@ import PostMetadata from "../../components/PostMeta.astro";
 import { profileConfig, siteConfig } from "../../config";
 import { formatDateToYYYYMMDD } from "../../utils/date-utils";
 import CommentWidget from "../../components/widget/CommentWidget.astro";
+import RelatedPosts from "../../components/widget/RelatedPosts.astro";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
@@ -110,6 +111,10 @@ const jsonLd = {
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
 
         </div>
+    </div>
+
+    <div class="w-full mb-4">
+        <RelatedPosts currentSlug={entry.slug} tags={entry.data.tags} />
     </div>
 
     <div class="card-base p-6 mb-4 onload-animation">

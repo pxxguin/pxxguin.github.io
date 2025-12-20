@@ -1,0 +1,46 @@
+---
+import path from "node:path";
+import { getRelatedPosts } from "../../utils/content-utils";
+import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { getDir, getPostUrlBySlug } from "../../utils/url-utils";
+import ImageWrapper from "../misc/ImageWrapper.astro";
+
+interface Props {
+	currentSlug: string;
+	tags: string[];
+}
+
+const { currentSlug, tags } = Astro.props;
+
+const relatedPosts = await getRelatedPosts(currentSlug, tags);
+---
+
+{relatedPosts.length > 0 && (
+  <div class="mb-8 onload-animation border-t border-black/10 dark:border-white/10 pt-8">
+    <div class="font-bold text-lg text-black/90 dark:text-white/90 mb-4">
+      Recommend for you
+    </div>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-6">
+      {relatedPosts.map((post) => {
+        const coverImage = post.data.image || "/images/default-cover.png";
+        return (
+          <a href={getPostUrlBySlug(post.slug)} 
+             class="group flex flex-col gap-2 overflow-hidden transition opacity-80 hover:opacity-100">
+            <div class="relative w-full aspect-video overflow-hidden rounded-lg bg-black/5 dark:bg-white/5">
+                <ImageWrapper src={coverImage} basePath={path.join("content/posts/", getDir(post.id))} alt={post.data.title}
+                    class="w-full h-full object-cover transition duration-300 group-hover:scale-105" />
+            </div>
+            <div class="flex flex-col gap-1">
+                <div class="text-sm font-bold text-black/90 dark:text-white/90 line-clamp-2 leading-tight group-hover:text-[var(--primary)] transition">
+                    {post.data.title}
+                </div>
+                <div class="text-xs text-black/50 dark:text-white/50">
+                    {formatDateToYYYYMMDD(post.data.published)}
+                </div>
+            </div>
+          </a>
+        );
+      })}
+    </div>
+  </div>
+)}
