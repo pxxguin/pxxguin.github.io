@@ -6,7 +6,6 @@ import type {
 	ProfileConfig,
 	SiteConfig,
 } from "./types/config";
-import { LinkPreset } from "./types/config";
 
 export const siteConfig: SiteConfig = {
 	title: "Hong's Dev.",
@@ -47,13 +46,26 @@ export const siteConfig: SiteConfig = {
 
 export const navBarConfig: NavBarConfig = {
 	links: [
-		LinkPreset.Home,
 		{
-			name: "Posts",
+			name: "홈",
+			url: "/",
+		},
+		{
+			name: "포스트",
 			url: "/posts/",
 		},
-		LinkPreset.Archive,
-		LinkPreset.About,
+		{
+			name: "아카이브",
+			url: "/archive/",
+		},
+		{
+			name: "소개",
+			url: "/about/",
+		},
+		{
+			name: "방명록",
+			url: "/guestbook/",
+		},
 		{
 			name: "GitHub",
 			url: "https://github.com/pxxguin", // Internal links should not include the base path, as it is automatically added

@@ -1,0 +1,107 @@
+---
+import { getCollection } from "astro:content";
+import { Icon } from "astro-icon/components";
+import CommentWidget from "../components/widget/CommentWidget.astro";
+import I18nKey from "../i18n/i18nKey";
+import { i18n } from "../i18n/translation";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+import { getCategoryList } from "../utils/content-utils";
+
+const posts = await getCollection("posts");
+const totalPosts = posts.length;
+
+const categories = await getCategoryList();
+const totalCategories = categories.length;
+
+const allTags = posts.flatMap((post) => post.data.tags || []);
+const uniqueTags = new Set(allTags);
+const totalTags = uniqueTags.size;
+
+const sortedPosts = posts.sort(
+	(a, b) =>
+		new Date(a.data.published).getTime() - new Date(b.data.published).getTime(),
+);
+const firstPostDate = sortedPosts[0]?.data.published
+	? new Date(sortedPosts[0].data.published).toLocaleDateString()
+	: "-";
+const runningDays = sortedPosts[0]?.data.published
+	? Math.floor(
+			(Date.now() - new Date(sortedPosts[0].data.published).getTime()) /
+				(1000 * 60 * 60 * 24),
+		)
+	: 0;
+
+const stats = [
+	{
+		label: "총 포스트",
+		value: `${totalPosts}개`,
+		icon: "material-symbols:article-outline",
+		color: "text-blue-500",
+		bg: "bg-blue-500/10",
+	},
+	{
+		label: "카테고리",
+		value: `${totalCategories}개`,
+		icon: "material-symbols:folder-open-outline",
+		color: "text-yellow-500",
+		bg: "bg-yellow-500/10",
+	},
+	{
+		label: "태그",
+		value: `${totalTags}개`,
+		icon: "material-symbols:style-outline",
+		color: "text-pink-500",
+		bg: "bg-pink-500/10",
+	},
+	{
+		label: "운영 기간",
+		value: `${runningDays}일`,
+		icon: "material-symbols:calendar-month-outline",
+		color: "text-green-500",
+		bg: "bg-green-500/10",
+	},
+];
+---
+
+<MainGridLayout title="Guestbook" description="Leave a message!">
+    <div class="flex flex-col gap-8 mb-8">
+        <!-- Dashboard Grid (Top) -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {stats.map(stat => (
+                <div class="relative overflow-hidden rounded-xl bg-white dark:bg-[#1e1e1e] shadow-sm border border-black/5 dark:border-white/5 p-6 group hover:-translate-y-1 transition duration-300">
+                    <div class={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition transform group-hover:scale-110`}>
+                        <Icon name={stat.icon} class={`text-6xl ${stat.color}`} />
+                    </div>
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                         <div class={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${stat.bg}`}>
+                            <Icon name={stat.icon} class={`text-xl ${stat.color}`} />
+                         </div>
+                         <div>
+                             <div class="text-3xl font-black mb-1 text-black dark:text-white">{stat.value}</div>
+                             <div class="text-xs font-bold uppercase tracking-wider text-black/60 dark:text-white/60">{stat.label}</div>
+                         </div>
+                    </div>
+                </div>
+            ))}
+        </div>
+
+        <!-- Guestbook Header -->
+        <div class="relative overflow-hidden rounded-xl bg-white dark:bg-[#1e1e1e] shadow-lg border border-black/5 dark:border-white/5 p-6 md:p-10">
+            <!-- Background Decoration -->
+            <div class="absolute -top-10 -right-10 w-40 h-40 bg-[var(--primary)]/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <h1 class="text-3xl md:text-4xl font-bold mb-4 flex items-center gap-3 text-black dark:text-white">
+                💬 방명록
+            </h1>
+            <p class="text-black/60 dark:text-white/60 text-lg leading-relaxed max-w-2xl">
+                자유롭게 방명록을 남겨주세요! <br>
+                어떤 이야기라도 환영입니다!
+            </p>
+        </div>
+
+        <!-- Comment Section -->
+        <div class="rounded-xl bg-white dark:bg-[#1e1e1e] shadow-lg border border-black/5 dark:border-white/5 p-6 md:p-8">
+             <CommentWidget />
+        </div>
+    </div>
+</MainGridLayout>
