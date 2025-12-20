@@ -1,0 +1,131 @@
+---
+import { Icon } from "astro-icon/components";
+import { XMLParser } from "fast-xml-parser";
+
+interface Props {
+	arxivId: string;
+}
+
+const { arxivId } = Astro.props;
+
+interface ArxivData {
+	title: string;
+	summary: string;
+	published: string;
+	author: { name: string }[] | { name: string };
+	link: { "@_href": string }[];
+}
+
+let paper: ArxivData | null = null;
+let error = null;
+
+try {
+	const response = await fetch(
+		`http://export.arxiv.org/api/query?id_list=${arxivId}`,
+	);
+	const xmlData = await response.text();
+	const parser = new XMLParser({ ignoreAttributes: false });
+	const jsonObj = parser.parse(xmlData);
+
+	const entry = jsonObj.feed.entry;
+	if (entry) {
+		paper = entry;
+	}
+} catch (e) {
+	console.error("Failed to fetch arXiv data:", e);
+	error = "Failed to load paper data.";
+}
+
+// Helper to format authors
+const getAuthors = (authorData: any) => {
+	if (Array.isArray(authorData)) {
+		return (
+			authorData
+				.map((a: any) => a.name)
+				.slice(0, 3)
+				.join(", ") + (authorData.length > 3 ? " et al." : "")
+		);
+	}
+	return authorData.name;
+};
+
+// Helper to clean summary
+const cleanSummary = (text: string) => {
+	return `${text.replace(/\n/g, " ").trim().substring(0, 200)}...`;
+};
+---
+
+<div class="w-full max-w-[var(--page-width)] mx-auto px-4 mb-16">
+  <div class="relative overflow-hidden rounded-2xl border border-black/5 dark:border-white/10 bg-white/50 dark:bg-[#1a1a1a]/50 backdrop-blur-md p-6 sm:p-8 transition hover:border-[var(--primary)]/30 group">
+    
+    <!-- Background Decoration -->
+    <div class="absolute -top-24 -right-24 w-64 h-64 bg-[var(--primary)]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-[var(--primary)]/10 transition duration-700"></div>
+
+    <div class="relative z-10 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between">
+      
+      <!-- Left: Content -->
+      <div class="flex-1">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] text-xs font-bold uppercase tracking-wider mb-4 border border-[var(--primary)]/20">
+          <Icon name="material-symbols:book-2-outline" class="text-base" />
+          <span>Paper of the Month</span>
+        </div>
+
+        {paper ? (
+          <>
+            <h3 class="text-xl md:text-2xl font-bold text-black/90 dark:text-white/90 leading-tight mb-2 group-hover:text-[var(--primary)] transition duration-300">
+              <a href={`https://arxiv.org/abs/${arxivId}`} target="_blank" rel="noopener noreferrer">
+                {paper.title}
+              </a>
+            </h3>
+            
+            <div class="flex items-center gap-2 text-sm text-black/50 dark:text-white/50 mb-4 font-mono">
+              <span>{getAuthors(paper.author)}</span>
+              <span>•</span>
+              <span>{new Date(paper.published).getFullYear()}</span>
+            </div>
+
+            <p class="text-black/70 dark:text-white/70 text-sm leading-relaxed max-w-2xl mb-6">
+              {cleanSummary(paper.summary)}
+            </p>
+
+            <div class="flex gap-4">
+              <a href={`https://arxiv.org/abs/${arxivId}`} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 text-sm font-bold text-black/70 dark:text-white/70 hover:text-[var(--primary)] transition">
+                <span>Read Abstract</span>
+                <Icon name="material-symbols:arrow-outward" />
+              </a>
+              <a href={`https://arxiv.org/pdf/${arxivId}.pdf`} target="_blank" rel="noopener noreferrer"
+                 class="inline-flex items-center gap-2 text-sm font-bold text-black/70 dark:text-white/70 hover:text-[var(--primary)] transition">
+                <span>PDF</span>
+                <Icon name="material-symbols:picture-as-pdf-outline" />
+              </a>
+            </div>
+          </>
+        ) : (
+          <div class="text-red-500 text-sm font-mono">
+             {error || "Loading paper data..."}
+          </div>
+        )}
+      </div>
+
+      <!-- Right: ID & Icon -->
+      <div class="hidden sm:flex flex-col items-end gap-2 opacity-30">
+        <div class="text-6xl font-black text-transparent stroke-text">
+            ArXiv
+        </div>
+        <div class="text-xs font-mono font-bold tracking-widest">
+            {arxivId}
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<style>
+  .stroke-text {
+    -webkit-text-stroke: 2px currentColor;
+    color: transparent;
+  }
+</style>

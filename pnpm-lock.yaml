@@ -65,6 +65,9 @@ importers:
       astro-icon:
         specifier: ^1.1.5
         version: 1.1.5
+      fast-xml-parser:
+        specifier: ^5.3.3
+        version: 5.3.3
       hastscript:
         specifier: ^9.0.1
         version: 9.0.1
@@ -2696,8 +2699,8 @@ packages:
   fast-uri@3.0.6:
     resolution: {integrity: sha512-Atfo14OibSv5wAp4VWNsFYE1AchQRTv9cBGWET4pZWHzYshFSS9NQI6I57rdKn9croWVMbYFbLhJ+yJvmZIIHw==}
 
-  fast-xml-parser@5.2.3:
-    resolution: {integrity: sha512-OdCYfRqfpuLUFonTNjvd30rCBZUneHpSQkCqfaeWQ9qrKcl6XlWeDBNVwGb+INAIxRshuN2jF+BE0L6gbBO2mw==}
+  fast-xml-parser@5.3.3:
+    resolution: {integrity: sha512-2O3dkPAAC6JavuMm8+4+pgTk+5hoAs+CjZ+sWcQLkX9+/tHRuTkQh/Oaifr8qDmZ8iEHb771Ea6G8CdwkrgvYA==}
     hasBin: true
 
   fastq@1.19.1:
@@ -5553,7 +5556,7 @@ snapshots:
 
   '@astrojs/rss@4.0.12':
     dependencies:
-      fast-xml-parser: 5.2.3
+      fast-xml-parser: 5.3.3
       kleur: 4.1.5
 
   '@astrojs/sitemap@3.6.0':
@@ -8384,7 +8387,7 @@ snapshots:
 
   fast-uri@3.0.6: {}
 
-  fast-xml-parser@5.2.3:
+  fast-xml-parser@5.3.3:
     dependencies:
       strnum: 2.1.1
 
