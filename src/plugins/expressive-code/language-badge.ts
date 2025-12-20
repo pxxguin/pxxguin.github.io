@@ -11,20 +11,25 @@ export function pluginLanguageBadge() {
       [data-language]::before {
         position: absolute;
         z-index: 2;
-        right: 0.5rem;
-        top: 0.5rem;
-        padding: 0.1rem 0.5rem;
+        right: 0.75rem;
+        top: 0.75rem;
+        padding: 0.25rem 0.6rem;
         content: attr(data-language);
-        font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+        font-family: inherit;
         font-size: 0.75rem;
-        font-weight: bold;
+        line-height: 1;
+        font-weight: 600;
         text-transform: uppercase;
-        color: oklch(0.75 0.1 var(--hue));
-        background: oklch(0.33 0.035 var(--hue));
-        border-radius: 0.5rem;
+        color: rgba(255, 255, 255, 0.85);
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        border-radius: 0.375rem;
         pointer-events: none;
-        transition: opacity 0.3s;
+        transition: all 0.2s ease-in-out;
         opacity: 0;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
       }
       .frame:not(.has-title):not(.is-terminal) {
         @media (hover: none) {
