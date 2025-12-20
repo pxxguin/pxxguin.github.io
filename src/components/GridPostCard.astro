@@ -7,6 +7,7 @@ import { i18n } from "../i18n/translation";
 import { getDir } from "../utils/url-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 import { formatDateToYYYYMMDD } from "../utils/date-utils";
+import { profileConfig } from "../config";
 
 interface Props {
 	entry: CollectionEntry<"posts">;
@@ -81,19 +82,20 @@ const { remarkPluginFrontmatter } = await entry.render();
 
         <!-- Author & Date -->
         <div class="flex items-center gap-2 mb-3 text-xs text-black/50 dark:text-white/50">
-            <!-- Placeholder Avatar -->
-            <div class="w-6 h-6 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
-                 <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=Felix" alt="Author" />
+            <!-- Author Avatar -->
+            <div class="w-6 h-6 rounded-full overflow-hidden">
+                 <ImageWrapper src={profileConfig.avatar} alt="Author" class="w-full h-full object-cover" />
             </div>
-            <span class="font-medium">Admin</span>
+            <span class="font-medium">{profileConfig.name}</span>
             <span>·</span>
             <span>{formatDateToYYYYMMDD(published)}</span>
         </div>
 
         <!-- Description -->
-        <!-- <div class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-2 flex-grow">
+        <!-- Description -->
+        <div class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-2 flex-grow">
             { description || remarkPluginFrontmatter.excerpt }
-        </div> -->
+        </div>
 
         <!-- Footer -->
         <div class="mt-auto pt-3 border-t border-black/5 dark:border-white/5 flex justify-between items-center text-black/40 dark:text-white/40 text-xs">
