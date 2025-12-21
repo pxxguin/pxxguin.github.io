@@ -144,9 +144,9 @@ function initGraph() {
 			if (d.type === "post") {
 				window.location.href = `/posts/${d.postId}/`;
 			} else if (d.type === "category") {
-				window.location.href = `/archive/category/${d.name}`;
+				window.location.href = `/archive/category/${d.name}/`;
 			} else if (d.type === "tag") {
-				window.location.href = `/archive/tag/${d.name}`;
+				window.location.href = `/archive/tag/${d.name}/`;
 			}
 		});
 
