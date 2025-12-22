@@ -127,10 +127,57 @@ onDestroy(() => {
                 </div>
             </button>
 
+            <!-- Copy Link -->
+            <button 
+                on:click={() => {
+                    navigator.clipboard.writeText(window.location.href);
+                    // Optional: Show toast or feedback
+                    const btn = document.getElementById('copy-link-btn');
+                    if(btn) {
+                        btn.classList.add('bg-green-500', 'text-white');
+                        setTimeout(() => btn.classList.remove('bg-green-500', 'text-white'), 2000);
+                    }
+                }}
+                class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-[50ms] origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
+            >
+                <div class="text-xs font-bold bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                    Copy Link
+                </div>
+                <div id="copy-link-btn" class="w-12 h-12 rounded-full bg-white/80 dark:bg-black/80 flex items-center justify-center shadow-lg border border-black/10 dark:border-white/10 backdrop-blur-sm transition-all active:scale-95 hover:scale-105">
+                     <Icon icon="material-symbols:link-rounded" class="text-xl text-neutral-600 dark:text-neutral-400" />
+                </div>
+            </button>
+
+            <!-- LinkedIn Share -->
+            <button 
+                on:click={() => window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(window.location.href)}`, '_blank')}
+                class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-[100ms] origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
+            >
+                <div class="text-xs font-bold bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                    Share on LinkedIn
+                </div>
+                <div class="w-12 h-12 rounded-full bg-[#0077b5] flex items-center justify-center shadow-lg border border-black/10 backdrop-blur-sm transition-all active:scale-95 hover:scale-105">
+                     <Icon icon="fa6-brands:linkedin-in" class="text-xl text-white" />
+                </div>
+            </button>
+
+             <!-- X (Twitter) Share -->
+            <button 
+                on:click={() => window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(document.title)}&url=${encodeURIComponent(window.location.href)}`, '_blank')}
+                class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-[150ms] origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
+            >
+                <div class="text-xs font-bold bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
+                    Share on X
+                </div>
+                <div class="w-12 h-12 rounded-full bg-black dark:bg-white flex items-center justify-center shadow-lg border border-black/10 backdrop-blur-sm transition-all active:scale-95 hover:scale-105">
+                     <Icon icon="fa6-brands:x-twitter" class="text-xl text-white dark:text-black" />
+                </div>
+            </button>
+
             <!-- Clap Button -->
             <button 
                 on:click={handleClap}
-                class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-75 origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
+                class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-[200ms] origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
             >
                 <div class="text-xs font-bold bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
                     Clap ({clapCount})
