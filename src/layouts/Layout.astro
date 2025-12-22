@@ -429,6 +429,15 @@ const setup = () => {
 		}
 	})
 */
+	window.swup.hooks.on('visit:end', () => {
+		// Accessibility: Reset focus to the main content
+		const main = document.querySelector('main');
+		if (main) {
+			main.setAttribute('tabindex', '-1');
+			main.focus({ preventScroll: true });
+		}
+	});
+
 	window.swup.hooks.on('link:click', () => {
 		// Remove the delay for the first time page load
 		document.documentElement.style.setProperty('--content-delay', '0ms')

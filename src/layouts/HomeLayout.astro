@@ -18,7 +18,9 @@ const { title, description, lang } = Astro.props;
         <div id="navbar-wrapper" class="absolute top-0 left-0 w-full z-50 transition-all">
             <Navbar class="!bg-transparent !shadow-none !backdrop-blur-none" isHome={true} />
         </div>
-        <slot />
+        <main id="swup-container" class="transition-swup-fade">
+            <slot />
+        </main>
         <Footer />
     </div>
 </Layout>
