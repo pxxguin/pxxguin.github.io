@@ -1,0 +1,37 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  quality:
+    name: Quality Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Lint (Biome)
+        # biome check --write 대신 CI 모드로 실행 (수정 없이 검사만)
+        run: npx @biomejs/biome ci ./src
+
+      - name: Type Check (Astro)
+        run: pnpm check
+
+      - name: Build Verification
+        # 실제로 배포되진 않지만, 빌드가 성공하는지 확인
+        run: pnpm build
