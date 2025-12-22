@@ -12,7 +12,7 @@ import { onMount } from "svelte";
 import type { LIGHT_DARK_MODE } from "@/types/config.ts";
 
 interface Props {
-    isHome?: boolean;
+	isHome?: boolean;
 }
 let { isHome = false }: Props = $props();
 
@@ -50,7 +50,6 @@ function toggleScheme() {
 	}
 	switchScheme(seq[(i + 1) % seq.length]);
 }
-
 </script>
 
 <!-- z-50 make the panel higher than other float panels -->

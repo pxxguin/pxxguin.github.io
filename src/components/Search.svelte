@@ -7,7 +7,7 @@ import { onMount } from "svelte";
 import type { SearchResult } from "@/global";
 
 interface Props {
-    isHome?: boolean;
+	isHome?: boolean;
 }
 let { isHome = false }: Props = $props();
 
@@ -131,15 +131,15 @@ onMount(() => {
 });
 
 $effect(() => {
-    if (initialized && keywordDesktop) {
-        search(keywordDesktop, true);
-    }
+	if (initialized && keywordDesktop) {
+		search(keywordDesktop, true);
+	}
 });
 
 $effect(() => {
-    if (initialized && keywordMobile) {
-        search(keywordMobile, false);
-    }
+	if (initialized && keywordMobile) {
+		search(keywordMobile, false);
+	}
 });
 </script>
 

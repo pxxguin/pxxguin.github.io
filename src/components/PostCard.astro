@@ -38,16 +38,20 @@ const className = Astro.props.class;
 
 let coverImage = image;
 if (!coverImage) {
-    const lowerCategory = category ? category.toLowerCase() : "";
-    if (lowerCategory.includes("deepl") || lowerCategory.includes("ai") || lowerCategory.includes("llm")) {
-        coverImage = "/images/default-deepl.png";
-    } else if (lowerCategory.includes("nlp")) {
-        coverImage = "/images/default-nlp.png";
-    } else if (lowerCategory.includes("paper")) {
-        coverImage = "/images/default-paper.png";
-    } else {
-        coverImage = "/images/default-cover.png";
-    }
+	const lowerCategory = category ? category.toLowerCase() : "";
+	if (
+		lowerCategory.includes("deepl") ||
+		lowerCategory.includes("ai") ||
+		lowerCategory.includes("llm")
+	) {
+		coverImage = "/images/default-deepl.png";
+	} else if (lowerCategory.includes("nlp")) {
+		coverImage = "/images/default-nlp.png";
+	} else if (lowerCategory.includes("paper")) {
+		coverImage = "/images/default-paper.png";
+	} else {
+		coverImage = "/images/default-cover.png";
+	}
 }
 
 const hasCover = true; // Always true as we have a default
