@@ -24,6 +24,7 @@ import { LinkCardComponent } from "./src/plugins/rehype-component-link-card.mjs"
 import rehypeMark from "./src/plugins/rehype-mark.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
+import { remarkMermaid } from "./src/plugins/remark-mermaid.mjs";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time.mjs";
 
 // https://astro.build/config
@@ -107,6 +108,7 @@ export default defineConfig({
 	],
 	markdown: {
 		remarkPlugins: [
+			remarkMermaid,
 			remarkMath,
 			remarkReadingTime,
 			remarkExcerpt,

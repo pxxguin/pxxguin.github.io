@@ -233,6 +233,13 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 .zen-mode #swup-container {
 	grid-column: span 1 !important;
 }
+
+/* Mermaid Diagram Styling */
+.mermaid {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
 </style>
 
 <script>
@@ -429,6 +436,18 @@ const setup = () => {
 		}
 	})
 */
+	/* Mermaid Diagram */
+	const initMermaid = async () => {
+		const mermaid = (await import('mermaid')).default;
+		mermaid.initialize({ startOnLoad: true, theme: 'default' });
+		await mermaid.run({
+            nodes: document.querySelectorAll('.mermaid'),
+        });
+	}
+
+	initMermaid();
+	window.swup.hooks.on('page:view', initMermaid);
+
 	window.swup.hooks.on('visit:end', () => {
 		// Accessibility: Reset focus to the main content
 		const main = document.querySelector('main');
