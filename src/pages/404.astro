@@ -1,0 +1,38 @@
+---
+import { Icon } from "astro-icon/components";
+import { siteConfig } from "@/config";
+import Layout from "../layouts/Layout.astro";
+import { url } from "../utils/url-utils";
+---
+
+<Layout title="Not Found">
+    <div class="min-h-screen w-full flex flex-col items-center justify-center bg-slate-50 dark:bg-black text-center px-4 relative overflow-hidden">
+        
+        <!-- Simple Background Bloom -->
+        <div class="absolute inset-0 pointer-events-none flex items-center justify-center opacity-30 dark:opacity-20 overflow-hidden">
+             <div class="w-[60vw] h-[60vw] bg-teal-500/30 rounded-full blur-[100px] animate-pulse"></div>
+        </div>
+
+        <div class="relative z-10 flex flex-col items-center">
+            <!-- 404 Number: Simplified coloring -->
+            <div class="text-[8rem] md:text-[12rem] font-black text-teal-500 dark:text-teal-400 leading-none select-none opacity-90 drop-shadow-sm">
+                404
+            </div>
+            
+            <h1 class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mt-2 mb-6 tracking-tight">
+                Page Not Found
+            </h1>
+            
+            <p class="text-lg text-slate-600 dark:text-slate-400 max-w-lg mb-10 leading-relaxed">
+                죄송합니다. 요청하신 페이지를 찾을 수 없습니다.<br>
+                주소를 잘못 입력하셨거나, 페이지가 삭제되었을 수 있습니다.
+            </p>
+
+            <a href={url("/")} class="inline-flex items-center gap-2 px-8 py-4 bg-[var(--primary)] !text-black rounded-full font-bold transition-transform hover:scale-105 shadow-md">
+                <Icon name="material-symbols:home-rounded" class="text-2xl" />
+                <span>홈으로 가기</span>
+            </a>
+        </div>
+        
+    </div>
+</Layout>
