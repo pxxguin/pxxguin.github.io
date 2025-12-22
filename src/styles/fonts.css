@@ -16,7 +16,7 @@
 /* Apply local sans font to markdown content */
 .custom-md,
 .prose,
-.prose :where(p, h1, h2, h3, h4, h5, h6, li, blockquote) {
+.prose :where(p, h1, h2, h3, h4, h5, h6, li, blockquote) :not(.katex):not(.katex *) {
   font-family: var(--font-sans);
 }
 
@@ -40,19 +40,29 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Make Gowun Dodum the default for all text/input/button elements site-wide */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strong, sub, sup, tt, var, b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-input, textarea, button, select {
-  font-family: var(--font-sans) !important;
+html, body, button, input, select, textarea {
+  font-family: var(--font-sans);
 }
 
 /* Ensure monospace-looking elements also use Gowun Dodum */
 code, kbd, samp, pre {
   font-family: var(--font-sans) !important;
+}
+
+/* Force KaTeX to use its own fonts or standard serif fallback */
+/* Force KaTeX to use its own fonts or standard serif fallback - Recursive Protection */
+.katex, .katex * {
+  font-family: KaTeX_Main, "Times New Roman", serif !important;
+}
+.katex .mathit, .katex .mathit * {
+  font-family: KaTeX_Math, "Times New Roman", serif !important;
+}
+.katex .mathscr, .katex .mathscr * {
+  font-family: KaTeX_Script, "Times New Roman", serif !important;
+}
+.katex .mathsf, .katex .mathsf * {
+  font-family: KaTeX_SansSerif, var(--font-sans), sans-serif !important;
+}
+.katex .mathtt, .katex .mathtt * {
+  font-family: KaTeX_Typewriter, monospace !important;
 }
