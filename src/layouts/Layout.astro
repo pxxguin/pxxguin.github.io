@@ -415,7 +415,10 @@ const setup = () => {
 
 		chartContainers.forEach(container => {
 			const canvas = container.querySelector('canvas');
-			if (canvas.chart) canvas.chart.destroy(); // Destroy existing chart if any (though usually clean due to DOM replacement)
+			if (canvas) {
+				const chart = Chart.getChart(canvas);
+				if (chart) chart.destroy();
+			}
 			
 			const dataScript = container.querySelector('.chart-data');
 			if (!canvas || !dataScript) return;
