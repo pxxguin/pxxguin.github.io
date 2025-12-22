@@ -50,6 +50,7 @@
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-components": "^0.3.0",
+		"rehype-figure": "^1.0.1",
 		"rehype-katex": "^7.0.1",
 		"rehype-slug": "^6.0.0",
 		"remark-directive": "^3.0.1",

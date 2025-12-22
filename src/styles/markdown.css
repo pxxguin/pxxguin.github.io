@@ -123,6 +123,14 @@
 
     }
 
+    figure {
+        @apply mx-auto text-center rounded-xl;
+    }
+
+    figcaption {
+        @apply text-sm text-[var(--text-muted)] mt-2 italic font-sans;
+    }
+
     .katex-display-container {
         max-width: 100%;
         overflow-x: auto;
