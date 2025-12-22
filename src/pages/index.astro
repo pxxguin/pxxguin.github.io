@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
+import heroBgImage from "../assets/images/hero-bg.gif";
 import CategoryCard from "../components/CategoryCard.astro";
 import DailyPaperWidget from "../components/DailyPaperWidget.svelte";
 import GraphView from "../components/GraphView.svelte";
@@ -41,14 +43,14 @@ const allSeries = Array.from(seriesMap.entries()).map(([name, posts]) => {
 });
 
 // Placeholder image URL - replace with actual image
-const bgImage = "/images/hero-bg.gif";
+// const bgImage = "/images/hero-bg.gif";
 ---
 
 <HomeLayout title={i18n(I18nKey.home)} description={i18n(I18nKey.home)}>
     <div class="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <img src={bgImage} alt="Background" class="w-full h-full object-cover" />
+            <Image src={heroBgImage} alt="Background" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black/50"></div> <!-- Overlay -->
         </div>
 
