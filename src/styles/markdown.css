@@ -93,6 +93,16 @@
 
 
     ul, ol {
+        @apply my-4 leading-6;
+
+        li {
+            @apply my-1;
+        }
+
+        ul, ol {
+            @apply my-0;
+        }
+
         li::marker {
             @apply text-[var(--primary)];
         }
