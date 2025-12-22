@@ -22,6 +22,7 @@ import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.m
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { LinkCardComponent } from "./src/plugins/rehype-component-link-card.mjs"; // 1. 파일 import 추가
 import rehypeMark from "./src/plugins/rehype-mark.mjs";
+import { remarkChart } from "./src/plugins/remark-chart.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
 import { remarkExcerpt } from "./src/plugins/remark-excerpt.js";
 import { remarkMermaid } from "./src/plugins/remark-mermaid.mjs";
@@ -109,6 +110,7 @@ export default defineConfig({
 	markdown: {
 		remarkPlugins: [
 			remarkMermaid,
+			remarkChart,
 			remarkMath,
 			remarkReadingTime,
 			remarkExcerpt,

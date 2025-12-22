@@ -406,6 +406,37 @@ const setup = () => {
 	initMermaid();
 	window.swup.hooks.on('page:view', initMermaid);
 
+	/* Chart.js Initialization */
+	const initCharts = async () => {
+		const chartContainers = document.querySelectorAll('.chart-container');
+		if (chartContainers.length === 0) return;
+
+		const { default: Chart } = await import('chart.js/auto');
+
+		chartContainers.forEach(container => {
+			const canvas = container.querySelector('canvas');
+			if (canvas.chart) canvas.chart.destroy(); // Destroy existing chart if any (though usually clean due to DOM replacement)
+			
+			const dataScript = container.querySelector('.chart-data');
+			if (!canvas || !dataScript) return;
+
+			try {
+				const config = JSON.parse(dataScript.textContent);
+				// Make responsive
+				if (!config.options) config.options = {};
+				config.options.responsive = true;
+				// config.options.maintainAspectRatio = false; // Let it maintain aspect ratio for auto-height containers
+
+				new Chart(canvas, config);
+			} catch (e) {
+				console.error('Failed to init chart', e);
+			}
+		});
+	};
+
+	initCharts();
+	window.swup.hooks.on('page:view', initCharts);
+
 	window.swup.hooks.on('visit:end', () => {
 		// Accessibility: Reset focus to the main content
 		const main = document.querySelector('main');

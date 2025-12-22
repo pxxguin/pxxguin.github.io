@@ -36,6 +36,7 @@
 		"astro-expressive-code": "^0.41.3",
 		"astro-icon": "^1.1.5",
 		"canvas-confetti": "^1.9.4",
+		"chart.js": "^4.5.1",
 		"d3": "^7.9.0",
 		"fast-xml-parser": "^5.3.3",
 		"hastscript": "^9.0.1",
