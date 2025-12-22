@@ -124,8 +124,8 @@ export const giscusConfig: GiscusConfig = {
 	enable: true,
 	repo: "pxxguin/pxxguin.github.io",
 	repoId: "R_kgDOQX18yg",
-	category: "Announcements", // TODO: Update this to a valid category name from your repo
-	categoryId: "DIC_kwDOQX18ys4C0B9O", // TODO: Update this to your valid category ID
+	category: "Announcements",
+	categoryId: "DIC_kwDOQX18ys4C0B9O",
 	mapping: "pathname",
 	reactionsEnabled: "1",
 	emitMetadata: "0",
