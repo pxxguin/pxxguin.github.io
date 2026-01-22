@@ -123,6 +123,18 @@
       "val": 1
     },
     {
+      "id": "기본적인 FastAPI 서버 구축",
+      "title": "기본적인 FastAPI 서버 구축",
+      "postId": 11,
+      "tags": [
+        "Backend",
+        "Server"
+      ],
+      "category": "Backend",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "tag",
@@ -147,6 +159,18 @@
       "val": 5
     },
     {
+      "id": "Backend",
+      "name": "Backend",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Server",
+      "name": "Server",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "category",
@@ -161,6 +185,12 @@
     {
       "id": "Paper",
       "name": "Paper",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Backend",
+      "name": "Backend",
       "type": "category",
       "val": 10
     }
@@ -293,6 +323,18 @@
     {
       "source": "Review with ToolOrchestra",
       "target": "Paper"
+    },
+    {
+      "source": "기본적인 FastAPI 서버 구축",
+      "target": "Backend"
+    },
+    {
+      "source": "기본적인 FastAPI 서버 구축",
+      "target": "Server"
+    },
+    {
+      "source": "기본적인 FastAPI 서버 구축",
+      "target": "Backend"
     }
   ]
 }

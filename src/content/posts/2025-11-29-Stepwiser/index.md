@@ -1,6 +1,6 @@
 ---
 title: Review with StepWiser
-image: /images/test3.png
+image: ./Stepwiser.png
 published: 2025-11-29T00:00:00.000Z
 description: 'StepWiser, Stepwise Generative Judges for Wiser Reasoning에 대한 논문 리뷰입니다.'
 tags:

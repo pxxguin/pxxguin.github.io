@@ -1,6 +1,6 @@
 ---
 title: Review with TIR
-image: /images/test2.png
+image: ./Tir.png
 published: 2025-11-28T00:00:00.000Z
 description: Understanding Tool-Integrated Reasoning에 대한 논문 리뷰입니다.
 tags:

@@ -1,6 +1,6 @@
 ---
 title: Review with ToolOrchestra
-image: /images/test4.png
+image: ./ToolOrchestra.png
 published: 2025-12-02T00:00:00.000Z
 description: >-
   ToolOrchestra-Elevating Intelligence via Efficient Model and Tool
