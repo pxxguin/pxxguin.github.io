@@ -143,6 +143,27 @@ $effect(() => {
 });
 </script>
 
+<svelte:window on:keydown={(e) => {
+    if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        // Toggle based on current state. If panel is closed (open=false), we want to open it (true)
+        // Check if the search panel is currently hidden
+        const panel = document.getElementById("search-panel");
+        const isClosed = panel?.classList.contains("float-panel-closed");
+        
+        if (isClosed) {
+            // Open panel
+            panel?.classList.remove("float-panel-closed");
+            // Focus input
+            document.querySelector("#search-bar input")?.focus();
+            document.querySelector("#search-bar-inside input")?.focus();
+        } else {
+             // Close panel
+            panel?.classList.add("float-panel-closed");
+        }
+    }
+}} />
+
 <!-- search bar for desktop view -->
 <div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg
       bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
@@ -154,6 +175,9 @@ $effect(() => {
            class="transition-all pl-10 text-sm bg-transparent outline-0
          h-full w-40 active:w-60 focus:w-60 text-black/50 dark:text-white/50 {isHome ? '!text-white placeholder:!text-white/60' : ''}"
     >
+    <div class="pointer-events-none absolute right-4 mr-2 text-xs font-bold opacity-50 border border-black/20 dark:border-white/20 rounded px-1.5 py-0.5 {isHome ? '!text-white !border-white/30' : 'text-black/50 dark:text-white/50'}">
+        ⌘K
+    </div>
 </div>
 
 <!-- toggle btn for phone/tablet view -->
