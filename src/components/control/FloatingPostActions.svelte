@@ -10,6 +10,7 @@ let isPostPage = false;
 // Reaction Logic
 let clapCount = 0;
 let currentPostId = "";
+let isCopied = false;
 
 function setZenMode(value) {
 	if (isZenMode === value) return;
@@ -128,23 +129,29 @@ onDestroy(() => {
             </button>
 
             <!-- Copy Link -->
+            <!-- Copy Link -->
             <button 
                 on:click={() => {
                     navigator.clipboard.writeText(window.location.href);
-                    // Optional: Show toast or feedback
-                    const btn = document.getElementById('copy-link-btn');
-                    if(btn) {
-                        btn.classList.add('bg-green-500', 'text-white');
-                        setTimeout(() => btn.classList.remove('bg-green-500', 'text-white'), 2000);
-                    }
+                    isCopied = true;
+                    setTimeout(() => isCopied = false, 2000);
                 }}
                 class="flex items-center gap-3 pr-1 group transition-all duration-300 delay-[50ms] origin-bottom-right animate-in fade-in slide-in-from-bottom-4"
             >
                 <div class="text-xs font-bold bg-black/80 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
-                    Copy Link
+                    {isCopied ? "Copied!" : "Copy Link"}
                 </div>
-                <div id="copy-link-btn" class="w-12 h-12 rounded-full bg-white/80 dark:bg-black/80 flex items-center justify-center shadow-lg border border-black/10 dark:border-white/10 backdrop-blur-sm transition-all active:scale-95 hover:scale-105">
-                     <Icon icon="material-symbols:link-rounded" class="text-xl text-neutral-600 dark:text-neutral-400" />
+                <div 
+                    class={`w-12 h-12 rounded-full flex items-center justify-center shadow-lg border backdrop-blur-sm transition-all active:scale-95 hover:scale-105 ${
+                        isCopied 
+                        ? "bg-green-500 border-green-500" 
+                        : "bg-white/80 dark:bg-black/80 border-black/10 dark:border-white/10"
+                    }`}
+                >
+                     <Icon 
+                        icon={isCopied ? "material-symbols:check-rounded" : "material-symbols:link-rounded"} 
+                        class={`text-xl transition-all duration-300 ${isCopied ? "text-white scale-110" : "text-neutral-600 dark:text-neutral-400"}`} 
+                    />
                 </div>
             </button>
 
