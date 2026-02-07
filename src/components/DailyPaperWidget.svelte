@@ -35,9 +35,9 @@ const fallbackPaper: Paper = {
 
 onMount(async () => {
 	try {
-		// Use api.allorigins.win to bypass CORS restrictions
+		// Use api.codetabs.com as an alternative CORS proxy
 		const response = await fetch(
-			`https://api.allorigins.win/raw?url=${encodeURIComponent("https://huggingface.co/api/daily_papers")}`,
+			`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent("https://huggingface.co/api/daily_papers")}`,
 		);
 		if (!response.ok) throw new Error("Failed to fetch");
 
