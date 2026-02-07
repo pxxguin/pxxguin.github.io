@@ -5,6 +5,8 @@
 import "../styles/fonts.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
+import CampaignPopup from "@components/misc/CampaignPopup.svelte";
+
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -168,6 +170,8 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 		  data-overlayscrollbars-initialize
 	>
 		<ConfigCarrier></ConfigCarrier>
+
+        <CampaignPopup client:load />
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
