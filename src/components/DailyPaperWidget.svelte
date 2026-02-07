@@ -35,9 +35,9 @@ const fallbackPaper: Paper = {
 
 onMount(async () => {
 	try {
-		// Use corsproxy.io to bypass CORS restrictions
+		// Use api.allorigins.win to bypass CORS restrictions
 		const response = await fetch(
-			"https://corsproxy.io/?url=https://huggingface.co/api/daily_papers",
+			`https://api.allorigins.win/raw?url=${encodeURIComponent("https://huggingface.co/api/daily_papers")}`,
 		);
 		if (!response.ok) throw new Error("Failed to fetch");
 
