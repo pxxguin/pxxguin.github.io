@@ -30,8 +30,16 @@ const currentYear = new Date().getFullYear();
             </div>
 
             <!-- Copyright & Info -->
+            <!-- Copyright & Info -->
             <div class="text-xs text-white/40 mt-1 leading-relaxed font-light tracking-wide">
-                Copyright &copy; {currentYear} {profileConfig.name}. All Rights Reserved.
+                <span class="group relative inline-block cursor-help transition-colors duration-300">
+                    <span class="group-hover:opacity-0 transition-opacity duration-300">
+                        Copyright &copy; {currentYear} {profileConfig.name}. All Rights Reserved.
+                    </span>
+                    <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-teal-400 font-bold flex items-center justify-center bg-[#0a0a0a]">
+                        사실 고양이 도움을 받음 🐱
+                    </span>
+                </span>
                 <span class="hidden sm:inline mx-2">|</span>
                 <br class="sm:hidden" />
                 E-mail : janghongseo@naver.com
