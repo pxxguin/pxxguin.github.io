@@ -6,6 +6,7 @@ import "../styles/fonts.css";
 
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import CampaignPopup from "@components/misc/CampaignPopup.svelte";
+import ConsoleEasterEgg from "@components/misc/ConsoleEasterEgg.astro";
 
 import { profileConfig, siteConfig } from "@/config";
 import {
@@ -172,6 +173,7 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 		<ConfigCarrier></ConfigCarrier>
 
         <CampaignPopup client:load />
+        <ConsoleEasterEgg />
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
