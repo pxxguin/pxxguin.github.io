@@ -1,5 +1,5 @@
 <script lang="ts">
-import { onMount, onDestroy, tick } from "svelte";
+import { onDestroy, onMount, tick } from "svelte";
 import { fade, scale } from "svelte/transition";
 
 export let storageKey = "campaign-popup";
@@ -10,9 +10,9 @@ let doNotShowToday = false;
 // --- Terminal State ---
 type LineType = "user-input" | "system-output" | "component";
 interface TerminalLine {
-    type: LineType;
-    content: string;
-    component?: string; // For rendering the complex notice HTML
+	type: LineType;
+	content: string;
+	component?: string; // For rendering the complex notice HTML
 }
 
 let history: TerminalLine[] = [];
@@ -24,207 +24,239 @@ let isAutoTyping = false;
 // --- Easter Egg State (Konami) ---
 let isHacked = false;
 const konamiCode = [
-    "arrowup", "arrowup", "arrowdown", "arrowdown",
-    "arrowleft", "arrowright", "arrowleft", "arrowright",
-    "b", "a",
+	"arrowup",
+	"arrowup",
+	"arrowdown",
+	"arrowdown",
+	"arrowleft",
+	"arrowright",
+	"arrowleft",
+	"arrowright",
+	"b",
+	"a",
 ];
 let inputSequence: string[] = [];
 
 // --- Lifecycle ---
 onMount(async () => {
-    const expiry = localStorage.getItem(storageKey);
-    const now = Date.now();
+	const expiry = localStorage.getItem(storageKey);
+	const now = Date.now();
 
-    if (expiry && now < Number.parseInt(expiry, 10)) {
-        isOpen = false;
-    } else {
-        isOpen = true;
-        // Start auto-typing --help sequence
-        await tick();
-        startAutoTypeSequence();
-    }
+	if (expiry && now < Number.parseInt(expiry, 10)) {
+		isOpen = false;
+	} else {
+		isOpen = true;
+		// Start auto-typing --help sequence
+		await tick();
+		startAutoTypeSequence();
+	}
 
-    window.addEventListener("keydown", handleGlobalKeydown);
+	window.addEventListener("keydown", handleGlobalKeydown);
 });
 
 onDestroy(() => {
-    if (typeof window !== "undefined") {
-        window.removeEventListener("keydown", handleGlobalKeydown);
-    }
+	if (typeof window !== "undefined") {
+		window.removeEventListener("keydown", handleGlobalKeydown);
+	}
 });
 
 // --- Logic ---
 
 function closePopup() {
-    if (doNotShowToday) {
-        const expiryDate = Date.now() + 24 * 60 * 60 * 1000;
-        localStorage.setItem(storageKey, expiryDate.toString());
-    }
-    isOpen = false;
+	if (doNotShowToday) {
+		const expiryDate = Date.now() + 24 * 60 * 60 * 1000;
+		localStorage.setItem(storageKey, expiryDate.toString());
+	}
+	isOpen = false;
 }
 
 function handleBackdropClick(event: MouseEvent) {
-    if (event.target === event.currentTarget) {
-        closePopup();
-    }
+	if (event.target === event.currentTarget) {
+		closePopup();
+	}
 }
 
 // Focus input when clicking anywhere in the terminal body
 function focusInput() {
-    inputElement?.focus();
+	inputElement?.focus();
 }
 
 // Scroll to bottom
 async function scrollToBottom() {
-    await tick();
-    if (terminalContainer) {
-        terminalContainer.scrollTop = terminalContainer.scrollHeight;
-    }
+	await tick();
+	if (terminalContainer) {
+		terminalContainer.scrollTop = terminalContainer.scrollHeight;
+	}
 }
 
 // Global keydown for Konami code (works even if input not focused, though input usually is)
 function handleGlobalKeydown(e: KeyboardEvent) {
-    if (!isOpen) return;
-    
-    // Konami detection
-    const key = e.key.toLowerCase();
-    inputSequence = [...inputSequence, key];
-    if (inputSequence.length > konamiCode.length) inputSequence = inputSequence.slice(-konamiCode.length);
-    if (JSON.stringify(inputSequence) === JSON.stringify(konamiCode)) {
-        isHacked = true;
-        addToHistory("system-output", "ROOT_ACCESS_GRANTED... SYSTEM OVERRIDE.");
-    }
+	if (!isOpen) return;
+
+	// Konami detection
+	const key = e.key.toLowerCase();
+	inputSequence = [...inputSequence, key];
+	if (inputSequence.length > konamiCode.length)
+		inputSequence = inputSequence.slice(-konamiCode.length);
+	if (JSON.stringify(inputSequence) === JSON.stringify(konamiCode)) {
+		isHacked = true;
+		addToHistory("system-output", "ROOT_ACCESS_GRANTED... SYSTEM OVERRIDE.");
+	}
 }
 
 // Terminal Input Handler
 async function handleInputKeydown(e: KeyboardEvent) {
-    if (e.key === "Enter" && !isAutoTyping) {
-        const command = inputValue.trim();
-        
-        // Add user input to history
-        addToHistory("user-input", command);
-        inputValue = "";
+	if (e.key === "Enter" && !isAutoTyping) {
+		const command = inputValue.trim();
 
-        // Process command
-        await processCommand(command);
-    }
+		// Add user input to history
+		addToHistory("user-input", command);
+		inputValue = "";
+
+		// Process command
+		await processCommand(command);
+	}
 }
 
 function addToHistory(type: LineType, content: string, component?: string) {
-    history = [...history, { type, content, component }];
-    scrollToBottom();
+	history = [...history, { type, content, component }];
+	scrollToBottom();
 }
 
 async function processCommand(cmd: string) {
-    if (!cmd) return;
-    
-    const parts = cmd.split(/\s+/);
-    const mainCmd = parts[0].toLowerCase();
-    const args = parts.slice(1);
+	if (!cmd) return;
 
-    await new Promise(r => setTimeout(r, 100)); // Small delay for "processing" feel
+	const parts = cmd.split(/\s+/);
+	const mainCmd = parts[0].toLowerCase();
+	const args = parts.slice(1);
 
-    switch (mainCmd) {
-        case "help":
-        case "--help":
-            addToHistory("system-output", "Available commands:");
-            addToHistory("system-output", "  ls              List directory contents");
-            addToHistory("system-output", "  cat [file]      Concatenate and display file content");
-            addToHistory("system-output", "  whoami          Print current user");
-            addToHistory("system-output", "  clear           Clear terminal screen");
-            addToHistory("system-output", "  exit            Close terminal");
-            break;
-        case "ls":
-            addToHistory("system-output", "NOTICE.md  secret.txt  system.conf");
-            break;
-        case "cat":
-            if (args.length === 0) {
-                addToHistory("system-output", "usage: cat [file]");
-            } else if (args[0] === "NOTICE.md") {
-                addToHistory("component", "", "notice");
-            } else if (args[0] === "secret.txt") {
-                addToHistory("system-output", "👀 I don't know what means UUDDLRLRBA!");
-            } else if (args[0] === "system.conf") {
-                if (isHacked) {
-                    addToHistory("system-output", "SERVER_KEY=8f9a2b3c\nADMIN_USER=hong\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!");
-                } else {
-                    addToHistory("system-output", "cat: system.conf: Permission denied");
-                }
-            } else {
-                addToHistory("system-output", `cat: ${args[0]}: No such file or directory`);
-            }
-            break;
-        case "whoami":
-            addToHistory("system-output", isHacked ? "root" : "guest");
-            break;
-        case "sudo":
-            if (isHacked) {
-                addToHistory("system-output", "You are already root.");
-            } else {
-                // Immediate Danger Output
-                addToHistory("component", "", "sudo-alert");
-                
-                // Trigger shake effect
-                isShake = true;
-                setTimeout(() => isShake = false, 500);
-            }
-            break;
-        case "reboot":
-            if (isHacked) {
-                addToHistory("system-output", "System rebooting...");
-                setTimeout(() => {
-                    history = [];
-                    isHacked = false;
-                    addToHistory("system-output", "Reboot complete. Welcome, guest.");
-                }, 2000);
-            } else {
-                addToHistory("system-output", "reboot: Operation not permitted");
-            }
-            break;
-        case "clear":
-            history = [];
-            break;
-        case "exit":
-            closePopup();
-            break;
-        case "rm":
-            if (args.includes("-rf") && args.includes("/")) {
-                 addToHistory("system-output", "PERMISSION DENIED: Nice try. 😉");
-            } else {
-                 addToHistory("system-output", "rm: cannot remove '" + (args[0] || "") + "': Permission denied");
-            }
-            break;
-        default:
-            addToHistory("system-output", `zsh: command not found: ${mainCmd}`);
-    }
-    scrollToBottom();
+	await new Promise((r) => setTimeout(r, 100)); // Small delay for "processing" feel
+
+	switch (mainCmd) {
+		case "help":
+		case "--help":
+			addToHistory("system-output", "Available commands:");
+			addToHistory(
+				"system-output",
+				"  ls              List directory contents",
+			);
+			addToHistory(
+				"system-output",
+				"  cat [file]      Concatenate and display file content",
+			);
+			addToHistory("system-output", "  whoami          Print current user");
+			addToHistory("system-output", "  clear           Clear terminal screen");
+			addToHistory("system-output", "  exit            Close terminal");
+			break;
+		case "ls":
+			addToHistory("system-output", "NOTICE.md  secret.txt  system.conf");
+			break;
+		case "cat":
+			if (args.length === 0) {
+				addToHistory("system-output", "usage: cat [file]");
+			} else if (args[0] === "NOTICE.md") {
+				addToHistory("component", "", "notice");
+			} else if (args[0] === "secret.txt") {
+				addToHistory("system-output", "👀 I don't know what means UUDDLRLRBA!");
+			} else if (args[0] === "system.conf") {
+				if (isHacked) {
+					addToHistory(
+						"system-output",
+						"SERVER_KEY=8f9a2b3c\nADMIN_USER=hong\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!",
+					);
+				} else {
+					addToHistory("system-output", "cat: system.conf: Permission denied");
+				}
+			} else {
+				addToHistory(
+					"system-output",
+					`cat: ${args[0]}: No such file or directory`,
+				);
+			}
+			break;
+		case "whoami":
+			addToHistory("system-output", isHacked ? "root" : "guest");
+			break;
+		case "sudo":
+			if (isHacked) {
+				addToHistory("system-output", "You are already root.");
+			} else {
+				// Immediate Danger Output
+				addToHistory("component", "", "sudo-alert");
+
+				// Trigger shake effect
+				isShake = true;
+				setTimeout(() => (isShake = false), 500);
+			}
+			break;
+		case "reboot":
+			if (isHacked) {
+				addToHistory("system-output", "System rebooting...");
+				setTimeout(() => {
+					history = [];
+					isHacked = false;
+					addToHistory("system-output", "Reboot complete. Welcome, guest.");
+				}, 2000);
+			} else {
+				addToHistory("system-output", "reboot: Operation not permitted");
+			}
+			break;
+		case "clear":
+			history = [];
+			break;
+		case "exit":
+			closePopup();
+			break;
+		case "beer":
+		case "coffee":
+			addToHistory(
+				"system-output",
+				"☕️ Brewing coffee... [██████████] 100% Done!",
+			);
+			addToHistory("system-output", "Here is your virtual drink! 🍺");
+			break;
+		case "rm":
+			if (args.includes("-rf") && args.includes("/")) {
+				addToHistory("system-output", "PERMISSION DENIED: Nice try. 😉");
+			} else {
+				addToHistory(
+					"system-output",
+					`rm: cannot remove '${args[0] || ""}': Permission denied`,
+				);
+			}
+			break;
+		default:
+			addToHistory("system-output", `zsh: command not found: ${mainCmd}`);
+	}
+	scrollToBottom();
 }
 
 // Auto-type animation
 async function startAutoTypeSequence() {
-    isAutoTyping = true;
-    const cmd = "--help";
-    
-    // Delay before starting
-    await new Promise(r => setTimeout(r, 800));
+	isAutoTyping = true;
+	const cmd = "cat NOTICE.md";
 
-    // Type characters
-    for (const char of cmd) {
-        inputValue += char;
-        await new Promise(r => setTimeout(r, 100)); // typing speed
-    }
+	// Delay before starting
+	await new Promise((r) => setTimeout(r, 800));
 
-    await new Promise(r => setTimeout(r, 300));
-    
-    // Simulate Enter
-    addToHistory("user-input", inputValue);
-    inputValue = "";
-    await processCommand("--help");
-    
-    isAutoTyping = false;
-    
-    // Focus input after auto-type
-    tick().then(() => inputElement?.focus());
+	// Type characters
+	const chars = cmd.split("");
+	for (let i = 0; i < chars.length; i++) {
+		inputValue += chars[i];
+		await new Promise((r) => setTimeout(r, 100)); // typing speed
+	}
+
+	await new Promise((r) => setTimeout(r, 300));
+
+	// Simulate Enter
+	addToHistory("user-input", inputValue);
+	inputValue = "";
+	await processCommand(cmd);
+
+	isAutoTyping = false;
+
+	// Focus input after auto-type
+	tick().then(() => inputElement?.focus());
 }
 </script>
 
