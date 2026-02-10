@@ -32,11 +32,10 @@ let links: NavBarLink[] = navBarConfig.links.map(
         { "text-white dark:text-white": isHome }
     ]}>
         <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95">
-            <div class="flex flex-row text-[var(--primary)] items-center text-md">
+            <div id="nav-logo" class="flex flex-row text-[var(--primary)] items-center text-md cursor-pointer">
                 <Icon 
                 name="fa6-solid:compact-disc" 
-                class="text-[1.75rem] mb-1 mr-2 animate-spin" 
-                style="animation-duration: 3s;" 
+                class="text-[1.75rem] mb-1 mr-2" 
                 />{siteConfig.title}
             </div>
         </a>
@@ -100,6 +99,25 @@ function loadButtonScript() {
 }
 
 loadButtonScript();
+
+function enableLogoSpin() {
+    const logo = document.getElementById("nav-logo");
+    if (!logo) return;
+
+    logo.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Remove class to reset animation if clicked quickly
+        logo.classList.remove("animate-glitch");
+        void logo.offsetWidth; // Trigger reflow
+        logo.classList.add("animate-glitch");
+        
+        // Remove after 500ms
+        setTimeout(() => {
+            logo.classList.remove("animate-glitch");
+        }, 500);
+    });
+}
+enableLogoSpin();
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
@@ -137,3 +155,19 @@ if (document.readyState === 'loading') {
     loadPagefind();
 }
 </script>}
+
+<style is:global>
+    @keyframes glitch-anim {
+        0% { transform: translate(0) }
+        20% { transform: translate(-2px, 2px) }
+        40% { transform: translate(-2px, -2px) }
+        60% { transform: translate(2px, 2px) }
+        80% { transform: translate(2px, -2px) }
+        100% { transform: translate(0) }
+    }
+    .animate-glitch {
+        animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+        color: #ff00ff !important; /* Cyberpunk Pink */
+        text-shadow: 2px 0 #00ffff; /* Cyberpunk Cyan shadow */
+    }
+</style>
