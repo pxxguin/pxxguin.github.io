@@ -7,6 +7,7 @@ import "../styles/fonts.css";
 import ConfigCarrier from "@components/ConfigCarrier.astro";
 import CampaignPopup from "@components/misc/CampaignPopup.svelte";
 import ConsoleEasterEgg from "@components/misc/ConsoleEasterEgg.astro";
+import PixelCat from "@components/misc/PixelCat.svelte";
 
 import { profileConfig, siteConfig } from "@/config";
 import {
@@ -174,6 +175,7 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 
         <CampaignPopup client:load />
         <ConsoleEasterEgg />
+        <PixelCat client:idle />
 		<slot />
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
