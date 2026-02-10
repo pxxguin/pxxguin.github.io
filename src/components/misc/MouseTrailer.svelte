@@ -1,4 +1,4 @@
-```typescript
+
 <script lang="ts">
 import { onMount } from "svelte";
 
@@ -125,4 +125,4 @@ onMount(() => {
 	bind:this={canvas}
 	class="fixed top-0 left-0 w-full h-full pointer-events-none z-[100]"
 />
-```
+
