@@ -11,6 +11,7 @@ import { getDir, getPostUrlBySlug, url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig } from "src/config";
 import ImageWrapper from "../../components/misc/ImageWrapper.astro";
+import PetButton from "../../components/misc/PetButton.svelte";
 import PostMetadata from "../../components/PostMeta.astro";
 import CommentWidget from "../../components/widget/CommentWidget.astro";
 import RelatedPosts from "../../components/widget/RelatedPosts.astro";
@@ -166,6 +167,9 @@ const jsonLd = [
 
             {licenseConfig.enable && <License title={entry.data.title} slug={entry.slug} pubDate={entry.data.published} class="mb-6 rounded-xl license-container onload-animation"></License>}
             
+            <div class="onload-animation mb-6">
+                <PetButton client:visible />
+            </div>
 
         </div>
     </div>
