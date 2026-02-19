@@ -25,17 +25,56 @@ const seriesStats = series.map((s) => {
 				: new Date(0),
 	};
 });
+
+// Extract all unique tags
+const allTags = new Set<string>();
+seriesStats.forEach((s) => {
+	if (s.data.tags) {
+		s.data.tags.forEach((tag) => {
+			allTags.add(tag);
+		});
+	}
+});
+const tagsArray = Array.from(allTags).sort();
 ---
 
 <MainGridLayout title="Series" description="All Series">
-    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
-        <div class="card-base z-10 px-9 py-6 relative w-full ">
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
-                {seriesStats.map(s => {
-                    const seriesId = s.id.replace(/\.md$/, '');
-                    return (
-                    <a href={`/series/${seriesId}/`} class="flex flex-col relative group transition-all duration-300 hover:scale-[1.02] h-full"> 
-                        <div class="card-base border border-black/5 dark:border-white/5 h-full relative overflow-hidden bg-[var(--card-bg)] flex flex-col">
+    <div class="flex flex-col gap-6 w-full mb-4">
+        <!-- Search and Filter Bar -->
+        <div class="card-base p-4 w-full relative z-10 transition-all">
+            <div class="flex flex-col lg:flex-row gap-4 justify-between items-center">
+                <div class="relative w-full lg:w-96 flex-shrink-0">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-black/40 dark:text-white/40">
+                        <Icon name="material-symbols:search-rounded" class="text-xl" />
+                    </div>
+                    <input type="text" id="series-search" placeholder="Search series..." class="w-full pl-10 pr-4 py-2.5 bg-black/5 dark:bg-white/10 border-none rounded-xl focus:ring-2 focus:ring-[var(--primary)] outline-none transition text-sm text-black/80 dark:text-white/80" />
+                </div>
+                {tagsArray.length > 0 && (
+                    <div class="flex flex-wrap gap-2 w-full lg:w-auto" id="series-tags">
+                        <button class="series-tag-btn active px-3 py-1.5 rounded-lg text-sm font-bold transition bg-[var(--primary)] text-white shadow-sm" data-tag="all">All</button>
+                        {tagsArray.map(tag => (
+                            <button class="series-tag-btn px-3 py-1.5 rounded-lg text-sm font-bold transition bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)]" data-tag={tag}>{tag}</button>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </div>
+
+        <!-- Series Grid -->
+        <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+            <div class="card-base z-10 px-9 py-6 relative w-full ">
+                <div id="series-grid" class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+                    {seriesStats.map(s => {
+                        const seriesId = s.id.replace(/\.md$/, '');
+                        const tagsJson = JSON.stringify(s.data.tags || []);
+                        return (
+                        <a href={`/series/${seriesId}/`} 
+                           class="series-card flex flex-col relative group transition-all duration-300 hover:scale-[1.02] h-full"
+                           data-title={s.data.title.toLowerCase()}
+                           data-desc={s.data.description?.toLowerCase() || ''}
+                           data-tags={tagsJson}
+                        > 
+                            <div class="card-base border border-black/5 dark:border-white/5 h-full relative overflow-hidden bg-[var(--card-bg)] flex flex-col">
                             {s.data.image && (
                                 <div class="w-full h-48 overflow-hidden relative">
                                     <div class="absolute inset-0 bg-black/10 dark:bg-black/20 z-10"></div>
@@ -77,5 +116,53 @@ const seriesStats = series.map((s) => {
                 })}
             </div>
         </div>
+        </div>
     </div>
+
+    <script is:inline>
+        const searchInput = document.getElementById('series-search');
+        const tagButtons = document.querySelectorAll('.series-tag-btn');
+        const seriesCards = document.querySelectorAll('.series-card');
+        let currentTag = 'all';
+
+        function filterSeries() {
+            const query = searchInput ? searchInput.value.toLowerCase() : '';
+            
+            seriesCards.forEach(card => {
+                const title = card.getAttribute('data-title') || '';
+                const desc = card.getAttribute('data-desc') || '';
+                const tagsRaw = card.getAttribute('data-tags') || '[]';
+                let tags = [];
+                try { tags = JSON.parse(tagsRaw); } catch(e){}
+
+                const matchesSearch = title.includes(query) || desc.includes(query);
+                const matchesTag = currentTag === 'all' || tags.includes(currentTag);
+
+                if (matchesSearch && matchesTag) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        if (searchInput) {
+            searchInput.addEventListener('input', filterSeries);
+        }
+
+        tagButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active state
+                tagButtons.forEach(b => {
+                    b.classList.remove('bg-[var(--primary)]', 'text-white', 'shadow-sm');
+                    b.classList.add('bg-black/5', 'dark:bg-white/10', 'text-black/60', 'dark:text-white/60');
+                });
+                btn.classList.add('bg-[var(--primary)]', 'text-white', 'shadow-sm');
+                btn.classList.remove('bg-black/5', 'dark:bg-white/10', 'text-black/60', 'dark:text-white/60');
+                
+                currentTag = btn.getAttribute('data-tag');
+                filterSeries();
+            });
+        });
+    </script>
 </MainGridLayout>

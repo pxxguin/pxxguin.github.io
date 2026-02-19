@@ -204,4 +204,16 @@ const jsonLd = [
         </a>
     </div>
 
+    <!-- Script to track read posts in series -->
+    <script define:vars={{ postId: entry.id }}>
+        try {
+            const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
+            if (!readPosts.includes(postId)) {
+                readPosts.push(postId);
+                localStorage.setItem('read_series_posts', JSON.stringify(readPosts));
+            }
+        } catch (e) {
+            console.error("Failed to update read posts", e);
+        }
+    </script>
 </MainGridLayout>
