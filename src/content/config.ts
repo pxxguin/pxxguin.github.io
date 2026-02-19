@@ -26,10 +26,23 @@ const postsCollection = defineCollection({
 		nextSlug: z.string().default(""),
 	}),
 });
+
+const seriesCollection = defineCollection({
+	schema: z.object({
+		title: z.string(),
+		description: z.string().optional(),
+		image: z.string().optional(),
+		status: z.enum(["ongoing", "completed"]).default("ongoing"),
+		// You can add more fields if needed, e.g., tags, etc.
+	}),
+});
+
 const specCollection = defineCollection({
 	schema: z.object({}),
 });
+
 export const collections = {
 	posts: postsCollection,
+	series: seriesCollection,
 	spec: specCollection,
 };

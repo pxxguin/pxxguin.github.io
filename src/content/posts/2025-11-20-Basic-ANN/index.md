@@ -3,7 +3,7 @@ title: How can deploy ANN in python?
 image: /images/test4.png
 published: 2025-11-20T00:00:00.000Z
 description: MNIST 데이터를 사용해서 기본적인 ANN 구조를 구성하는 방법에 대해서 알아봅시다.
-series: Deep Learning Basics
+series: deep-learning-basics
 seriesOrder: 1
 tags:
   - DeepL
