@@ -58,14 +58,14 @@ const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
                     const isCurrent = post.id === currentPostId;
                     return (
                         <li>
-                            <a href={getPostUrl(post)} 
-                            class={`flex items-start gap-3 p-2 rounded-lg transition group/item
+                            <a href={getPostUrl(post)} data-post-id={post.id}
+                            class={`flex items-center gap-3 p-2 rounded-lg transition group/item
                                 ${isCurrent 
                                     ? 'bg-[var(--primary)] text-white shadow-lg shadow-[var(--primary)]/20' 
                                     : 'hover:bg-black/5 dark:hover:bg-white/5 text-black/70 dark:text-white/70'
                                 }`} 
                             >
-                                <div class={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold mt-0.5
+                                <div class={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold
                                     ${isCurrent
                                         ? 'bg-white text-[var(--primary)]'
                                         : 'bg-black/5 dark:bg-white/10 text-black/40 dark:text-white/40 group-hover/item:bg-[var(--primary)]/10 group-hover/item:text-[var(--primary)]'
@@ -73,8 +73,12 @@ const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
                                 `}>
                                     {index + 1}
                                 </div>
-                                <div class="leading-tight text-sm font-medium py-1">
+                                <div class="leading-tight text-sm font-medium py-1 flex-grow">
                                     {post.data.title}
+                                </div>
+                                <!-- Read Indicator (hidden by default) -->
+                                <div class="read-indicator hidden ml-auto flex-shrink-0 text-green-500 dark:text-green-400">
+                                    <Icon name="material-symbols:check-circle-rounded" class="text-base" />
                                 </div>
                             </a>
                         </li>
@@ -112,5 +116,23 @@ const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
                 icon.style.transform = 'rotate(0deg)';
             }
         });
+    }
+
+    // Apply read state
+    try {
+        const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
+        if (readPosts.length > 0) {
+            const items = document.querySelectorAll('a[data-post-id]');
+            items.forEach(item => {
+                const postId = item.getAttribute('data-post-id');
+                if (postId && readPosts.includes(postId)) {
+                    item.classList.add('opacity-75'); // slightly dim read posts
+                    const indicator = item.querySelector('.read-indicator');
+                    if (indicator) indicator.classList.remove('hidden');
+                }
+            });
+        }
+    } catch (e) {
+        console.error("Failed to parse read posts", e);
     }
 </script>

@@ -33,7 +33,7 @@ const seriesCollection = defineCollection({
 		description: z.string().optional(),
 		image: z.string().optional(),
 		status: z.enum(["ongoing", "completed"]).default("ongoing"),
-		// You can add more fields if needed, e.g., tags, etc.
+		tags: z.array(z.string()).optional().default([]),
 	}),
 });
 
