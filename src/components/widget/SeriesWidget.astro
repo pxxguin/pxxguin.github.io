@@ -1,5 +1,5 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection, getEntry } from "astro:content";
 import { Icon } from "astro-icon/components";
 import { getPostUrl } from "../../utils/url-utils";
 
@@ -8,11 +8,15 @@ interface Props {
 	currentPostId: string;
 }
 
-const { series, currentPostId } = Astro.props;
+const { series: seriesId, currentPostId } = Astro.props;
+
+const seriesEntry = await getEntry("series", seriesId);
+// Fallback if series not found in collection (e.g. migration in progress)
+const seriesTitle = seriesEntry ? seriesEntry.data.title : seriesId;
 
 const allPosts = await getCollection("posts");
 const seriesPosts = allPosts
-	.filter((post) => post.data.series === series)
+	.filter((post) => post.data.series === seriesId)
 	.sort((a, b) => (a.data.seriesOrder || 999) - (b.data.seriesOrder || 999));
 
 const currentIndex = seriesPosts.findIndex((post) => post.id === currentPostId);
@@ -32,7 +36,9 @@ const progress = Math.round(((currentIndex + 1) / seriesPosts.length) * 100);
             <span>Series</span>
         </div>
         <h3 class="text-xl font-bold text-black/90 dark:text-white/90">
-            {series}
+            <a href={`/series/${seriesId}/`} class="hover:text-[var(--primary)] transition-colors">
+                {seriesTitle}
+            </a>
         </h3>
         <div class="text-sm text-black/50 dark:text-white/50 mt-1">
             Part {currentIndex + 1} of {seriesPosts.length}

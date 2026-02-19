@@ -1,0 +1,81 @@
+---
+import { getCollection } from "astro:content";
+import I18nKey from "@i18n/i18nKey";
+import { i18n } from "@i18n/translation";
+import MainGridLayout from "@layouts/MainGridLayout.astro";
+import { getPostUrl } from "@utils/url-utils";
+import { Icon } from "astro-icon/components";
+
+const series = await getCollection("series");
+const allPosts = await getCollection("posts");
+
+// Sort series by title for now, or you could add a 'date' or 'order' field to the schema
+series.sort((a, b) => a.data.title.localeCompare(b.data.title));
+
+const seriesStats = series.map((s) => {
+	// Handle both cases where ID might have extension or not
+	const seriesId = s.id.replace(/\.md$/, "");
+	const posts = allPosts.filter((p) => p.data.series === seriesId);
+	return {
+		...s,
+		count: posts.length,
+		lastUpdated:
+			posts.length > 0
+				? new Date(Math.max(...posts.map((p) => p.data.published.getTime())))
+				: new Date(0),
+	};
+});
+---
+
+<MainGridLayout title="Series" description="All Series">
+    <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative min-h-32">
+        <div class="card-base z-10 px-9 py-6 relative w-full ">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-8">
+                {seriesStats.map(s => {
+                    const seriesId = s.id.replace(/\.md$/, '');
+                    return (
+                    <a href={`/series/${seriesId}/`} class="flex flex-col relative group transition-all duration-300 hover:scale-[1.02] h-full"> 
+                        <div class="card-base border border-black/5 dark:border-white/5 h-full relative overflow-hidden bg-[var(--card-bg)] flex flex-col">
+                            {s.data.image && (
+                                <div class="w-full h-48 overflow-hidden relative">
+                                    <div class="absolute inset-0 bg-black/10 dark:bg-black/20 z-10"></div>
+                                    <img src={s.data.image} alt={s.data.title} class="w-full h-full object-cover transition transform duration-500 group-hover:scale-110" />
+                                </div>
+                            )}
+                            <div class="p-6 flex flex-col flex-grow relative">
+                                <!-- Background Decoration (only show if no image, or adjust opacity) -->
+                                {!s.data.image && (
+                                    <div class="absolute right-[-10px] top-[-10px] opacity-5 -rotate-12 group-hover:rotate-0 transition duration-500 pointer-events-none">
+                                        <Icon name="material-symbols:auto-stories-outline-rounded" class="text-[8rem]" />
+                                    </div>
+                                )}
+
+                                <div class="relative z-10 flex flex-col h-full flex-grow">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-[var(--primary)] text-sm font-bold bg-[var(--primary)]/10 px-2 py-1 rounded-md">
+                                            {s.data.status === 'completed' ? 'Completed' : 'Ongoing'}
+                                        </div>
+                                        <div class="text-black/50 dark:text-white/50 text-sm font-medium">
+                                            {s.count} Posts
+                                        </div>
+                                    </div>
+                                    <h2 class="text-xl font-bold text-black/90 dark:text-white/90 mb-2 group-hover:text-[var(--primary)] transition duration-300">
+                                        {s.data.title}
+                                    </h2>
+                                    <p class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-3 flex-grow">
+                                        {s.data.description}
+                                    </p>
+                                    <div class="flex items-center text-sm font-bold text-[var(--primary)] mt-auto">
+                                        <span class="border-b-2 border-transparent group-hover:border-[var(--primary)] transition duration-300">View Series</span>
+                                        <Icon name="material-symbols:chevron-right-rounded" class="text-xl group-hover:translate-x-1 transition duration-300" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                    );
+                })}
+            </div>
+        </div>
+    </div>
+</MainGridLayout>
