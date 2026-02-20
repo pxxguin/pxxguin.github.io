@@ -13,7 +13,7 @@ function joinUrl(...parts: string[]): string {
 }
 
 export function getPostUrlBySlug(slug: string): string {
-	return url(`/posts/${slug}/`);
+	return url(`/${slug}/`);
 }
 
 export function getPostUrl(entry: {
@@ -21,7 +21,7 @@ export function getPostUrl(entry: {
 	data: { postId?: number };
 }): string {
 	return entry.data.postId
-		? url(`/posts/${entry.data.postId}/`)
+		? url(`/${entry.data.postId}/`)
 		: getPostUrlBySlug(entry.slug);
 }
 

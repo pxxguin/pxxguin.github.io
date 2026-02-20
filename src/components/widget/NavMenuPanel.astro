@@ -1,32 +1,49 @@
 ---
 import { Icon } from "astro-icon/components";
-import { type NavBarLink } from "../../types/config";
+import type {
+	LinkPreset,
+	NavBarDropdown,
+	NavBarLink,
+} from "../../types/config";
 import { url } from "../../utils/url-utils";
 
 interface Props {
-	links: NavBarLink[];
+	links: (NavBarLink | LinkPreset | NavBarDropdown)[];
 }
 
-const links = Astro.props.links;
+const links = Astro.props.links as (NavBarLink | NavBarDropdown)[];
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2 md:hidden"]}>
-    {links.map((link) => (
-        <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8
-            hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition
-        "
-           target={link.external ? "_blank" : null}
-        >
-            <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
-                {link.name}
-            </div>
-            {!link.external && <Icon name="material-symbols:chevron-right-rounded"
-                  class="transition text-[1.25rem] text-[var(--primary)]"
-            >
-            </Icon>}
-            {link.external && <Icon name="fa6-solid:arrow-up-right-from-square"
-                  class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1"
-            >
-            </Icon>}
-        </a>
-    ))}
+    {links.map((link) => {
+        const isDropdown = 'categories' in link;
+        if (isDropdown) {
+            return (
+                <div class="group flex flex-col py-2 pl-3 pr-1 rounded-lg gap-2">
+                    <div class="transition text-black/75 dark:text-white/75 font-bold">{link.name}</div>
+                    <div class="pl-4 flex flex-col gap-3">
+                        {link.categories.map(cat => (
+                            <div class="flex flex-col gap-1">
+                                <span class="text-[var(--primary)] text-xs font-bold uppercase">{cat.name}</span>
+                                {cat.links.map(sublink => (
+                                    <a href={sublink.external ? sublink.url : url(sublink.url)} class="text-sm text-black/60 dark:text-white/60 hover:text-[var(--primary)] dark:hover:text-[var(--primary)] transition py-1" target={sublink.external ? "_blank" : null}>
+                                        {sublink.name}
+                                    </a>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <a href={link.external ? link.url : url(link.url)} class="group flex justify-between items-center py-2 pl-3 pr-1 rounded-lg gap-8 hover:bg-[var(--btn-plain-bg-hover)] active:bg-[var(--btn-plain-bg-active)] transition" target={link.external ? "_blank" : null}>
+                    <div class="transition text-black/75 dark:text-white/75 font-bold group-hover:text-[var(--primary)] group-active:text-[var(--primary)]">
+                        {link.name}
+                    </div>
+                    {!link.external && <Icon name="material-symbols:chevron-right-rounded" class="transition text-[1.25rem] text-[var(--primary)]" />}
+                    {link.external && <Icon name="fa6-solid:arrow-up-right-from-square" class="transition text-[0.75rem] text-black/25 dark:text-white/25 -translate-x-1" />}
+                </a>
+            );
+        }
+    })}
 </div>

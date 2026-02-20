@@ -142,7 +142,7 @@ function initGraph() {
 		.attr("opacity", 0.9)
 		.on("click", (_event, d) => {
 			if (d.type === "post") {
-				window.location.href = `/posts/${d.postId}/`;
+				window.location.href = `/${d.postId}/`;
 			} else if (d.type === "category") {
 				window.location.href = `/archive/category/${d.name}/`;
 			} else if (d.type === "tag") {
