@@ -1,33 +1,26 @@
 ---
 
 import path from "node:path";
+import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
+import PetButton from "@components/misc/PetButton.svelte";
+import PostMetadata from "@components/PostMeta.astro";
+import CommentWidget from "@components/widget/CommentWidget.astro";
+import RelatedPosts from "@components/widget/RelatedPosts.astro";
+import SeriesWidget from "@components/widget/SeriesWidget.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
+import { formatDateToYYYYMMDD } from "@utils/date-utils";
 import { getDir, getPostUrlBySlug, url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
-import { licenseConfig } from "src/config";
-import ImageWrapper from "../../components/misc/ImageWrapper.astro";
-import PetButton from "../../components/misc/PetButton.svelte";
-import PostMetadata from "../../components/PostMeta.astro";
-import CommentWidget from "../../components/widget/CommentWidget.astro";
-import RelatedPosts from "../../components/widget/RelatedPosts.astro";
-import SeriesWidget from "../../components/widget/SeriesWidget.astro";
-import { profileConfig, siteConfig } from "../../config";
-import { formatDateToYYYYMMDD } from "../../utils/date-utils";
+import { licenseConfig, profileConfig, siteConfig } from "src/config";
 
 export async function getStaticPaths() {
 	const blogEntries = await getSortedPosts();
 	return blogEntries.map((entry) => {
-		// If postId exists, create a route for it (e.g. /posts/1)
-		// We can also support valid slug routes if needed, but for now let's migrate to ID if present.
-		// NOTE: [slug] param in Astro catches everything.
-		// Ideally we return { params: { slug: entry.data.postId.toString() } }
-		// But to prevent breaking old links, we might want to support both?
-		// For now, let's strictly follow the plan: Tistory style numeric IDs.
 		// If postId is missing, falling back to slug.
 		const slugValue = entry.data.postId
 			? entry.data.postId.toString()
@@ -46,7 +39,7 @@ const { remarkPluginFrontmatter } = await entry.render();
 
 // For canonical URL, etc.
 const postUrl = entry.data.postId
-	? url(`/posts/${entry.data.postId}/`)
+	? url(`/${entry.data.postId}/`)
 	: getPostUrlBySlug(entry.slug);
 const absolutePostUrl = new URL(postUrl, Astro.site).toString();
 const absoluteImage = entry.data.image
@@ -91,12 +84,6 @@ const jsonLd = [
 			{
 				"@type": "ListItem",
 				position: 2,
-				name: "Posts",
-				item: new URL("/posts/", Astro.site).toString(),
-			},
-			{
-				"@type": "ListItem",
-				position: 3,
 				name: entry.data.title,
 				item: absolutePostUrl,
 			},

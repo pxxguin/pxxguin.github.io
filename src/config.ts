@@ -47,26 +47,45 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
 	links: [
 		{
-			name: "홈",
-			url: "/",
+			name: "Develop",
+			categories: [
+				{
+					name: "Artificial Intelligence",
+					links: [
+						{ name: "Deep learning", url: "/archive/?category=DeepL" },
+						{
+							name: "Natural Language Processing",
+							url: "/archive/?category=NLP",
+						},
+					],
+				},
+				{
+					name: "Research & Study",
+					links: [
+						{ name: "Paper Reviews", url: "/archive/?category=Paper" },
+						{ name: "Study Notes", url: "/archive/?category=Study" },
+					],
+				},
+			],
+			promoImage: "/images/demo-banner.png", // Replace with a software anatomy image later
+			promoUrl: "/about/",
 		},
 		{
-			name: "포스트",
-			url: "/posts/",
-		},
-		{
-			name: "아카이브",
-			url: "/archive/",
+			name: "DevOps",
+			categories: [
+				{
+					name: "Infrastructure",
+					links: [
+						{ name: "AWS", url: "/archive/?tag=aws" },
+						{ name: "Linux", url: "/archive/?tag=linux" },
+					],
+				},
+			],
 		},
 		{
 			name: "소개",
 			url: "/about/",
 		},
-		{
-			name: "방명록",
-			url: "/guestbook/",
-		},
-
 		{
 			name: "GitHub",
 			url: "https://github.com/pxxguin", // Internal links should not include the base path, as it is automatically added
@@ -99,11 +118,6 @@ export const profileConfig: ProfileConfig = {
 			name: "Quiz",
 			icon: "streamline-ultimate-color:card-game-heart",
 			url: "https://pxxguin.github.io/quiz-app/",
-		},
-		{
-			name: "Time",
-			icon: "fluent-color:clock-alarm-48",
-			url: "https://pxxguin.github.io/study-focus/",
 		},
 	],
 };

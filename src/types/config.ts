@@ -56,8 +56,20 @@ export type NavBarLink = {
 	external?: boolean;
 };
 
+export type NavBarMenuCategory = {
+	name: string;
+	links: NavBarLink[];
+};
+
+export type NavBarDropdown = {
+	name: string;
+	categories: NavBarMenuCategory[];
+	promoImage?: string;
+	promoUrl?: string;
+};
+
 export type NavBarConfig = {
-	links: (NavBarLink | LinkPreset)[];
+	links: (NavBarLink | LinkPreset | NavBarDropdown)[];
 };
 
 export type ProfileConfig = {

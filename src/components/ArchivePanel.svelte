@@ -22,6 +22,8 @@ interface Post {
 		category?: string;
 		published: Date;
 		postId?: number;
+		image?: string;
+		description?: string;
 	};
 }
 
@@ -86,67 +88,64 @@ onMount(async () => {
 });
 </script>
 
-<div class="card-base px-8 py-6">
+<div class="px-4 py-4 md:px-0">
     {#each groups as group}
-        <div>
-            <div class="flex flex-row w-full items-center h-[3.75rem]">
-                <div class="w-[15%] md:w-[10%] transition text-2xl font-bold text-right text-75">
+        <div class="mb-12">
+            <div class="flex flex-row w-full items-center mb-6 pl-4 md:pl-0">
+                <div class="text-3xl font-bold text-75">
                     {group.year}
                 </div>
-                <div class="w-[15%] md:w-[10%]">
-                    <div
-                            class="h-3 w-3 bg-none rounded-full outline outline-[var(--primary)] mx-auto
-                  -outline-offset-[2px] z-50 outline-3"
-                    ></div>
-                </div>
-                <div class="w-[70%] md:w-[80%] transition text-left text-50">
+                <div class="ml-4 transition text-50 bg-black/5 dark:bg-white/5 px-3 py-1 rounded-full text-sm">
                     {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
                 </div>
             </div>
 
-            {#each group.posts as post}
-                <a
-                        href={getPostUrl(post)}
-                        aria-label={post.data.title}
-                        class="group btn-plain !block h-10 w-full rounded-lg hover:text-[initial]"
-                >
-                    <div class="flex flex-row justify-start items-center h-full">
-                        <!-- date -->
-                        <div class="w-[15%] md:w-[10%] transition text-sm text-right text-50">
-                            {formatDate(post.data.published)}
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {#each group.posts as post}
+                    <div class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative group">
+                        
+                        {#if post.data.image}
+                            <a href={getPostUrl(post)} aria-label={post.data.title} class="relative w-full overflow-hidden shrink-0" style="aspect-ratio: 16/9;">
+                                <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/30 group-active:bg-black/50 transition"></div>
+                                <img src={post.data.image} alt={post.data.title} class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
+                            </a>
+                        {:else}
+                            <a href={getPostUrl(post)} aria-label={post.data.title} class="relative w-full overflow-hidden shrink-0 bg-black/5 dark:bg-white/5 flex items-center justify-center" style="aspect-ratio: 16/9;">
+                                <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/10 group-active:bg-black/20 transition"></div>
+                                <div class="text-6xl font-black text-black/10 dark:text-white/10 uppercase italic">
+                                    {post.data.title.substring(0, 1)}
+                                </div>
+                            </a>
+                        {/if}
 
-                        <!-- dot and line -->
-                        <div class="w-[15%] md:w-[10%] relative dash-line h-full flex items-center">
-                            <div
-                                    class="transition-all mx-auto w-1 h-1 rounded group-hover:h-5
-                       bg-[oklch(0.5_0.05_var(--hue))] group-hover:bg-[var(--primary)]
-                       outline outline-4 z-50
-                       outline-[var(--card-bg)]
-                       group-hover:outline-[var(--btn-plain-bg-hover)]
-                       group-active:outline-[var(--btn-plain-bg-active)]"
-                            ></div>
-                        </div>
+                        <div class="p-6 flex flex-col flex-grow relative bg-transparent">
+                            <a href={getPostUrl(post)}
+                               class="transition w-full block font-bold mb-3 text-2xl text-90
+                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
+                                active:text-[var(--title-active)] dark:active:text-[var(--title-active)]
+                                line-clamp-2 text-left"
+                            >
+                                {post.data.title}
+                            </a>
 
-                        <!-- post title -->
-                        <div
-                                class="w-[70%] md:max-w-[65%] md:w-[65%] text-left font-bold
-                     group-hover:translate-x-1 transition-all group-hover:text-[var(--primary)]
-                     text-75 pr-8 whitespace-nowrap overflow-ellipsis overflow-hidden"
-                        >
-                            {post.data.title}
-                        </div>
+                            <div class="flex flex-wrap items-center gap-2 mb-4 text-sm text-50">
+                                {#if post.data.category}
+                                    <span class="bg-[var(--primary)]/10 text-[var(--primary)] font-medium rounded-md px-2 py-0.5">{post.data.category}</span>
+                                {/if}
+                                {#each post.data.tags || [] as tag}
+                                    <span class="bg-black/5 dark:bg-white/5 rounded-md px-2 py-0.5 lg:whitespace-nowrap">#{tag}</span>
+                                {/each}
+                            </div>
 
-                        <!-- tag list -->
-                        <div
-                                class="hidden md:block md:w-[15%] text-left text-sm transition
-                     whitespace-nowrap overflow-ellipsis overflow-hidden text-30"
-                        >
-                            {formatTag(post.data.tags)}
+                            {#if post.data.description}
+                                <div class="transition text-75 mb-4 line-clamp-3 md:line-clamp-2 text-sm flex-grow text-left">
+                                    {post.data.description}
+                                </div>
+                            {/if}
                         </div>
                     </div>
-                </a>
-            {/each}
+                {/each}
+            </div>
         </div>
     {/each}
 </div>
