@@ -52,10 +52,17 @@ export const navBarConfig: NavBarConfig = {
 				{
 					name: "Machine Learning",
 					links: [
-						{ name: "Deep learning", url: "/archive/?category=DeepL" },
+						{
+							name: "Deep learning",
+							url: "/archive/?category=MachineL&tag=DeepL&tag!=Paper",
+						},
 						{
 							name: "Natural Language Processing",
-							url: "/archive/?category=NLP",
+							url: "/archive/?category=MachineL&tag=NLP&tag!=Paper",
+						},
+						{
+							name: "Paper Review",
+							url: "/archive/?category=MachineL&tag=Paper",
 						},
 					],
 				},

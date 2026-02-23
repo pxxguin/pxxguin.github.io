@@ -6,14 +6,20 @@ import { i18n } from "../i18n/translation";
 import { getPostUrl } from "../utils/url-utils";
 
 export let tags: string[];
+export let excludeTags: string[] = [];
 export let categories: string[];
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);
 tags = params.has("tag") ? params.getAll("tag") : [];
+excludeTags = params.has("tag!") ? params.getAll("tag!") : [];
 categories = params.has("category") ? params.getAll("category") : [];
 const uncategorized = params.get("uncategorized");
-const isFiltered = categories.length > 0 || tags.length > 0 || !!uncategorized;
+const isFiltered =
+	categories.length > 0 ||
+	tags.length > 0 ||
+	excludeTags.length > 0 ||
+	!!uncategorized;
 
 interface Post {
 	slug: string;
@@ -53,6 +59,14 @@ onMount(async () => {
 			(post) =>
 				Array.isArray(post.data.tags) &&
 				post.data.tags.some((tag) => tags.includes(tag)),
+		);
+	}
+
+	if (excludeTags.length > 0) {
+		filteredPosts = filteredPosts.filter(
+			(post) =>
+				!Array.isArray(post.data.tags) ||
+				!post.data.tags.some((tag) => excludeTags.includes(tag)),
 		);
 	}
 
@@ -111,6 +125,17 @@ onMount(async () => {
                             <line x1="7" y1="7" x2="7.01" y2="7"/>
                         </svg>
                         #{tag}
+                    </span>
+                {/each}
+            {/if}
+            {#if excludeTags.length > 0}
+                {#each excludeTags as tag}
+                    <span class="inline-flex items-center gap-1.5 bg-red-500/10 text-red-600 dark:text-red-400 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                        -{tag}
                     </span>
                 {/each}
             {/if}
