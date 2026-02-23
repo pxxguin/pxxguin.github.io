@@ -123,6 +123,18 @@
       "val": 1
     },
     {
+      "id": "How can deploy ANN in python?",
+      "title": "How can deploy ANN in python?",
+      "postId": 11,
+      "tags": [
+        "Docker",
+        "Backend"
+      ],
+      "category": "Backend",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "tag",
@@ -147,6 +159,18 @@
       "val": 5
     },
     {
+      "id": "Docker",
+      "name": "Docker",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Backend",
+      "name": "Backend",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "category",
@@ -161,6 +185,12 @@
     {
       "id": "Paper",
       "name": "Paper",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Backend",
+      "name": "Backend",
       "type": "category",
       "val": 10
     }
@@ -293,6 +323,18 @@
     {
       "source": "Review with ToolOrchestra",
       "target": "Paper"
+    },
+    {
+      "source": "How can deploy ANN in python?",
+      "target": "Docker"
+    },
+    {
+      "source": "How can deploy ANN in python?",
+      "target": "Backend"
+    },
+    {
+      "source": "How can deploy ANN in python?",
+      "target": "Backend"
     }
   ]
 }
