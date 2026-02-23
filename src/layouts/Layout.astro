@@ -180,7 +180,9 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
         <PixelCat client:idle />
         <MouseTrailer client:idle />
         <ScrollNyanCat client:idle />
-		<slot />
+		<div id="swup-container" class="transition-swup-fade">
+			<slot />
+		</div>
 
 		<!-- increase the page height during page transition to prevent the scrolling animation from jumping -->
 		<div id="page-height-extend" class="hidden h-[300vh]"></div>
@@ -242,7 +244,7 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 	padding: 0 1rem !important;
 }
 
-.zen-mode #swup-container {
+.zen-mode main {
 	grid-column: span 1 !important;
 }
 
@@ -528,10 +530,11 @@ if (window?.swup?.hooks) {
 	document.addEventListener('swup:enable', setup)
 }
 
-let backToTopBtn = document.getElementById('back-to-top-btn');
-let toc = document.getElementById('toc-wrapper');
-let navbar = document.getElementById('navbar-wrapper')
 function scrollFunction() {
+	let backToTopBtn = document.getElementById('back-to-top-btn');
+	let toc = document.getElementById('toc-wrapper');
+	let navbar = document.getElementById('navbar-wrapper');
+
 	let bannerHeight = window.innerHeight * (BANNER_HEIGHT / 100)
 
 	if (backToTopBtn) {

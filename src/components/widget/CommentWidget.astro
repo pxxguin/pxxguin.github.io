@@ -40,28 +40,36 @@ const config = giscusConfig;
 
     loadGiscus();
 
-    // Re-load on theme change
-    const observer = new MutationObserver((mutations) => {
-        mutations.forEach((mutation) => {
-            if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                const iframe = document.querySelector('iframe.giscus-frame');
-                if (!iframe) return;
+    if (!window.__giscusObserverSetup) {
+        window.__giscusObserverSetup = true;
+        let currentTheme = document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'light';
 
-                const theme = document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'light';
-                iframe.contentWindow.postMessage({
-                    giscus: {
-                        setConfig: {
-                            theme: theme
+        // Re-load on theme change
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const newTheme = document.documentElement.classList.contains('dark') ? 'noborder_gray' : 'light';
+                    if (currentTheme === newTheme) return;
+                    currentTheme = newTheme;
+
+                    const iframe = document.querySelector('iframe.giscus-frame');
+                    if (!iframe) return;
+
+                    iframe.contentWindow.postMessage({
+                        giscus: {
+                            setConfig: {
+                                theme: newTheme
+                            }
                         }
-                    }
-                }, 'https://giscus.app');
-            }
+                    }, 'https://giscus.app');
+                }
+            });
         });
-    });
 
-    observer.observe(document.documentElement, { attributes: true });
-    
-    // Support for View Transitions (Astro) or Swup
-    document.addEventListener('astro:page-load', loadGiscus);
-    document.addEventListener('swup:contentReplaced', loadGiscus);
+        observer.observe(document.documentElement, { attributes: true });
+        
+        // Support for View Transitions (Astro) or Swup
+        document.addEventListener('astro:page-load', loadGiscus);
+        document.addEventListener('swup:contentReplaced', loadGiscus);
+    }
 </script>
