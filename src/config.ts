@@ -9,7 +9,7 @@ import type {
 
 export const siteConfig: SiteConfig = {
 	title: "Hong's Dev.",
-	subtitle: "Data Storyteller's Blog",
+	subtitle: "Tech Blog by Hong",
 	lang: "ko", // Language code, e.g. 'en', 'zh_CN', 'ja', etc.
 	themeColor: {
 		hue: 170, // Default hue for the theme color, from 0 to 360. e.g. red: 0, teal: 200, cyan: 250, pink: 345
@@ -62,12 +62,20 @@ export const navBarConfig: NavBarConfig = {
 				{
 					name: "Backend",
 					links: [
-						{ name: "Docker", url: "/archive/?category=Backend&tag=Docker" },
 						{
 							name: "Spring Boot",
 							url: "/archive/?category=Backend&tag=SpringBoot",
 						},
-						{ name: "Nginx", url: "/archive/?category=Backend&tag=Nginx" },
+						{
+							name: "Database",
+							url: "/archive/?category=Backend&tag=Database",
+							external: true, // Show an external link icon and will open in a new tab
+						},
+						{ name: "Docker", url: "/archive/?category=Backend&tag=Docker" },
+						{
+							name: "Nginx",
+							url: "/archive/?category=Backend&tag=Nginx",
+						},
 					],
 				},
 			],
@@ -82,12 +90,13 @@ export const navBarConfig: NavBarConfig = {
 					links: [
 						{ name: "AWS", url: "/archive/?tag=aws" },
 						{ name: "Linux", url: "/archive/?tag=linux" },
+						{ name: "CI/CD", url: "/archive/?tag=ci-cd" },
 					],
 				},
 			],
 		},
 		{
-			name: "소개",
+			name: "Intro",
 			url: "/about/",
 		},
 		{
