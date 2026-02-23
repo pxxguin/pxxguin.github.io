@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import heroBgImage from "../assets/images/hero-bg.gif";
 import CategoryCard from "../components/CategoryCard.astro";
@@ -17,33 +18,24 @@ const categories = await getCategoryList();
 const sortedPosts = await getSortedPosts();
 const latestPosts = sortedPosts.slice(0, 4);
 
-// Series Logic
-const seriesMap = new Map();
-sortedPosts.forEach((post) => {
-	if (post.data.series) {
-		if (!seriesMap.has(post.data.series)) {
-			seriesMap.set(post.data.series, []);
-		}
-		seriesMap.get(post.data.series).push(post);
-	}
-});
+// Series Logic — load from series collection for full metadata
+const seriesCollection = await getCollection("series");
+seriesCollection.sort((a, b) => a.data.title.localeCompare(b.data.title));
 
-const allSeries = Array.from(seriesMap.entries()).map(([name, posts]) => {
-	// Sort by seriesOrder
-	posts.sort(
-		(a: CollectionEntry<"posts">, b: CollectionEntry<"posts">) =>
-			(a.data.seriesOrder || 999) - (b.data.seriesOrder || 999),
-	);
+const allPosts = await getCollection("posts");
+
+const allSeries = seriesCollection.map((s) => {
+	const seriesId = s.id.replace(/\.md$/, "");
+	const posts = allPosts.filter((p) => p.data.series === seriesId);
 	return {
-		name,
-		posts,
+		id: seriesId,
+		title: s.data.title,
+		description: s.data.description,
+		status: s.data.status,
+		image: s.data.image,
 		count: posts.length,
-		image: posts[0].data.image,
 	};
 });
-
-// Placeholder image URL - replace with actual image
-// const bgImage = "/images/hero-bg.gif";
 ---
 
 <HomeLayout title={i18n(I18nKey.home)} description={i18n(I18nKey.home)}>
@@ -225,30 +217,144 @@ const allSeries = Array.from(seriesMap.entries()).map(([name, posts]) => {
 
     <!-- Series Section -->
     <div class="max-w-[var(--page-width)] mx-auto px-4 pt-4 pb-8 mb-4">
-         <div class="text-left mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
-            <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Featured Series 📚</h2>
-            <p class="text-black/50 dark:text-white/50">Curated collections of related posts.</p>
+        <div class="flex justify-between items-end mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+            <div class="text-left">
+                <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Featured Series 📚</h2>
+                <p class="text-black/50 dark:text-white/50">Curated collections of related posts.</p>
+            </div>
+            <a href="/series/" class="text-[var(--primary)] hover:text-[var(--primary-hover)] font-medium transition flex items-center gap-1 mb-1">
+                View All <Icon name="material-symbols:arrow-forward-rounded" class="text-xl" />
+            </a>
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {allSeries.map(series => (
-                 <a href={getPostUrl(series.posts[0])} class="group relative overflow-hidden rounded-xl bg-white dark:bg-[#1e1e1e] shadow-lg border border-black/5 dark:border-white/5 h-64 flex flex-col justify-end section-header opacity-0 translate-y-8 transition duration-700 ease-out">
-                     {/* Background Image */}
-                     <div class="absolute inset-0 z-0">
-                        <img src={series.image} alt={series.name} class="w-full h-full object-cover transition duration-700 group-hover:scale-110" />
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-                     </div>
-                     
-                     {/* Content */}
-                     <div class="relative z-10 p-6">
-                        <div class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[var(--primary)] text-white text-xs font-bold mb-2 shadow-md">
-                             <Icon name="material-symbols:playlist-play-rounded" class="text-lg" />
-                             {series.count} Posts
-                        </div>
-                        <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-[var(--primary)] transition">{series.name}</h3>
-                     </div>
-                 </a>
-            ))}
+
+        <!-- Carousel wrapper -->
+        <div class="relative section-header opacity-0 translate-y-8 transition duration-700 ease-out">
+            <!-- Prev button -->
+            <button id="series-prev" class="absolute left-[-20px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-[#2a2a2a] shadow-lg border border-black/10 dark:border-white/10 flex items-center justify-center text-black/60 dark:text-white/60 hover:text-[var(--primary)] hover:border-[var(--primary)] transition hidden" aria-label="Previous">
+                <Icon name="material-symbols:chevron-left-rounded" class="text-2xl" />
+            </button>
+
+            <!-- Slides container -->
+            <div id="series-carousel" class="overflow-hidden">
+                <div id="series-track" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                    {allSeries.map(s => (
+                        <a href={`/series/${s.id}/`}
+                           class="series-slide group flex-shrink-0 flex flex-col relative transition-all duration-300 hover:scale-[1.02]"
+                           style="width: calc(50% - 12px);"
+                        >
+                            <div class="card-base border border-black/5 dark:border-white/5 h-full relative overflow-hidden bg-[var(--card-bg)] flex flex-col">
+                                {s.image && (
+                                    <div class="w-full h-64 overflow-hidden relative">
+                                        <div class="absolute inset-0 bg-black/10 dark:bg-black/20 z-10"></div>
+                                        <img src={s.image} alt={s.title} class="w-full h-full object-cover transition transform duration-500 group-hover:scale-110" />
+                                    </div>
+                                )}
+                                <div class="p-6 flex flex-col flex-grow">
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-[var(--primary)] text-sm font-bold bg-[var(--primary)]/10 px-2 py-1 rounded-md">
+                                            {s.status === 'completed' ? 'Completed' : 'Ongoing'}
+                                        </div>
+                                        <div class="text-black/50 dark:text-white/50 text-sm font-medium">
+                                            {s.count} Posts
+                                        </div>
+                                    </div>
+                                    <h3 class="text-xl font-bold text-black/90 dark:text-white/90 mb-2 group-hover:text-[var(--primary)] transition duration-300">
+                                        {s.title}
+                                    </h3>
+                                    <p class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-3 flex-grow">
+                                        {s.description}
+                                    </p>
+                                    <div class="flex items-center text-sm font-bold text-[var(--primary)] mt-auto">
+                                        <span class="border-b-2 border-transparent group-hover:border-[var(--primary)] transition duration-300">View Series</span>
+                                        <Icon name="material-symbols:chevron-right-rounded" class="text-xl group-hover:translate-x-1 transition duration-300" />
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    ))}
+                </div>
+            </div>
+
+            <!-- Next button -->
+            <button id="series-next" class="absolute right-[-20px] top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white dark:bg-[#2a2a2a] shadow-lg border border-black/10 dark:border-white/10 flex items-center justify-center text-black/60 dark:text-white/60 hover:text-[var(--primary)] hover:border-[var(--primary)] transition hidden" aria-label="Next">
+                <Icon name="material-symbols:chevron-right-rounded" class="text-2xl" />
+            </button>
+
+            <!-- Dots -->
+            <div id="series-dots" class="flex justify-center gap-2 mt-4"></div>
         </div>
+
+        <script is:inline>
+            (function() {
+                const track = document.getElementById('series-track');
+                const slides = track ? Array.from(track.querySelectorAll('.series-slide')) : [];
+                const prevBtn = document.getElementById('series-prev');
+                const nextBtn = document.getElementById('series-next');
+                const dotsContainer = document.getElementById('series-dots');
+                const perPage = 2;
+                let current = 0;
+
+                const totalPages = Math.ceil(slides.length / perPage);
+
+                function updateSlideWidths() {
+                    slides.forEach(slide => {
+                        if (slides.length === 1) {
+                            slide.style.width = '100%';
+                        } else {
+                            slide.style.width = 'calc(50% - 12px)';
+                        }
+                    });
+                }
+
+                function buildDots() {
+                    if (!dotsContainer || totalPages <= 1) return;
+                    for (let i = 0; i < totalPages; i++) {
+                        const dot = document.createElement('button');
+                        dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-[var(--primary)] w-5' : 'bg-black/20 dark:bg-white/20');
+                        dot.addEventListener('click', () => goTo(i));
+                        dotsContainer.appendChild(dot);
+                    }
+                }
+
+                function updateDots() {
+                    if (!dotsContainer) return;
+                    Array.from(dotsContainer.children).forEach((dot, i) => {
+                        dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === current ? 'bg-[var(--primary)]' : 'bg-black/20 dark:bg-white/20');
+                        if (i === current) dot.style.width = '20px';
+                        else dot.style.width = '';
+                    });
+                }
+
+                function getPageWidth() {
+                    if (!track || slides.length === 0) return 0;
+                    const carousel = document.getElementById('series-carousel');
+                    return carousel ? carousel.offsetWidth + 24 : 0; // gap-6 = 24px
+                }
+
+                function goTo(page) {
+                    current = Math.max(0, Math.min(page, totalPages - 1));
+                    const offset = current * getPageWidth();
+                    track.style.transform = `translateX(-${offset}px)`;
+                    if (prevBtn) prevBtn.style.display = current > 0 ? 'flex' : 'none';
+                    if (nextBtn) nextBtn.style.display = current < totalPages - 1 ? 'flex' : 'none';
+                    updateDots();
+                }
+
+                // Init
+                updateSlideWidths();
+                buildDots();
+
+                if (totalPages > 1) {
+                    if (nextBtn) nextBtn.style.display = 'flex';
+                    prevBtn && (prevBtn.style.display = 'none');
+                    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
+                    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+                }
+
+                // Recalculate on resize
+                window.addEventListener('resize', () => goTo(current));
+            })();
+        </script>
     </div>
 
     <!-- Paper of the Day Section -->
