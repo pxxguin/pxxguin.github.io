@@ -13,6 +13,7 @@ const params = new URLSearchParams(window.location.search);
 tags = params.has("tag") ? params.getAll("tag") : [];
 categories = params.has("category") ? params.getAll("category") : [];
 const uncategorized = params.get("uncategorized");
+const isFiltered = categories.length > 0 || tags.length > 0 || !!uncategorized;
 
 interface Post {
 	slug: string;
@@ -88,9 +89,40 @@ onMount(async () => {
 });
 </script>
 
+
 <div class="px-4 py-4 md:px-0">
+    {#if isFiltered}
+        <div class="flex flex-wrap items-center gap-2 mb-8 pl-4 md:pl-0">
+            {#if categories.length > 0}
+                {#each categories as cat}
+                    <span class="inline-flex items-center gap-1.5 bg-[var(--primary)] text-white text-sm font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/>
+                        </svg>
+                        {cat}
+                    </span>
+                {/each}
+            {/if}
+            {#if tags.length > 0}
+                {#each tags as tag}
+                    <span class="inline-flex items-center gap-1.5 bg-black/10 dark:bg-white/10 text-75 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                            <line x1="7" y1="7" x2="7.01" y2="7"/>
+                        </svg>
+                        #{tag}
+                    </span>
+                {/each}
+            {/if}
+            <span class="text-50 text-sm ml-1">
+                · {groups.reduce((sum, g) => sum + g.posts.length, 0)} {i18n(groups.reduce((sum, g) => sum + g.posts.length, 0) === 1 ? I18nKey.postCount : I18nKey.postsCount)}
+            </span>
+        </div>
+    {/if}
+
     {#each groups as group}
         <div class="mb-12">
+            {#if !isFiltered}
             <div class="flex flex-row w-full items-center mb-6 pl-4 md:pl-0">
                 <div class="text-3xl font-bold text-75">
                     {group.year}
@@ -99,6 +131,7 @@ onMount(async () => {
                     {group.posts.length} {i18n(group.posts.length === 1 ? I18nKey.postCount : I18nKey.postsCount)}
                 </div>
             </div>
+            {/if}
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {#each group.posts as post}
