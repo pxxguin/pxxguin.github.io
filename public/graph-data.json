@@ -136,6 +136,19 @@
       "val": 1
     },
     {
+      "id": "[Docker] This is fucking Docker!",
+      "title": "[Docker] This is fucking Docker!",
+      "postId": 12,
+      "tags": [
+        "Docker",
+        "Backend",
+        "CI/CD"
+      ],
+      "category": "Backend",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "tag",
@@ -330,6 +343,22 @@
     {
       "source": "Review with ToolOrchestra",
       "target": "Paper"
+    },
+    {
+      "source": "[Docker] This is fucking Docker!",
+      "target": "Docker"
+    },
+    {
+      "source": "[Docker] This is fucking Docker!",
+      "target": "Backend"
+    },
+    {
+      "source": "[Docker] This is fucking Docker!",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[Docker] This is fucking Docker!",
+      "target": "Backend"
     },
     {
       "source": "[Docker] This is fucking Docker!",
