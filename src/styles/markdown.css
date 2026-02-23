@@ -127,6 +127,13 @@
         @apply mx-auto text-center rounded-xl;
     }
 
+    img {
+        @apply mx-auto rounded-xl;
+        max-width: 80%;
+        max-height: 600px;
+        object-fit: contain;
+    }
+
     figcaption {
         @apply text-sm text-[var(--text-muted)] mt-2 italic font-sans;
     }
