@@ -123,8 +123,8 @@
       "val": 1
     },
     {
-      "id": "[Docker] This is fucking Docker!",
-      "title": "[Docker] This is fucking Docker!",
+      "id": "[Docker] Docker 한 번에 이해하기",
+      "title": "[Docker] Docker 한 번에 이해하기",
       "postId": 11,
       "tags": [
         "Docker",
@@ -136,8 +136,8 @@
       "val": 1
     },
     {
-      "id": "[Docker] This is fucking Docker!",
-      "title": "[Docker] This is fucking Docker!",
+      "id": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "title": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "postId": 12,
       "tags": [
         "Docker",
@@ -345,35 +345,35 @@
       "target": "Paper"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] Docker 한 번에 이해하기",
       "target": "Docker"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] Docker 한 번에 이해하기",
       "target": "Backend"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] Docker 한 번에 이해하기",
       "target": "CI/CD"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] Docker 한 번에 이해하기",
       "target": "Backend"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "Docker"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "Backend"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "CI/CD"
     },
     {
-      "source": "[Docker] This is fucking Docker!",
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "Backend"
     }
   ]

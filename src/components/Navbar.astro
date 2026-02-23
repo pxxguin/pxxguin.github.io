@@ -164,8 +164,6 @@ function loadButtonScript() {
     }
 }
 
-loadButtonScript();
-
 function enableLogoSpin() {
     const logo = document.getElementById("nav-logo");
     if (!logo) return;
@@ -183,7 +181,21 @@ function enableLogoSpin() {
         }, 500);
     });
 }
-enableLogoSpin();
+
+function setupNavbar() {
+    loadButtonScript();
+    enableLogoSpin();
+}
+
+if (window?.swup?.hooks) {
+    setupNavbar();
+    window.swup.hooks.on('page:view', setupNavbar);
+} else {
+    document.addEventListener('swup:enable', () => {
+        setupNavbar();
+        window.swup.hooks.on('page:view', setupNavbar);
+    });
+}
 </script>
 
 {import.meta.env.PROD && <script is:inline define:vars={{scriptUrl: url('/pagefind/pagefind.js')}}>
