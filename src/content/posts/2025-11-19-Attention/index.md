@@ -1,5 +1,5 @@
 ---
-title: What is Attention Algorithms?
+title: "[NLP] What is Attention Algorithms?"
 image: /images/test1.png
 published: 2025-11-19T00:00:00.000Z
 description: '하나의 문장에서, 각 단어의 의미를 어떻게 파악하는지에 대한 어텐션 연산을 설명합니다.'

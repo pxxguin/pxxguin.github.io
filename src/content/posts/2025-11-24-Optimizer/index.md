@@ -1,5 +1,5 @@
 ---
-title: What is optimizer and how they work?
+title: "[DeepL] What is optimizer and how they work?"
 image: /images/test5.png
 published: 2025-11-24T00:00:00.000Z
 description: DeepL에서 중심이 되는 Optimizer에 대해서 어디까지 알고 있나요?

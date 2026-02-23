@@ -1,5 +1,5 @@
 ---
-title: Review with Deep Think with Confidence
+title: "[Paper] Review with Deep Think with Confidence"
 image: /images/test1.png
 published: 2025-11-27T00:00:00.000Z
 description: Deep Think with Confidence에 대한 논문 리뷰입니다.
