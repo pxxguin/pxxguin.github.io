@@ -7,7 +7,7 @@ series: deep-learning-basics
 seriesOrder: 1
 tags:
   - DeepL
-category: DeepL
+category: MachineL
 draft: false
 postId: 3
 ---

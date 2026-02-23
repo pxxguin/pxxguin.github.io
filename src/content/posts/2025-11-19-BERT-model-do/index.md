@@ -6,7 +6,7 @@ description: '영어를 다루는데 특화된 DistilBERT가 어떻게 동작하
 tags:
   - NLP
   - DeepL
-category: NLP
+category: MachineL
 draft: false
 postId: 1
 ---
