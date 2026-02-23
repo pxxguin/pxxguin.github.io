@@ -219,7 +219,7 @@ const allSeries = seriesCollection.map((s) => {
     <div class="max-w-[var(--page-width)] mx-auto px-4 pt-4 pb-8 mb-4">
         <div class="flex justify-between items-end mb-6 section-header opacity-0 translate-y-8 transition duration-700 ease-out">
             <div class="text-left">
-                <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">Featured Series 📚</h2>
+                <h2 class="text-3xl font-bold text-black/75 dark:text-white/75 mb-2">📚 Featured Series</h2>
                 <p class="text-black/50 dark:text-white/50">Curated collections of related posts.</p>
             </div>
             <a href="/series/" class="text-[var(--primary)] hover:text-[var(--primary-hover)] font-medium transition flex items-center gap-1 mb-1">
@@ -293,6 +293,7 @@ const allSeries = seriesCollection.map((s) => {
                 const dotsContainer = document.getElementById('series-dots');
                 const perPage = 2;
                 let current = 0;
+                let autoScrollTimer = null;
 
                 const totalPages = Math.ceil(slides.length / perPage);
 
@@ -311,7 +312,7 @@ const allSeries = seriesCollection.map((s) => {
                     for (let i = 0; i < totalPages; i++) {
                         const dot = document.createElement('button');
                         dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-[var(--primary)] w-5' : 'bg-black/20 dark:bg-white/20');
-                        dot.addEventListener('click', () => goTo(i));
+                        dot.addEventListener('click', () => { goTo(i); startAutoScroll(); });
                         dotsContainer.appendChild(dot);
                     }
                 }
@@ -332,12 +333,31 @@ const allSeries = seriesCollection.map((s) => {
                 }
 
                 function goTo(page) {
-                    current = Math.max(0, Math.min(page, totalPages - 1));
+                    if (page >= totalPages) {
+                        current = 0;
+                    } else if (page < 0) {
+                        current = totalPages - 1;
+                    } else {
+                        current = page;
+                    }
+
                     const offset = current * getPageWidth();
                     track.style.transform = `translateX(-${offset}px)`;
-                    if (prevBtn) prevBtn.style.display = current > 0 ? 'flex' : 'none';
-                    if (nextBtn) nextBtn.style.display = current < totalPages - 1 ? 'flex' : 'none';
+                    if (prevBtn) prevBtn.style.display = totalPages > 1 ? 'flex' : 'none';
+                    if (nextBtn) nextBtn.style.display = totalPages > 1 ? 'flex' : 'none';
                     updateDots();
+                }
+
+                function startAutoScroll() {
+                    if (totalPages <= 1) return;
+                    stopAutoScroll();
+                    autoScrollTimer = setInterval(() => {
+                        goTo(current + 1);
+                    }, 4000);
+                }
+
+                function stopAutoScroll() {
+                    if (autoScrollTimer) clearInterval(autoScrollTimer);
                 }
 
                 // Init
@@ -346,9 +366,17 @@ const allSeries = seriesCollection.map((s) => {
 
                 if (totalPages > 1) {
                     if (nextBtn) nextBtn.style.display = 'flex';
-                    prevBtn && (prevBtn.style.display = 'none');
-                    if (prevBtn) prevBtn.addEventListener('click', () => goTo(current - 1));
-                    if (nextBtn) nextBtn.addEventListener('click', () => goTo(current + 1));
+                    if (prevBtn) prevBtn.style.display = 'flex';
+                    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoScroll(); });
+                    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoScroll(); });
+
+                    const carouselWrapper = document.getElementById('series-carousel');
+                    if (carouselWrapper) {
+                        carouselWrapper.addEventListener('mouseenter', stopAutoScroll);
+                        carouselWrapper.addEventListener('mouseleave', startAutoScroll);
+                    }
+
+                    startAutoScroll();
                 }
 
                 // Recalculate on resize
