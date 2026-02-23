@@ -50,7 +50,7 @@ export const navBarConfig: NavBarConfig = {
 			name: "Develop",
 			categories: [
 				{
-					name: "Artificial Intelligence",
+					name: "Machine Learning",
 					links: [
 						{ name: "Deep learning", url: "/archive/?category=DeepL" },
 						{
@@ -60,10 +60,14 @@ export const navBarConfig: NavBarConfig = {
 					],
 				},
 				{
-					name: "Research & Study",
+					name: "Backend",
 					links: [
-						{ name: "Paper Reviews", url: "/archive/?category=Paper" },
-						{ name: "Study Notes", url: "/archive/?category=Study" },
+						{ name: "Docker", url: "/archive/?category=Backend&tag=Docker" },
+						{
+							name: "Spring Boot",
+							url: "/archive/?category=Backend&tag=SpringBoot",
+						},
+						{ name: "Nginx", url: "/archive/?category=Backend&tag=Nginx" },
 					],
 				},
 			],
