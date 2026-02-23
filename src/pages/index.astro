@@ -287,19 +287,31 @@ const allSeries = seriesCollection.map((s) => {
         <script is:inline>
             (function() {
                 const track = document.getElementById('series-track');
-                const slides = track ? Array.from(track.querySelectorAll('.series-slide')) : [];
+                const originalSlides = track ? Array.from(track.querySelectorAll('.series-slide')) : [];
                 const prevBtn = document.getElementById('series-prev');
                 const nextBtn = document.getElementById('series-next');
                 const dotsContainer = document.getElementById('series-dots');
                 const perPage = 2;
                 let current = 0;
                 let autoScrollTimer = null;
+                let isTransitioning = false;
 
-                const totalPages = Math.ceil(slides.length / perPage);
+                const totalPages = Math.ceil(originalSlides.length / perPage);
+
+                // 맨 처음 두 아이템을 목업으로 끝에 복사하여 붙여넣음 (오른쪽으로 계속 진행하는 듯한 이펙트)
+                if (totalPages > 1 && track) {
+                    for (let i = 0; i < perPage; i++) {
+                        if (originalSlides[i]) {
+                            const clone = originalSlides[i].cloneNode(true);
+                            track.appendChild(clone);
+                        }
+                    }
+                }
 
                 function updateSlideWidths() {
-                    slides.forEach(slide => {
-                        if (slides.length === 1) {
+                    const allSlides = track ? Array.from(track.querySelectorAll('.series-slide')) : [];
+                    allSlides.forEach(slide => {
+                        if (allSlides.length === 1) {
                             slide.style.width = '100%';
                         } else {
                             slide.style.width = 'calc(50% - 12px)';
@@ -312,47 +324,82 @@ const allSeries = seriesCollection.map((s) => {
                     for (let i = 0; i < totalPages; i++) {
                         const dot = document.createElement('button');
                         dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === 0 ? 'bg-[var(--primary)] w-5' : 'bg-black/20 dark:bg-white/20');
-                        dot.addEventListener('click', () => { goTo(i); startAutoScroll(); });
+                        dot.addEventListener('click', () => { if(!isTransitioning) { goTo(i); startAutoScroll(); } });
                         dotsContainer.appendChild(dot);
                     }
                 }
 
                 function updateDots() {
                     if (!dotsContainer) return;
+                    const activeIndex = current >= totalPages ? 0 : current;
                     Array.from(dotsContainer.children).forEach((dot, i) => {
-                        dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === current ? 'bg-[var(--primary)]' : 'bg-black/20 dark:bg-white/20');
-                        if (i === current) dot.style.width = '20px';
+                        dot.className = 'w-2 h-2 rounded-full transition-all duration-300 ' + (i === activeIndex ? 'bg-[var(--primary)]' : 'bg-black/20 dark:bg-white/20');
+                        if (i === activeIndex) dot.style.width = '20px';
                         else dot.style.width = '';
                     });
                 }
 
                 function getPageWidth() {
-                    if (!track || slides.length === 0) return 0;
+                    if (!track || originalSlides.length === 0) return 0;
                     const carousel = document.getElementById('series-carousel');
                     return carousel ? carousel.offsetWidth + 24 : 0; // gap-6 = 24px
                 }
 
+                function updateTrackPosition(index, animate = true) {
+                    const offset = index * getPageWidth();
+                    if (animate) {
+                        track.style.transition = 'transform 500ms ease-in-out';
+                    } else {
+                        track.style.transition = 'none';
+                    }
+                    track.style.transform = `translateX(-${offset}px)`;
+                }
+
                 function goTo(page) {
+                    if (isTransitioning) return;
+
                     if (page >= totalPages) {
-                        current = 0;
+                        // 복제된 마지막 첫페이지 모방본으로 먼저 이동 (애니메이션 재생)
+                        current = totalPages;
+                        updateTrackPosition(current, true);
+                        isTransitioning = true;
+                        updateDots();
+
+                        // 500ms(트랜지션 듀레이션) 대기 후 깜빡임 없이 실제 첫방으로 복귀
+                        setTimeout(() => {
+                            current = 0;
+                            updateTrackPosition(current, false);
+                            
+                            // 강제로 Reflow 시켜서 변경사항 즉각 반영 (none transition이 적용되게 함)
+                            void track.offsetWidth;
+                            
+                            isTransitioning = false;
+                        }, 500);
+
                     } else if (page < 0) {
+                        // 첫번째에서 왼쪽으로 되돌아갈 때: 애니메이션 끄고 끝으로 점프, 그후 부드럽게 뒤에서 앞으로 슬라이드
+                        current = totalPages;
+                        updateTrackPosition(current, false);
+                        void track.offsetWidth;
+
                         current = totalPages - 1;
+                        updateTrackPosition(current, true);
+                        updateDots();
                     } else {
                         current = page;
+                        updateTrackPosition(current, true);
+                        updateDots();
                     }
 
-                    const offset = current * getPageWidth();
-                    track.style.transform = `translateX(-${offset}px)`;
                     if (prevBtn) prevBtn.style.display = totalPages > 1 ? 'flex' : 'none';
                     if (nextBtn) nextBtn.style.display = totalPages > 1 ? 'flex' : 'none';
-                    updateDots();
                 }
 
                 function startAutoScroll() {
                     if (totalPages <= 1) return;
                     stopAutoScroll();
                     autoScrollTimer = setInterval(() => {
-                        goTo(current + 1);
+                        if(!isTransitioning) goTo(current + 1);
                     }, 4000);
                 }
 
@@ -367,8 +414,8 @@ const allSeries = seriesCollection.map((s) => {
                 if (totalPages > 1) {
                     if (nextBtn) nextBtn.style.display = 'flex';
                     if (prevBtn) prevBtn.style.display = 'flex';
-                    if (prevBtn) prevBtn.addEventListener('click', () => { goTo(current - 1); startAutoScroll(); });
-                    if (nextBtn) nextBtn.addEventListener('click', () => { goTo(current + 1); startAutoScroll(); });
+                    if (prevBtn) prevBtn.addEventListener('click', () => { if(!isTransitioning) { goTo(current - 1); startAutoScroll(); } });
+                    if (nextBtn) nextBtn.addEventListener('click', () => { if(!isTransitioning) { goTo(current + 1); startAutoScroll(); } });
 
                     const carouselWrapper = document.getElementById('series-carousel');
                     if (carouselWrapper) {
@@ -380,7 +427,9 @@ const allSeries = seriesCollection.map((s) => {
                 }
 
                 // Recalculate on resize
-                window.addEventListener('resize', () => goTo(current));
+                window.addEventListener('resize', () => {
+                   updateTrackPosition(current, false);
+                });
             })();
         </script>
     </div>
