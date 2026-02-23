@@ -1,7 +1,7 @@
 ---
 title: "[Docker] Docker 한 번에 이해하기"
 image: /images/2026-02-23-Docker-1.png
-published: 2026-02-23T00:00:00.000Z
+published: 2026-02-22T00:00:00.000Z
 description: 내 컴퓨터에선 잘 되는데 왜 서버에선 안 될까?" 개발자라면 한 번쯤 겪어본 이 문제를 해결해 주는 Docker의 핵심 개념을 정리합니다.
 series: docker-basics
 seriesOrder: 1
