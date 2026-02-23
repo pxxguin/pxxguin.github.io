@@ -128,7 +128,8 @@
       "postId": 11,
       "tags": [
         "Docker",
-        "Backend"
+        "Backend",
+        "CI/CD"
       ],
       "category": "Backend",
       "type": "post",
@@ -167,6 +168,12 @@
     {
       "id": "Backend",
       "name": "Backend",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "CI/CD",
+      "name": "CI/CD",
       "type": "tag",
       "val": 5
     },
@@ -331,6 +338,10 @@
     {
       "source": "[Docker] This is fucking Docker!",
       "target": "Backend"
+    },
+    {
+      "source": "[Docker] This is fucking Docker!",
+      "target": "CI/CD"
     },
     {
       "source": "[Docker] This is fucking Docker!",
