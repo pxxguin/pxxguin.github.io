@@ -1,5 +1,5 @@
 ---
-title: How can deploy ANN in python?
+title: "[Docker] This is fucking Docker!"
 image: /images/test4.png
 published: 2026-02-23T00:00:00.000Z
 description: Hello, World!
@@ -13,4 +13,3 @@ draft: false
 postId: 11
 ---
 
-### Hello, World!

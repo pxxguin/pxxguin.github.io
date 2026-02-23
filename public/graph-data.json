@@ -123,8 +123,8 @@
       "val": 1
     },
     {
-      "id": "How can deploy ANN in python?",
-      "title": "How can deploy ANN in python?",
+      "id": "[Docker] This is fucking Docker!",
+      "title": "[Docker] This is fucking Docker!",
       "postId": 11,
       "tags": [
         "Docker",
@@ -325,15 +325,15 @@
       "target": "Paper"
     },
     {
-      "source": "How can deploy ANN in python?",
+      "source": "[Docker] This is fucking Docker!",
       "target": "Docker"
     },
     {
-      "source": "How can deploy ANN in python?",
+      "source": "[Docker] This is fucking Docker!",
       "target": "Backend"
     },
     {
-      "source": "How can deploy ANN in python?",
+      "source": "[Docker] This is fucking Docker!",
       "target": "Backend"
     }
   ]
