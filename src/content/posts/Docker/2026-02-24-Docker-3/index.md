@@ -79,7 +79,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-CMD ["uvicorn", "src.test.main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.myfirstapp.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 - FROM 부분에는 ==Docker 저장소에 저장된 이미지 중 어떤 이미지를 사용할건지를 작성==합니다. 저희는 python3.11 버전으로 코딩을 했기 때문에 Docker 저장소에서 제공되는 python:3.11-slim 이미지를 사용하도록 합시다.
 - WORKDIR은 저희가 작성한 FastAPI 프로젝트가 복사될 위치를 지정합니다. 한마디로 ==일반 터미널에서 mkdir -p /app을 실행하고, 이후에 cd /app을 실행하는것과 같습니다.==
@@ -103,7 +103,7 @@ docker build -t pxxguin/myfirstapp:v1.0 .
 
 ### 👀 Docker Image 컨테이너화하기
 ```bash
-docker run -d -p 8000:8000 --name myfirstapp pxxgin/myfirstapp:v1.0
+docker run -d -p 8000:8000 --name myfirstapp pxxguin/myfirstapp:v1.0
 ```
 여기서 -d는 Detach의 약자로 ==해당 컨테이너를 백그라운드에서 실행==시키겠다는 의미입니다. 앞서 -it의 옵션과 비교했을때 대화형 인터페이스가 실행되지 않는것을 볼 수 있습니다. 
 
