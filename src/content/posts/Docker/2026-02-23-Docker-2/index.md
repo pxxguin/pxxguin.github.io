@@ -1,6 +1,6 @@
 ---
 title: "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기"
-image: /images/docker.png
+image: /images/docker.jpg
 published: 2026-02-23T00:00:00.000Z
 description: 도커 이미지 다운로드부터 컨테이너 실행, 관리까지! 복잡한 설정 없이 바로 따라 할 수 있는 Docker 기본 명령어 가이드입니다.
 series: docker-basics

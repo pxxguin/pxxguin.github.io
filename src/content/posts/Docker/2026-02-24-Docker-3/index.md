@@ -1,6 +1,6 @@
 ---
 title: "[Docker] 초보자를 위한 Dockerfile 완벽 가이드"
-image: /images/docker.png
+image: /images/docker.jpg
 published: 2026-02-24T00:00:00.000Z
 description: 왜 SSH 접속 대신 Dockerfile을 써야 하는지에 대해서 설명합니다.
 series: docker-basics
