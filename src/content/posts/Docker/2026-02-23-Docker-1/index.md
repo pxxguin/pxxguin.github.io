@@ -27,7 +27,7 @@ postId: 11
 
 
 ## 🎐 Docker와 가상 머신과의 차이
-![Image](src/content/posts/2026-02-23-Docker-1/picture1.png)
+![Image](src/content/posts/Docker/2026-02-23-Docker-1/picture1.png)
 두 구조를 잘 보면, 가장 아래에 똑같은 Basic을 두고 있습니다. ??Infrastructure는 실제 컴퓨터의 하드웨어??를 나타내고, ??Host Operating System은 그 하드웨어에 설치된 OS??를 의미합니다. 현재 우리 컴퓨터에 설치된 MacOS, Windows, Linux 등이 여기에 해당되겠죠?
 
 그 다음부터 차이가 시작되는데, ??Hypervisor는 하드웨어를 쪼개서 가짜 컴퓨터를 만드는 역할??을 합니다. 이 과정에서 리소스 소모가 많이 발생합니다. 반면, ??Docker Engine의 경우 하드웨어를 쪼개는 것이 아니라 운영체제의 자원을 프로세스별로 격리??만 해둡니다. 따라서 Hypervisor보다 훨씬 가벼운거죠. 
