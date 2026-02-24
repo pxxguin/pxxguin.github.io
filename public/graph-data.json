@@ -1,124 +1,35 @@
 {
   "nodes": [
     {
-      "id": "What is Attention Algorithms?",
-      "title": "What is Attention Algorithms?",
-      "postId": 2,
-      "tags": [
-        "NLP",
-        "DeepL"
-      ],
-      "category": "NLP",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "How BERT model operate in python?",
-      "title": "How BERT model operate in python?",
-      "postId": 1,
-      "tags": [
-        "NLP",
-        "DeepL"
-      ],
-      "category": "NLP",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Can you explain about Back Propagation?",
-      "title": "Can you explain about Back Propagation?",
+      "id": "[DeepL] Can you explain about Back Propagation?",
+      "title": "[DeepL] Can you explain about Back Propagation?",
       "postId": 4,
       "tags": [
         "DeepL"
       ],
-      "category": "DeepL",
+      "category": "MachineL",
       "type": "post",
       "val": 1
     },
     {
-      "id": "How can deploy ANN in python?",
-      "title": "How can deploy ANN in python?",
+      "id": "[DeepL] How can deploy ANN in python?",
+      "title": "[DeepL] How can deploy ANN in python?",
       "postId": 3,
       "tags": [
         "DeepL"
       ],
-      "category": "DeepL",
+      "category": "MachineL",
       "type": "post",
       "val": 1
     },
     {
-      "id": "What is optimizer and how they work?",
-      "title": "What is optimizer and how they work?",
+      "id": "[DeepL] What is optimizer and how they work?",
+      "title": "[DeepL] What is optimizer and how they work?",
       "postId": 5,
       "tags": [
         "DeepL"
       ],
-      "category": "DeepL",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Review with The Free Transformer",
-      "title": "Review with The Free Transformer",
-      "postId": 6,
-      "tags": [
-        "Paper",
-        "NLP",
-        "LLM"
-      ],
-      "category": "Paper",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Review with Deep Think with Confidence",
-      "title": "Review with Deep Think with Confidence",
-      "postId": 7,
-      "tags": [
-        "Paper",
-        "NLP",
-        "LLM"
-      ],
-      "category": "Paper",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Review with TIR",
-      "title": "Review with TIR",
-      "postId": 8,
-      "tags": [
-        "Paper",
-        "NLP",
-        "LLM"
-      ],
-      "category": "Paper",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Review with StepWiser",
-      "title": "Review with StepWiser",
-      "postId": 9,
-      "tags": [
-        "Paper",
-        "NLP",
-        "LLM"
-      ],
-      "category": "Paper",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "Review with ToolOrchestra",
-      "title": "Review with ToolOrchestra",
-      "postId": 10,
-      "tags": [
-        "Paper",
-        "NLP",
-        "LLM"
-      ],
-      "category": "Paper",
+      "category": "MachineL",
       "type": "post",
       "val": 1
     },
@@ -149,26 +60,110 @@
       "val": 1
     },
     {
-      "id": "NLP",
-      "name": "NLP",
-      "type": "tag",
-      "val": 5
+      "id": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "title": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "postId": 13,
+      "tags": [
+        "Docker",
+        "Backend",
+        "CI/CD"
+      ],
+      "category": "Backend",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[NLP] What is Attention Algorithms?",
+      "title": "[NLP] What is Attention Algorithms?",
+      "postId": 2,
+      "tags": [
+        "NLP",
+        "DeepL"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[NLP] How BERT model operate in python?",
+      "title": "[NLP] How BERT model operate in python?",
+      "postId": 1,
+      "tags": [
+        "NLP",
+        "DeepL"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Paper] Review with The Free Transformer",
+      "title": "[Paper] Review with The Free Transformer",
+      "postId": 6,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Paper] Review with Deep Think with Confidence",
+      "title": "[Paper] Review with Deep Think with Confidence",
+      "postId": 7,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Paper] Review with TIR",
+      "title": "[Paper] Review with TIR",
+      "postId": 8,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Paper] Review with StepWiser",
+      "title": "[Paper] Review with StepWiser",
+      "postId": 9,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Paper] Review with ToolOrchestra",
+      "title": "[Paper] Review with ToolOrchestra",
+      "postId": 10,
+      "tags": [
+        "Paper",
+        "NLP",
+        "LLM"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
     },
     {
       "id": "DeepL",
       "name": "DeepL",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Paper",
-      "name": "Paper",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "LLM",
-      "name": "LLM",
       "type": "tag",
       "val": 5
     },
@@ -193,18 +188,24 @@
     {
       "id": "NLP",
       "name": "NLP",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "DeepL",
-      "name": "DeepL",
-      "type": "category",
-      "val": 10
+      "type": "tag",
+      "val": 5
     },
     {
       "id": "Paper",
       "name": "Paper",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM",
+      "name": "LLM",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "MachineL",
+      "name": "MachineL",
       "type": "category",
       "val": 10
     },
@@ -217,132 +218,28 @@
   ],
   "links": [
     {
-      "source": "What is Attention Algorithms?",
-      "target": "NLP"
-    },
-    {
-      "source": "What is Attention Algorithms?",
+      "source": "[DeepL] Can you explain about Back Propagation?",
       "target": "DeepL"
     },
     {
-      "source": "What is Attention Algorithms?",
-      "target": "NLP"
+      "source": "[DeepL] Can you explain about Back Propagation?",
+      "target": "MachineL"
     },
     {
-      "source": "How BERT model operate in python?",
-      "target": "NLP"
-    },
-    {
-      "source": "How BERT model operate in python?",
+      "source": "[DeepL] How can deploy ANN in python?",
       "target": "DeepL"
     },
     {
-      "source": "How BERT model operate in python?",
-      "target": "NLP"
+      "source": "[DeepL] How can deploy ANN in python?",
+      "target": "MachineL"
     },
     {
-      "source": "Can you explain about Back Propagation?",
+      "source": "[DeepL] What is optimizer and how they work?",
       "target": "DeepL"
     },
     {
-      "source": "Can you explain about Back Propagation?",
-      "target": "DeepL"
-    },
-    {
-      "source": "How can deploy ANN in python?",
-      "target": "DeepL"
-    },
-    {
-      "source": "How can deploy ANN in python?",
-      "target": "DeepL"
-    },
-    {
-      "source": "What is optimizer and how they work?",
-      "target": "DeepL"
-    },
-    {
-      "source": "What is optimizer and how they work?",
-      "target": "DeepL"
-    },
-    {
-      "source": "Review with The Free Transformer",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with The Free Transformer",
-      "target": "NLP"
-    },
-    {
-      "source": "Review with The Free Transformer",
-      "target": "LLM"
-    },
-    {
-      "source": "Review with The Free Transformer",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with Deep Think with Confidence",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with Deep Think with Confidence",
-      "target": "NLP"
-    },
-    {
-      "source": "Review with Deep Think with Confidence",
-      "target": "LLM"
-    },
-    {
-      "source": "Review with Deep Think with Confidence",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with TIR",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with TIR",
-      "target": "NLP"
-    },
-    {
-      "source": "Review with TIR",
-      "target": "LLM"
-    },
-    {
-      "source": "Review with TIR",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with StepWiser",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with StepWiser",
-      "target": "NLP"
-    },
-    {
-      "source": "Review with StepWiser",
-      "target": "LLM"
-    },
-    {
-      "source": "Review with StepWiser",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with ToolOrchestra",
-      "target": "Paper"
-    },
-    {
-      "source": "Review with ToolOrchestra",
-      "target": "NLP"
-    },
-    {
-      "source": "Review with ToolOrchestra",
-      "target": "LLM"
-    },
-    {
-      "source": "Review with ToolOrchestra",
-      "target": "Paper"
+      "source": "[DeepL] What is optimizer and how they work?",
+      "target": "MachineL"
     },
     {
       "source": "[Docker] Docker 한 번에 이해하기",
@@ -375,6 +272,126 @@
     {
       "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "Backend"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Docker"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Backend"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Backend"
+    },
+    {
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "NLP"
+    },
+    {
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "DeepL"
+    },
+    {
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "MachineL"
+    },
+    {
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "NLP"
+    },
+    {
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "DeepL"
+    },
+    {
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "MachineL"
+    },
+    {
+      "source": "[Paper] Review with The Free Transformer",
+      "target": "Paper"
+    },
+    {
+      "source": "[Paper] Review with The Free Transformer",
+      "target": "NLP"
+    },
+    {
+      "source": "[Paper] Review with The Free Transformer",
+      "target": "LLM"
+    },
+    {
+      "source": "[Paper] Review with The Free Transformer",
+      "target": "MachineL"
+    },
+    {
+      "source": "[Paper] Review with Deep Think with Confidence",
+      "target": "Paper"
+    },
+    {
+      "source": "[Paper] Review with Deep Think with Confidence",
+      "target": "NLP"
+    },
+    {
+      "source": "[Paper] Review with Deep Think with Confidence",
+      "target": "LLM"
+    },
+    {
+      "source": "[Paper] Review with Deep Think with Confidence",
+      "target": "MachineL"
+    },
+    {
+      "source": "[Paper] Review with TIR",
+      "target": "Paper"
+    },
+    {
+      "source": "[Paper] Review with TIR",
+      "target": "NLP"
+    },
+    {
+      "source": "[Paper] Review with TIR",
+      "target": "LLM"
+    },
+    {
+      "source": "[Paper] Review with TIR",
+      "target": "MachineL"
+    },
+    {
+      "source": "[Paper] Review with StepWiser",
+      "target": "Paper"
+    },
+    {
+      "source": "[Paper] Review with StepWiser",
+      "target": "NLP"
+    },
+    {
+      "source": "[Paper] Review with StepWiser",
+      "target": "LLM"
+    },
+    {
+      "source": "[Paper] Review with StepWiser",
+      "target": "MachineL"
+    },
+    {
+      "source": "[Paper] Review with ToolOrchestra",
+      "target": "Paper"
+    },
+    {
+      "source": "[Paper] Review with ToolOrchestra",
+      "target": "NLP"
+    },
+    {
+      "source": "[Paper] Review with ToolOrchestra",
+      "target": "LLM"
+    },
+    {
+      "source": "[Paper] Review with ToolOrchestra",
+      "target": "MachineL"
     }
   ]
 }
