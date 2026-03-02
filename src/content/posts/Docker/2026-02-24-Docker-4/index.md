@@ -2,7 +2,7 @@
 title: "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기"
 image: /images/docker.jpg
 published: 2026-02-25T00:00:00.000Z
-description: FastAPI와 Nginx를 결합한 실전 디렉토리 구조부터 docker-compose.yaml 작성법까지! 왜 Dockerfile이 있는데 컴포즈가 또 필요한지, MLOps에서 자주 쓰이는 모니터링 도구와의 연결 확장성까지 모두 담았습니다.
+description: FastAPI와 Nginx를 결합한 실전 디렉토리 구조부터 docker-compose.yml 작성법까지! 왜 Dockerfile이 있는데 컴포즈가 또 필요한지, MLOps에서 자주 쓰이는 모니터링 도구와의 연결 확장성까지 모두 담았습니다.
 series: docker-basics
 seriesOrder: 4
 tags:
@@ -34,12 +34,12 @@ MYFIRSTAPP/
 │   └── requirements.txt
 ├── nginx/
 │   └── default.conf
-└── docker-compose.yaml
+└── docker-compose.yml
 ```
 
-### 2️⃣ docker-compose.yaml 작성하기
+### 2️⃣ docker-compose.yml 작성하기
 docker-compose를 작성하는건, 정말 어렵지 않습니다. Dockerfile이랑, docker-compose의 차이가 뭔지 궁금해하는 사람을 위해서 아래 부분에 따로 설명해두겠습니다. 
-```bash title="docker-compose.yaml"
+```bash title="docker-compose.yml"
 services: # docker-compose의 시작 부분
   backend: # FastAPI 부분으로 임의 수정 가능
     build: # fastapi 프로젝트를 build할껀데, 위치가 어디인가?
@@ -79,4 +79,4 @@ networks:
 > !!http는 80번 포트!!를, !!https는 443!!번 포트를 사용합니다. 우리가 일반적으로 웹사이트, 예를 들어 "https://www.naver.com"과 같은 특정 사이트에 접근할 때 https://www.naver.com:443이라고 붙이지는 않죠? 이건 브라우저가 프로토콜(HTTP/HTTPS)에 따라 규약된 기본 포트(80/443)를 자동으로 할당하기 때문입니다. 여기서 중요한 차이는 보안입니다. ==HTTP는 데이터를 평문으로 전송하여 보안에 취약==하지만, ==HTTPS는 SSL/TLS 인증서를 통해 데이터를 암호화합니다. ==그래서 HTTPS를 사용하지 않는 사이트는 브라우저에서 !!'안전하지 않음' 경고!!를 띄우게 됩니다.
 
 ### 🧱 마무리
-만약, MLOps에서 자주 사용하는 Grafana나, Promethus를 추가로 사용한다면 위에서의 Nginx처럼 depends를 backend로 설정하고 docker-compose.yaml을 추가로 작성하면 되겠죠? 꼭 이해했으면 좋겠는게 위에서 나온 그림입니다. Nginx와 FastAPI, Docker에 대해서 한눈에 알아볼 수 있는 그림이기 때문에 이해가 안되면 계속 반복해서 읽었으면 좋겠습니다.
+만약, MLOps에서 자주 사용하는 Grafana나, Promethus를 추가로 사용한다면 위에서의 Nginx처럼 depends를 backend로 설정하고 docker-compose.yml 추가로 작성하면 되겠죠? 꼭 이해했으면 좋겠는게 위에서 나온 그림입니다. Nginx와 FastAPI, Docker에 대해서 한눈에 알아볼 수 있는 그림이기 때문에 이해가 안되면 계속 반복해서 읽었으면 좋겠습니다.
