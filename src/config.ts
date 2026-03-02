@@ -85,15 +85,6 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=MLOps&tag=Database",
 							external: true, // Show an external link icon and will open in a new tab
 						},
-						{ name: "Docker", url: "/archive/?category=MLOps&tag=Docker" },
-						{
-							name: "Nginx",
-							url: "/archive/?category=MLOps&tag=Nginx",
-						},
-						{
-							name: "Airflow",
-							url: "/archive/?category=MLOps&tag=Airflow",
-						},
 					],
 				},
 				{
