@@ -60,9 +60,22 @@
       "val": 1
     },
     {
-      "id": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
-      "title": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "id": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "title": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "postId": 13,
+      "tags": [
+        "Docker",
+        "Backend",
+        "CI/CD"
+      ],
+      "category": "Backend",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "title": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "postId": 14,
       "tags": [
         "Docker",
         "Backend",
@@ -274,19 +287,35 @@
       "target": "Backend"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "target": "Docker"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "target": "Backend"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "target": "CI/CD"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Backend"
+    },
+    {
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Docker"
+    },
+    {
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Backend"
+    },
+    {
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "target": "Backend"
     },
     {
