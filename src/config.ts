@@ -47,7 +47,7 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
 	links: [
 		{
-			name: "Develop",
+			name: "AI",
 			categories: [
 				{
 					name: "Machine Learning",
@@ -66,38 +66,48 @@ export const navBarConfig: NavBarConfig = {
 						},
 					],
 				},
-				{
-					name: "Backend",
-					links: [
-						{
-							name: "Spring Boot",
-							url: "/archive/?category=Backend&tag=SpringBoot",
-						},
-						{
-							name: "Database",
-							url: "/archive/?category=Backend&tag=Database",
-							external: true, // Show an external link icon and will open in a new tab
-						},
-						{ name: "Docker", url: "/archive/?category=Backend&tag=Docker" },
-						{
-							name: "Nginx",
-							url: "/archive/?category=Backend&tag=Nginx",
-						},
-					],
-				},
 			],
 			promoImage: "/images/demo-banner.png", // Replace with a software anatomy image later
 			promoUrl: "/about/",
 		},
 		{
-			name: "DevOps",
+			name: "MLOps",
 			categories: [
 				{
-					name: "Infrastructure",
+					name: "Backend",
 					links: [
-						{ name: "AWS", url: "/archive/?tag=aws" },
-						{ name: "Linux", url: "/archive/?tag=linux" },
-						{ name: "CI/CD", url: "/archive/?tag=ci-cd" },
+						{
+							name: "Spring Boot",
+							url: "/archive/?category=MLOps&tag=SpringBoot",
+						},
+						{
+							name: "Database",
+							url: "/archive/?category=MLOps&tag=Database",
+							external: true, // Show an external link icon and will open in a new tab
+						},
+						{ name: "Docker", url: "/archive/?category=MLOps&tag=Docker" },
+						{
+							name: "Nginx",
+							url: "/archive/?category=MLOps&tag=Nginx",
+						},
+						{
+							name: "Airflow",
+							url: "/archive/?category=MLOps&tag=Airflow",
+						},
+					],
+				},
+				{
+					name: "Orchestration",
+					links: [
+						{ name: "Docker", url: "/archive/?category=MLOps&tag=Docker" },
+						{
+							name: "Nginx",
+							url: "/archive/?category=MLOps&tag=Nginx",
+						},
+						{
+							name: "Airflow",
+							url: "/archive/?category=MLOps&tag=Airflow",
+						},
 					],
 				},
 			],

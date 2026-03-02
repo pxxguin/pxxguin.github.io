@@ -9,7 +9,7 @@ tags:
   - Docker
   - Backend
   - CI/CD
-category: Backend
+category: MLOps
 draft: false
 postId: 14
 ---

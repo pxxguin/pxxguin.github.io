@@ -73,8 +73,8 @@
       "val": 1
     },
     {
-      "id": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
-      "title": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "id": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
+      "title": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "postId": 14,
       "tags": [
         "Docker",
@@ -303,19 +303,19 @@
       "target": "Backend"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Backend"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "CI/CD"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Backend"
     },
     {
