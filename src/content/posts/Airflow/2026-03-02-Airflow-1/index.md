@@ -1,8 +1,8 @@
 ---
-title: "[Airflow] "
+title: "[Airflow] Airflow의 기본"
 image: /images/apache-airflow.png
 published: 2026-03-02T00:00:00.000Z
-description: Apache Airflow
+description: Apache Airflow의 기본에 대해서 배웁니다.
 series: apache-airflow-basics
 seriesOrder: 1
 tags:
