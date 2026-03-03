@@ -1,9 +1,22 @@
 {
   "nodes": [
     {
-      "id": "[Airflow] ",
-      "title": "[Airflow] ",
+      "id": "[Airflow] Airflow의 기본",
+      "title": "[Airflow] Airflow의 기본",
       "postId": 15,
+      "tags": [
+        "Airflow",
+        "Backend",
+        "CI/CD"
+      ],
+      "category": "MLOps",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Airflow] Airflow의 추가 설명",
+      "title": "[Airflow] Airflow의 추가 설명",
+      "postId": 16,
       "tags": [
         "Airflow",
         "Backend",
@@ -250,19 +263,35 @@
   ],
   "links": [
     {
-      "source": "[Airflow] ",
+      "source": "[Airflow] Airflow의 기본",
       "target": "Airflow"
     },
     {
-      "source": "[Airflow] ",
+      "source": "[Airflow] Airflow의 기본",
       "target": "Backend"
     },
     {
-      "source": "[Airflow] ",
+      "source": "[Airflow] Airflow의 기본",
       "target": "CI/CD"
     },
     {
-      "source": "[Airflow] ",
+      "source": "[Airflow] Airflow의 기본",
+      "target": "MLOps"
+    },
+    {
+      "source": "[Airflow] Airflow의 추가 설명",
+      "target": "Airflow"
+    },
+    {
+      "source": "[Airflow] Airflow의 추가 설명",
+      "target": "Backend"
+    },
+    {
+      "source": "[Airflow] Airflow의 추가 설명",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[Airflow] Airflow의 추가 설명",
       "target": "MLOps"
     },
     {
