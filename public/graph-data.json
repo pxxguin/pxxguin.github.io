@@ -112,6 +112,19 @@
       "val": 1
     },
     {
+      "id": "[FastAPI] FastAPI",
+      "title": "[FastAPI] FastAPI",
+      "postId": 17,
+      "tags": [
+        "FastAPI",
+        "Backend",
+        "CI/CD"
+      ],
+      "category": "MLOps",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[NLP] What is Attention Algorithms?",
       "title": "[NLP] What is Attention Algorithms?",
       "postId": 2,
@@ -227,6 +240,12 @@
     {
       "id": "Docker",
       "name": "Docker",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "FastAPI",
+      "name": "FastAPI",
       "type": "tag",
       "val": 5
     },
@@ -380,6 +399,22 @@
     },
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
+      "target": "MLOps"
+    },
+    {
+      "source": "[FastAPI] FastAPI",
+      "target": "FastAPI"
+    },
+    {
+      "source": "[FastAPI] FastAPI",
+      "target": "Backend"
+    },
+    {
+      "source": "[FastAPI] FastAPI",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[FastAPI] FastAPI",
       "target": "MLOps"
     },
     {

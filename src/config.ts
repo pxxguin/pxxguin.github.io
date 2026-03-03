@@ -81,6 +81,11 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=MLOps&tag=SpringBoot",
 						},
 						{
+							name: "FastAPI",
+							url: "/archive/?category=MLOps&tag=FastAPI",
+							external: true, // Show an external link icon and will open in a new tab
+						},
+						{
 							name: "Database",
 							url: "/archive/?category=MLOps&tag=Database",
 							external: true, // Show an external link icon and will open in a new tab
