@@ -66,6 +66,23 @@ export const navBarConfig: NavBarConfig = {
 						},
 					],
 				},
+				{
+					name: "Language/OS",
+					links: [
+						{
+							name: "Python",
+							url: "/archive/?category=Language&tag=Python",
+						},
+						{
+							name: "C++",
+							url: "/archive/?category=Language&tag=C++",
+						},
+						{
+							name: "Linux",
+							url: "/archive/?category=OS&tag=Linux",
+						},
+					],
+				},
 			],
 			promoImage: "/images/demo-banner.png", // Replace with a software anatomy image later
 			promoUrl: "/about/",
