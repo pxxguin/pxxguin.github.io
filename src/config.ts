@@ -74,7 +74,7 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=Language&tag=Python",
 						},
 						{
-							name: "PS",
+							name: "Problem Solving",
 							url: "/archive/?category=Language&tag=PS",
 						},
 						{
@@ -82,7 +82,7 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=OS&tag=Linux",
 						},
 						{
-							name: "CS",
+							name: "Computer Science",
 							url: "/archive/?category=OS&tag=CS",
 						},
 					],
