@@ -6,10 +6,10 @@ description: FastAPI의 기본에 대해서 배웁니다.
 series: cs-basics
 seriesOrder: 1
 tags:
-  - FastAPI
-  - Backend
-  - CI/CD
-category: MLOps
+  - Network
+category: CS
 draft: false
 postId: 17
 ---
+
+## Hello, World!
