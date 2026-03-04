@@ -74,12 +74,16 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=Language&tag=Python",
 						},
 						{
-							name: "C++",
-							url: "/archive/?category=Language&tag=C++",
+							name: "PS",
+							url: "/archive/?category=Language&tag=PS",
 						},
 						{
 							name: "Linux",
 							url: "/archive/?category=OS&tag=Linux",
+						},
+						{
+							name: "CS",
+							url: "/archive/?category=OS&tag=CS",
 						},
 					],
 				},
