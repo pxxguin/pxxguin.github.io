@@ -27,6 +27,17 @@
       "val": 1
     },
     {
+      "id": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "title": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "postId": 18,
+      "tags": [
+        "Network"
+      ],
+      "category": "CS",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[DeepL] Can you explain about Back Propagation?",
       "title": "[DeepL] Can you explain about Back Propagation?",
       "postId": 4,
@@ -232,6 +243,12 @@
       "val": 5
     },
     {
+      "id": "Network",
+      "name": "Network",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "DeepL",
       "name": "DeepL",
       "type": "tag",
@@ -274,6 +291,12 @@
       "val": 10
     },
     {
+      "id": "CS",
+      "name": "CS",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "MachineL",
       "name": "MachineL",
       "type": "category",
@@ -312,6 +335,14 @@
     {
       "source": "[Airflow] Airflow의 추가 설명",
       "target": "MLOps"
+    },
+    {
+      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "target": "Network"
+    },
+    {
+      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "target": "CS"
     },
     {
       "source": "[DeepL] Can you explain about Back Propagation?",

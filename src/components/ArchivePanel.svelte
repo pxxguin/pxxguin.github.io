@@ -4,6 +4,7 @@ import { onMount } from "svelte";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getPostUrl } from "../utils/url-utils";
+import { getTagColor } from "../utils/color-utils";
 
 export let tags: string[];
 export let excludeTags: string[] = [];
@@ -188,10 +189,15 @@ onMount(async () => {
 
                             <div class="flex flex-wrap items-center gap-2 mb-4 text-sm text-50">
                                 {#if post.data.category}
-                                    <span class="bg-[var(--primary)]/10 text-[var(--primary)] font-medium rounded-md px-2 py-0.5">{post.data.category}</span>
+                                    <div class="inline-flex items-center gap-1.5 bg-[var(--primary)]/10 text-[var(--primary)] font-semibold rounded-md px-2 py-0.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
+                                        </svg>
+                                        <span>{post.data.category}</span>
+                                    </div>
                                 {/if}
                                 {#each post.data.tags || [] as tag}
-                                    <span class="bg-black/5 dark:bg-white/5 rounded-md px-2 py-0.5 lg:whitespace-nowrap">#{tag}</span>
+                                    <span class={`rounded-md px-2 py-0.5 lg:whitespace-nowrap ${getTagColor(tag)}`}>#{tag}</span>
                                 {/each}
                             </div>
 

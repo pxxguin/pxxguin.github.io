@@ -1,6 +1,7 @@
 ---
 import { Icon } from "astro-icon/components";
 import type { Project } from "../data/projects";
+import { getTagColor } from "../utils/color-utils";
 
 interface Props {
 	project: Project;
@@ -40,8 +41,8 @@ const { project } = Astro.props;
 
     <div class="flex flex-wrap gap-2">
       {project.tags.map((tag) => (
-        <span class="px-3 py-1 text-xs font-medium rounded-full bg-[var(--primary)]/10 text-[var(--primary)]">
-          {tag}
+        <span class={`px-3 py-1 text-xs font-medium rounded-md lg:whitespace-nowrap ${getTagColor(tag)}`}>
+          #{tag}
         </span>
       ))}
     </div>

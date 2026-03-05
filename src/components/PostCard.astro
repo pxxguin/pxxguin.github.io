@@ -5,6 +5,7 @@ import { Icon } from "astro-icon/components";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import { getDir } from "../utils/url-utils";
+import { getTagColor } from "../utils/color-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 
 interface Props {
@@ -85,10 +86,13 @@ const { remarkPluginFrontmatter } = await entry.render();
         <!-- category and tags -->
         <div class="flex flex-wrap items-center gap-2 mb-4 text-sm text-50">
             {category && (
-                <span class="bg-[var(--primary)]/10 text-[var(--primary)] font-medium rounded-md px-2 py-0.5">{category}</span>
+                <div class="inline-flex items-center gap-1.5 bg-[var(--primary)]/10 text-[var(--primary)] font-semibold rounded-md px-2 py-0.5">
+                    <Icon name="material-symbols:folder-open-outline" class="text-sm" />
+                    <span>{category}</span>
+                </div>
             )}
             {tags && tags.map((tag) => (
-                <span class="bg-black/5 dark:bg-white/5 rounded-md px-2 py-0.5 lg:whitespace-nowrap">#{tag}</span>
+                <span class={`rounded-md px-2 py-0.5 lg:whitespace-nowrap ${getTagColor(tag)}`}>#{tag}</span>
             ))}
         </div>
 
