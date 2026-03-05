@@ -155,8 +155,8 @@ $effect(() => {
             // Open panel
             panel?.classList.remove("float-panel-closed");
             // Focus input
-            document.querySelector("#search-bar input")?.focus();
-            document.querySelector("#search-bar-inside input")?.focus();
+            (document.querySelector("#search-bar input") as HTMLInputElement)?.focus();
+            (document.querySelector("#search-bar-inside input") as HTMLInputElement)?.focus();
         } else {
              // Close panel
             panel?.classList.add("float-panel-closed");
@@ -165,7 +165,7 @@ $effect(() => {
 }} />
 
 <!-- search bar for desktop view -->
-<div id="search-bar" class="hidden lg:flex transition-all items-center h-11 mr-2 rounded-lg
+<div id="search-bar" class="hidden lg:flex relative transition-all items-center h-11 mr-2 rounded-lg
       bg-black/[0.04] hover:bg-black/[0.06] focus-within:bg-black/[0.06]
       dark:bg-white/5 dark:hover:bg-white/10 dark:focus-within:bg-white/10
       {isHome ? '!bg-white/10 !hover:bg-white/20 !focus-within:bg-white/20' : ''}
