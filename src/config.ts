@@ -47,6 +47,53 @@ export const siteConfig: SiteConfig = {
 export const navBarConfig: NavBarConfig = {
 	links: [
 		{
+			name: "Introduction",
+			url: "/about/",
+		},
+		{
+			name: "Basic",
+			categories: [
+				{
+					name: "Language",
+					links: [
+						{
+							name: "Python",
+							url: "/archive/?category=Language&tag=Python",
+						},
+						{
+							name: "C++",
+							url: "/archive/?category=Language&tag=C++",
+						},
+						{
+							name: "Problem Solving",
+							url: "/archive/?category=Language&tag=PS",
+						},
+					],
+				},
+				{
+					name: "Computer Science",
+					links: [
+						{
+							name: "Network",
+							url: "/archive/?category=CS&tag=Network",
+						},
+						{
+							name: "Database",
+							url: "/archive/?category=CS&tag=DB",
+						},
+						{
+							name: "Operating System",
+							url: "/archive/?category=CS&tag=OS",
+						},
+						{
+							name: "Computer Architecture",
+							url: "/archive/?category=CS&tag=CA",
+						},
+					],
+				},
+			],
+		},
+		{
 			name: "AI",
 			categories: [
 				{
@@ -67,27 +114,6 @@ export const navBarConfig: NavBarConfig = {
 						{
 							name: "Data Science",
 							url: "/archive/?category=MachineL&tag=DS",
-						},
-					],
-				},
-				{
-					name: "Language/OS",
-					links: [
-						{
-							name: "Python",
-							url: "/archive/?category=Language&tag=Python",
-						},
-						{
-							name: "Problem Solving",
-							url: "/archive/?category=Language&tag=PS",
-						},
-						{
-							name: "Linux",
-							url: "/archive/?category=OS&tag=Linux",
-						},
-						{
-							name: "Computer Science",
-							url: "/archive/?category=CS",
 						},
 					],
 				},
@@ -141,10 +167,6 @@ export const navBarConfig: NavBarConfig = {
 					],
 				},
 			],
-		},
-		{
-			name: "Intro",
-			url: "/about/",
 		},
 		{
 			name: "GitHub",
