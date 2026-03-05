@@ -9,8 +9,6 @@ import CampaignPopup from "@components/misc/CampaignPopup.svelte";
 import ConsoleEasterEgg from "@components/misc/ConsoleEasterEgg.astro";
 import MouseTrailer from "@components/misc/MouseTrailer.svelte";
 import PixelCat from "@components/misc/PixelCat.svelte";
-import ScrollNyanCat from "@components/misc/ScrollNyanCat.svelte";
-
 import { profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
@@ -179,7 +177,6 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
         <ConsoleEasterEgg />
         <PixelCat client:idle />
         <MouseTrailer client:idle />
-        <ScrollNyanCat client:idle />
 		<div id="swup-container" class="transition-swup-fade">
 			<slot />
 		</div>
