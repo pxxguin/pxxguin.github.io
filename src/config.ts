@@ -53,7 +53,7 @@ export const navBarConfig: NavBarConfig = {
 					name: "Machine Learning",
 					links: [
 						{
-							name: "Deep learning",
+							name: "Deep Learning",
 							url: "/archive/?category=MachineL&tag=DeepL&tag!=Paper",
 						},
 						{
@@ -61,8 +61,12 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=MachineL&tag=NLP&tag!=Paper",
 						},
 						{
-							name: "Paper Review",
-							url: "/archive/?category=MachineL&tag=Paper",
+							name: "Computer Vision",
+							url: "/archive/?category=MachineL&tag=CV&tag!=Paper",
+						},
+						{
+							name: "Data Science",
+							url: "/archive/?category=MachineL&tag=DS",
 						},
 					],
 				},
@@ -84,6 +88,15 @@ export const navBarConfig: NavBarConfig = {
 						{
 							name: "Computer Science",
 							url: "/archive/?category=CS",
+						},
+					],
+				},
+				{
+					name: "Academic",
+					links: [
+						{
+							name: "Paper Review",
+							url: "/archive/?category=MachineL&tag=Paper",
 						},
 					],
 				},
