@@ -83,7 +83,7 @@ export const navBarConfig: NavBarConfig = {
 						},
 						{
 							name: "Computer Science",
-							url: "/archive/?category=OS&tag=CS",
+							url: "/archive/?category=CS",
 						},
 					],
 				},
