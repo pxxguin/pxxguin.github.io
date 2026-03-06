@@ -252,8 +252,13 @@ const description = "My Portfolio - Skills, Projects, and Story";
     </div>
 </Layout>
 
-<script is:inline define:vars={{ projects }}>
+<script>
+function setupPortfolio() {
     const modal = document.getElementById('skill-modal');
+    if (!modal) return; // Not on portfolio page
+    if (modal.dataset.initialized) return;
+    modal.dataset.initialized = 'true';
+
     const modalBackdrop = document.getElementById('modal-backdrop');
     const modalCloseBtn = document.getElementById('modal-close-btn');
     
@@ -285,8 +290,6 @@ const description = "My Portfolio - Skills, Projects, and Story";
     let isTransitioning = false;
 
     const projectCards = document.querySelectorAll('.project-card-trigger');
-
-
 
     function showDetailView(project) {
         if (!modal) return;
@@ -438,12 +441,12 @@ const description = "My Portfolio - Skills, Projects, and Story";
             isTransitioning = false;
             const slides = carouselTrack.children;
             
-            if (slides[currentTrackIndex].id === 'last-clone') {
+            if (slides[currentTrackIndex]?.id === 'last-clone') {
                 carouselTrack.style.transition = 'none';
                 currentTrackIndex = slides.length - 2;
                 carouselTrack.style.transform = `translateX(-${currentTrackIndex * 100}%)`;
             }
-            if (slides[currentTrackIndex].id === 'first-clone') {
+            if (slides[currentTrackIndex]?.id === 'first-clone') {
                 carouselTrack.style.transition = 'none';
                 currentTrackIndex = 1;
                 carouselTrack.style.transform = `translateX(-${currentTrackIndex * 100}%)`;
@@ -459,9 +462,19 @@ const description = "My Portfolio - Skills, Projects, and Story";
             dotsContainer.classList.remove('hidden');
             
             // Render Dots
+            // We use global function to attach the event
             dotsContainer.innerHTML = Array.from({ length: totalSlides }).map((_, idx) => `
-                <button class="w-2 h-2 rounded-full transition-all ${idx === currentMediaIndex ? 'bg-white w-4' : 'bg-white/50 hover:bg-white/80'}" onclick="goToSlide(${idx})"></button>
+                <button class="w-2 h-2 rounded-full transition-all carousel-dot ${idx === currentMediaIndex ? 'bg-white w-4' : 'bg-white/50 hover:bg-white/80'}" data-index="${idx}"></button>
             `).join('');
+
+            const dots = dotsContainer.querySelectorAll('.carousel-dot');
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    const idx = parseInt(e.target.dataset.index);
+                    goToSlide(idx);
+                });
+            });
+
         } else {
             prevBtn.classList.add('hidden');
             nextBtn.classList.add('hidden');
@@ -471,8 +484,6 @@ const description = "My Portfolio - Skills, Projects, and Story";
         // Pause videos in other slides
         const slides = carouselTrack.children;
         Array.from(slides).forEach((slide, idx) => {
-            // Be careful with clones, we might have multiple instances of the same video
-            // Just pause everything that is NOT the current track index
             if (idx !== currentTrackIndex) {
                 const video = slide.querySelector('video');
                 const iframe = slide.querySelector('iframe');
@@ -485,11 +496,9 @@ const description = "My Portfolio - Skills, Projects, and Story";
         });
     }
     
-    window.goToSlide = (index) => {
+    function goToSlide(index) {
         if (isTransitioning) return;
         
-        // Calculate target track index
-        // Real slides start at index 1
         currentTrackIndex = index + 1;
         currentMediaIndex = index;
         
@@ -497,23 +506,20 @@ const description = "My Portfolio - Skills, Projects, and Story";
         carouselTrack.style.transform = `translateX(-${currentTrackIndex * 100}%)`;
         isTransitioning = true;
         
-        // Determine total slides for dots update
-        // Total children = totalSlides + 2 (clones)
         const totalSlides = carouselTrack.children.length - 2;
         updateButtons(totalSlides);
-    };
+    }
 
     function nextSlide() {
         if (isTransitioning) return;
         const totalChildren = carouselTrack.children.length;
-        if (totalChildren <= 1) return; // No clones, single item
+        if (totalChildren <= 1) return; 
         
         currentTrackIndex++;
         carouselTrack.style.transition = 'transform 0.5s ease-in-out';
         carouselTrack.style.transform = `translateX(-${currentTrackIndex * 100}%)`;
         isTransitioning = true;
         
-        // Update visual index
         const totalSlides = totalChildren - 2;
         currentMediaIndex = (currentMediaIndex + 1) % totalSlides;
         updateButtons(totalSlides);
@@ -529,7 +535,6 @@ const description = "My Portfolio - Skills, Projects, and Story";
         carouselTrack.style.transform = `translateX(-${currentTrackIndex * 100}%)`;
         isTransitioning = true;
         
-        // Update visual index
         const totalSlides = totalChildren - 2;
         currentMediaIndex = (currentMediaIndex - 1 + totalSlides) % totalSlides;
         updateButtons(totalSlides);
@@ -540,24 +545,25 @@ const description = "My Portfolio - Skills, Projects, and Story";
         const videos = carouselTrack.querySelectorAll('video');
         videos.forEach(v => v.pause());
         const iframes = carouselTrack.querySelectorAll('iframe');
-        iframes.forEach(i => { i.src = i.src; }); // Reset to stop
+        iframes.forEach(i => { i.src = i.src; }); 
         
         viewDetail.classList.add('hidden');
         viewList.classList.remove('hidden');
     }
 
     function closeModal() {
-        if (!modal) return;
-        modal.classList.add('opacity-0');
-        modal.querySelector('div[class*="transform"]').classList.remove('scale-100');
-        modal.querySelector('div[class*="transform"]').classList.add('scale-95');
+        const modalEl = document.getElementById('skill-modal');
+        if (!modalEl) return;
+        modalEl.classList.add('opacity-0');
+        modalEl.querySelector('div[class*="transform"]')?.classList.remove('scale-100');
+        modalEl.querySelector('div[class*="transform"]')?.classList.add('scale-95');
         
         // Stop video when closing
         setTimeout(() => {
-            // Clear track to stop everything
-            carouselTrack.innerHTML = '';
+            const track = document.getElementById('carousel-track');
+            if (track) track.innerHTML = '';
             
-            modal.classList.add('hidden');
+            modalEl.classList.add('hidden');
             document.body.style.overflow = '';
         }, 300);
     }
@@ -576,8 +582,11 @@ const description = "My Portfolio - Skills, Projects, and Story";
     prevBtn?.addEventListener('click', prevSlide);
     nextBtn?.addEventListener('click', nextSlide);
     
-    document.addEventListener('keydown', (e) => {
-        if (modal.classList.contains('hidden')) return;
+    // Global Event Listeners (ensure we only add them once)
+    document.removeEventListener('keydown', window.portfolioKeydownHandler);
+    window.portfolioKeydownHandler = (e) => {
+        const modalEl = document.getElementById('skill-modal');
+        if (!modalEl || modalEl.classList.contains('hidden')) return;
         
         if (e.key === 'Escape') {
             closeModal();
@@ -586,45 +595,54 @@ const description = "My Portfolio - Skills, Projects, and Story";
         } else if (e.key === 'ArrowLeft') {
             prevSlide();
         }
-    });
+    };
+    document.addEventListener('keydown', window.portfolioKeydownHandler);
 
     // Typing Animation
     const typingText = document.getElementById('typing-text');
-    const words = ["SCALABLE", "AUTOMATED", "ROBUST", "EFFICIENT"];
-    let wordIndex = 0;
-    let charIndex = words[0].length; // Start with full word
-    let isDeleting = true; // Start by deleting after delay
-    let typeSpeed = 100;
+    if (typingText) {
+        const words = ["SCALABLE", "AUTOMATED", "ROBUST", "EFFICIENT"];
+        let wordIndex = 0;
+        let charIndex = words[0].length; 
+        let isDeleting = true; 
+        let typeSpeed = 100;
+        let typingTimeout;
 
-    function type() {
-        if (!typingText) return;
+        function type() {
+            const currentTypingText = document.getElementById('typing-text');
+            if (!currentTypingText) return; // Exit if unmounted
 
-        const currentWord = words[wordIndex];
-        
-        if (isDeleting) {
-            typingText.textContent = currentWord.substring(0, charIndex - 1);
-            charIndex--;
-            typeSpeed = 50;
-        } else {
-            typingText.textContent = currentWord.substring(0, charIndex + 1);
-            charIndex++;
-            typeSpeed = 150;
+            const currentWord = words[wordIndex];
+            
+            if (isDeleting) {
+                currentTypingText.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+                typeSpeed = 50;
+            } else {
+                currentTypingText.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+                typeSpeed = 150;
+            }
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                isDeleting = true;
+                typeSpeed = 2000; 
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 500; 
+            }
+
+            typingTimeout = setTimeout(type, typeSpeed);
         }
 
-        if (!isDeleting && charIndex === currentWord.length) {
-            isDeleting = true;
-            typeSpeed = 2000; // Pause at end
-        } else if (isDeleting && charIndex === 0) {
-            isDeleting = false;
-            wordIndex = (wordIndex + 1) % words.length;
-            typeSpeed = 500; // Pause before typing new word
+        // Only start if not already typing
+        if (!window.portfolioTypingStarted) {
+            window.portfolioTypingStarted = true;
+            setTimeout(type, 2000);
         }
-
-        setTimeout(type, typeSpeed);
     }
 
-    // Start typing loop after initial delay
-    setTimeout(type, 2000);
     // Terminal Widget Logic
     const terminalWidget = document.getElementById('terminal-widget');
     const terminalToggle = document.getElementById('terminal-toggle');
@@ -635,106 +653,122 @@ const description = "My Portfolio - Skills, Projects, and Story";
     const terminalOutput = document.getElementById('terminal-output');
     const terminalInput = document.getElementById('terminal-input');
 
-    let isTerminalOpen = false;
+    if (terminalToggle) {
+        let isTerminalOpen = false;
 
-    function toggleTerminal() {
-        isTerminalOpen = !isTerminalOpen;
-        if (isTerminalOpen) {
-            terminalToggle.classList.add('hidden');
-            terminalWindow.classList.remove('hidden');
-            // Small delay to allow display:block to apply before transition
-            setTimeout(() => {
-                terminalWindow.classList.remove('scale-0', 'opacity-0');
-                terminalInput.focus();
-            }, 10);
-        } else {
-            terminalWindow.classList.add('scale-0', 'opacity-0');
-            setTimeout(() => {
-                terminalWindow.classList.add('hidden');
-                terminalToggle.classList.remove('hidden');
-            }, 300);
-        }
-    }
-
-    terminalToggle?.addEventListener('click', toggleTerminal);
-    terminalClose?.addEventListener('click', toggleTerminal);
-    terminalMinimize?.addEventListener('click', toggleTerminal);
-
-    const commands = {
-        help: () => `
-            <div class="grid grid-cols-[100px_1fr] gap-2 text-white/70">
-                <span class="text-yellow-400">whoami</span> <span>About me</span>
-                <span class="text-yellow-400">skills</span> <span>My technical skills</span>
-                <span class="text-yellow-400">contact</span> <span>Contact info</span>
-                <span class="text-yellow-400">clear</span> <span>Clear terminal</span>
-                <span class="text-yellow-400">exit</span> <span>Close terminal</span>
-            </div>
-        `,
-        whoami: () => {
-            const profileName = terminalWidget.dataset.profileName;
-            return `
-            <div>
-                Hello! I'm <span class="text-[var(--primary)] font-bold">${profileName}</span>.<br/>
-                I am an MLOps Engineer passionate about building scalable and automated machine learning systems.
-            </div>
-        `},
-        skills: () => `
-            <div class="space-y-1">
-                <div class="text-[var(--primary)] font-bold">Infrastructure & DevOps</div>
-                <div>Kubernetes, Docker, Terraform, AWS, GCP</div>
-                <div class="text-[var(--primary)] font-bold mt-2">MLOps & Data</div>
-                <div>Kubeflow, MLflow, Airflow, Prometheus, Grafana</div>
-                <div class="text-[var(--primary)] font-bold mt-2">Languages</div>
-                <div>Python, Go, SQL, TypeScript</div>
-            </div>
-        `,
-        contact: () => `
-            <div>
-                <div>📧 <a href="mailto:janghongseo@example.com" class="underline hover:text-white">janghongseo@naver.com</a></div>
-                <div>🐙 <a href="https://github.com/pxxguin" target="_blank" class="underline hover:text-white">GitHub</a></div>
-                <div>🔗 <a href="https://www.linkedin.com/in/hongseojang/" target="_blank" class="underline hover:text-white">LinkedIn</a></div>
-            </div>
-        `,
-        exit: () => {
-            toggleTerminal();
-            return 'Closing terminal...';
-        }
-    };
-
-    terminalInput?.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            const input = terminalInput.value.trim();
-            if (!input) return;
-
-            // Add command to history
-            const cmdLine = document.createElement('div');
-            cmdLine.className = 'flex items-center gap-2 text-white mb-1';
-            cmdLine.innerHTML = `<span class="text-green-400">➜</span> <span class="text-cyan-400">~</span> ${input}`;
-            terminalOutput.appendChild(cmdLine);
-
-            // Process command
-            const cmd = input.toLowerCase();
-            let response = '';
-
-            if (cmd === 'clear') {
-                terminalOutput.innerHTML = '';
-            } else if (commands[cmd]) {
-                response = commands[cmd]();
+        function toggleTerminal() {
+            isTerminalOpen = !isTerminalOpen;
+            if (isTerminalOpen) {
+                terminalToggle.classList.add('hidden');
+                terminalWindow.classList.remove('hidden');
+                setTimeout(() => {
+                    terminalWindow.classList.remove('scale-0', 'opacity-0');
+                    terminalInput.focus();
+                }, 10);
             } else {
-                response = `<span class="text-red-400">Command not found: ${cmd}. Type 'help' for available commands.</span>`;
+                terminalWindow.classList.add('scale-0', 'opacity-0');
+                setTimeout(() => {
+                    terminalWindow.classList.add('hidden');
+                    terminalToggle.classList.remove('hidden');
+                }, 300);
             }
-
-            if (response && cmd !== 'clear') {
-                const respDiv = document.createElement('div');
-                respDiv.className = 'mb-4 text-white/80 leading-relaxed';
-                respDiv.innerHTML = response;
-                terminalOutput.appendChild(respDiv);
-            }
-
-            terminalInput.value = '';
-            terminalBody.scrollTop = terminalBody.scrollHeight;
         }
+
+        terminalToggle.addEventListener('click', toggleTerminal);
+        terminalClose?.addEventListener('click', toggleTerminal);
+        terminalMinimize?.addEventListener('click', toggleTerminal);
+
+        const commands = {
+            help: () => `
+                <div class="grid grid-cols-[100px_1fr] gap-2 text-white/70">
+                    <span class="text-yellow-400">whoami</span> <span>About me</span>
+                    <span class="text-yellow-400">skills</span> <span>My technical skills</span>
+                    <span class="text-yellow-400">contact</span> <span>Contact info</span>
+                    <span class="text-yellow-400">clear</span> <span>Clear terminal</span>
+                    <span class="text-yellow-400">exit</span> <span>Close terminal</span>
+                </div>
+            `,
+            whoami: () => {
+                const profileName = terminalWidget.dataset.profileName;
+                return `
+                <div>
+                    Hello! I'm <span class="text-[var(--primary)] font-bold">${profileName}</span>.<br/>
+                    I am an MLOps Engineer passionate about building scalable and automated machine learning systems.
+                </div>
+            `},
+            skills: () => `
+                <div class="space-y-1">
+                    <div class="text-[var(--primary)] font-bold">Infrastructure & DevOps</div>
+                    <div>Kubernetes, Docker, Terraform, AWS, GCP</div>
+                    <div class="text-[var(--primary)] font-bold mt-2">MLOps & Data</div>
+                    <div>Kubeflow, MLflow, Airflow, Prometheus, Grafana</div>
+                    <div class="text-[var(--primary)] font-bold mt-2">Languages</div>
+                    <div>Python, Go, SQL, TypeScript</div>
+                </div>
+            `,
+            contact: () => `
+                <div>
+                    <div>📧 <a href="mailto:janghongseo@example.com" class="underline hover:text-white">janghongseo@naver.com</a></div>
+                    <div>🐙 <a href="https://github.com/pxxguin" target="_blank" class="underline hover:text-white">GitHub</a></div>
+                    <div>🔗 <a href="https://www.linkedin.com/in/hongseojang/" target="_blank" class="underline hover:text-white">LinkedIn</a></div>
+                </div>
+            `,
+            exit: () => {
+                toggleTerminal();
+                return 'Closing terminal...';
+            }
+        };
+
+        terminalInput?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                const input = terminalInput.value.trim();
+                if (!input) return;
+
+                const cmdLine = document.createElement('div');
+                cmdLine.className = 'flex items-center gap-2 text-white mb-1';
+                cmdLine.innerHTML = `<span class="text-green-400">➜</span> <span class="text-cyan-400">~</span> ${input}`;
+                terminalOutput.appendChild(cmdLine);
+
+                const cmd = input.toLowerCase();
+                let response = '';
+
+                if (cmd === 'clear') {
+                    terminalOutput.innerHTML = '';
+                } else if (commands[cmd]) {
+                    response = commands[cmd]();
+                } else {
+                    response = `<span class="text-red-400">Command not found: ${cmd}. Type 'help' for available commands.</span>`;
+                }
+
+                if (response && cmd !== 'clear') {
+                    const respDiv = document.createElement('div');
+                    respDiv.className = 'mb-4 text-white/80 leading-relaxed';
+                    respDiv.innerHTML = response;
+                    terminalOutput.appendChild(respDiv);
+                }
+
+                terminalInput.value = '';
+                terminalBody.scrollTop = terminalBody.scrollHeight;
+            }
+        });
+    }
+}
+
+// Ensure it runs correctly with Swup
+if (window?.swup?.hooks) {
+    setupPortfolio();
+    window.swup.hooks.on('page:view', setupPortfolio);
+} else {
+    document.addEventListener('swup:enable', () => {
+        setupPortfolio();
+        window.swup.hooks.on('page:view', setupPortfolio);
     });
+    if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        setTimeout(setupPortfolio, 0);
+    } else {
+        document.addEventListener('DOMContentLoaded', setupPortfolio);
+    }
+}
 </script>
 
 <style>
