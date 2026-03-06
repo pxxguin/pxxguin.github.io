@@ -12,16 +12,25 @@ export interface Project {
 
 export const projects: Project[] = [
 	{
-		title: "Project Alpha",
+		title: "Threatlens",
 		description:
-			"A revolutionary AI-powered task management tool that predicts your next move.",
-		detailDescription:
-			"Project Alpha is a cutting-edge task management solution designed to anticipate user needs using advanced machine learning algorithms. \n\nIt features:\n- Predictive task scheduling based on user habits.\n- Natural language processing for easy task entry.\n- Seamless integration with popular calendar apps.\n\nBuilt with performance and scalability in mind, Project Alpha helps users reclaim their time and focus on what truly matters.",
+			"ThreatLens_V2 is a machine learning-based network security solution designed to detect and analyze abnormal web log patterns. It utilizes a Hard Voting ensemble model trained on the NSL-KDD dataset to classify network traffic into five distinct threat categories.",
+		detailDescription: `Machine Learning & Data Processing: The system performs extensive preprocessing on network logs, including handling missing values and feature transformation to align with the NSL-KDD dataset structure. It employs an ensemble learning approach (Hard Voting) combining multiple algorithms for high-accuracy anomaly classification.
+
+Attack Classification: Network traffic is categorized into five types: NORMAL, DOS_Attack, PROBING_Attack, R2L_Attack, and U2R_Attack.
+
+Web-Based Analysis Platform: Built with the Django framework, the platform allows users to upload Zeek-generated conn.log files. The system then parses these logs in real-time, providing a list of suspicious IP addresses along with their detected attack patterns and timestamps.
+
+Threat Monitoring & Insights: By integrating with the Zeek network monitoring tool, the project identifies potential vulnerabilities and enhances cybersecurity strategies through real-time threat detection and explainable AI (XAI) tools like ELI5.
+
+Development Environment: Developed using Python 3.9 on Ubuntu (LTS 24.04), utilizing core libraries such as scikit-learn, pandas, and joblib for model deployment.`,
 		image:
-			"https://images.unsplash.com/photo-1555099962-4199c345e5dd?q=80&w=2940&auto=format&fit=crop",
-		tags: ["React", "TypeScript", "OpenAI API"],
-		demoUrl: "https://example.com",
-		repoUrl: "https://github.com",
+			"https://github.com/Moomin03/Development_of_an_Anomaly_Detection_System/raw/main/image/LOGO.jpg",
+		tags: ["Python", "Django", "Scikit-learn", "Pandas", "Joblib", "Zeek"],
+		demoUrl:
+			"https://github.com/pxxguin/Development_of_an_Anomaly_Detection_System",
+		repoUrl:
+			"https://github.com/pxxguin/Development_of_an_Anomaly_Detection_System",
 		video: "https://www.youtube.com/embed/dQw4w9WgXcQ?si=adP4t_k7o4V6ZJ9j",
 		media: [
 			{
