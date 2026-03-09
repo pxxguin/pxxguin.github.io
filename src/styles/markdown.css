@@ -93,10 +93,10 @@
 
 
     ul, ol {
-        @apply my-4 leading-6;
+        @apply my-2 leading-6;
 
         li {
-            @apply my-1;
+            @apply my-0.7;
         }
 
         ul, ol {
