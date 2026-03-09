@@ -104,6 +104,7 @@ onDestroy(() => {
 });
 </script>
 
+<div class="contents">
 {#if isPostPage}
     <div class="fixed z-[100] bottom-20 right-4 flex flex-col items-end gap-3 pointer-events-auto">
         
@@ -207,3 +208,4 @@ onDestroy(() => {
         </button>
     </div>
 {/if}
+</div>

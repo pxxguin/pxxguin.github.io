@@ -146,7 +146,7 @@ onMount(async () => {
         </div>
     {/if}
 
-    {#each groups as group}
+    {#each groups as group (group.year)}
         <div class="mb-12">
             {#if !isFiltered}
             <div class="flex flex-row w-full items-center mb-6 pl-4 md:pl-0">
@@ -160,7 +160,7 @@ onMount(async () => {
             {/if}
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {#each group.posts as post}
+                {#each group.posts as post (post.slug)}
                     <div class="card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative group">
                         
                         {#if post.data.image}
