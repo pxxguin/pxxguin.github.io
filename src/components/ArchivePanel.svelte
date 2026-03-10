@@ -3,12 +3,12 @@ import { onMount } from "svelte";
 
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
-import { getPostUrl } from "../utils/url-utils";
 import { getTagColor } from "../utils/color-utils";
+import { getPostUrl } from "../utils/url-utils";
 
-export let tags: string[];
+export let tags: string[] = [];
 export let excludeTags: string[] = [];
-export let categories: string[];
+export let categories: string[] = [];
 export let sortedPosts: Post[] = [];
 
 const params = new URLSearchParams(window.location.search);

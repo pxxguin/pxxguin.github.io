@@ -311,14 +311,14 @@ function setupPortfolio() {
 
         // Links
         if (project.demoUrl) {
-            detailDemo.href = project.demoUrl;
+            (detailDemo as HTMLAnchorElement).href = project.demoUrl;
             detailDemo.classList.remove('hidden');
         } else {
             detailDemo.classList.add('hidden');
         }
         
         if (project.repoUrl) {
-            detailRepo.href = project.repoUrl;
+            (detailRepo as HTMLAnchorElement).href = project.repoUrl;
             detailRepo.classList.remove('hidden');
         } else {
             detailRepo.classList.add('hidden');
@@ -470,7 +470,7 @@ function setupPortfolio() {
             const dots = dotsContainer.querySelectorAll('.carousel-dot');
             dots.forEach(dot => {
                 dot.addEventListener('click', (e) => {
-                    const idx = parseInt(e.target.dataset.index);
+                    const idx = parseInt((e.target as HTMLElement).dataset.index);
                     goToSlide(idx);
                 });
             });
@@ -570,7 +570,7 @@ function setupPortfolio() {
 
     projectCards.forEach(card => {
         card.addEventListener('click', () => {
-            const project = JSON.parse(card.dataset.project);
+            const project = JSON.parse((card as HTMLElement).dataset.project);
             showDetailView(project);
         });
     });
@@ -583,8 +583,8 @@ function setupPortfolio() {
     nextBtn?.addEventListener('click', nextSlide);
     
     // Global Event Listeners (ensure we only add them once)
-    document.removeEventListener('keydown', window.portfolioKeydownHandler);
-    window.portfolioKeydownHandler = (e) => {
+    document.removeEventListener('keydown', (window as any).portfolioKeydownHandler);
+    (window as any).portfolioKeydownHandler = (e) => {
         const modalEl = document.getElementById('skill-modal');
         if (!modalEl || modalEl.classList.contains('hidden')) return;
         
@@ -596,7 +596,7 @@ function setupPortfolio() {
             prevSlide();
         }
     };
-    document.addEventListener('keydown', window.portfolioKeydownHandler);
+    document.addEventListener('keydown', (window as any).portfolioKeydownHandler);
 
     // Typing Animation
     const typingText = document.getElementById('typing-text');
@@ -637,8 +637,8 @@ function setupPortfolio() {
         }
 
         // Only start if not already typing
-        if (!window.portfolioTypingStarted) {
-            window.portfolioTypingStarted = true;
+        if (!(window as any).portfolioTypingStarted) {
+            (window as any).portfolioTypingStarted = true;
             setTimeout(type, 2000);
         }
     }
@@ -651,7 +651,7 @@ function setupPortfolio() {
     const terminalMinimize = document.getElementById('terminal-minimize');
     const terminalBody = document.getElementById('terminal-body');
     const terminalOutput = document.getElementById('terminal-output');
-    const terminalInput = document.getElementById('terminal-input');
+    const terminalInput = document.getElementById('terminal-input') as HTMLInputElement | null;
 
     if (terminalToggle) {
         let isTerminalOpen = false;
