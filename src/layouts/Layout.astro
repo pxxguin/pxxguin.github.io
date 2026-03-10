@@ -218,6 +218,45 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 	.navbar-hidden {
 		@apply opacity-0 -translate-y-16
 	}
+
+	/* Inline Code Styling Override */
+	.custom-md code {
+		background-color: var(--codeblock-bg) !important;
+		color: var(--inline-code-color) !important;
+		padding: 0.125rem 0.375rem !important;
+		border-radius: 0.375rem !important;
+	}
+	.custom-md code::before,
+	.custom-md code::after {
+		content: none !important;
+	}
+
+	/* URLs and Links Styling Override */
+	.custom-md a:not(.no-styling) {
+		position: relative !important;
+		font-weight: 500 !important;
+		color: var(--primary) !important;
+		background-color: var(--btn-regular-bg) !important;
+		padding: 0.125rem 0.375rem !important;
+		border-radius: 0.375rem !important;
+		text-decoration: none !important;
+		transition: all 0.2s ease-in-out !important;
+	}
+	.custom-md a:not(.no-styling):hover {
+		background-color: var(--btn-regular-bg-hover) !important;
+	}
+	.custom-md a:not(.no-styling)[href^="http"] {
+		padding-right: 1.25rem !important;
+	}
+	.custom-md a:not(.no-styling)[href^="http"]::after {
+		content: '↗' !important;
+		position: absolute !important;
+		right: 0.25rem !important;
+		top: 50% !important;
+		transform: translateY(-50%) !important;
+		font-size: 0.75em !important;
+		opacity: 0.7 !important;
+	}
 }
 
 /* Zen Mode Styles */
