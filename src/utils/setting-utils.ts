@@ -14,12 +14,12 @@ export function getDefaultHue(): number {
 }
 
 export function getHue(): number {
-	const stored = localStorage.getItem("hue");
+	const stored = typeof localStorage !== 'undefined' ? localStorage.getItem("hue") : null;
 	return stored ? Number.parseInt(stored, 10) : getDefaultHue();
 }
 
 export function setHue(hue: number): void {
-	localStorage.setItem("hue", String(hue));
+	if (typeof localStorage !== 'undefined') localStorage.setItem("hue", String(hue));
 	const r = document.querySelector(":root") as HTMLElement;
 	if (!r) {
 		return;
@@ -52,10 +52,10 @@ export function applyThemeToDocument(theme: LIGHT_DARK_MODE) {
 }
 
 export function setTheme(theme: LIGHT_DARK_MODE): void {
-	localStorage.setItem("theme", theme);
+	if (typeof localStorage !== 'undefined') localStorage.setItem("theme", theme);
 	applyThemeToDocument(theme);
 }
 
 export function getStoredTheme(): LIGHT_DARK_MODE {
-	return (localStorage.getItem("theme") as LIGHT_DARK_MODE) || DEFAULT_THEME;
+	return ((typeof localStorage !== 'undefined' ? localStorage.getItem("theme") : null) as LIGHT_DARK_MODE) || DEFAULT_THEME;
 }

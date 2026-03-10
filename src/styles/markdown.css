@@ -98,7 +98,7 @@
         @apply my-2 leading-6;
 
         li {
-            @apply my-0.7;
+            @apply my-[0.175rem];
         }
 
         ul, ol {
