@@ -1,10 +1,8 @@
 ---
-title: "[CI/CD] "
+title: "[CI/CD] CI/CD란 무엇인가?"
 image: /images/github.png
 published: 2026-03-13T00:00:00.000Z
-description: TEST
-series: cs-basics
-seriesOrder: 1
+description: CI/CD에 대한 설명과 Github CLI에 대한 간단한 사용 방법에 대해서 설명합니다.
 tags:
     - Github
     - Github Actions
