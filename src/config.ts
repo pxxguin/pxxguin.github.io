@@ -58,15 +58,15 @@ export const navBarConfig: NavBarConfig = {
 					links: [
 						{
 							name: "Python",
-							url: "/archive/?category=Language&tag=Python",
+							url: "/archive/?category=Python",
 						},
 						{
 							name: "C++",
-							url: "/archive/?category=Language&tag=C++",
+							url: "/archive/?category=C++",
 						},
 						{
 							name: "Problem Solving",
-							url: "/archive/?category=Language&tag=PS",
+							url: "/archive/?category=ProblemSolving",
 						},
 					],
 				},
@@ -75,19 +75,19 @@ export const navBarConfig: NavBarConfig = {
 					links: [
 						{
 							name: "Network",
-							url: "/archive/?category=CS&tag=Network",
+							url: "/archive/?category=Network",
 						},
 						{
 							name: "Database",
-							url: "/archive/?category=CS&tag=DB",
+							url: "/archive/?category=Database",
 						},
 						{
 							name: "Operating System",
-							url: "/archive/?category=CS&tag=OS",
+							url: "/archive/?category=OperatingSystem",
 						},
 						{
 							name: "Computer Architecture",
-							url: "/archive/?category=CS&tag=CA",
+							url: "/archive/?category=ComputerArchitecture",
 						},
 					],
 				},
