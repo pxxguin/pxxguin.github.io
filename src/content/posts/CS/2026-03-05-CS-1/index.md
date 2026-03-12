@@ -2,7 +2,7 @@
 title: "[CS] HTTP와 HTTPS의 차이 with Wireshark"
 image: /images/cs.jpg
 published: 2026-03-04T00:00:00.000Z
-description: HTTP
+description: HTTP와 HTTPS의 차이점에 대해서 Wireshark 실습을 통해서 파악해봅시다.
 series: cs-basics
 seriesOrder: 1
 tags:
