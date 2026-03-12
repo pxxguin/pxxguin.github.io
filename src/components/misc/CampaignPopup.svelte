@@ -320,16 +320,16 @@ async function startAutoTypeSequence() {
                 {:else if line.type === "component" && line.component === "notice"}
                      <!-- The HTML Notice Content -->
                      <div class="my-4 p-4 border border-dashed border-gray-600 rounded bg-black/20 text-gray-200">
-                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 업데이트 v2.0</h1>
+                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 업데이트 v2.1.1</h1>
                         <p class="mb-4 text-gray-300">
                             안녕하세요. 개발자 Hongseo Jang입니다.👋<br>
                             부족하지만 항상 도움이 되는 포스팅을 제공하겠습니다.
                         </p>
                         <p class="text-green-400 font-bold text-sm mb-2">// 최근 업데이트</p>
                         <ul class="list-none space-y-1 pl-2 border-l-2 border-gray-700 ml-1 text-sm">
-                            <li><span class="text-blue-500">[FEAT]</span> 공지사항 디자인 변경</li>
-                            <li><span class="text-blue-500">[FEAT]</span> 공지사항 이스터에그 추가</li>
-                            <li><span class="text-yellow-500">[FIX]</span> 오늘의 추천 논문 알고리즘 수정</li>
+                            <li><span class="text-blue-500">[FEAT]</span> 학습 목표 생성 및 연결</li>
+                            <li><span class="text-blue-500">[FEAT]</span> 포스팅 태그 옵션 시각화</li>
+                            <li><span class="text-yellow-500">[FIX]</span> Git Discussions 404 오류 수정</li>
                         </ul>
                         <div class="mt-4 text-sm text-gray-500">
                             계속해서 더 나은 개발 경험을 제공하겠습니다.<br/>
