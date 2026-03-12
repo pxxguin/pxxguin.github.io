@@ -69,7 +69,16 @@ const config = giscusConfig;
         observer.observe(document.documentElement, { attributes: true });
         
         // Support for View Transitions (Astro) or Swup
-        document.addEventListener('astro:page-load', loadGiscus);
-        document.addEventListener('swup:contentReplaced', loadGiscus);
+        let currentPathname = window.location.pathname;
+
+        const handlePageChange = () => {
+            if (window.location.pathname !== currentPathname) {
+                currentPathname = window.location.pathname;
+                loadGiscus();
+            }
+        };
+
+        document.addEventListener('astro:page-load', handlePageChange);
+        document.addEventListener('swup:contentReplaced', handlePageChange);
     }
 </script>

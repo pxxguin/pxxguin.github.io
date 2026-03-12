@@ -192,12 +192,48 @@
                     @apply absolute left-1 top-0 text-xl leading-7;
                     color: rgba(255, 255, 255, 0.7) !important;
                 }
+
+                a {
+                    color: inherit !important;
+                    background: none !important;
+                    padding: 0 !important;
+                    font-weight: inherit !important;
+                    text-decoration: none !important;
+                    transition: color 0.2s ease !important;
+                }
+
+                a:hover {
+                    color: #a1f7cb !important; /* Light green chalk tint */
+                    background: none !important;
+                }
             }
         }
     }
 }
 
 /* Highlight (mark) styling to simulate a highlighter */
+/* Target styling for objective links */
+.objective-target {
+    transition: all 0.3s ease-out;
+    border-radius: 4px;
+    padding: 2px 4px;
+    text-decoration: underline;
+    text-decoration-color: transparent;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+/* 
+ * Apply persistent red underline when targeted to easily tell which one is active.
+ * We use transition instead of animation because SPA routers (like Swup) can cause 
+ * animation re-trigger bugs when the hash changes via JavaScript.
+ */
+.objective-target:target,
+.objective-target.active-target {
+    text-decoration-color: #ef4444; /* Bright Red */
+    background-color: rgba(239, 68, 68, 0.15); /* Light red background */
+    box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
+}
 mark {
     background: linear-gradient(90deg, #fff9c4, #fff59d); /* pale yellow */
     padding: 0.08em 0.28em;

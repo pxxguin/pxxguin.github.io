@@ -615,6 +615,19 @@ window.onresize = () => {
 	document.documentElement.style.setProperty('--banner-height-extend', `${offset}px`);
 }
 
+document.addEventListener('click', (e) => {
+    // Only intercept links within the objective block
+    const link = e.target.closest('.admonition.bdm-objective a[href^="#obj-"]');
+    if (link) {
+        // Clear active class from all objective targets
+        document.querySelectorAll('.objective-target').forEach(el => el.classList.remove('active-target'));
+        const targetId = link.getAttribute('href').substring(1);
+        const targetEl = document.getElementById(targetId);
+        if (targetEl) {
+            targetEl.classList.add('active-target');
+        }
+    }
+});
 </script>
 
 <script>
