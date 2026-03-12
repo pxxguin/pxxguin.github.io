@@ -31,9 +31,11 @@
       "title": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
       "postId": 18,
       "tags": [
-        "Network"
+        "Wireshark",
+        "Http/Https",
+        "Packet"
       ],
-      "category": "CS",
+      "category": "Network",
       "type": "post",
       "val": 1
     },
@@ -243,8 +245,20 @@
       "val": 5
     },
     {
-      "id": "Network",
-      "name": "Network",
+      "id": "Wireshark",
+      "name": "Wireshark",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Http/Https",
+      "name": "Http/Https",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Packet",
+      "name": "Packet",
       "type": "tag",
       "val": 5
     },
@@ -291,8 +305,8 @@
       "val": 10
     },
     {
-      "id": "CS",
-      "name": "CS",
+      "id": "Network",
+      "name": "Network",
       "type": "category",
       "val": 10
     },
@@ -338,11 +352,19 @@
     },
     {
       "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "Network"
+      "target": "Wireshark"
     },
     {
       "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "CS"
+      "target": "Http/Https"
+    },
+    {
+      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "target": "Packet"
+    },
+    {
+      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
+      "target": "Network"
     },
     {
       "source": "[DeepL] Can you explain about Back Propagation?",
