@@ -138,6 +138,18 @@
       "val": 1
     },
     {
+      "id": "[CI/CD] CI/CD란 무엇인가?",
+      "title": "[CI/CD] CI/CD란 무엇인가?",
+      "postId": 19,
+      "tags": [
+        "Github",
+        "Github Actions"
+      ],
+      "category": "CI/CD",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[NLP] What is Attention Algorithms?",
       "title": "[NLP] What is Attention Algorithms?",
       "postId": 2,
@@ -281,6 +293,18 @@
       "val": 5
     },
     {
+      "id": "Github",
+      "name": "Github",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Github Actions",
+      "name": "Github Actions",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "tag",
@@ -313,6 +337,12 @@
     {
       "id": "MachineL",
       "name": "MachineL",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "CI/CD",
+      "name": "CI/CD",
       "type": "category",
       "val": 10
     }
@@ -469,6 +499,18 @@
     {
       "source": "[FastAPI] FastAPI",
       "target": "MLOps"
+    },
+    {
+      "source": "[CI/CD] CI/CD란 무엇인가?",
+      "target": "Github"
+    },
+    {
+      "source": "[CI/CD] CI/CD란 무엇인가?",
+      "target": "Github Actions"
+    },
+    {
+      "source": "[CI/CD] CI/CD란 무엇인가?",
+      "target": "CI/CD"
     },
     {
       "source": "[NLP] What is Attention Algorithms?",
