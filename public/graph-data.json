@@ -150,6 +150,19 @@
       "val": 1
     },
     {
+      "id": "[CI/CD] Github Actions의 기초 개념",
+      "title": "[CI/CD] Github Actions의 기초 개념",
+      "postId": 20,
+      "tags": [
+        "Github",
+        "Github Actions",
+        "Github Workflows"
+      ],
+      "category": "CI/CD",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[NLP] What is Attention Algorithms?",
       "title": "[NLP] What is Attention Algorithms?",
       "postId": 2,
@@ -301,6 +314,12 @@
     {
       "id": "Github Actions",
       "name": "Github Actions",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Github Workflows",
+      "name": "Github Workflows",
       "type": "tag",
       "val": 5
     },
@@ -510,6 +529,22 @@
     },
     {
       "source": "[CI/CD] CI/CD란 무엇인가?",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[CI/CD] Github Actions의 기초 개념",
+      "target": "Github"
+    },
+    {
+      "source": "[CI/CD] Github Actions의 기초 개념",
+      "target": "Github Actions"
+    },
+    {
+      "source": "[CI/CD] Github Actions의 기초 개념",
+      "target": "Github Workflows"
+    },
+    {
+      "source": "[CI/CD] Github Actions의 기초 개념",
       "target": "CI/CD"
     },
     {
