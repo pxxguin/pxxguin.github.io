@@ -150,6 +150,11 @@ export const navBarConfig: NavBarConfig = {
 							url: "/archive/?category=MLOps&tag=Database",
 							external: true, // Show an external link icon and will open in a new tab
 						},
+						{
+							name: "CI/CD",
+							url: "/archive/?category=CI/CD",
+							external: true, // Show an external link icon and will open in a new tab
+						},
 					],
 				},
 				{
