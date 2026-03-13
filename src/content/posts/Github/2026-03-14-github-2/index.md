@@ -71,7 +71,7 @@ jobs: # 해야할 일 정의
 위의 코드처럼 여러 줄의 스크립트도 구현할 수 있다.
 :::
 
-### 3️⃣ 실행시킨 결과
+### 2️⃣ 실행시킨 결과
 ![picture1](./picture1.png)
 다음과 같이 결과를 확인할 수 있습니다.
 
@@ -117,7 +117,7 @@ on:
     - cron: '*/15 * * * *' # 매 시간 15분마다 실행하는 cron 식
 jobs:
   run:
-    runs-on: ubuntu:latest
+    runs-on: ubuntu-latest
     steps:
       - run: date
 ```
