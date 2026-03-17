@@ -307,6 +307,30 @@
             color: var(--text-base) !important;
         }
     }
+
+    sup.vocab-link {
+        font-size: 0.75em;
+        vertical-align: super;
+        margin-left: 0; /* Remove gap */
+        
+        a {
+            @apply text-[var(--primary)] font-medium transition-colors;
+            background: none !important; /* override generic link backgrounds */
+            padding: 0 !important;
+            margin: 0 !important;
+            border-bottom: 1px solid transparent;
+            text-decoration: none !important;
+            
+            &:hover {
+                background: none !important;
+                border-bottom-color: var(--primary);
+            }
+            
+            &::after {
+                content: none !important; /* Remove external link icon if any */
+            }
+        }
+    }
 }
 mark {
     background: linear-gradient(90deg, #fff9c4, #fff59d); /* pale yellow */
