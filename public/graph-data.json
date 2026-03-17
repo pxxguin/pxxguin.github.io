@@ -252,6 +252,18 @@
       "val": 1
     },
     {
+      "id": "[Python] ",
+      "title": "[Python] ",
+      "postId": 21,
+      "tags": [
+        "Regex",
+        "re"
+      ],
+      "category": "Python",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "Airflow",
       "name": "Airflow",
       "type": "tag",
@@ -342,6 +354,18 @@
       "val": 5
     },
     {
+      "id": "Regex",
+      "name": "Regex",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "re",
+      "name": "re",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "MLOps",
       "name": "MLOps",
       "type": "category",
@@ -362,6 +386,12 @@
     {
       "id": "CI/CD",
       "name": "CI/CD",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Python",
+      "name": "Python",
       "type": "category",
       "val": 10
     }
@@ -650,6 +680,18 @@
     {
       "source": "[Paper] Review with ToolOrchestra",
       "target": "MachineL"
+    },
+    {
+      "source": "[Python] ",
+      "target": "Regex"
+    },
+    {
+      "source": "[Python] ",
+      "target": "re"
+    },
+    {
+      "source": "[Python] ",
+      "target": "Python"
     }
   ]
 }
