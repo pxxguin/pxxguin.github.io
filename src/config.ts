@@ -138,16 +138,16 @@ export const navBarConfig: NavBarConfig = {
 					links: [
 						{
 							name: "Spring Boot",
-							url: "/archive/?category=MLOps&tag=SpringBoot",
+							url: "/archive/?category=SpringBoot",
 						},
 						{
 							name: "FastAPI",
-							url: "/archive/?category=MLOps&tag=FastAPI",
+							url: "/archive/?category=FastAPI",
 							external: true, // Show an external link icon and will open in a new tab
 						},
 						{
 							name: "Database",
-							url: "/archive/?category=MLOps&tag=Database",
+							url: "/archive/?category=Database",
 							external: true, // Show an external link icon and will open in a new tab
 						},
 						{
@@ -160,14 +160,14 @@ export const navBarConfig: NavBarConfig = {
 				{
 					name: "Orchestration",
 					links: [
-						{ name: "Docker", url: "/archive/?category=MLOps&tag=Docker" },
+						{ name: "Docker", url: "/archive/?category=Docker" },
 						{
 							name: "Nginx",
-							url: "/archive/?category=MLOps&tag=Nginx",
+							url: "/archive/?category=Nginx",
 						},
 						{
 							name: "Airflow",
-							url: "/archive/?category=MLOps&tag=Airflow",
+							url: "/archive/?category=Airflow",
 						},
 					],
 				},
