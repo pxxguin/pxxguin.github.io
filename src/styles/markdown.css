@@ -234,6 +234,65 @@
     background-color: rgba(239, 68, 68, 0.15); /* Light red background */
     box-shadow: 0 0 8px rgba(239, 68, 68, 0.4);
 }
+
+/* Vocabulary / Glossary Block Styling */
+.custom-md {
+    .admonition.bdm-vocabulary {
+        @apply px-6 py-5 !not-italic relative my-6;
+        background-color: var(--card-bg); /* Use base card bg, maybe slightly tinted */
+        border: 1px solid var(--primary); /* subtle primary border */
+        border-right: 4px solid var(--primary); /* thick accent border, standard admonitions have left, let's make this stand out */
+        border-left: 4px solid var(--primary);
+        border-radius: 8px !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.05) !important;
+        color: var(--text-base) !important;
+    }
+
+    blockquote.admonition.bdm-vocabulary::before {
+        content: none !important;
+        display: none !important;
+    }
+
+    .admonition.bdm-vocabulary {
+
+        .bdm-title {
+            @apply flex items-center gap-2 mb-4 font-bold text-[1.25rem];
+            color: var(--primary) !important;
+            border-bottom: 1px dashed var(--primary);
+            padding-bottom: 0.5rem;
+
+            &::before {
+                display: none !important;
+                content: none !important;
+            }
+        }
+
+        p {
+            @apply m-0;
+            color: var(--text-base) !important;
+        }
+
+        ul {
+            @apply m-0 list-none p-0;
+
+            li {
+                @apply relative pl-5 m-0 mb-3 pb-0 text-[0.95rem] leading-relaxed;
+                color: var(--text-muted) !important;
+                font-style: normal !important;
+
+                &::before {
+                    content: "▸";
+                    @apply absolute left-0 top-[2px] text-lg;
+                    color: var(--primary) !important;
+                }
+            }
+        }
+
+        strong, code, .math {
+            color: var(--text-base) !important;
+        }
+    }
+}
 mark {
     background: linear-gradient(90deg, #fff9c4, #fff59d); /* pale yellow */
     padding: 0.08em 0.28em;
