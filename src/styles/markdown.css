@@ -274,17 +274,32 @@
 
         ul {
             @apply m-0 list-none p-0;
+            counter-reset: vocab-counter;
 
             li {
-                @apply relative pl-5 m-0 mb-3 pb-0 text-[0.95rem] leading-relaxed;
+                @apply m-0 mb-3 pb-0 text-[0.95rem] leading-relaxed flex items-start gap-2;
                 color: var(--text-muted) !important;
                 font-style: normal !important;
+                counter-increment: vocab-counter;
 
                 &::before {
-                    content: "▸";
-                    @apply absolute left-0 top-[2px] text-lg;
-                    color: var(--primary) !important;
+                    content: "1️⃣"; /* Fallback */
+                    @apply shrink-0 flex items-center justify-center;
+                    font-size: 1.1em;
+                    line-height: normal;
+                    margin-top: 0; 
                 }
+
+                &:nth-child(1)::before { content: "1️⃣"; }
+                &:nth-child(2)::before { content: "2️⃣"; }
+                &:nth-child(3)::before { content: "3️⃣"; }
+                &:nth-child(4)::before { content: "4️⃣"; }
+                &:nth-child(5)::before { content: "5️⃣"; }
+                &:nth-child(6)::before { content: "6️⃣"; }
+                &:nth-child(7)::before { content: "7️⃣"; }
+                &:nth-child(8)::before { content: "8️⃣"; }
+                &:nth-child(9)::before { content: "9️⃣"; }
+                &:nth-child(10)::before { content: "🔟"; }
             }
         }
 
