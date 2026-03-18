@@ -20,6 +20,7 @@ let inputValue = "";
 let inputElement: HTMLInputElement;
 let terminalContainer: HTMLDivElement;
 let isAutoTyping = false;
+let isShake = false;
 
 // --- Easter Egg State (Konami) ---
 let isHacked = false;
@@ -186,7 +187,9 @@ async function processCommand(cmd: string) {
 
 				// Trigger shake effect
 				isShake = true;
-				setTimeout(() => (isShake = false), 500);
+				setTimeout(() => {
+					isShake = false;
+				}, 500);
 			}
 			break;
 		case "reboot":
