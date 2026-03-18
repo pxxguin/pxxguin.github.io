@@ -187,18 +187,6 @@
       "val": 1
     },
     {
-      "id": "[Nginx] ",
-      "title": "[Nginx] ",
-      "postId": 22,
-      "tags": [
-        "FastAPI",
-        "Orbstack"
-      ],
-      "category": "Nginx",
-      "type": "post",
-      "val": 1
-    },
-    {
       "id": "[Paper] Review with The Free Transformer",
       "title": "[Paper] Review with The Free Transformer",
       "postId": 6,
@@ -354,12 +342,6 @@
       "val": 5
     },
     {
-      "id": "Orbstack",
-      "name": "Orbstack",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Paper",
       "name": "Paper",
       "type": "tag",
@@ -404,12 +386,6 @@
     {
       "id": "CI/CD",
       "name": "CI/CD",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "Nginx",
-      "name": "Nginx",
       "type": "category",
       "val": 10
     },
@@ -624,18 +600,6 @@
     {
       "source": "[NLP] How BERT model operate in python?",
       "target": "MachineL"
-    },
-    {
-      "source": "[Nginx] ",
-      "target": "FastAPI"
-    },
-    {
-      "source": "[Nginx] ",
-      "target": "Orbstack"
-    },
-    {
-      "source": "[Nginx] ",
-      "target": "Nginx"
     },
     {
       "source": "[Paper] Review with The Free Transformer",
