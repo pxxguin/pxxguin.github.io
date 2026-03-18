@@ -617,7 +617,9 @@ window.onresize = () => {
 
 document.addEventListener('click', (e) => {
     // Only intercept links within the objective block
-    const link = e.target.closest('.admonition.bdm-objective a[href^="#obj-"]');
+    const target = e.target as Element;
+    if (!target) return;
+    const link = target.closest('.admonition.bdm-objective a[href^="#obj-"]');
     if (link) {
         // Clear active class from all objective targets
         document.querySelectorAll('.objective-target').forEach(el => el.classList.remove('active-target'));
