@@ -1,4 +1,4 @@
-import { getCollection } from "astro:content";
+import { type CollectionEntry, getCollection } from "astro:content";
 import fs from "node:fs/promises";
 import path from "node:path";
 import type { APIContext } from "astro";
@@ -36,7 +36,7 @@ export async function getStaticPaths() {
 }
 
 export async function GET({ props }: APIContext) {
-	const { post } = props as { post: any }; // Type assertion for custom props
+	const { post } = props as { post: CollectionEntry<"posts"> }; // Type assertion for custom props
 	const { title, description, published, category } = post.data;
 	const date = formatDateToYYYYMMDD(published);
 

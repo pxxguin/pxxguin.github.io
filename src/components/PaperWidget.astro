@@ -37,11 +37,11 @@ try {
 }
 
 // Helper to format authors
-const getAuthors = (authorData: any) => {
+const getAuthors = (authorData: { name: string } | { name: string }[]) => {
 	if (Array.isArray(authorData)) {
 		return (
 			authorData
-				.map((a: any) => a.name)
+				.map((a) => a.name)
 				.slice(0, 3)
 				.join(", ") + (authorData.length > 3 ? " et al." : "")
 		);
