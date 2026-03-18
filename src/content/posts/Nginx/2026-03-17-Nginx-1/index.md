@@ -27,3 +27,12 @@ postId: 22
 
 만약, 서비스가 대박이 나서 서버를 1대에서 3대로 늘려야 한다고 가정해 봅시다. 클라이언트가 3개의 IP를 다 알고 접속해야 할까요? ==Nginx는 클라이언트의 요청을 받아 뒤에 있는 여러 대의 서버로 골고루 나눠줍니다.== 특정 서버가 죽으면 알아서 제외하고 살아있는 서버로만 요청을 보내는 Health Check 기능도 수행합니다. MLOps 관점에서 모델 서빙 서버를 수평 확장할 때 필수적인 요소로 많은 사람들이 강조하는 부분이기 때문에, Nginx에 대한 무.조.건 능력을 요구합니다.
 
+
+## 📘 Ubuntu에서의 Nginx 설치
+```bash
+wget http://nginx.org/keys/nginx_signing.key
+apt-key add nginx_signing.key
+apt-get update
+apt-get install -y nginx
+/etc/init.d/nginx start
+```
