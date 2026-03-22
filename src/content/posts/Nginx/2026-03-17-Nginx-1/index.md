@@ -36,3 +36,71 @@ apt-get update
 apt-get install -y nginx
 /etc/init.d/nginx start
 ```
+
+## Nginx의 주요 설정 파일과 디렉터리
+### 1️⃣ `/etc/nginx/`
+- Nginx 서버가 사용하는 기본 설정이 저장된 루트 디렉터리입니다.
+- Nginx는 이곳에 저장된 설정 파일의 내용에 따라 동작합니다.
+
+### 2️⃣ `etc/nginx/nginx.conf`
+- Nginx의 기본 설정 파일로, 모든 설정에 대한 진입점입니다.
+- 워커 프로세스 개수, 튜닝, 동적 모듈 적재와 같은 글로벌 설정 항목을 포함하며, 다른 엔진엑스 세부 설정 파일에 대한 참조를 지정합니다.
+- 디렉터리에 위치한 모든 설정 파일을 포함하는 최상위 http 블록을 갖고 있습니다.
+
+### 3️⃣ `/etc/nginx/conf.d/`
+- 기본 HTTP 서버 설정 파일을 포함합니다
+- 디렉터리 내 파일 중 이름이 .conf로 끝나는 파일은 앞서 언급한 /etc/nginx/nginx.conf 파일이 가진 최상위 http 블록에 포함됩니다.
+- 이처럼 Nginx 설정은 include 구문을 활용해 구조화함으로써 각 설정 파일을 간결하게 유지하면 좋습니다.
+- 몇몇 패키지 저장소에서 배포되는 Nginx는 설치 시 conf.d 디렉터리 대신 site-enabled 디렉터리가 있고, symlink를 통해 site-available 디렉터리에 저장된 설정 파일들이 연결돼 있을 수 있습니다.
+- 하지만 이 방식은 더는 사용되지 않습니다.
+
+### 4️⃣ `/var/log/nginx/`
+- Nginx의 로그가 저장되는 디렉터리로, access.log와 error.log 파일이 있습니다.
+- 접근 로그 파일은 엔진엑스 서버가 수신한 개별 요청에 대한 로그를 저장하며, 오류 로그 파일은 오류 발생 시 이벤트 내용을 저장합니다.
+- Nginx 설정을 통해 debug 모듈을 활성화했다면 디버그 정보도 오류 로그 파일에 기록됩니다.
+
+
+## 🎠 Nginx 서비스
+```bash title="/etc/nginx/conf.d/deafult.conf"
+server {
+    listen 80 default_server;
+    server_name www.example.com;
+
+    location / {
+        root /usr/share/nginx/html;
+        # alias /usr/share/nginx/html;
+        index index.html index.htm;
+    }
+}
+```
+
+### 🕑 각각의 코드 설명
+- **server 블록**
+  - 엔진엑스가 처리할 새로운 컨텍스트를 선언하는 부분입니다.
+- **listen 80 default_server**
+  - 80번 포트로 들어오는 요청을 수신하도록 설정합니다.
+  - 여기서 default_server 매개변수는 이 포트로 들어오는 요청 중 다른 서버 설정과 매칭되지 않는 요청을 이 블록이 기본으로 처리하게 만듭니다.
+  - 필요에 따라 포트뿐만 아니라 IP 주소 범위를 지정할 수도 있습니다.
+- **server_name**
+  - 처리할 호스트명이나 도메인명( www.example.com )을 지정합니다.
+  - 만약 서버가 사용할 특정 도메인이 아직 정해지지 않았다면, 앞서 설명한 default_server 매개변수를 사용하고 이 지시자는 생략할 수 있습니다.
+- **location /**
+  - 사용자가 요청한 URL의 경로(URI)를 기반으로 동작을 정의합니다.
+  - 엔진엑스는 여러 location 블록 중 요청된 URI에 가장 적합한 곳을 찾아 연결해 줍니다.
+- **root 지시자**
+  - 서버의 어느 경로에서 파일을 찾을지 알려줍니다.
+  - 엔진엑스는 이 지시자에 정의된 경로(/usr/share/nginx/html) 뒤에 수신된 URI 값을 그대로 합쳐서 최종 파일 위치를 찾습니다.
+- **alias 지시자 (주석 처리됨)**
+  - root와 유사하지만 location 지시자에 URI 접두어를 사용했을 때 경로가 결합되는 방식이 다릅니다.
+  - 예제에서는 설정이 오작동하지 않도록 주석 처리되어 있습니다.
+- **index 지시자**
+  - 사용자가 정확한 파일명 없이 경로(예: /)만 요청했을 때, 기본적으로 찾아볼 파일의 목록(index.html, index.htm)을 지정합니다.
+
+:::important
+여기서 중요한 부분이 default_server 부분입니다. 사용자가 https://www.naver.com 과 같이 도메인을 입력해서 들어오는 경우가 아닌, 구글의 주소처럼 8.8.8.8로 접속을 하려 한다면 어떤 문제가 생길까요? 만약 8.8.8.8이 Nginx로 운영중이고, 클라이언트가 8.8.8.8:80으로 요청한것과 같죠? 여기서 8.8.8.8:80번을 입력하면 백엔드 로직이 작동할 수 있겠죠? 이럴때, default_server의 값을 두면서 8.8.8.8:80을 입력하더라도 무조건적으로 프론트엔드 페이지로 다이렉팅 될 수 있도록 만드는 겁니다. 
+
+그렇다면 default_server가 없는 경우에는 어떻게 될까요? 생각하기는 싫지만, /etc/nginx/conf.d/ 폴더 아래에 있는 80번을 listen하고 있는 .conf 파일 중에서 알파벳 순서가 가장 빠른 곳으로 다이렉팅 시킬겁니다!
+:::
+
+
+## 📩 
