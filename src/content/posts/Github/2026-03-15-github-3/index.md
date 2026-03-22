@@ -18,4 +18,18 @@ Gihub에서 Repository를 만들고, Repository 내에서 Settings > Secrets and
 
 ![picture1](./picture1.png)
 
-## 
+## .yml에서의 변수 사용
+외부 사용자가 알 수 없게 변수를 사용한다면, 어떻게 .yml 파일에서 사용해야할까요?
+```bash title=".github/workflows/variables.yml"
+name: Variables
+on: push
+jobs:
+  print-variables:
+    runs-on: ubuntu-latest
+    env:
+      USERNAME: ${{vars.USERNAME}} # 선언한 변수 접근
+    steps:
+      - run: echo "${USERNAME}" # 지역 변수 호출
+```
+이렇게 코드를 작성하면 Variable에 등록한 변수의 값에 접근할 수 있습니다.
+
