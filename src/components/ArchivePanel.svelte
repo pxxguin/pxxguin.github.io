@@ -83,7 +83,7 @@ onMount(async () => {
 
 	const grouped = filteredPosts.reduce(
 		(acc, post) => {
-			const year = post.data.published.getFullYear();
+			const year = new Date(post.data.published).getFullYear();
 			if (!acc[year]) {
 				acc[year] = [];
 			}
