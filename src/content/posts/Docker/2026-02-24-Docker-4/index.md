@@ -6,10 +6,10 @@ description: FastAPI와 Nginx를 결합한 실전 디렉토리 구조부터 dock
 series: docker-basics
 seriesOrder: 4
 tags:
-  - Docker
-  - Backend
-  - CI/CD
-category: MLOps
+  - Image
+  - Container
+  - Repository
+category: Docker
 draft: false
 postId: 14
 ---

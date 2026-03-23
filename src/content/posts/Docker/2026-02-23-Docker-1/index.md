@@ -6,10 +6,10 @@ description: 내 컴퓨터에선 잘 되는데 왜 서버에선 안 될까?" 개
 series: docker-basics
 seriesOrder: 1
 tags:
-  - Docker
-  - Backend
-  - CI/CD
-category: MLOps
+  - Image
+  - Container
+  - Repository
+category: Docker
 draft: false
 postId: 11
 ---
