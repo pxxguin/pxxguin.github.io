@@ -6,10 +6,10 @@ description: 도커 이미지 다운로드부터 컨테이너 실행, 관리까�
 series: docker-basics
 seriesOrder: 2
 tags:
-  - Docker
-  - Backend
-  - CI/CD
-category: MLOps
+  - Image
+  - Container
+  - Repository
+category: Docker
 draft: false
 postId: 12
 ---

@@ -6,10 +6,10 @@ description: 왜 SSH 접속 대신 Dockerfile을 써야 하는지에 대해서 �
 series: docker-basics
 seriesOrder: 3
 tags:
-  - Docker
-  - Backend
-  - CI/CD
-category: MLOps
+  - Image
+  - Container
+  - Repository
+category: Docker
 draft: false
 postId: 13
 ---
