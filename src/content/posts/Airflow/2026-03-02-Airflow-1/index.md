@@ -6,10 +6,10 @@ description: Apache Airflow의 기본에 대해서 배웁니다.
 series: apache-airflow-basics
 seriesOrder: 1
 tags:
-  - Airflow
-  - Backend
-  - CI/CD
-category: MLOps
+  - MLOps
+  - Docker-compose
+  - DAG
+category: Airflow
 draft: false
 postId: 15
 ---
