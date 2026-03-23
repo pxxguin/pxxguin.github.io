@@ -1,8 +1,8 @@
 ---
-title: "[Python] "
+title: "[Python] 정규화 라이브러리 re 사용법"
 image: /images/python.png
 published: 2026-03-15T00:00:00.000Z
-description: Github Actions의 기본적인 동작 방법과 실습을 통해서 직접 테스트를 해봅니다.
+description: re 라이브러리를 사용하는 방법을 문제를 통해서 학습합니다.
 tags:
     - Regex
     - re
