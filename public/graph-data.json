@@ -5,11 +5,11 @@
       "title": "[Airflow] Airflow의 기본",
       "postId": 15,
       "tags": [
-        "Airflow",
-        "Backend",
-        "CI/CD"
+        "MLOps",
+        "Docker-compose",
+        "DAG"
       ],
-      "category": "MLOps",
+      "category": "Airflow",
       "type": "post",
       "val": 1
     },
@@ -18,11 +18,11 @@
       "title": "[Airflow] Airflow의 추가 설명",
       "postId": 16,
       "tags": [
-        "Airflow",
-        "Backend",
-        "CI/CD"
+        "Docker-compose",
+        "Scheduler",
+        "Worker"
       ],
-      "category": "MLOps",
+      "category": "Airflow",
       "type": "post",
       "val": 1
     },
@@ -77,11 +77,11 @@
       "title": "[Docker] Docker 한 번에 이해하기",
       "postId": 11,
       "tags": [
-        "Docker",
-        "Backend",
-        "CI/CD"
+        "Image",
+        "Container",
+        "Repository"
       ],
-      "category": "MLOps",
+      "category": "Docker",
       "type": "post",
       "val": 1
     },
@@ -90,11 +90,11 @@
       "title": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "postId": 12,
       "tags": [
-        "Docker",
-        "Backend",
-        "CI/CD"
+        "Image",
+        "Container",
+        "Repository"
       ],
-      "category": "MLOps",
+      "category": "Docker",
       "type": "post",
       "val": 1
     },
@@ -103,11 +103,11 @@
       "title": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "postId": 13,
       "tags": [
-        "Docker",
-        "Backend",
-        "CI/CD"
+        "Image",
+        "Container",
+        "Repository"
       ],
-      "category": "MLOps",
+      "category": "Docker",
       "type": "post",
       "val": 1
     },
@@ -116,11 +116,11 @@
       "title": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "postId": 14,
       "tags": [
-        "Docker",
-        "Backend",
-        "CI/CD"
+        "Image",
+        "Container",
+        "Repository"
       ],
-      "category": "MLOps",
+      "category": "Docker",
       "type": "post",
       "val": 1
     },
@@ -265,8 +265,8 @@
       "val": 1
     },
     {
-      "id": "[Python] ",
-      "title": "[Python] ",
+      "id": "[Python] 정규화 라이브러리 re 사용법",
+      "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 21,
       "tags": [
         "Regex",
@@ -277,20 +277,58 @@
       "val": 1
     },
     {
-      "id": "Airflow",
-      "name": "Airflow",
+      "id": "[Spring] Spring의 기본 공부하기",
+      "title": "[Spring] Spring의 기본 공부하기",
+      "postId": 24,
+      "tags": [
+        "Java",
+        "HTTP",
+        "Protocol"
+      ],
+      "category": "SpringBoot",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Spring] Spring의 개발 용어 적립",
+      "title": "[Spring] Spring의 개발 용어 적립",
+      "postId": 25,
+      "tags": [
+        "Java",
+        "HTTP",
+        "Protocol"
+      ],
+      "category": "SpringBoot",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "MLOps",
+      "name": "MLOps",
       "type": "tag",
       "val": 5
     },
     {
-      "id": "Backend",
-      "name": "Backend",
+      "id": "Docker-compose",
+      "name": "Docker-compose",
       "type": "tag",
       "val": 5
     },
     {
-      "id": "CI/CD",
-      "name": "CI/CD",
+      "id": "DAG",
+      "name": "DAG",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Scheduler",
+      "name": "Scheduler",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Worker",
+      "name": "Worker",
       "type": "tag",
       "val": 5
     },
@@ -319,14 +357,38 @@
       "val": 5
     },
     {
-      "id": "Docker",
-      "name": "Docker",
+      "id": "Image",
+      "name": "Image",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Container",
+      "name": "Container",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Repository",
+      "name": "Repository",
       "type": "tag",
       "val": 5
     },
     {
       "id": "FastAPI",
       "name": "FastAPI",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Backend",
+      "name": "Backend",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "CI/CD",
+      "name": "CI/CD",
       "type": "tag",
       "val": 5
     },
@@ -379,8 +441,26 @@
       "val": 5
     },
     {
-      "id": "MLOps",
-      "name": "MLOps",
+      "id": "Java",
+      "name": "Java",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "HTTP",
+      "name": "HTTP",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Protocol",
+      "name": "Protocol",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Airflow",
+      "name": "Airflow",
       "type": "category",
       "val": 10
     },
@@ -397,6 +477,18 @@
       "val": 10
     },
     {
+      "id": "Docker",
+      "name": "Docker",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "MLOps",
+      "name": "MLOps",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "CI/CD",
       "name": "CI/CD",
       "type": "category",
@@ -407,40 +499,46 @@
       "name": "Python",
       "type": "category",
       "val": 10
+    },
+    {
+      "id": "SpringBoot",
+      "name": "SpringBoot",
+      "type": "category",
+      "val": 10
     }
   ],
   "links": [
     {
       "source": "[Airflow] Airflow의 기본",
-      "target": "Airflow"
-    },
-    {
-      "source": "[Airflow] Airflow의 기본",
-      "target": "Backend"
-    },
-    {
-      "source": "[Airflow] Airflow의 기본",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[Airflow] Airflow의 기본",
       "target": "MLOps"
     },
     {
-      "source": "[Airflow] Airflow의 추가 설명",
+      "source": "[Airflow] Airflow의 기본",
+      "target": "Docker-compose"
+    },
+    {
+      "source": "[Airflow] Airflow의 기본",
+      "target": "DAG"
+    },
+    {
+      "source": "[Airflow] Airflow의 기본",
       "target": "Airflow"
     },
     {
       "source": "[Airflow] Airflow의 추가 설명",
-      "target": "Backend"
+      "target": "Docker-compose"
     },
     {
       "source": "[Airflow] Airflow의 추가 설명",
-      "target": "CI/CD"
+      "target": "Scheduler"
     },
     {
       "source": "[Airflow] Airflow의 추가 설명",
-      "target": "MLOps"
+      "target": "Worker"
+    },
+    {
+      "source": "[Airflow] Airflow의 추가 설명",
+      "target": "Airflow"
     },
     {
       "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
@@ -484,67 +582,67 @@
     },
     {
       "source": "[Docker] Docker 한 번에 이해하기",
-      "target": "Docker"
+      "target": "Image"
     },
     {
       "source": "[Docker] Docker 한 번에 이해하기",
-      "target": "Backend"
+      "target": "Container"
     },
     {
       "source": "[Docker] Docker 한 번에 이해하기",
-      "target": "CI/CD"
+      "target": "Repository"
     },
     {
       "source": "[Docker] Docker 한 번에 이해하기",
-      "target": "MLOps"
+      "target": "Docker"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Image"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Container"
+    },
+    {
+      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
+      "target": "Repository"
     },
     {
       "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "target": "Docker"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
-      "target": "Backend"
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Image"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
-      "target": "CI/CD"
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Container"
     },
     {
-      "source": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
-      "target": "MLOps"
+      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
+      "target": "Repository"
     },
     {
       "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "target": "Docker"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
-      "target": "Backend"
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
+      "target": "Image"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
-      "target": "CI/CD"
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
+      "target": "Container"
     },
     {
-      "source": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
-      "target": "MLOps"
+      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
+      "target": "Repository"
     },
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
-    },
-    {
-      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
-      "target": "Backend"
-    },
-    {
-      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
-      "target": "MLOps"
     },
     {
       "source": "[FastAPI] FastAPI",
@@ -711,16 +809,48 @@
       "target": "MachineL"
     },
     {
-      "source": "[Python] ",
+      "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
     {
-      "source": "[Python] ",
+      "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "re"
     },
     {
-      "source": "[Python] ",
+      "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Python"
+    },
+    {
+      "source": "[Spring] Spring의 기본 공부하기",
+      "target": "Java"
+    },
+    {
+      "source": "[Spring] Spring의 기본 공부하기",
+      "target": "HTTP"
+    },
+    {
+      "source": "[Spring] Spring의 기본 공부하기",
+      "target": "Protocol"
+    },
+    {
+      "source": "[Spring] Spring의 기본 공부하기",
+      "target": "SpringBoot"
+    },
+    {
+      "source": "[Spring] Spring의 개발 용어 적립",
+      "target": "Java"
+    },
+    {
+      "source": "[Spring] Spring의 개발 용어 적립",
+      "target": "HTTP"
+    },
+    {
+      "source": "[Spring] Spring의 개발 용어 적립",
+      "target": "Protocol"
+    },
+    {
+      "source": "[Spring] Spring의 개발 용어 적립",
+      "target": "SpringBoot"
     }
   ]
 }
