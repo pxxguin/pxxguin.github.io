@@ -16,7 +16,7 @@
 		"preinstall": "npx only-allow pnpm"
 	},
 	"dependencies": {
-		"@astrojs/check": "^0.9.4",
+		"@astrojs/check": "^0.9.2",
 		"@astrojs/rss": "^4.0.12",
 		"@astrojs/sitemap": "^3.6.0",
 		"@astrojs/svelte": "7.2.5",
@@ -32,7 +32,7 @@
 		"@iconify/svelte": "^4.2.0",
 		"@swup/astro": "^1.7.0",
 		"@tailwindcss/typography": "^0.5.19",
-		"astro": "5.16.9",
+		"astro": "^5.18.1",
 		"astro-expressive-code": "^0.41.3",
 		"astro-icon": "^1.1.5",
 		"canvas-confetti": "^1.9.4",
@@ -47,6 +47,7 @@
 		"overlayscrollbars": "^2.14.0",
 		"pagefind": "^1.4.0",
 		"photoswipe": "^5.4.4",
+		"pnpm": "^10.33.0",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-components": "^0.3.0",
