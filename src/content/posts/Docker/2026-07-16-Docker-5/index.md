@@ -1,6 +1,6 @@
 ---
 title: "[K8S] "
-image: /images/docker.jpg
+image: /images/docker.png
 published: 2026-07-16T00:00:00.000Z
 description: this is fucking world!
 series: docker-basics
