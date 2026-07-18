@@ -3,7 +3,7 @@
     {
       "id": "[Airflow] Airflow의 기본",
       "title": "[Airflow] Airflow의 기본",
-      "postId": 15,
+      "postId": 1,
       "tags": [
         "MLOps",
         "Docker-compose",
@@ -16,7 +16,7 @@
     {
       "id": "[Airflow] Airflow의 추가 설명",
       "title": "[Airflow] Airflow의 추가 설명",
-      "postId": 16,
+      "postId": 2,
       "tags": [
         "Docker-compose",
         "Scheduler",
@@ -27,15 +27,26 @@
       "val": 1
     },
     {
-      "id": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "title": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "postId": 18,
+      "id": "[NLP] What is Attention Algorithms?",
+      "title": "[NLP] What is Attention Algorithms?",
+      "postId": 13,
       "tags": [
-        "Wireshark",
-        "Http/Https",
-        "Packet"
+        "NLP",
+        "DeepL"
       ],
-      "category": "Network",
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[NLP] How BERT model operate in python?",
+      "title": "[NLP] How BERT model operate in python?",
+      "postId": 14,
+      "tags": [
+        "NLP",
+        "DeepL"
+      ],
+      "category": "MachineL",
       "type": "post",
       "val": 1
     },
@@ -75,7 +86,7 @@
     {
       "id": "[Docker] Docker 한 번에 이해하기",
       "title": "[Docker] Docker 한 번에 이해하기",
-      "postId": 11,
+      "postId": 6,
       "tags": [
         "Image",
         "Container",
@@ -88,7 +99,7 @@
     {
       "id": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
       "title": "[Docker] run, exec, ps 옵션의 의미 완벽 파헤치기",
-      "postId": 12,
+      "postId": 7,
       "tags": [
         "Image",
         "Container",
@@ -101,7 +112,7 @@
     {
       "id": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
       "title": "[Docker] 초보자를 위한 Dockerfile 완벽 가이드",
-      "postId": 13,
+      "postId": 8,
       "tags": [
         "Image",
         "Container",
@@ -114,7 +125,7 @@
     {
       "id": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "title": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
-      "postId": 14,
+      "postId": 9,
       "tags": [
         "Image",
         "Container",
@@ -125,84 +136,9 @@
       "val": 1
     },
     {
-      "id": "[FastAPI] FastAPI",
-      "title": "[FastAPI] FastAPI",
-      "postId": 17,
-      "tags": [
-        "FastAPI",
-        "Backend",
-        "CI/CD"
-      ],
-      "category": "MLOps",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[CI/CD] CI/CD란 무엇인가?",
-      "title": "[CI/CD] CI/CD란 무엇인가?",
-      "postId": 19,
-      "tags": [
-        "Github",
-        "Github Actions"
-      ],
-      "category": "CI/CD",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[CI/CD] Github Actions의 기초 개념",
-      "title": "[CI/CD] Github Actions의 기초 개념",
-      "postId": 20,
-      "tags": [
-        "Github",
-        "Github Actions",
-        "Github Workflows"
-      ],
-      "category": "CI/CD",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[CI/CD] Github Actions의 기초 개념",
-      "title": "[CI/CD] Github Actions의 기초 개념",
-      "postId": 23,
-      "tags": [
-        "Github",
-        "Github Actions",
-        "Github Workflows"
-      ],
-      "category": "CI/CD",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[NLP] What is Attention Algorithms?",
-      "title": "[NLP] What is Attention Algorithms?",
-      "postId": 2,
-      "tags": [
-        "NLP",
-        "DeepL"
-      ],
-      "category": "MachineL",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[NLP] How BERT model operate in python?",
-      "title": "[NLP] How BERT model operate in python?",
-      "postId": 1,
-      "tags": [
-        "NLP",
-        "DeepL"
-      ],
-      "category": "MachineL",
-      "type": "post",
-      "val": 1
-    },
-    {
       "id": "[Paper] Review with The Free Transformer",
       "title": "[Paper] Review with The Free Transformer",
-      "postId": 6,
+      "postId": 15,
       "tags": [
         "Paper",
         "NLP",
@@ -215,7 +151,7 @@
     {
       "id": "[Paper] Review with Deep Think with Confidence",
       "title": "[Paper] Review with Deep Think with Confidence",
-      "postId": 7,
+      "postId": 16,
       "tags": [
         "Paper",
         "NLP",
@@ -228,7 +164,7 @@
     {
       "id": "[Paper] Review with TIR",
       "title": "[Paper] Review with TIR",
-      "postId": 8,
+      "postId": 17,
       "tags": [
         "Paper",
         "NLP",
@@ -241,7 +177,7 @@
     {
       "id": "[Paper] Review with StepWiser",
       "title": "[Paper] Review with StepWiser",
-      "postId": 9,
+      "postId": 18,
       "tags": [
         "Paper",
         "NLP",
@@ -254,7 +190,7 @@
     {
       "id": "[Paper] Review with ToolOrchestra",
       "title": "[Paper] Review with ToolOrchestra",
-      "postId": 10,
+      "postId": 19,
       "tags": [
         "Paper",
         "NLP",
@@ -267,38 +203,12 @@
     {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
-      "postId": 21,
+      "postId": 20,
       "tags": [
         "Regex",
         "re"
       ],
       "category": "Python",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[Spring] Spring의 기본 공부하기",
-      "title": "[Spring] Spring의 기본 공부하기",
-      "postId": 24,
-      "tags": [
-        "Java",
-        "HTTP",
-        "Protocol"
-      ],
-      "category": "SpringBoot",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[Spring] Spring의 개발 용어 적립",
-      "title": "[Spring] Spring의 개발 용어 적립",
-      "postId": 25,
-      "tags": [
-        "Java",
-        "HTTP",
-        "Protocol"
-      ],
-      "category": "SpringBoot",
       "type": "post",
       "val": 1
     },
@@ -333,20 +243,8 @@
       "val": 5
     },
     {
-      "id": "Wireshark",
-      "name": "Wireshark",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Http/Https",
-      "name": "Http/Https",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Packet",
-      "name": "Packet",
+      "id": "NLP",
+      "name": "NLP",
       "type": "tag",
       "val": 5
     },
@@ -375,48 +273,6 @@
       "val": 5
     },
     {
-      "id": "FastAPI",
-      "name": "FastAPI",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Backend",
-      "name": "Backend",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "CI/CD",
-      "name": "CI/CD",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Github",
-      "name": "Github",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Github Actions",
-      "name": "Github Actions",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Github Workflows",
-      "name": "Github Workflows",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "NLP",
-      "name": "NLP",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Paper",
       "name": "Paper",
       "type": "tag",
@@ -441,32 +297,8 @@
       "val": 5
     },
     {
-      "id": "Java",
-      "name": "Java",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "HTTP",
-      "name": "HTTP",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Protocol",
-      "name": "Protocol",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Airflow",
       "name": "Airflow",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "Network",
-      "name": "Network",
       "type": "category",
       "val": 10
     },
@@ -483,26 +315,8 @@
       "val": 10
     },
     {
-      "id": "MLOps",
-      "name": "MLOps",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "CI/CD",
-      "name": "CI/CD",
-      "type": "category",
-      "val": 10
-    },
-    {
       "id": "Python",
       "name": "Python",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "SpringBoot",
-      "name": "SpringBoot",
       "type": "category",
       "val": 10
     }
@@ -541,20 +355,28 @@
       "target": "Airflow"
     },
     {
-      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "Wireshark"
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "NLP"
     },
     {
-      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "Http/Https"
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "DeepL"
     },
     {
-      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "Packet"
+      "source": "[NLP] What is Attention Algorithms?",
+      "target": "MachineL"
     },
     {
-      "source": "[CS] HTTP와 HTTPS의 차이 with Wireshark",
-      "target": "Network"
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "NLP"
+    },
+    {
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "DeepL"
+    },
+    {
+      "source": "[NLP] How BERT model operate in python?",
+      "target": "MachineL"
     },
     {
       "source": "[DeepL] Can you explain about Back Propagation?",
@@ -643,90 +465,6 @@
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
-    },
-    {
-      "source": "[FastAPI] FastAPI",
-      "target": "FastAPI"
-    },
-    {
-      "source": "[FastAPI] FastAPI",
-      "target": "Backend"
-    },
-    {
-      "source": "[FastAPI] FastAPI",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[FastAPI] FastAPI",
-      "target": "MLOps"
-    },
-    {
-      "source": "[CI/CD] CI/CD란 무엇인가?",
-      "target": "Github"
-    },
-    {
-      "source": "[CI/CD] CI/CD란 무엇인가?",
-      "target": "Github Actions"
-    },
-    {
-      "source": "[CI/CD] CI/CD란 무엇인가?",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github Actions"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github Workflows"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github Actions"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "Github Workflows"
-    },
-    {
-      "source": "[CI/CD] Github Actions의 기초 개념",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[NLP] What is Attention Algorithms?",
-      "target": "NLP"
-    },
-    {
-      "source": "[NLP] What is Attention Algorithms?",
-      "target": "DeepL"
-    },
-    {
-      "source": "[NLP] What is Attention Algorithms?",
-      "target": "MachineL"
-    },
-    {
-      "source": "[NLP] How BERT model operate in python?",
-      "target": "NLP"
-    },
-    {
-      "source": "[NLP] How BERT model operate in python?",
-      "target": "DeepL"
-    },
-    {
-      "source": "[NLP] How BERT model operate in python?",
-      "target": "MachineL"
     },
     {
       "source": "[Paper] Review with The Free Transformer",
@@ -819,38 +557,6 @@
     {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Python"
-    },
-    {
-      "source": "[Spring] Spring의 기본 공부하기",
-      "target": "Java"
-    },
-    {
-      "source": "[Spring] Spring의 기본 공부하기",
-      "target": "HTTP"
-    },
-    {
-      "source": "[Spring] Spring의 기본 공부하기",
-      "target": "Protocol"
-    },
-    {
-      "source": "[Spring] Spring의 기본 공부하기",
-      "target": "SpringBoot"
-    },
-    {
-      "source": "[Spring] Spring의 개발 용어 적립",
-      "target": "Java"
-    },
-    {
-      "source": "[Spring] Spring의 개발 용어 적립",
-      "target": "HTTP"
-    },
-    {
-      "source": "[Spring] Spring의 개발 용어 적립",
-      "target": "Protocol"
-    },
-    {
-      "source": "[Spring] Spring의 개발 용어 적립",
-      "target": "SpringBoot"
     }
   ]
 }
