@@ -11,7 +11,7 @@ tags:
   - Repository
 category: Docker
 draft: false
-postId: 12
+postId: 7
 ---
 
 ## 🪪 Docker의 기본 명령어

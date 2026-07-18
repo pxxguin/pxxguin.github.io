@@ -11,7 +11,7 @@ tags:
   - Repository
 category: Docker
 draft: true
-postId: 26
+postId: 10
 ---
 
 ### 컨테이너 구조와 가상 머신의 차이

@@ -10,8 +10,8 @@ tags:
   - Backend
   - CI/CD
 category: MLOps
-draft: false
-postId: 17
+draft: true
+postId: 12
 ---
 
 ## 💁 Django, Flask가 아닌 FastAPI여야하는 이유는?

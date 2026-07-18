@@ -8,7 +8,7 @@ tags:
   - DeepL
 category: MachineL
 draft: false
-postId: 2
+postId: 13
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서..

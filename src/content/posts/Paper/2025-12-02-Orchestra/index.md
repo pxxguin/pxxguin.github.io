@@ -11,7 +11,7 @@ tags:
   - LLM
 category: MachineL
 draft: false
-postId: 10
+postId: 19
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서...

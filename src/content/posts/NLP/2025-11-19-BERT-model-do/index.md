@@ -8,7 +8,7 @@ tags:
   - DeepL
 category: MachineL
 draft: false
-postId: 1
+postId: 14
 ---
 
 ### ⭐️ BERT 모델 불러오기

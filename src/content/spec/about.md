@@ -1,5 +1,6 @@
-# About
-👋🏻 안녕하세요. 함께 성장하는 즐거움을 아는 개발자 [pxxguin](https://github.com/pxxguin) 입니다.
+# 📝 About
+
+👋🏻 안녕하세요. 개발자 [pxxguin](https://github.com/pxxguin) 입니다.
 
 제가 생각하는 개발이란 좋은 지식과 정보를 혼자 소유하는 것이 아니라, 함께 공유하며 함께 발전시켜 나가는 과정입니다.
 

@@ -11,7 +11,7 @@ tags:
   - Repository
 category: Docker
 draft: false
-postId: 14
+postId: 9
 ---
 
 ## 🐐 docker-compose.yml은 어떤 역할을 하는가?

@@ -11,7 +11,7 @@ tags:
   - Worker
 category: Airflow
 draft: false
-postId: 16
+postId: 2
 ---
 
 ## 🏗️ Airflow 아키텍처 이해하기
