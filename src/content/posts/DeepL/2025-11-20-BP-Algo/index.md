@@ -1,6 +1,6 @@
 ---
 title: "[DeepL] Can you explain about Back Propagation?"
-image: /images/test3.png
+image: /images/deepl.png
 published: 2025-11-21T00:00:00.000Z
 description: DeepL에서 중심이 되는 역전파 알고리즘에 대해서 설명할 수 있나요?
 series: deep-learning-basics
