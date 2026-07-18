@@ -11,7 +11,7 @@ tags:
   - DAG
 category: Airflow
 draft: false
-postId: 15
+postId: 1
 ---
 
 ## 🤔 Apache Airflow란?

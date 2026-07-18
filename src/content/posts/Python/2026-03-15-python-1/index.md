@@ -8,7 +8,7 @@ tags:
     - re
 category: Python
 draft: false
-postId: 21
+postId: 20
 ---
 
 ## 🍠 파이썬 필수 라이브러리 re란?

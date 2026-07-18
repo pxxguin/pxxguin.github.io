@@ -11,7 +11,7 @@ tags:
   - Repository
 category: Docker
 draft: false
-postId: 11
+postId: 6
 ---
 
 ## 🌟 Docker를 시작하기 앞서..

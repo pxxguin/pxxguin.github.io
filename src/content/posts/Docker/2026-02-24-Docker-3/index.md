@@ -11,7 +11,7 @@ tags:
   - Repository
 category: Docker
 draft: false
-postId: 13
+postId: 8
 ---
 
 ## 🌟 Dockerfile을 사용하는 이유

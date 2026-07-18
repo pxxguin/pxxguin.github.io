@@ -9,7 +9,7 @@ tags:
   - LLM
 category: MachineL
 draft: false
-postId: 7
+postId: 16
 ---
 
 ### 🤦🏻‍♂️ 들어가기에 앞서...
