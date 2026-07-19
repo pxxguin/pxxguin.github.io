@@ -1,26 +1,11 @@
 {
   "nodes": [
     {
-      "id": "[Airflow] Airflow의 기본",
-      "title": "[Airflow] Airflow의 기본",
+      "id": "[Airflow] Apache Airflow ",
+      "title": "[Airflow] Apache Airflow ",
       "postId": 1,
       "tags": [
-        "MLOps",
-        "Docker-compose",
         "DAG"
-      ],
-      "category": "Airflow",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[Airflow] Airflow의 추가 설명",
-      "title": "[Airflow] Airflow의 추가 설명",
-      "postId": 2,
-      "tags": [
-        "Docker-compose",
-        "Scheduler",
-        "Worker"
       ],
       "category": "Airflow",
       "type": "post",
@@ -213,32 +198,8 @@
       "val": 1
     },
     {
-      "id": "MLOps",
-      "name": "MLOps",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Docker-compose",
-      "name": "Docker-compose",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "DAG",
       "name": "DAG",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Scheduler",
-      "name": "Scheduler",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Worker",
-      "name": "Worker",
       "type": "tag",
       "val": 5
     },
@@ -323,35 +284,11 @@
   ],
   "links": [
     {
-      "source": "[Airflow] Airflow의 기본",
-      "target": "MLOps"
-    },
-    {
-      "source": "[Airflow] Airflow의 기본",
-      "target": "Docker-compose"
-    },
-    {
-      "source": "[Airflow] Airflow의 기본",
+      "source": "[Airflow] Apache Airflow ",
       "target": "DAG"
     },
     {
-      "source": "[Airflow] Airflow의 기본",
-      "target": "Airflow"
-    },
-    {
-      "source": "[Airflow] Airflow의 추가 설명",
-      "target": "Docker-compose"
-    },
-    {
-      "source": "[Airflow] Airflow의 추가 설명",
-      "target": "Scheduler"
-    },
-    {
-      "source": "[Airflow] Airflow의 추가 설명",
-      "target": "Worker"
-    },
-    {
-      "source": "[Airflow] Airflow의 추가 설명",
+      "source": "[Airflow] Apache Airflow ",
       "target": "Airflow"
     },
     {
