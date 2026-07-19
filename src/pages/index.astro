@@ -24,6 +24,24 @@ seriesCollection.sort((a, b) => a.data.title.localeCompare(b.data.title));
 
 const allPosts = await getCollection("posts");
 
+// Hash color functions for tags
+function hashStringToColor(str: string) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    return `hsl(${hue}, 70%, 45%)`;
+}
+function hashStringToDarkColor(str: string) {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+        hash = str.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const hue = Math.abs(hash % 360);
+    return `hsl(${hue}, 80%, 75%)`;
+}
+
 const allSeries = seriesCollection.map((s) => {
 	const seriesId = s.id.replace(/\.md$/, "");
 	const posts = allPosts.filter((p) => p.data.series === seriesId);
@@ -33,6 +51,7 @@ const allSeries = seriesCollection.map((s) => {
 		description: s.data.description,
 		status: s.data.status,
 		image: s.data.image,
+		tags: s.data.tags || [],
 		count: posts.length,
 	};
 });
@@ -258,10 +277,29 @@ const allSeries = seriesCollection.map((s) => {
                                             {s.count} Posts
                                         </div>
                                     </div>
-                                    <h3 class="text-xl font-bold text-black/90 dark:text-white/90 mb-2 group-hover:text-[var(--primary)] transition duration-300">
+                                    <h3 class="text-xl font-bold text-black/90 dark:text-white/90 mb-2 group-hover:text-[var(--primary)] transition duration-300 line-clamp-1">
                                         {s.title}
                                     </h3>
-                                    <p class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-3 flex-grow">
+                                    {s.tags && s.tags.length > 0 && (
+                                        <div class="flex flex-wrap gap-1.5 mb-3">
+                                            {s.tags.slice(0, 3).map(tag => (
+                                                <>
+                                                    <span class="inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-xs font-bold bg-black/5 dark:bg-white/5 transition-colors dark:hidden" style={`color: ${hashStringToColor(tag)};`}>
+                                                        <span class="opacity-70">#</span>{tag}
+                                                    </span>
+                                                    <span class="hidden dark:inline-flex items-center gap-0.5 px-2 py-0.5 rounded-md text-xs font-bold bg-black/5 dark:bg-white/5 transition-colors" style={`color: ${hashStringToDarkColor(tag)};`}>
+                                                        <span class="opacity-70">#</span>{tag}
+                                                    </span>
+                                                </>
+                                            ))}
+                                            {s.tags.length > 3 && (
+                                                <span class="inline-flex items-center px-2 py-0.5 rounded-md text-xs font-bold bg-black/5 dark:bg-white/5 text-black/50 dark:text-white/50">
+                                                    +{s.tags.length - 3}
+                                                </span>
+                                            )}
+                                        </div>
+                                    )}
+                                    <p class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-2 flex-grow">
                                         {s.description}
                                     </p>
                                     <div class="flex items-center text-sm font-bold text-[var(--primary)] mt-auto">
