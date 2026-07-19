@@ -1,11 +1,6 @@
 ---
 import type { CollectionEntry } from "astro:content";
 import path from "node:path";
-import { Icon } from "astro-icon/components";
-import { profileConfig } from "../config";
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
-import { formatDateToYYYYMMDD } from "../utils/date-utils";
 import { getDir } from "../utils/url-utils";
 import ImageWrapper from "./misc/ImageWrapper.astro";
 
@@ -26,9 +21,8 @@ const {
 	entry,
 	title,
 	url,
-	published,
-	tags,
 	category,
+	tags,
 	image,
 	description,
 	class: className,
@@ -53,71 +47,63 @@ if (!coverImage) {
 	}
 }
 
-const hasCover = true; // Always true as we have a default
 const remarkPluginFrontmatter = entry.render
 	? (await entry.render()).remarkPluginFrontmatter
 	: { excerpt: "", words: 0, minutes: 0 };
+
+// Function to generate a stable random color class based on the tag name
+const tagColors = [
+    'text-blue-500', 'text-green-500', 'text-purple-500', 
+    'text-pink-500', 'text-indigo-500', 'text-teal-500', 
+    'text-orange-500', 'text-cyan-500'
+];
+
+function getTagColor(tag: string) {
+    if (!tag) return tagColors[0];
+    let hash = 0;
+    for (let i = 0; i < tag.length; i++) {
+        hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % tagColors.length;
+    return tagColors[index];
+}
+
+const firstTag = tags && tags.length > 0 ? tags[0] : null;
+const tagColorClass = firstTag ? getTagColor(firstTag) : "";
 ---
 
-<div class:list={["card-base flex flex-col w-full rounded-[var(--radius-large)] overflow-hidden relative transition hover:shadow-lg", className]} style={style}>
-    {hasCover && <a href={url} aria-label={title}
-                    class="group w-full relative overflow-hidden active:scale-95 block h-48" >
-        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/10 transition"></div>
-        
-        <!-- Tag Pill -->
-        {category && (
-            <div class="absolute top-3 left-3 z-20 bg-blue-100 text-blue-600 dark:bg-blue-900/50 dark:text-blue-300 px-3 py-1 rounded-full text-xs font-bold shadow-sm">
-                {category}
-            </div>
-        )}
-
-        <ImageWrapper src={coverImage} basePath={path.join("content/posts/", getDir(entry.id))} alt="Cover Image of the Post"
-                  class="w-full h-full object-cover transition duration-300 group-hover:scale-105">
+<a href={url} class:list={["flex flex-col w-full group cursor-pointer bg-white dark:bg-[#1e1e1e] rounded-[1.25rem] overflow-hidden shadow-sm hover:shadow-md transition-all duration-300 border border-black/5 dark:border-white/5 hover:-translate-y-1", className]} style={style}>
+    <!-- Image Wrapper -->
+    <div class="w-full aspect-[4/3] sm:aspect-video relative bg-black/5 dark:bg-white/5 overflow-hidden">
+        <div class="absolute pointer-events-none z-10 w-full h-full group-hover:bg-black/5 dark:group-hover:bg-white/5 transition-colors duration-300"></div>
+        <ImageWrapper src={coverImage} basePath={path.join("content/posts/", getDir(entry.id))} alt={title}
+                  class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
         </ImageWrapper>
-    </a>}
-
-    <div class="p-5 flex flex-col h-full">
-        <!-- Title -->
-        <a href={url}
-           class="transition block font-bold mb-3 text-lg text-black/90 dark:text-white/90
-        hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
-        line-clamp-2
-        ">
-            {title}
-        </a>
-
-        <!-- Author & Date -->
-        <div class="flex items-center gap-2 mb-3 text-xs text-black/50 dark:text-white/50">
-            <!-- Author Avatar -->
-            <div class="w-6 h-6 rounded-full overflow-hidden">
-                 <ImageWrapper src={profileConfig.avatar || ""} alt="Author" class="w-full h-full object-cover" />
-            </div>
-            <span class="font-medium">{profileConfig.name}</span>
-            <span>·</span>
-            <span>{formatDateToYYYYMMDD(published)}</span>
-        </div>
-
-        <!-- Description -->
-        <!-- Description -->
-        <div class="text-sm text-black/60 dark:text-white/60 mb-4 line-clamp-2 flex-grow">
-            { description || remarkPluginFrontmatter.excerpt }
-        </div>
-
-        <!-- Footer -->
-        <div class="mt-auto pt-3 border-t border-black/5 dark:border-white/5 flex justify-between items-center text-black/40 dark:text-white/40 text-xs">
-            <div class="flex items-center gap-4">
-                <div class="flex items-center gap-1">
-                    <Icon name="material-symbols:chat-bubble-outline-rounded" class="text-base" />
-                    <span>0</span>
-                </div>
-                <div class="flex items-center gap-1">
-                    <Icon name="material-symbols:favorite-outline-rounded" class="text-base" />
-                    <span>0</span>
-                </div>
-            </div>
-            <button class="hover:text-[var(--primary)] transition">
-                <Icon name="material-symbols:share-outline" class="text-lg" />
-            </button>
-        </div>
     </div>
-</div>
+
+    <!-- Content -->
+    <div class="flex flex-col p-5 sm:p-6 bg-white dark:bg-[#1e1e1e] flex-grow">
+        <!-- Category & Tag -->
+        <div class="flex items-center gap-2 mb-2">
+            <div class="text-[#ff4a5a] dark:text-[#ff6b77] text-[13px] font-bold uppercase tracking-wide">
+                {category || "Uncategorized"}
+            </div>
+            {firstTag && (
+                <div class="flex items-center gap-1 text-[13px] font-bold">
+                    <span class="text-black/20 dark:text-white/20">•</span>
+                    <span class={tagColorClass}>#{firstTag}</span>
+                </div>
+            )}
+        </div>
+        
+        <!-- Title -->
+        <h3 class="text-[1.15rem] leading-snug font-bold text-black/90 dark:text-white/90 mb-3 line-clamp-2 group-hover:text-[var(--primary)] transition-colors duration-300">
+            {title}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2 font-medium mt-auto">
+            {description || remarkPluginFrontmatter.excerpt}
+        </p>
+    </div>
+</a>
