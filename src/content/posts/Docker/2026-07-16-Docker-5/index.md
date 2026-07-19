@@ -9,7 +9,7 @@ tags:
   - Image
   - Container
   - Repository
-category: Docker
+category: Kubernetes
 draft: true
 postId: 10
 ---
