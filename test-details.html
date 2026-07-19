@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.term-details {
+  display: inline-block;
+  position: relative;
+}
+.term-details summary {
+  list-style: none;
+  cursor: pointer;
+  color: blue;
+  font-weight: bold;
+  border-bottom: 1px dashed blue;
+}
+.term-details summary::-webkit-details-marker {
+  display: none;
+}
+.term-details[open] summary {
+  border-bottom-style: solid;
+}
+.term-content {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 0.5rem;
+  background: white;
+  border: 1px solid black;
+  padding: 10px;
+  width: 200px;
+}
+</style>
+</head>
+<body>
+  This is a test <details class="term-details"><summary>word</summary><span class="term-content">Tooltip content</span></details> in a sentence.
+</body>
+</html>
