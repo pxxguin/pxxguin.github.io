@@ -102,18 +102,23 @@ const subCategories = [...new Set(seriesPosts.map(post => post.data.category).fi
                                     </div>
                                     
                                     {post.data.category && (
-                                        <div class="px-2 py-0.5 rounded-md border border-black/10 dark:border-white/10 text-xs font-medium text-black/40 dark:text-white/40">
-                                            {post.data.category}
+                                        <div class="flex items-center gap-1 px-2 py-0.5 rounded-md bg-[var(--primary)]/10 text-xs font-bold text-[var(--primary)]">
+                                            <Icon name="material-symbols:book-2-outline-rounded" class="text-sm" />
+                                            <span>{post.data.category}</span>
                                         </div>
                                     )}
 
+                                    <div class="unread-indicator text-red-500 dark:text-red-400 flex items-center gap-1 text-xs font-bold bg-red-50 dark:bg-red-900/20 px-2 py-0.5 rounded-md">
+                                        <Icon name="material-symbols:close-rounded" class="text-sm" />
+                                        <span>Not Read</span>
+                                    </div>
                                     <div class="read-indicator hidden text-green-500 dark:text-green-400 flex items-center gap-1 text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-md">
                                         <Icon name="material-symbols:check-circle-rounded" class="text-sm" />
                                         <span>Read</span>
                                     </div>
                                 </div>
                                 
-                                <h3 class="text-xl font-bold text-black/80 dark:text-white/80 group-hover:text-[var(--primary)] transition-colors duration-300 mb-2 truncate">
+                                <h3 class="series-post-title text-xl font-bold text-black/80 dark:text-white/80 group-hover:text-[var(--primary)] transition-colors duration-300 mb-2 truncate">
                                     {post.data.title}
                                 </h3>
                                 
@@ -134,74 +139,102 @@ const subCategories = [...new Set(seriesPosts.map(post => post.data.category).fi
     </div>
     
     <script>
-        try {
-            const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
-            if (readPosts.length > 0) {
-                const items = document.querySelectorAll('.series-post-item');
-                items.forEach(item => {
-                    const postId = item.getAttribute('data-post-id');
-                    if (postId && readPosts.includes(postId)) {
-                        item.classList.add('opacity-75'); // dim read items slightly
-                        const indicator = item.querySelector('.read-indicator');
-                        if (indicator) indicator.classList.remove('hidden');
-                        
-                        // Change timeline dot color to green
-                        const dot = item.querySelector('.timeline-dot');
-                        if (dot) {
-                            dot.classList.remove('bg-black/20', 'dark:bg-white/20', 'group-hover:bg-[var(--primary)]');
-                            dot.classList.add('bg-green-500', 'dark:bg-green-400', 'group-hover:bg-green-400');
+        function setupSeriesPage() {
+            try {
+                const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
+                if (readPosts.length > 0) {
+                    const items = document.querySelectorAll('.series-post-item');
+                    items.forEach(item => {
+                        const postId = item.getAttribute('data-post-id');
+                        if (postId && readPosts.includes(postId)) {
+                            item.classList.add('opacity-75'); // dim read items slightly
+                            const indicator = item.querySelector('.read-indicator');
+                            if (indicator) indicator.classList.remove('hidden');
+                            const unreadIndicator = item.querySelector('.unread-indicator');
+                            if (unreadIndicator) unreadIndicator.classList.add('hidden');
+                            
+                            // Change timeline dot color to green
+                            const dot = item.querySelector('.timeline-dot');
+                            if (dot) {
+                                dot.classList.remove('bg-black/20', 'dark:bg-white/20', 'group-hover:bg-[var(--primary)]');
+                                dot.classList.add('bg-green-500', 'dark:bg-green-400', 'group-hover:bg-green-400');
+                            }
+                            
+                            // Add strikethrough to title, removed on hover
+                            const title = item.querySelector('.series-post-title');
+                            if (title) {
+                                title.classList.add('line-through', 'text-black/40', 'dark:text-white/40', 'group-hover:no-underline');
+                                title.classList.remove('text-black/80', 'dark:text-white/80');
+                            }
                         }
-                    }
-                });
+                    });
+                }
+            } catch (e) {
+                console.error("Failed to parse read posts", e);
             }
-        } catch (e) {
-            console.error("Failed to parse read posts", e);
-        }
 
-        // Sub-categories filtering logic
-        const filterBtns = document.querySelectorAll('.category-btn');
-        const postItems = document.querySelectorAll('.series-post-item');
+            // Sub-categories filtering logic
+            const filterBtns = document.querySelectorAll('.category-btn');
+            const postItems = document.querySelectorAll('.series-post-item');
 
-        filterBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Update active button styling
-                filterBtns.forEach(b => {
-                    b.classList.remove('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
-                    b.classList.add('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
-                });
-                btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
-                btn.classList.add('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
+            filterBtns.forEach(btn => {
+                // Ensure we don't add multiple listeners if the page is visited multiple times
+                // We do this by cloning and replacing the button to remove old listeners (quick trick)
+                const newBtn = btn.cloneNode(true);
+                btn.parentNode?.replaceChild(newBtn, btn);
+                
+                newBtn.addEventListener('click', () => {
+                    const currentFilterBtns = document.querySelectorAll('.category-btn');
+                    // Update active button styling
+                    currentFilterBtns.forEach(b => {
+                        b.classList.remove('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
+                        b.classList.add('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
+                    });
+                    newBtn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
+                    newBtn.classList.add('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
 
-                const selectedCategory = btn.getAttribute('data-category');
+                    const selectedCategory = newBtn.getAttribute('data-category');
 
-                // Filter posts with animation
-                let delay = 0;
-                postItems.forEach((item) => {
-                    const postCategory = item.getAttribute('data-post-category');
-                    if (selectedCategory === 'all' || postCategory === selectedCategory) {
-                        (item as HTMLElement).style.display = 'flex';
-                        item.classList.remove('animate-fade-in');
-                        
-                        // Trigger reflow to restart animation
-                        void (item as HTMLElement).offsetWidth;
-                        
-                        (item as HTMLElement).style.animationDelay = `${delay}s`;
-                        item.classList.add('animate-fade-in');
-                        delay += 0.05; // stagger effect
-                    } else {
-                        (item as HTMLElement).style.display = 'none';
-                        item.classList.remove('animate-fade-in');
-                    }
+                    // Filter posts with animation
+                    let delay = 0;
+                    postItems.forEach((item) => {
+                        const postCategory = item.getAttribute('data-post-category');
+                        if (selectedCategory === 'all' || postCategory === selectedCategory) {
+                            (item as HTMLElement).style.display = 'flex';
+                            item.classList.remove('animate-fade-in');
+                            
+                            // Trigger reflow to restart animation
+                            void (item as HTMLElement).offsetWidth;
+                            
+                            (item as HTMLElement).style.animationDelay = `${delay}s`;
+                            item.classList.add('animate-fade-in');
+                            delay += 0.05; // stagger effect
+                        } else {
+                            (item as HTMLElement).style.display = 'none';
+                            item.classList.remove('animate-fade-in');
+                        }
+                    });
                 });
             });
-        });
 
-        // Initial setup for stagger animation
-        let delay = 0;
-        postItems.forEach((item) => {
-            (item as HTMLElement).style.animationDelay = `${delay}s`;
-            item.classList.add('animate-fade-in');
-            delay += 0.05;
-        });
+            // Initial setup for stagger animation
+            let delay = 0;
+            postItems.forEach((item) => {
+                (item as HTMLElement).style.animationDelay = `${delay}s`;
+                item.classList.add('animate-fade-in');
+                delay += 0.05;
+            });
+        }
+
+        setupSeriesPage();
+
+        // Integrate with Swup lifecycle for client-side navigation
+        if (window?.swup?.hooks) {
+            window.swup.hooks.on('page:view', setupSeriesPage);
+        } else {
+            document.addEventListener('swup:enable', () => {
+                window.swup.hooks.on('page:view', setupSeriesPage);
+            });
+        }
     </script>
 </MainGridLayout>
