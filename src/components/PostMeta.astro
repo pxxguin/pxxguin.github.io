@@ -13,6 +13,7 @@ interface Props {
 	category: string | null;
 	hideTagsForMobile?: boolean;
 	hideUpdateDate?: boolean;
+	github?: string;
 }
 const {
 	published,
@@ -21,62 +22,74 @@ const {
 	category,
 	hideTagsForMobile = false,
 	hideUpdateDate = false,
+	github,
 } = Astro.props;
 const className = Astro.props.class;
+
+const tagColors = [
+    'text-blue-600 bg-blue-50 hover:bg-blue-100 dark:text-blue-300 dark:bg-blue-900/30 dark:hover:bg-blue-900/50', 
+    'text-green-600 bg-green-50 hover:bg-green-100 dark:text-green-300 dark:bg-green-900/30 dark:hover:bg-green-900/50', 
+    'text-purple-600 bg-purple-50 hover:bg-purple-100 dark:text-purple-300 dark:bg-purple-900/30 dark:hover:bg-purple-900/50', 
+    'text-pink-600 bg-pink-50 hover:bg-pink-100 dark:text-pink-300 dark:bg-pink-900/30 dark:hover:bg-pink-900/50', 
+    'text-indigo-600 bg-indigo-50 hover:bg-indigo-100 dark:text-indigo-300 dark:bg-indigo-900/30 dark:hover:bg-indigo-900/50', 
+    'text-teal-600 bg-teal-50 hover:bg-teal-100 dark:text-teal-300 dark:bg-teal-900/30 dark:hover:bg-teal-900/50', 
+    'text-orange-600 bg-orange-50 hover:bg-orange-100 dark:text-orange-300 dark:bg-orange-900/30 dark:hover:bg-orange-900/50', 
+    'text-cyan-600 bg-cyan-50 hover:bg-cyan-100 dark:text-cyan-300 dark:bg-cyan-900/30 dark:hover:bg-cyan-900/50'
+];
+
+function getTagStyle(tag: string) {
+    if (!tag) return tagColors[0];
+    let hash = 0;
+    for (let i = 0; i < tag.length; i++) {
+        hash = tag.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const index = Math.abs(hash) % tagColors.length;
+    return tagColors[index];
+}
 ---
 
-<div class:list={["flex flex-wrap text-neutral-500 dark:text-neutral-400 items-center gap-4 gap-x-4 gap-y-2", className]}>
+<div class:list={["flex flex-wrap items-center gap-2", className]}>
     <!-- publish date -->
-    <div class="flex items-center">
-        <div class="meta-icon"
-        >
-            <Icon name="material-symbols:calendar-today-outline-rounded" class="text-xl"></Icon>
-        </div>
-        <span class="text-50 text-sm font-medium">{formatDateToYYYYMMDD(published)}</span>
+    <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 text-sm font-medium">
+        <Icon name="material-symbols:calendar-today-outline-rounded" class="text-[1.05rem]"></Icon>
+        <span>{formatDateToYYYYMMDD(published)}</span>
     </div>
 
     <!-- update date -->
     {!hideUpdateDate && updated && updated.getTime() !== published.getTime() && (
-        <div class="flex items-center">
-            <div class="meta-icon"
-            >
-                <Icon name="material-symbols:edit-calendar-outline-rounded" class="text-xl"></Icon>
-            </div>
-            <span class="text-50 text-sm font-medium">{formatDateToYYYYMMDD(updated)}</span>
+        <div class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 text-sm font-medium">
+            <Icon name="material-symbols:edit-calendar-outline-rounded" class="text-[1.05rem]"></Icon>
+            <span>{formatDateToYYYYMMDD(updated)}</span>
         </div>
     )}
 
     <!-- categories -->
-    <div class="flex items-center">
-        <div class="meta-icon"
-        >
-            <Icon name="material-symbols:book-2-outline-rounded" class="text-xl"></Icon>
-        </div>
-        <div class="flex flex-row flex-nowrap items-center">
-            <a href={getCategoryUrl(category)} aria-label={`View all posts in the ${category} category`}
-               class="link-lg transition text-50 text-sm font-medium
-                            hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
-                {category || i18n(I18nKey.uncategorized)}
-            </a>
-        </div>
-    </div>
+    <a href={getCategoryUrl(category)} aria-label={`View all posts in the ${category} category`}
+       class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-[var(--btn-regular-bg)] text-[var(--primary)] hover:opacity-80 transition-opacity text-sm font-bold">
+        <Icon name="material-symbols:book-2-outline-rounded" class="text-[1.05rem]"></Icon>
+        <span>{category || i18n(I18nKey.uncategorized)}</span>
+    </a>
 
     <!-- tags -->
-    <div class:list={["items-center", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
-        <div class="meta-icon"
-        >
-            <Icon name="material-symbols:tag-rounded" class="text-xl"></Icon>
-        </div>
-        <div class="flex flex-row flex-nowrap items-center">
-            {(tags && tags.length > 0) && tags.map((tag, i) => (
-                <div class:list={[{"hidden": i == 0}, "mx-1.5 text-[var(--meta-divider)] text-sm"]}>/</div>
-                <a href={getTagUrl(tag)} aria-label={`View all posts with the ${tag.trim()} tag`}
-                   class="link-lg transition text-50 text-sm font-medium
-                                hover:text-[var(--primary)] dark:hover:text-[var(--primary)] whitespace-nowrap">
-                    {tag.trim()}
-                </a>
-            ))}
-            {!(tags && tags.length > 0) && <div class="transition text-50 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
-        </div>
+    <div class:list={["flex-row flex-wrap items-center gap-2", {"flex": !hideTagsForMobile, "hidden md:flex": hideTagsForMobile}]}>
+        {(tags && tags.length > 0) && tags.map((tag) => {
+            const colorClass = getTagStyle(tag);
+            return (
+            <a href={getTagUrl(tag)} aria-label={`View all posts with the ${tag.trim()} tag`}
+               class:list={["flex items-center gap-1 px-2.5 py-1 rounded-md transition-colors text-sm font-bold", colorClass]}>
+                <Icon name="material-symbols:tag-rounded" class="text-[1.05rem] opacity-70"></Icon>
+                <span>{tag.trim()}</span>
+            </a>
+        )})}
+        {!(tags && tags.length > 0) && <div class="px-2.5 py-1 rounded-md bg-black/5 dark:bg-white/10 text-black/60 dark:text-white/60 text-sm font-medium">{i18n(I18nKey.noTags)}</div>}
     </div>
+
+    <!-- github source code -->
+    {github && (
+        <a href={github} target="_blank" rel="noopener noreferrer" 
+           class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-black/5 hover:bg-black/10 dark:bg-white/10 dark:hover:bg-white/20 text-black/70 dark:text-white/70 transition-colors text-sm font-bold">
+            <Icon name="fa6-brands:github" class="text-[1.05rem]"></Icon>
+            <span>Source Code</span>
+        </a>
+    )}
 </div>

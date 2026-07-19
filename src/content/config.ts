@@ -19,6 +19,9 @@ const postsCollection = defineCollection({
 		series: z.string().optional(),
 		seriesOrder: z.number().optional(),
 
+		/* GitHub Link */
+		github: z.string().optional(),
+
 		/* For internal use */
 		prevTitle: z.string().default(""),
 		prevSlug: z.string().default(""),

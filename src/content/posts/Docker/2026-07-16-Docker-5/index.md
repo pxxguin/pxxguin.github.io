@@ -12,6 +12,7 @@ tags:
 category: Kubernetes
 draft: true
 postId: 10
+github: https://github.com/pxxguin/pxxguin.github.io
 ---
 
 ### 컨테이너 구조와 가상 머신의 차이
