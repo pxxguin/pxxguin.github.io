@@ -21,61 +21,110 @@ const allPosts = await getCollection("posts");
 const seriesPosts = allPosts
 	.filter((post) => post.data.series === seriesId)
 	.sort((a, b) => (a.data.seriesOrder || 999) - (b.data.seriesOrder || 999));
+
+// Extract unique categories for sub-category tabs
+const subCategories = [...new Set(seriesPosts.map(post => post.data.category).filter(Boolean))];
 ---
 
 <MainGridLayout title={series.data.title} description={series.data.description} banner={series.data.image}>
+    <style>
+        @keyframes fadeSlideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+    </style>
+    
     <div class="flex w-full rounded-[var(--radius-large)] overflow-hidden relative mb-4">
-        <div class="card-base z-10 px-6 md:px-9 pt-6 pb-4 relative w-full ">
-            <div class="flex items-center gap-2 text-[var(--primary)] font-bold mb-2 uppercase text-sm tracking-wider">
-                <Icon name="material-symbols:auto-stories-outline-rounded" class="text-lg" />
+        <div class="card-base z-10 px-6 md:px-9 pt-8 pb-8 relative w-full ">
+            <!-- Background Decoration for Series Header -->
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-[var(--primary)]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="flex items-center gap-2 text-[var(--primary)] font-bold mb-3 uppercase text-sm tracking-wider">
+                <Icon name="material-symbols:auto-stories-outline-rounded" class="text-xl" />
                 <span>Series</span>
             </div>
-            <h1 class="text-3xl md:text-4xl font-bold text-black/90 dark:text-white/90 mb-4">
+            <h1 class="text-3xl md:text-4xl font-extrabold text-black/90 dark:text-white/90 mb-4 tracking-tight">
                 {series.data.title}
             </h1>
-            <p class="text-lg text-black/60 dark:text-white/60 mb-6 leading-relaxed">
+            <p class="text-lg text-black/60 dark:text-white/60 mb-8 leading-relaxed max-w-3xl">
                 {series.data.description}
             </p>
 
-            <div class="border-t border-black/5 dark:border-white/5 pt-6">
-                <div class="flex items-center justify-between mb-4">
-                     <h2 class="text-xl font-bold text-black/80 dark:text-white/80">
-                        {seriesPosts.length} Posts
+            <div class="border-t border-black/5 dark:border-white/5 pt-8">
+                <div class="flex items-center justify-between mb-6">
+                     <h2 class="text-2xl font-bold text-black/80 dark:text-white/80 flex items-center gap-2">
+                        <Icon name="material-symbols:list-alt-outline" class="text-[var(--primary)]" />
+                        <span>{seriesPosts.length} Posts</span>
                     </h2>
-                     <div class={`px-3 py-1 rounded-full text-sm font-bold ${
+                     <div class={`px-4 py-1.5 rounded-full text-sm font-bold shadow-sm ${
                         series.data.status === 'completed' 
-                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400' 
-                        : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400'
+                        ? 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border border-green-200 dark:border-green-800/50' 
+                        : 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border border-blue-200 dark:border-blue-800/50'
                     }`}>
                         {series.data.status === 'completed' ? 'Completed' : 'Ongoing'}
                     </div>
                 </div>
 
-                <div class="space-y-4">
-                    {seriesPosts.map((post, index) => (
-                        <a href={getPostUrl(post)} data-post-id={post.id} class="flex group relative pl-8 pb-8 last:pb-0 transition duration-300">
-                            <!-- Timeline Line -->
-                            <div class="absolute left-[11px] top-2 bottom-0 w-0.5 bg-black/10 dark:bg-white/10 group-last:hidden"></div>
-                            
-                            <!-- Timeline Dot -->
-                            <div class="timeline-dot absolute left-0 top-1.5 w-6 h-6 rounded-full border-4 border-white dark:border-[#1e1e1e] bg-[var(--primary)] z-10 shadow-sm group-hover:scale-110 transition-all duration-300"></div>
+                <!-- Sub-categories filter -->
+                {subCategories.length > 0 && (
+                    <div class="flex flex-wrap gap-3 mb-8" id="category-filters">
+                        <button class="category-btn active px-5 py-2 rounded-xl text-sm font-bold bg-[var(--primary)] text-white shadow-md shadow-[var(--primary)]/20 transition-all duration-300 hover:shadow-lg hover:-translate-y-0.5" data-category="all">
+                            All
+                        </button>
+                        {subCategories.map(category => (
+                            <button class="category-btn px-5 py-2 rounded-xl text-sm font-bold bg-black/5 dark:bg-white/5 text-black/70 dark:text-white/70 hover:bg-[var(--primary)]/10 hover:text-[var(--primary)] border border-transparent hover:border-[var(--primary)]/20 transition-all duration-300 hover:shadow-md hover:-translate-y-0.5" data-category={category}>
+                                {category}
+                            </button>
+                        ))}
+                    </div>
+                )}
 
-                            <div class="flex-1">
-                                <div class="flex items-center gap-2 mb-1">
-                                    <div class="text-sm text-black/40 dark:text-white/40">
-                                        Part {index + 1}
+                <div class="space-y-2 relative" id="posts-container">
+                    <!-- Global Timeline Line Background -->
+                    <div class="absolute left-[31px] top-6 bottom-6 w-[2px] bg-gradient-to-b from-black/5 via-black/10 to-black/5 dark:from-white/5 dark:via-white/10 dark:to-white/5 rounded-full hidden sm:block z-0"></div>
+
+                    {seriesPosts.map((post, index) => (
+                        <a href={getPostUrl(post)} data-post-id={post.id} data-post-category={post.data.category || ""} class="flex group relative p-4 sm:p-5 rounded-2xl hover:bg-black/[0.03] dark:hover:bg-white/[0.03] transition-all duration-300 series-post-item overflow-hidden">
+                            
+                            <!-- Timeline Dot for Desktop -->
+                            <div class="hidden sm:flex flex-col items-center mr-6 relative z-10 pt-1">
+                                <div class="timeline-dot w-4 h-4 rounded-full border-4 border-white dark:border-[#1e1e1e] bg-black/20 dark:bg-white/20 group-hover:bg-[var(--primary)] group-hover:border-[var(--primary)]/30 group-hover:scale-125 transition-all duration-500 shadow-sm"></div>
+                            </div>
+
+                            <div class="flex-1 min-w-0">
+                                <div class="flex flex-wrap items-center gap-2 mb-2">
+                                    <div class="flex items-center gap-1.5 px-2 py-0.5 rounded-md bg-black/5 dark:bg-white/5 text-xs font-bold text-black/50 dark:text-white/50 group-hover:text-[var(--primary)] transition-colors">
+                                        <Icon name="material-symbols:bookmark-outline" class="text-sm" />
+                                        <span>Part {index + 1}</span>
                                     </div>
-                                    <div class="read-indicator hidden text-green-500 dark:text-green-400 flex items-center gap-1 text-xs font-bold">
+                                    
+                                    {post.data.category && (
+                                        <div class="px-2 py-0.5 rounded-md border border-black/10 dark:border-white/10 text-xs font-medium text-black/40 dark:text-white/40">
+                                            {post.data.category}
+                                        </div>
+                                    )}
+
+                                    <div class="read-indicator hidden text-green-500 dark:text-green-400 flex items-center gap-1 text-xs font-bold bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded-md">
                                         <Icon name="material-symbols:check-circle-rounded" class="text-sm" />
                                         <span>Read</span>
                                     </div>
                                 </div>
-                                <h3 class="text-lg font-bold text-black/80 dark:text-white/80 group-hover:text-[var(--primary)] transition-colors mb-1">
+                                
+                                <h3 class="text-xl font-bold text-black/80 dark:text-white/80 group-hover:text-[var(--primary)] transition-colors duration-300 mb-2 truncate">
                                     {post.data.title}
                                 </h3>
-                                <div class="text-sm text-black/50 dark:text-white/50 line-clamp-2">
+                                
+                                <p class="text-sm text-black/50 dark:text-white/50 line-clamp-2 leading-relaxed group-hover:text-black/60 dark:group-hover:text-white/60 transition-colors">
                                     {post.data.description}
-                                </div>
+                                </p>
+                            </div>
+
+                            <!-- Hover Arrow -->
+                            <div class="hidden md:flex items-center justify-center opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-500 text-[var(--primary)] ml-4">
+                                <Icon name="material-symbols:arrow-forward-ios-rounded" class="text-xl" />
                             </div>
                         </a>
                     ))}
@@ -88,7 +137,7 @@ const seriesPosts = allPosts
         try {
             const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
             if (readPosts.length > 0) {
-                const items = document.querySelectorAll('a[data-post-id]');
+                const items = document.querySelectorAll('.series-post-item');
                 items.forEach(item => {
                     const postId = item.getAttribute('data-post-id');
                     if (postId && readPosts.includes(postId)) {
@@ -99,8 +148,8 @@ const seriesPosts = allPosts
                         // Change timeline dot color to green
                         const dot = item.querySelector('.timeline-dot');
                         if (dot) {
-                            dot.classList.remove('bg-[var(--primary)]');
-                            dot.classList.add('bg-green-500', 'dark:bg-green-400');
+                            dot.classList.remove('bg-black/20', 'dark:bg-white/20', 'group-hover:bg-[var(--primary)]');
+                            dot.classList.add('bg-green-500', 'dark:bg-green-400', 'group-hover:bg-green-400');
                         }
                     }
                 });
@@ -108,5 +157,51 @@ const seriesPosts = allPosts
         } catch (e) {
             console.error("Failed to parse read posts", e);
         }
+
+        // Sub-categories filtering logic
+        const filterBtns = document.querySelectorAll('.category-btn');
+        const postItems = document.querySelectorAll('.series-post-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Update active button styling
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
+                    b.classList.add('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
+                });
+                btn.classList.remove('bg-black/5', 'dark:bg-white/5', 'text-black/70', 'dark:text-white/70');
+                btn.classList.add('bg-[var(--primary)]', 'text-white', 'shadow-md', 'shadow-[var(--primary)]/20', 'active');
+
+                const selectedCategory = btn.getAttribute('data-category');
+
+                // Filter posts with animation
+                let delay = 0;
+                postItems.forEach((item) => {
+                    const postCategory = item.getAttribute('data-post-category');
+                    if (selectedCategory === 'all' || postCategory === selectedCategory) {
+                        (item as HTMLElement).style.display = 'flex';
+                        item.classList.remove('animate-fade-in');
+                        
+                        // Trigger reflow to restart animation
+                        void (item as HTMLElement).offsetWidth;
+                        
+                        (item as HTMLElement).style.animationDelay = `${delay}s`;
+                        item.classList.add('animate-fade-in');
+                        delay += 0.05; // stagger effect
+                    } else {
+                        (item as HTMLElement).style.display = 'none';
+                        item.classList.remove('animate-fade-in');
+                    }
+                });
+            });
+        });
+
+        // Initial setup for stagger animation
+        let delay = 0;
+        postItems.forEach((item) => {
+            (item as HTMLElement).style.animationDelay = `${delay}s`;
+            item.classList.add('animate-fade-in');
+            delay += 0.05;
+        });
     </script>
 </MainGridLayout>

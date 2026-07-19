@@ -35,10 +35,8 @@ const fallbackPaper: Paper = {
 
 onMount(async () => {
 	try {
-		// Use api.codetabs.com as an alternative CORS proxy
-		const response = await fetch(
-			`https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent("https://huggingface.co/api/daily_papers")}`,
-		);
+		// Hugging Face API now supports CORS directly
+		const response = await fetch("https://huggingface.co/api/daily_papers");
 		if (!response.ok) throw new Error("Failed to fetch");
 
 		const data = await response.json();
