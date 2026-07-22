@@ -133,6 +133,18 @@
       "val": 1
     },
     {
+      "id": "[Python] 정규화 라이브러리 re 사용법",
+      "title": "[Python] 정규화 라이브러리 re 사용법",
+      "postId": 20,
+      "tags": [
+        "Regex",
+        "re"
+      ],
+      "category": "Python",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "DAG",
       "name": "DAG",
       "type": "tag",
@@ -325,6 +337,18 @@
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
+    },
+    {
+      "source": "[Python] 정규화 라이브러리 re 사용법",
+      "target": "Regex"
+    },
+    {
+      "source": "[Python] 정규화 라이브러리 re 사용법",
+      "target": "re"
+    },
+    {
+      "source": "[Python] 정규화 라이브러리 re 사용법",
+      "target": "Python"
     },
     {
       "source": "[Python] 정규화 라이브러리 re 사용법",
