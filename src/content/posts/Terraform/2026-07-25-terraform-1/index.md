@@ -47,3 +47,6 @@ sudo yum install -y yum-utils
 sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo yum -y install terraform
 ```
+
+## 🙇🏻‍♀️ 마무리
+다음부터는 본격적인 테라폼 작동 방식과 코드에 대해서 포스팅하겠습니다.
