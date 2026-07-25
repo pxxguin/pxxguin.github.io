@@ -133,12 +133,11 @@
       "val": 1
     },
     {
-      "id": "[Python] 정규화 라이브러리 re 사용법",
-      "title": "[Python] 정규화 라이브러리 re 사용법",
+      "id": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
+      "title": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
       "postId": 20,
       "tags": [
-        "Regex",
-        "re"
+        "smtplib"
       ],
       "category": "Python",
       "type": "post",
@@ -189,6 +188,12 @@
     {
       "id": "re",
       "name": "re",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "smtplib",
+      "name": "smtplib",
       "type": "tag",
       "val": 5
     },
@@ -351,15 +356,11 @@
       "target": "Python"
     },
     {
-      "source": "[Python] 정규화 라이브러리 re 사용법",
-      "target": "Regex"
+      "source": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
+      "target": "smtplib"
     },
     {
-      "source": "[Python] 정규화 라이브러리 re 사용법",
-      "target": "re"
-    },
-    {
-      "source": "[Python] 정규화 라이브러리 re 사용법",
+      "source": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
       "target": "Python"
     }
   ]
