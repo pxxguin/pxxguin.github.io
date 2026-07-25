@@ -144,6 +144,17 @@
       "val": 1
     },
     {
+      "id": "[Terraform] Terraform 설치 방법",
+      "title": "[Terraform] Terraform 설치 방법",
+      "postId": 21,
+      "tags": [
+        "Install"
+      ],
+      "category": "Terraform",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "DAG",
       "name": "DAG",
       "type": "tag",
@@ -198,6 +209,12 @@
       "val": 5
     },
     {
+      "id": "Install",
+      "name": "Install",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Airflow",
       "name": "Airflow",
       "type": "category",
@@ -218,6 +235,12 @@
     {
       "id": "Python",
       "name": "Python",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Terraform",
+      "name": "Terraform",
       "type": "category",
       "val": 10
     }
@@ -362,6 +385,14 @@
     {
       "source": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
       "target": "Python"
+    },
+    {
+      "source": "[Terraform] Terraform 설치 방법",
+      "target": "Install"
+    },
+    {
+      "source": "[Terraform] Terraform 설치 방법",
+      "target": "Terraform"
     }
   ]
 }
