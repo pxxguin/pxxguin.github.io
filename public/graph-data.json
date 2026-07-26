@@ -144,8 +144,19 @@
       "val": 1
     },
     {
-      "id": "[Terraform] Terraform 설치 방법",
-      "title": "[Terraform] Terraform 설치 방법",
+      "id": "[Terraform] Terraform의 기본 개념 & 설치 방법",
+      "title": "[Terraform] Terraform의 기본 개념 & 설치 방법",
+      "postId": 21,
+      "tags": [
+        "Install"
+      ],
+      "category": "Terraform",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Terraform] Fuck",
+      "title": "[Terraform] Fuck",
       "postId": 21,
       "tags": [
         "Install"
@@ -387,11 +398,19 @@
       "target": "Python"
     },
     {
-      "source": "[Terraform] Terraform 설치 방법",
+      "source": "[Terraform] Terraform의 기본 개념 & 설치 방법",
       "target": "Install"
     },
     {
-      "source": "[Terraform] Terraform 설치 방법",
+      "source": "[Terraform] Terraform의 기본 개념 & 설치 방법",
+      "target": "Terraform"
+    },
+    {
+      "source": "[Terraform] Fuck",
+      "target": "Install"
+    },
+    {
+      "source": "[Terraform] Fuck",
       "target": "Terraform"
     }
   ]
