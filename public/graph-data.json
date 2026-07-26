@@ -121,6 +121,17 @@
       "val": 1
     },
     {
+      "id": "[Github] CI/CD란 무엇인가?",
+      "title": "[Github] CI/CD란 무엇인가?",
+      "postId": 23,
+      "tags": [
+        "CI/CD"
+      ],
+      "category": "Terraform",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -155,11 +166,15 @@
       "val": 1
     },
     {
-      "id": "[Terraform] Terraform 작동방식",
-      "title": "[Terraform] Terraform 작동방식",
+      "id": "[Terraform] Terraform 기본 명령어",
+      "title": "[Terraform] Terraform 기본 명령어",
       "postId": 22,
       "tags": [
-        "Install"
+        "Init",
+        "Validate",
+        "Plan",
+        "Apply",
+        "Destroy"
       ],
       "category": "Terraform",
       "type": "post",
@@ -202,6 +217,12 @@
       "val": 5
     },
     {
+      "id": "CI/CD",
+      "name": "CI/CD",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -226,6 +247,36 @@
       "val": 5
     },
     {
+      "id": "Init",
+      "name": "Init",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Validate",
+      "name": "Validate",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Plan",
+      "name": "Plan",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Apply",
+      "name": "Apply",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Destroy",
+      "name": "Destroy",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Airflow",
       "name": "Airflow",
       "type": "category",
@@ -244,14 +295,14 @@
       "val": 10
     },
     {
-      "id": "Python",
-      "name": "Python",
+      "id": "Terraform",
+      "name": "Terraform",
       "type": "category",
       "val": 10
     },
     {
-      "id": "Terraform",
-      "name": "Terraform",
+      "id": "Python",
+      "name": "Python",
       "type": "category",
       "val": 10
     }
@@ -378,6 +429,14 @@
       "target": "Docker"
     },
     {
+      "source": "[Github] CI/CD란 무엇인가?",
+      "target": "CI/CD"
+    },
+    {
+      "source": "[Github] CI/CD란 무엇인가?",
+      "target": "Terraform"
+    },
+    {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
@@ -406,11 +465,27 @@
       "target": "Terraform"
     },
     {
-      "source": "[Terraform] Terraform 작동방식",
-      "target": "Install"
+      "source": "[Terraform] Terraform 기본 명령어",
+      "target": "Init"
     },
     {
-      "source": "[Terraform] Terraform 작동방식",
+      "source": "[Terraform] Terraform 기본 명령어",
+      "target": "Validate"
+    },
+    {
+      "source": "[Terraform] Terraform 기본 명령어",
+      "target": "Plan"
+    },
+    {
+      "source": "[Terraform] Terraform 기본 명령어",
+      "target": "Apply"
+    },
+    {
+      "source": "[Terraform] Terraform 기본 명령어",
+      "target": "Destroy"
+    },
+    {
+      "source": "[Terraform] Terraform 기본 명령어",
       "target": "Terraform"
     }
   ]
