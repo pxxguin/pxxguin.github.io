@@ -6,6 +6,8 @@ description: terraform을 설치하는 방법에 대해서 설명합니다.
 tags:
     - Install
 category: Terraform
+series: cloud-architectures
+seriesOrder: 1
 draft: false
 postId: 21
 github: https://developer.hashicorp.com/terraform/install#linux

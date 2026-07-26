@@ -10,6 +10,8 @@ tags:
     - Apply
     - Destroy
 category: Terraform
+series: cloud-architectures
+seriesOrder: 2
 draft: false
 postId: 22
 ---
