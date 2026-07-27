@@ -10,6 +10,7 @@ series: devops
 seriesOrder: 1
 draft: true
 postId: 23
+github: https://github.com/Pxxguin-Dev/github-actions-example
 ---
 
 ## 🗂️ CI/CD의 기본 개념
