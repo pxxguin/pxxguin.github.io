@@ -121,17 +121,6 @@
       "val": 1
     },
     {
-      "id": "[Github] CI/CD란 무엇인가?",
-      "title": "[Github] CI/CD란 무엇인가?",
-      "postId": 23,
-      "tags": [
-        "CI/CD"
-      ],
-      "category": "Terraform",
-      "type": "post",
-      "val": 1
-    },
-    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -217,12 +206,6 @@
       "val": 5
     },
     {
-      "id": "CI/CD",
-      "name": "CI/CD",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -295,14 +278,14 @@
       "val": 10
     },
     {
-      "id": "Terraform",
-      "name": "Terraform",
+      "id": "Python",
+      "name": "Python",
       "type": "category",
       "val": 10
     },
     {
-      "id": "Python",
-      "name": "Python",
+      "id": "Terraform",
+      "name": "Terraform",
       "type": "category",
       "val": 10
     }
@@ -427,14 +410,6 @@
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
-    },
-    {
-      "source": "[Github] CI/CD란 무엇인가?",
-      "target": "CI/CD"
-    },
-    {
-      "source": "[Github] CI/CD란 무엇인가?",
-      "target": "Terraform"
     },
     {
       "source": "[Python] 정규화 라이브러리 re 사용법",
