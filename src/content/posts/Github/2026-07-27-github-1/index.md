@@ -8,7 +8,7 @@ tags:
 category: Github
 series: devops
 seriesOrder: 1
-draft: true
+draft: false
 postId: 23
 github: https://github.com/Pxxguin-Dev/github-actions-example
 ---
