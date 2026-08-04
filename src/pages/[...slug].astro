@@ -98,21 +98,28 @@ const jsonLd = [
             {}
         ]}>
             <!-- word count and reading time -->
-            <div class="flex flex-row text-black/30 dark:text-white/30 gap-5 mb-3 transition onload-animation">
-                <div class="flex flex-row items-center">
-                    <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
-                        <Icon name="material-symbols:notes-rounded"></Icon>
+            <div class="flex flex-row justify-between items-center text-black/30 dark:text-white/30 mb-3 transition onload-animation">
+                <div class="flex flex-row gap-5">
+                    <div class="flex flex-row items-center">
+                        <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
+                            <Icon name="material-symbols:notes-rounded"></Icon>
+                        </div>
+                        <div class="text-sm">{remarkPluginFrontmatter.words} {" " + i18n(I18nKey.wordsCount)}</div>
                     </div>
-                    <div class="text-sm">{remarkPluginFrontmatter.words} {" " + i18n(I18nKey.wordsCount)}</div>
+                    <div class="flex flex-row items-center">
+                        <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
+                            <Icon name="material-symbols:schedule-outline-rounded"></Icon>
+                        </div>
+                        <div class="text-sm">
+                            {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
+                        </div>
+                    </div>
                 </div>
-                <div class="flex flex-row items-center">
-                    <div class="transition h-6 w-6 rounded-md bg-black/5 dark:bg-white/10 text-black/50 dark:text-white/50 flex items-center justify-center mr-2">
-                        <Icon name="material-symbols:schedule-outline-rounded"></Icon>
-                    </div>
-                    <div class="text-sm">
-                        {remarkPluginFrontmatter.minutes} {" " + i18n(remarkPluginFrontmatter.minutes === 1 ? I18nKey.minuteCount : I18nKey.minutesCount)}
-                    </div>
-                </div>
+                
+                <button id="focus-mode-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[var(--primary)]/10 text-[var(--primary)] hover:bg-[var(--primary)]/20 transition-all active:scale-95 text-sm font-medium z-20">
+                    <Icon name="material-symbols:self-improvement-rounded" class="text-lg" />
+                    <span class="focus-btn-text">Focus Mode</span>
+                </button>
             </div>
 
             <!-- title -->
@@ -198,5 +205,41 @@ const jsonLd = [
         } catch (e) {
             console.error("Failed to update read posts", e);
         }
+    </script>
+
+    <!-- Script for Focus Mode -->
+    <script>
+        function setupFocusMode() {
+            const btn = document.getElementById("focus-mode-btn") as HTMLElement;
+            if (!btn) return;
+            
+            const textSpan = btn.querySelector(".focus-btn-text");
+            
+            const updateState = () => {
+                const isZen = document.documentElement.classList.contains("zen-mode");
+                if (textSpan) textSpan.textContent = isZen ? "Exit Focus" : "Focus Mode";
+            };
+            
+            updateState();
+            
+            // Remove existing listener to prevent duplicates across Swup navigation
+            const newBtn = btn.cloneNode(true) as HTMLElement;
+            if (btn.parentNode) {
+                btn.parentNode.replaceChild(newBtn, btn);
+            }
+            
+            newBtn.addEventListener("click", () => {
+                document.documentElement.classList.toggle("zen-mode");
+                const isZenNow = document.documentElement.classList.contains("zen-mode");
+                const span = newBtn.querySelector(".focus-btn-text");
+                if (span) span.textContent = isZenNow ? "Exit Focus" : "Focus Mode";
+            });
+        }
+
+        document.addEventListener("astro:page-load", setupFocusMode);
+        document.addEventListener("swup:page:view", setupFocusMode);
+        document.addEventListener("swup:content:replace", setupFocusMode);
+        
+        setupFocusMode();
     </script>
 </MainGridLayout>

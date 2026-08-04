@@ -143,6 +143,17 @@
       "val": 1
     },
     {
+      "id": "[Github] 하윙~",
+      "title": "[Github] 하윙~",
+      "postId": 25,
+      "tags": [
+        "Supply Chain Attack"
+      ],
+      "category": "Github",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -465,6 +476,14 @@
     },
     {
       "source": "[Github] CI/CD 파이프라인 공급망 공격",
+      "target": "Github"
+    },
+    {
+      "source": "[Github] 하윙~",
+      "target": "Supply Chain Attack"
+    },
+    {
+      "source": "[Github] 하윙~",
       "target": "Github"
     },
     {

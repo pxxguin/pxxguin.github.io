@@ -180,7 +180,7 @@ const subCategories = [...new Set(seriesPosts.map(post => post.data.category).fi
             filterBtns.forEach(btn => {
                 // Ensure we don't add multiple listeners if the page is visited multiple times
                 // We do this by cloning and replacing the button to remove old listeners (quick trick)
-                const newBtn = btn.cloneNode(true);
+                const newBtn = btn.cloneNode(true) as HTMLElement;
                 btn.parentNode?.replaceChild(newBtn, btn);
                 
                 newBtn.addEventListener('click', () => {
