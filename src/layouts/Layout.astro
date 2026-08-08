@@ -290,6 +290,20 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 	grid-column: span 1 !important;
 }
 
+/* Reading Highlight (paint-mode toggle) */
+#highlight-mode-btn.is-active {
+	background-color: var(--primary) !important;
+	color: white !important;
+}
+
+.markdown-content.highlight-mode {
+	cursor: text;
+}
+
+.markdown-content.highlight-mode ::selection {
+	background: rgba(253, 224, 71, 0.5);
+}
+
 /* Mermaid Diagram Styling */
 .mermaid {
 	display: flex;
