@@ -156,13 +156,12 @@
       "val": 1
     },
     {
-      "id": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
-      "title": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "id": "[Github] AWS credential을 탈취하는 방법",
+      "title": "[Github] AWS credential을 탈취하는 방법",
       "postId": 26,
       "tags": [
-        "Supply Chain Attack",
-        "PwnRequest",
-        "Expresssion Injection"
+        "AWS",
+        "IMDB"
       ],
       "category": "Github",
       "type": "post",
@@ -274,6 +273,18 @@
     {
       "id": "Expresssion Injection",
       "name": "Expresssion Injection",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "AWS",
+      "name": "AWS",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "IMDB",
+      "name": "IMDB",
       "type": "tag",
       "val": 5
     },
@@ -522,19 +533,15 @@
       "target": "Github"
     },
     {
-      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
-      "target": "Supply Chain Attack"
+      "source": "[Github] AWS credential을 탈취하는 방법",
+      "target": "AWS"
     },
     {
-      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
-      "target": "PwnRequest"
+      "source": "[Github] AWS credential을 탈취하는 방법",
+      "target": "IMDB"
     },
     {
-      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
-      "target": "Expresssion Injection"
-    },
-    {
-      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "source": "[Github] AWS credential을 탈취하는 방법",
       "target": "Github"
     },
     {
