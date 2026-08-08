@@ -13,6 +13,7 @@ interface TerminalLine {
 	type: LineType;
 	content: string;
 	component?: string; // For rendering the complex notice HTML
+	prompt?: string; // Snapshot of the prompt label at the time this line was typed
 }
 
 let history: TerminalLine[] = [];
@@ -21,6 +22,163 @@ let inputElement: HTMLInputElement;
 let terminalContainer: HTMLDivElement;
 let isAutoTyping = false;
 let isShake = false;
+
+// --- Virtual Filesystem State ---
+interface FileNode {
+	type: "file";
+	content: string;
+	protected?: boolean; // Cannot be removed (easter-egg files)
+	requiresRoot?: boolean; // Requires isHacked to read (system.conf)
+	special?: "notice"; // Rendered as a rich component instead of plain text
+}
+interface DirNode {
+	type: "dir";
+	children: Record<string, VNode>;
+	protected?: boolean;
+}
+type VNode = FileNode | DirNode;
+
+const HOME = ["home", "guest"];
+
+function createInitialFs(): DirNode {
+	return {
+		type: "dir",
+		children: {
+			home: {
+				type: "dir",
+				children: {
+					guest: {
+						type: "dir",
+						children: {
+							"NOTICE.md": {
+								type: "file",
+								special: "notice",
+								protected: true,
+								content:
+									"# 공지사항 v2.1.2\n\n안녕하세요. 개발자 PXXGUIN 입니다.\n부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.\n\n// [26.07.19] 업데이트 내용\n[REFACTOR] 내부 소켓 통신 최적화\n[REFACTOR] 기존 블로그 템플릿 수정\n[FIX] Git Discussions 404 오류 수정\n\n유익한 정보로 찾아 뵙겠습니다.\n감사합니다.",
+							},
+							"secret.txt": {
+								type: "file",
+								protected: true,
+								content: "👀 I don't know what means UUDDLRLRBA!",
+							},
+							"system.conf": {
+								type: "file",
+								protected: true,
+								requiresRoot: true,
+								content:
+									"SERVER_KEY=8f9a2b3c\nADMIN_USER=hong\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!",
+							},
+						},
+					},
+				},
+			},
+		},
+	};
+}
+
+let fsRoot: DirNode = createInitialFs();
+let cwd: string[] = [...HOME];
+
+// Resolve an absolute/relative/~-prefixed path against a base cwd into path segments
+function resolvePath(base: string[], input: string): string[] {
+	if (input === "~") return [...HOME];
+
+	let segments: string[];
+	let rest: string;
+	if (input.startsWith("~/")) {
+		segments = [...HOME];
+		rest = input.slice(2);
+	} else if (input.startsWith("/")) {
+		segments = [];
+		rest = input.slice(1);
+	} else {
+		segments = [...base];
+		rest = input;
+	}
+
+	for (const seg of rest.split("/").filter((s) => s.length > 0)) {
+		if (seg === ".") continue;
+		if (seg === "..") {
+			if (segments.length > 0) segments.pop();
+		} else {
+			segments.push(seg);
+		}
+	}
+	return segments;
+}
+
+function getNode(path: string[]): VNode | null {
+	let node: VNode = fsRoot;
+	for (const seg of path) {
+		if (node.type !== "dir") return null;
+		const next = node.children[seg];
+		if (!next) return null;
+		node = next;
+	}
+	return node;
+}
+
+function getParentDir(path: string[]): { parent: DirNode | null; name: string } {
+	if (path.length === 0) return { parent: null, name: "" };
+	const name = path[path.length - 1];
+	const parentNode = getNode(path.slice(0, -1));
+	if (!parentNode || parentNode.type !== "dir") return { parent: null, name };
+	return { parent: parentNode, name };
+}
+
+// Renders a path relative to HOME as "~/..." like a real shell prompt
+function pathDisplay(path: string[]): string {
+	const inHome = HOME.every((h, i) => path[i] === h) && path.length >= HOME.length;
+	if (inHome) {
+		const rel = path.slice(HOME.length).join("/");
+		return rel ? `~/${rel}` : "~";
+	}
+	return `/${path.join("/")}`;
+}
+
+function currentPromptLabel(): string {
+	return isHacked
+		? `root@server:${pathDisplay(cwd)}#`
+		: `➜ ${pathDisplay(cwd)}`;
+}
+
+function writeFile(
+	pathStr: string,
+	content: string,
+	append: boolean,
+): { ok: boolean; error?: string } {
+	const path = resolvePath(cwd, pathStr);
+	const { parent, name } = getParentDir(path);
+	if (!parent) return { ok: false, error: `bash: ${pathStr}: No such file or directory` };
+	const existing = parent.children[name];
+	if (existing && existing.type === "dir")
+		return { ok: false, error: `bash: ${pathStr}: Is a directory` };
+	if (existing?.protected)
+		return { ok: false, error: `bash: ${pathStr}: Permission denied` };
+	const prevContent = existing?.type === "file" ? existing.content : "";
+	parent.children[name] = {
+		type: "file",
+		content: append && prevContent ? `${prevContent}\n${content}` : content,
+	};
+	return { ok: true };
+}
+
+// Tokenizes a command line, respecting quotes and treating > / >> as standalone tokens
+function tokenizeCommand(cmd: string): string[] {
+	const tokens: string[] = [];
+	const regex = /"([^"]*)"|'([^']*)'|(>>)|(>)|([^\s>]+)/g;
+	let match: RegExpExecArray | null = regex.exec(cmd);
+	while (match !== null) {
+		if (match[1] !== undefined) tokens.push(match[1]);
+		else if (match[2] !== undefined) tokens.push(match[2]);
+		else if (match[3] !== undefined) tokens.push(">>");
+		else if (match[4] !== undefined) tokens.push(">");
+		else tokens.push(match[5]);
+		match = regex.exec(cmd);
+	}
+	return tokens;
+}
 
 // --- Easter Egg State (Konami) ---
 let isHacked = false;
@@ -111,7 +269,7 @@ async function handleInputKeydown(e: KeyboardEvent) {
 		const command = inputValue.trim();
 
 		// Add user input to history
-		addToHistory("user-input", command);
+		addToHistory("user-input", command, undefined, currentPromptLabel());
 		inputValue = "";
 
 		// Process command
@@ -119,68 +277,230 @@ async function handleInputKeydown(e: KeyboardEvent) {
 	}
 }
 
-function addToHistory(type: LineType, content: string, component?: string) {
-	history = [...history, { type, content, component }];
+function addToHistory(
+	type: LineType,
+	content: string,
+	component?: string,
+	prompt?: string,
+) {
+	history = [...history, { type, content, component, prompt }];
 	scrollToBottom();
 }
 
 async function processCommand(cmd: string) {
 	if (!cmd) return;
 
-	const parts = cmd.split(/\s+/);
-	const mainCmd = parts[0].toLowerCase();
-	const args = parts.slice(1);
+	const tokens = tokenizeCommand(cmd);
+	if (tokens.length === 0) return;
+	const mainCmd = tokens[0].toLowerCase();
+	let args = tokens.slice(1);
+
+	// Detect a single `>` / `>>` redirection and split it off the argument list
+	let redirect: { append: boolean; target: string } | null = null;
+	const redirIdx = args.findIndex((a) => a === ">" || a === ">>");
+	if (redirIdx !== -1 && args[redirIdx + 1]) {
+		redirect = { append: args[redirIdx] === ">>", target: args[redirIdx + 1] };
+		args = args.slice(0, redirIdx);
+	}
+
+	// Buffers plain-text output: prints to screen normally, or gets written
+	// to the redirection target file when `>` / `>>` was used.
+	const outputBuffer: string[] = [];
+	function output(text: string) {
+		if (redirect) {
+			outputBuffer.push(text);
+		} else {
+			addToHistory("system-output", text);
+		}
+	}
 
 	await new Promise((r) => setTimeout(r, 100)); // Small delay for "processing" feel
 
 	switch (mainCmd) {
 		case "help":
 		case "--help":
-			addToHistory("system-output", "Available commands:");
-			addToHistory(
-				"system-output",
-				"  ls              List directory contents",
-			);
-			addToHistory(
-				"system-output",
-				"  cat [file]      Concatenate and display file content",
-			);
-			addToHistory("system-output", "  whoami          Print current user");
-			addToHistory("system-output", "  clear           Clear terminal screen");
-			addToHistory("system-output", "  exit            Close terminal");
+			output("Available commands:");
+			output("  ls [dir]        List directory contents");
+			output("  cd [dir]        Change directory");
+			output("  pwd             Print working directory");
+			output("  mkdir [-p] dir  Create a directory");
+			output("  touch [file]    Create an empty file");
+			output("  cat [file]      Concatenate and display file content");
+			output("  echo [text]     Display text (supports > and >> redirection)");
+			output("  rm [-r] [file]  Remove files or directories");
+			output("  rmdir [dir]     Remove an empty directory");
+			output("  whoami          Print current user");
+			output("  clear           Clear terminal screen");
+			output("  exit            Close terminal");
 			break;
-		case "ls":
-			addToHistory("system-output", "NOTICE.md  secret.txt  system.conf");
+		case "ls": {
+			const targetArg = args.find((a) => !a.startsWith("-"));
+			const path = targetArg ? resolvePath(cwd, targetArg) : cwd;
+			const node = getNode(path);
+			if (!node) {
+				output(`ls: cannot access '${targetArg}': No such file or directory`);
+			} else if (node.type === "file") {
+				output(targetArg ?? "");
+			} else {
+				const names = Object.keys(node.children).sort((a, b) =>
+					a.localeCompare(b),
+				);
+				const display = names.map((n) =>
+					node.children[n].type === "dir" ? `${n}/` : n,
+				);
+				output(display.join("  "));
+			}
 			break;
+		}
+		case "cd": {
+			const target = args[0] ?? "~";
+			const path = resolvePath(cwd, target);
+			const node = getNode(path);
+			if (!node) {
+				output(`cd: no such file or directory: ${target}`);
+			} else if (node.type !== "dir") {
+				output(`cd: not a directory: ${target}`);
+			} else {
+				cwd = path;
+			}
+			break;
+		}
+		case "pwd":
+			output(`/${cwd.join("/")}`);
+			break;
+		case "mkdir": {
+			const targets = args.filter((a) => !a.startsWith("-"));
+			const recursive = args.some((a) => a.startsWith("-") && a.includes("p"));
+			if (targets.length === 0) {
+				output("mkdir: missing operand");
+				break;
+			}
+			for (const t of targets) {
+				const path = resolvePath(cwd, t);
+				const { parent, name } = getParentDir(path);
+				if (!parent) {
+					if (recursive) {
+						let node: DirNode = fsRoot;
+						for (const seg of path) {
+							const next = node.children[seg];
+							if (!next) {
+								node.children[seg] = { type: "dir", children: {} };
+							} else if (next.type !== "dir") {
+								break;
+							}
+							node = node.children[seg] as DirNode;
+						}
+					} else {
+						output(`mkdir: cannot create directory '${t}': No such file or directory`);
+					}
+					continue;
+				}
+				if (parent.children[name]) {
+					output(`mkdir: cannot create directory '${t}': File exists`);
+					continue;
+				}
+				parent.children[name] = { type: "dir", children: {} };
+			}
+			break;
+		}
+		case "touch": {
+			if (args.length === 0) {
+				output("touch: missing file operand");
+				break;
+			}
+			for (const t of args) {
+				const path = resolvePath(cwd, t);
+				const { parent, name } = getParentDir(path);
+				if (!parent) {
+					output(`touch: cannot touch '${t}': No such file or directory`);
+					continue;
+				}
+				if (!parent.children[name]) {
+					parent.children[name] = { type: "file", content: "" };
+				}
+			}
+			break;
+		}
 		case "cat":
 			if (args.length === 0) {
-				addToHistory("system-output", "usage: cat [file]");
-			} else if (args[0] === "NOTICE.md") {
-				addToHistory("component", "", "notice");
-			} else if (args[0] === "secret.txt") {
-				addToHistory("system-output", "👀 I don't know what means UUDDLRLRBA!");
-			} else if (args[0] === "system.conf") {
-				if (isHacked) {
-					addToHistory(
-						"system-output",
-						"SERVER_KEY=8f9a2b3c\nADMIN_USER=hong\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!",
-					);
-				} else {
-					addToHistory("system-output", "cat: system.conf: Permission denied");
-				}
+				output("usage: cat [file]");
 			} else {
-				addToHistory(
-					"system-output",
-					`cat: ${args[0]}: No such file or directory`,
-				);
+				for (const a of args) {
+					const path = resolvePath(cwd, a);
+					const node = getNode(path);
+					if (!node) {
+						output(`cat: ${a}: No such file or directory`);
+					} else if (node.type === "dir") {
+						output(`cat: ${a}: Is a directory`);
+					} else if (node.requiresRoot && !isHacked) {
+						output(`cat: ${a}: Permission denied`);
+					} else if (node.special === "notice" && !redirect) {
+						addToHistory("component", "", "notice");
+					} else {
+						output(node.content);
+					}
+				}
 			}
 			break;
 		case "whoami":
-			addToHistory("system-output", isHacked ? "root" : "guest");
+			output(isHacked ? "root" : "guest");
 			break;
+		case "echo":
+			output(args.join(" "));
+			break;
+		case "rm": {
+			if (args.includes("-rf") && args.includes("/")) {
+				output("PERMISSION DENIED: Nice try. 😉");
+				break;
+			}
+			const recursive = args.some((a) => /^-\w*[rR]\w*$/.test(a));
+			const targets = args.filter((a) => !a.startsWith("-"));
+			if (targets.length === 0) {
+				output("rm: missing operand");
+				break;
+			}
+			for (const t of targets) {
+				const path = resolvePath(cwd, t);
+				const { parent, name } = getParentDir(path);
+				const node = parent?.children[name];
+				if (!node) {
+					output(`rm: cannot remove '${t}': No such file or directory`);
+				} else if (node.protected) {
+					output(`rm: cannot remove '${t}': Permission denied`);
+				} else if (node.type === "dir" && !recursive) {
+					output(`rm: cannot remove '${t}': Is a directory`);
+				} else {
+					delete (parent as DirNode).children[name];
+				}
+			}
+			break;
+		}
+		case "rmdir": {
+			if (args.length === 0) {
+				output("rmdir: missing operand");
+				break;
+			}
+			for (const t of args) {
+				const path = resolvePath(cwd, t);
+				const { parent, name } = getParentDir(path);
+				const node = parent?.children[name];
+				if (!node) {
+					output(`rmdir: failed to remove '${t}': No such file or directory`);
+				} else if (node.type !== "dir") {
+					output(`rmdir: failed to remove '${t}': Not a directory`);
+				} else if (node.protected) {
+					output(`rmdir: failed to remove '${t}': Permission denied`);
+				} else if (Object.keys(node.children).length > 0) {
+					output(`rmdir: failed to remove '${t}': Directory not empty`);
+				} else {
+					delete (parent as DirNode).children[name];
+				}
+			}
+			break;
+		}
 		case "sudo":
 			if (isHacked) {
-				addToHistory("system-output", "You are already root.");
+				output("You are already root.");
 			} else {
 				// Immediate Danger Output
 				addToHistory("component", "", "sudo-alert");
@@ -194,14 +514,16 @@ async function processCommand(cmd: string) {
 			break;
 		case "reboot":
 			if (isHacked) {
-				addToHistory("system-output", "System rebooting...");
+				output("System rebooting...");
 				setTimeout(() => {
 					history = [];
 					isHacked = false;
+					fsRoot = createInitialFs();
+					cwd = [...HOME];
 					addToHistory("system-output", "Reboot complete. Welcome, guest.");
 				}, 2000);
 			} else {
-				addToHistory("system-output", "reboot: Operation not permitted");
+				output("reboot: Operation not permitted");
 			}
 			break;
 		case "clear":
@@ -212,25 +534,18 @@ async function processCommand(cmd: string) {
 			break;
 		case "beer":
 		case "coffee":
-			addToHistory(
-				"system-output",
-				"☕️ Brewing coffee... [██████████] 100% Done!",
-			);
-			addToHistory("system-output", "Here is your virtual drink! 🍺");
-			break;
-		case "rm":
-			if (args.includes("-rf") && args.includes("/")) {
-				addToHistory("system-output", "PERMISSION DENIED: Nice try. 😉");
-			} else {
-				addToHistory(
-					"system-output",
-					`rm: cannot remove '${args[0] || ""}': Permission denied`,
-				);
-			}
+			output("☕️ Brewing coffee... [██████████] 100% Done!");
+			output("Here is your virtual drink! 🍺");
 			break;
 		default:
-			addToHistory("system-output", `zsh: command not found: ${mainCmd}`);
+			output(`zsh: command not found: ${mainCmd}`);
 	}
+
+	if (redirect) {
+		const res = writeFile(redirect.target, outputBuffer.join("\n"), redirect.append);
+		if (!res.ok && res.error) addToHistory("system-output", res.error);
+	}
+
 	scrollToBottom();
 }
 
@@ -252,7 +567,7 @@ async function startAutoTypeSequence() {
 	await new Promise((r) => setTimeout(r, 300));
 
 	// Simulate Enter
-	addToHistory("user-input", inputValue);
+	addToHistory("user-input", inputValue, undefined, currentPromptLabel());
 	inputValue = "";
 	await processCommand(cmd);
 
@@ -314,7 +629,7 @@ async function startAutoTypeSequence() {
                 {#if line.type === "user-input"}
                     <div class="flex flex-row items-start">
                          <span class="mr-2 shrink-0 font-bold" class:text-blue-400={!isHacked} class:text-red-500={isHacked}>
-                            {isHacked ? "root@server:~#" : "➜ ~"}
+                            {line.prompt ?? currentPromptLabel()}
                         </span>
                         <span class="text-white break-all">{line.content}</span>
                     </div>
@@ -352,7 +667,7 @@ async function startAutoTypeSequence() {
         <!-- Input Line -->
         <div class="flex flex-row items-center">
             <span class="mr-2 shrink-0 font-bold transition-colors" class:text-blue-400={!isHacked} class:text-red-500={isHacked}>
-                {isHacked ? "root@server:~#" : "➜ ~"}
+                {currentPromptLabel()}
             </span>
             <input
                 bind:this={inputElement}

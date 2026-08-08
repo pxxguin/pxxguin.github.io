@@ -1,7 +1,7 @@
 {
   "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"grep -o '<figure[^>]*>.\\\\{0,200\\\\}' dist/posts/docker/2026-02-23-docker-1/index.html 2>/dev/null | head -5\\necho \\\"---find any figcaption in dist---\\\"\\ngrep -rl \\\"figcaption\\\" dist/posts/ ...",
-  "error": "Exit code 2\n---find any figcaption in dist---\n---check picture1 image tag---\nugrep: warning: dist/posts/docker/2026-02-23-docker-1/index.html: No such file or directory",
-  "timestamp": "2026-08-08T12:17:36.844Z",
+  "tool_input_preview": "{\"command\":\"pkill -f \\\"astro dev\\\" 2>/dev/null; sleep 1; pgrep -fl \\\"astro dev\\\" || echo \\\"dev server stopped\\\"\"}",
+  "error": "Exit code 144",
+  "timestamp": "2026-08-08T12:30:45.870Z",
   "retry_count": 1
 }
