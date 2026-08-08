@@ -1,9 +1,11 @@
 ---
 import { Icon } from "astro-icon/components";
 import { profileConfig } from "../config";
+import { getFlag } from "../utils/achievements";
 import { url } from "../utils/url-utils";
 
 const currentYear = new Date().getFullYear();
+const footerFlag = getFlag("footer-secret");
 ---
 
 <div id="footer" class="w-full bg-[#0a0a0a] text-white/70 py-12 mt-12 border-t border-white/5">
@@ -36,8 +38,8 @@ const currentYear = new Date().getFullYear();
                     <span class="group-hover:opacity-0 transition-opacity duration-300">
                         Copyright &copy; {currentYear} {profileConfig.name}. All Rights Reserved.
                     </span>
-                    <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-teal-400 font-bold flex items-center justify-center bg-[#0a0a0a]">
-                        사실 고양이 도움을 받음 🐱
+                    <span class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-teal-400 font-bold flex items-center justify-center bg-[#0a0a0a] select-all">
+                        {footerFlag}
                     </span>
                 </span>
                 <span class="hidden sm:inline mx-2">|</span>
