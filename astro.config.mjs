@@ -21,6 +21,7 @@ import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badg
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { LinkCardComponent } from "./src/plugins/rehype-component-link-card.mjs"; // 1. 파일 import 추가
+import rehypeFigure from "./src/plugins/rehype-figure.mjs";
 import rehypeMark from "./src/plugins/rehype-mark.mjs";
 import { remarkChart } from "./src/plugins/remark-chart.mjs";
 import { parseDirectiveNode } from "./src/plugins/remark-directive-rehype.js";
@@ -128,7 +129,7 @@ export default defineConfig({
 		],
 		rehypePlugins: [
 			rehypeMark,
-			// rehypeFigure,
+			rehypeFigure,
 			rehypeKatex,
 			rehypeSlug,
 			[
