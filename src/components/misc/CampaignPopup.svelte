@@ -2,7 +2,7 @@
 import { onDestroy, onMount, tick } from "svelte";
 import { fade, scale } from "svelte/transition";
 import { getAccessKey } from "@utils/access-key";
-import { unlock } from "@utils/achievements";
+import { getFlag } from "@utils/achievements";
 
 export let storageKey = "campaign-popup";
 
@@ -76,6 +76,13 @@ function createInitialFs(): DirNode {
 					},
 				},
 			},
+			// Hidden dotfile at filesystem root — invisible to plain `ls`,
+			// only shows up with `ls -a` (or if you already know the name).
+			".flag.txt": {
+				type: "file",
+				protected: true,
+				content: `You found the hidden file outside /home.\n${getFlag("hidden-file")}`,
+			},
 		},
 	};
 }
@@ -147,7 +154,7 @@ function currentPromptLabel(): string {
 }
 
 function buildSystemConfContent(): string {
-	return `SERVER_KEY=${getAccessKey()}\nADMIN_USER=admin\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!\nTry /login with these credentials. This key resets every session.`;
+	return `SERVER_KEY=${getAccessKey()}\nADMIN_USER=admin\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!\nTry /login with these credentials. This key resets every session.\n\n[TROPHY]\n${getFlag("system-conf")}`;
 }
 
 function writeFile(
@@ -266,7 +273,6 @@ function handleGlobalKeydown(e: KeyboardEvent) {
 		inputSequence = inputSequence.slice(-konamiCode.length);
 	if (JSON.stringify(inputSequence) === JSON.stringify(konamiCode)) {
 		isHacked = true;
-		unlock("konami");
 		addToHistory("system-output", "ROOT_ACCESS_GRANTED... SYSTEM OVERRIDE.");
 	}
 }
@@ -343,6 +349,7 @@ async function processCommand(cmd: string) {
 			break;
 		case "ls": {
 			const targetArg = args.find((a) => !a.startsWith("-"));
+			const showHidden = args.some((a) => a.startsWith("-") && a.includes("a"));
 			const path = targetArg ? resolvePath(cwd, targetArg) : cwd;
 			const node = getNode(path);
 			if (!node) {
@@ -350,9 +357,9 @@ async function processCommand(cmd: string) {
 			} else if (node.type === "file") {
 				output(targetArg ?? "");
 			} else {
-				const names = Object.keys(node.children).sort((a, b) =>
-					a.localeCompare(b),
-				);
+				const names = Object.keys(node.children)
+					.filter((n) => showHidden || !n.startsWith("."))
+					.sort((a, b) => a.localeCompare(b));
 				const display = names.map((n) =>
 					node.children[n].type === "dir" ? `${n}/` : n,
 				);
@@ -393,7 +400,6 @@ async function processCommand(cmd: string) {
 							const next = node.children[seg];
 							if (!next) {
 								node.children[seg] = { type: "dir", children: {} };
-								unlock("filesystem");
 							} else if (next.type !== "dir") {
 								break;
 							}
@@ -409,7 +415,6 @@ async function processCommand(cmd: string) {
 					continue;
 				}
 				parent.children[name] = { type: "dir", children: {} };
-				unlock("filesystem");
 			}
 			break;
 		}
@@ -427,7 +432,6 @@ async function processCommand(cmd: string) {
 				}
 				if (!parent.children[name]) {
 					parent.children[name] = { type: "file", content: "" };
-					unlock("filesystem");
 				}
 			}
 			break;
@@ -447,10 +451,8 @@ async function processCommand(cmd: string) {
 						output(`cat: ${a}: Permission denied`);
 					} else if (node.requiresRoot && isHacked) {
 						output(buildSystemConfContent());
-						unlock("system-conf");
 					} else if (node.special === "notice" && !redirect) {
 						addToHistory("component", "", "notice");
-						unlock("notice");
 					} else {
 						output(node.content);
 					}
@@ -466,7 +468,6 @@ async function processCommand(cmd: string) {
 		case "rm": {
 			if (args.includes("-rf") && args.includes("/")) {
 				output("PERMISSION DENIED: Nice try. 😉");
-				unlock("nice-try");
 				break;
 			}
 			const recursive = args.some((a) => /^-\w*[rR]\w*$/.test(a));
@@ -560,7 +561,6 @@ async function processCommand(cmd: string) {
 	if (redirect) {
 		const res = writeFile(redirect.target, outputBuffer.join("\n"), redirect.append);
 		if (!res.ok && res.error) addToHistory("system-output", res.error);
-		else if (res.ok) unlock("filesystem");
 	}
 
 	scrollToBottom();

@@ -2,7 +2,10 @@
 import { Icon } from "astro-icon/components";
 import { siteConfig } from "@/config";
 import Layout from "../layouts/Layout.astro";
+import { getFlag } from "../utils/achievements";
 import { url } from "../utils/url-utils";
+
+const notFoundFlag = getFlag("notfound");
 ---
 
 <Layout title="Not Found">
@@ -15,8 +18,11 @@ import { url } from "../utils/url-utils";
 
         <div class="relative z-10 flex flex-col items-center">
             <!-- 404 Number: Simplified coloring -->
-            <div class="text-[8rem] md:text-[12rem] font-black text-teal-500 dark:text-teal-400 leading-none select-none opacity-90 drop-shadow-sm">
-                404
+            <div class="group relative cursor-help text-[8rem] md:text-[12rem] font-black text-teal-500 dark:text-teal-400 leading-none select-none opacity-90 drop-shadow-sm">
+                <span class="group-hover:opacity-0 transition-opacity duration-300">404</span>
+                <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-lg md:text-2xl text-teal-500 dark:text-teal-400 select-all">
+                    {notFoundFlag}
+                </span>
             </div>
             
             <h1 class="text-3xl md:text-5xl font-bold text-slate-800 dark:text-white mt-2 mb-6 tracking-tight">

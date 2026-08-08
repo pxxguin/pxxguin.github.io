@@ -1,5 +1,6 @@
 <script lang="ts">
 import { fade } from "svelte/transition";
+import { getFlag } from "@utils/achievements";
 
 let state: "sleeping" | "awake" | "meowing" = "sleeping";
 let meowTimeout: ReturnType<typeof setTimeout>;
@@ -13,6 +14,8 @@ const messages = [
 	"Don't touch me! 😡",
 ];
 let currentMessage = "Meow! 🐟";
+
+const LUCKY_CHANCE = 0.15;
 
 function wakeUp() {
 	if (state === "sleeping") {
@@ -29,8 +32,15 @@ function sleep() {
 function meow() {
 	if (state === "meowing") return;
 
-	// Pick random message
-	currentMessage = messages[Math.floor(Math.random() * messages.length)];
+	if (Math.random() < LUCKY_CHANCE) {
+		const flag = getFlag("lucky-cat");
+		navigator.clipboard?.writeText(flag).then(() => {
+			currentMessage = "🍀 복사되었습니다!";
+		});
+	} else {
+		// Pick random message
+		currentMessage = messages[Math.floor(Math.random() * messages.length)];
+	}
 
 	state = "meowing";
 	clearTimeout(meowTimeout);

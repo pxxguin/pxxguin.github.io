@@ -1,6 +1,5 @@
 <script lang="ts">
 import { getAccessKey, grantAccess } from "@utils/access-key";
-import { unlock } from "@utils/achievements";
 
 let username = "";
 let password = "";
@@ -19,7 +18,6 @@ function handleSubmit(e: SubmitEvent) {
 		const validKey = getAccessKey();
 		if (username.trim() === "admin" && password === validKey && validKey) {
 			grantAccess();
-			unlock("login");
 			window.location.href = "/secret/";
 			return;
 		}
