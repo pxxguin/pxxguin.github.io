@@ -112,7 +112,9 @@ export default defineConfig({
 			},
 		}),
 		svelte(),
-		sitemap(),
+		sitemap({
+			filter: (page) => !/\/(login|secret)\/?$/.test(page),
+		}),
 	],
 	markdown: {
 		remarkPlugins: [

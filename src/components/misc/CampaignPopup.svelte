@@ -1,6 +1,8 @@
 <script lang="ts">
 import { onDestroy, onMount, tick } from "svelte";
 import { fade, scale } from "svelte/transition";
+import { getAccessKey } from "@utils/access-key";
+import { unlock } from "@utils/achievements";
 
 export let storageKey = "campaign-popup";
 
@@ -63,11 +65,12 @@ function createInitialFs(): DirNode {
 								content: "👀 I don't know what means UUDDLRLRBA!",
 							},
 							"system.conf": {
+								// Content is generated on read (see buildSystemConfContent) so
+								// it stays in sync with the session-scoped key from access-key.ts
 								type: "file",
 								protected: true,
 								requiresRoot: true,
-								content:
-									"SERVER_KEY=8f9a2b3c\nADMIN_USER=hong\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!",
+								content: "",
 							},
 						},
 					},
@@ -141,6 +144,10 @@ function currentPromptLabel(): string {
 	return isHacked
 		? `root@server:${pathDisplay(cwd)}#`
 		: `➜ ${pathDisplay(cwd)}`;
+}
+
+function buildSystemConfContent(): string {
+	return `SERVER_KEY=${getAccessKey()}\nADMIN_USER=admin\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!\nTry /login with these credentials. This key resets every session.`;
 }
 
 function writeFile(
@@ -259,6 +266,7 @@ function handleGlobalKeydown(e: KeyboardEvent) {
 		inputSequence = inputSequence.slice(-konamiCode.length);
 	if (JSON.stringify(inputSequence) === JSON.stringify(konamiCode)) {
 		isHacked = true;
+		unlock("konami");
 		addToHistory("system-output", "ROOT_ACCESS_GRANTED... SYSTEM OVERRIDE.");
 	}
 }
@@ -385,6 +393,7 @@ async function processCommand(cmd: string) {
 							const next = node.children[seg];
 							if (!next) {
 								node.children[seg] = { type: "dir", children: {} };
+								unlock("filesystem");
 							} else if (next.type !== "dir") {
 								break;
 							}
@@ -400,6 +409,7 @@ async function processCommand(cmd: string) {
 					continue;
 				}
 				parent.children[name] = { type: "dir", children: {} };
+				unlock("filesystem");
 			}
 			break;
 		}
@@ -417,6 +427,7 @@ async function processCommand(cmd: string) {
 				}
 				if (!parent.children[name]) {
 					parent.children[name] = { type: "file", content: "" };
+					unlock("filesystem");
 				}
 			}
 			break;
@@ -434,8 +445,12 @@ async function processCommand(cmd: string) {
 						output(`cat: ${a}: Is a directory`);
 					} else if (node.requiresRoot && !isHacked) {
 						output(`cat: ${a}: Permission denied`);
+					} else if (node.requiresRoot && isHacked) {
+						output(buildSystemConfContent());
+						unlock("system-conf");
 					} else if (node.special === "notice" && !redirect) {
 						addToHistory("component", "", "notice");
+						unlock("notice");
 					} else {
 						output(node.content);
 					}
@@ -451,6 +466,7 @@ async function processCommand(cmd: string) {
 		case "rm": {
 			if (args.includes("-rf") && args.includes("/")) {
 				output("PERMISSION DENIED: Nice try. 😉");
+				unlock("nice-try");
 				break;
 			}
 			const recursive = args.some((a) => /^-\w*[rR]\w*$/.test(a));
@@ -544,6 +560,7 @@ async function processCommand(cmd: string) {
 	if (redirect) {
 		const res = writeFile(redirect.target, outputBuffer.join("\n"), redirect.append);
 		if (!res.ok && res.error) addToHistory("system-output", res.error);
+		else if (res.ok) unlock("filesystem");
 	}
 
 	scrollToBottom();
