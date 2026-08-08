@@ -71,6 +71,9 @@ export default defineConfig({
 			defaultProps: {
 				wrap: true,
 				overridesByLang: {
+					bash: {
+						showLineNumbers: false,
+					},
 					shellsession: {
 						showLineNumbers: false,
 					},
@@ -80,10 +83,12 @@ export default defineConfig({
 				codeBackground: "var(--codeblock-bg)",
 				borderRadius: "0.75rem",
 				borderColor: "none",
-				codeFontSize: "0.875rem",
+				codeFontSize: "0.9375rem",
 				codeFontFamily:
 					"'JetBrains Mono Variable', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-				codeLineHeight: "1.5rem",
+				codeLineHeight: "1.7",
+				codePaddingBlock: "1.25rem",
+				codePaddingInline: "1.5rem",
 				frames: {
 					editorBackground: "var(--codeblock-bg)",
 					terminalBackground: "var(--codeblock-bg)",
