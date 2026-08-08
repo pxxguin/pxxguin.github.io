@@ -5,11 +5,10 @@ export default function rehypeFigure(option) {
 	const className = option?.className || "rehype-figure";
 
 	function buildFigure({ properties }) {
+		const { title, ...imgProperties } = properties;
 		const figure = h("figure", { class: className }, [
-			h("img", { ...properties }),
-			properties.alt && properties.alt.trim().length > 0
-				? h("figcaption", properties.alt)
-				: "",
+			h("img", imgProperties),
+			title && title.trim().length > 0 ? h("figcaption", title) : "",
 		]);
 		return figure;
 	}
