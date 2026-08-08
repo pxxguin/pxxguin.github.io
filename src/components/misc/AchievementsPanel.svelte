@@ -1,16 +1,56 @@
 <script lang="ts">
-import { onMount } from "svelte";
+import confetti from "canvas-confetti";
+import { onDestroy, onMount } from "svelte";
 import { redeem, TROPHIES, getUnlocked } from "@utils/achievements";
 
 let unlocked: string[] = [];
 let openId: string | null = null;
 let guesses: Record<string, string> = {};
 let errors: Record<string, string> = {};
+let fireworksInterval: ReturnType<typeof setInterval> | undefined;
 const flagPlaceholder = "FLAG{...}";
+
+$: allUnlocked = unlocked.length === TROPHIES.length;
 
 onMount(() => {
 	unlocked = getUnlocked();
 });
+
+onDestroy(() => {
+	clearInterval(fireworksInterval);
+});
+
+function randomInRange(min: number, max: number): number {
+	return Math.random() * (max - min) + min;
+}
+
+// Classic canvas-confetti "fireworks" burst pattern — random bursts from both
+// bottom corners for a few seconds.
+function triggerFireworks() {
+	const duration = 3000;
+	const animationEnd = Date.now() + duration;
+	const defaults = { startVelocity: 30, spread: 360, ticks: 60, zIndex: 9999 };
+
+	clearInterval(fireworksInterval);
+	fireworksInterval = setInterval(() => {
+		const timeLeft = animationEnd - Date.now();
+		if (timeLeft <= 0) {
+			clearInterval(fireworksInterval);
+			return;
+		}
+		const particleCount = 50 * (timeLeft / duration);
+		confetti({
+			...defaults,
+			particleCount,
+			origin: { x: randomInRange(0.1, 0.3), y: Math.random() - 0.2 },
+		});
+		confetti({
+			...defaults,
+			particleCount,
+			origin: { x: randomInRange(0.7, 0.9), y: Math.random() - 0.2 },
+		});
+	}, 250);
+}
 
 function toggle(id: string, pending?: boolean) {
 	if (unlocked.includes(id) || pending) return;
@@ -21,8 +61,12 @@ function toggle(id: string, pending?: boolean) {
 function submit(id: string) {
 	const guess = guesses[id] ?? "";
 	if (redeem(id, guess)) {
+		const wasComplete = allUnlocked;
 		unlocked = [...unlocked, id];
 		openId = null;
+		if (!wasComplete && unlocked.length === TROPHIES.length) {
+			triggerFireworks();
+		}
 	} else {
 		errors = { ...errors, [id]: "틀렸습니다. 다시 시도해보세요." };
 	}
@@ -32,6 +76,12 @@ function submit(id: string) {
 
 <div class="border border-gray-700 rounded bg-black/30 p-4 space-y-3 h-full">
   <p class="text-gray-500 text-xs">// trophy cabinet — flag를 찾아서 입력하세요</p>
+
+  {#if allUnlocked}
+    <div class="border border-yellow-500 rounded bg-yellow-950/20 p-3 text-center">
+      <p class="text-yellow-400 font-bold text-sm">🎉 모든 트로피를 모았습니다!</p>
+    </div>
+  {/if}
 
   <div class="space-y-2">
     {#each TROPHIES as trophy (trophy.id)}
