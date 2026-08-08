@@ -1,0 +1,13 @@
+---
+import LoginTerminal from "@components/misc/LoginTerminal.svelte";
+import MainGridLayout from "../layouts/MainGridLayout.astro";
+
+const title = "Login";
+const description = "Restricted access.";
+---
+
+<MainGridLayout title={title} description={description}>
+	<div class="flex w-full justify-center py-10">
+		<LoginTerminal client:load />
+	</div>
+</MainGridLayout>
