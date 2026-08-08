@@ -57,7 +57,7 @@ function createInitialFs(): DirNode {
 								special: "notice",
 								protected: true,
 								content:
-									"# 공지사항 v2.1.2\n\n안녕하세요. 개발자 PXXGUIN 입니다.\n부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.\n\n// [26.07.19] 업데이트 내용\n[REFACTOR] 내부 소켓 통신 최적화\n[REFACTOR] 기존 블로그 템플릿 수정\n[FIX] Git Discussions 404 오류 수정\n\n유익한 정보로 찾아 뵙겠습니다.\n감사합니다.",
+									"# 공지사항 v2.2.0\n\n안녕하세요. 개발자 PXXGUIN 입니다.\n부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.\n\n// [26.08.09] 업데이트 내용\n[FEAT] 게시글 이미지 캡션 기능 추가\n[FEAT] 터미널 가상 파일시스템 구현 (cd, mkdir, cat, echo 등)\n[FEAT] /login, /secret 페이지 및 트로피 이스터에그 시스템 추가\n[FEAT] 트로피 전부 획득 시 폭죽 이펙트 추가\n\n유익한 정보로 찾아 뵙겠습니다.\n감사합니다.",
 							},
 							"secret.txt": {
 								type: "file",
@@ -655,16 +655,17 @@ async function startAutoTypeSequence() {
                 {:else if line.type === "component" && line.component === "notice"}
                      <!-- The HTML Notice Content -->
                      <div class="my-4 p-4 border border-dashed border-gray-600 rounded bg-black/20 text-gray-200">
-                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 v2.1.2</h1>
+                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 v2.2.0</h1>
                         <p class="mb-4 text-gray-300">
                             안녕하세요. 개발자 PXXGUIN 입니다.👋<br>
                             부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.
                         </p>
-                        <p class="text-green-400 font-bold text-sm mb-2">// [26.07.19] 업데이트 내용</p>
+                        <p class="text-green-400 font-bold text-sm mb-2">// [26.08.09] 업데이트 내용</p>
                         <ul class="list-none space-y-1 pl-2 border-l-2 border-gray-700 ml-1 text-sm">
-                            <li><span class="text-blue-500">[REFACTOR]</span> 내부 소켓 통신 최적화</li>
-                            <li><span class="text-blue-500">[REFACTOR]</span> 기존 블로그 템플릿 수정</li>
-                            <li><span class="text-yellow-500">[FIX]</span> Git Discussions 404 오류 수정</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 게시글 이미지 캡션 기능 추가</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 터미널 가상 파일시스템 구현 (cd, mkdir, cat, echo 등)</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> /login, /secret 페이지 및 트로피 이스터에그 시스템 추가</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 트로피 전부 획득 시 폭죽 이펙트 추가</li>
                         </ul>
                         <div class="mt-4 text-sm text-gray-500">
                             유익한 정보로 찾아 뵙겠습니다.<br/>
