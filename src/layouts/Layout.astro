@@ -273,6 +273,12 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 	display: none !important;
 }
 
+/* Break the post column out of the centered page-width box so it can
+   grow wider than the normal reading column. */
+.zen-mode #content-shell {
+	max-width: 100% !important;
+}
+
 .zen-mode #main-grid {
 	grid-template-columns: minmax(0, 1fr) !important;
 	max-width: 1200px !important;
