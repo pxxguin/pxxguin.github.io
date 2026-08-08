@@ -143,11 +143,26 @@
       "val": 1
     },
     {
-      "id": "[Github] 하윙~",
-      "title": "[Github] 하윙~",
+      "id": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "title": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
       "postId": 25,
       "tags": [
-        "Supply Chain Attack"
+        "Supply Chain Attack",
+        "PwnRequest",
+        "Expresssion Injection"
+      ],
+      "category": "Github",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "title": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "postId": 26,
+      "tags": [
+        "Supply Chain Attack",
+        "PwnRequest",
+        "Expresssion Injection"
       ],
       "category": "Github",
       "type": "post",
@@ -247,6 +262,18 @@
     {
       "id": "Supply Chain Attack",
       "name": "Supply Chain Attack",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "PwnRequest",
+      "name": "PwnRequest",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Expresssion Injection",
+      "name": "Expresssion Injection",
       "type": "tag",
       "val": 5
     },
@@ -479,11 +506,35 @@
       "target": "Github"
     },
     {
-      "source": "[Github] 하윙~",
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
       "target": "Supply Chain Attack"
     },
     {
-      "source": "[Github] 하윙~",
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "PwnRequest"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "Expresssion Injection"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "Github"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "Supply Chain Attack"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "PwnRequest"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
+      "target": "Expresssion Injection"
+    },
+    {
+      "source": "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법",
       "target": "Github"
     },
     {
