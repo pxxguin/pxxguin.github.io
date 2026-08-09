@@ -3,8 +3,8 @@
 	"type": "module",
 	"version": "0.0.1",
 	"scripts": {
-		"dev": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro dev",
-		"start": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro dev",
+		"dev": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && NODE_OPTIONS=--max-old-space-size=4096 astro dev",
+		"start": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && NODE_OPTIONS=--max-old-space-size=4096 astro dev",
 		"check": "astro check",
 		"build": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro build && pagefind --site dist",
 		"preview": "astro preview",
