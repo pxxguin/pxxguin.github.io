@@ -3,8 +3,12 @@ import { onDestroy, onMount, tick } from "svelte";
 import { fade, scale } from "svelte/transition";
 import { getAccessKey, grantAccess, hasAccess } from "@utils/access-key";
 import { getFlag } from "@utils/achievements";
+import { TERMINAL_OPEN_EVENT } from "@utils/terminal-events";
 
 export let storageKey = "campaign-popup";
+// Only the home page auto-opens the terminal unprompted; everywhere else it
+// only appears via the manual button next to PixelCat (TERMINAL_OPEN_EVENT).
+export let isHomePage = false;
 
 let isOpen = false;
 let doNotShowToday = false;
@@ -230,28 +234,82 @@ const konamiCode = [
 ];
 let inputSequence: string[] = [];
 
+// --- Session-scoped persistence ---
+// The terminal transcript/filesystem/root-state must survive full page
+// reloads and navigation to other pages (sessionStorage clears on tab close,
+// matching access-key.ts's session-scoped semantics). isOpen and loginFlow
+// are intentionally NOT persisted — visibility is re-decided on each mount
+// and a half-typed password shouldn't resume after navigating away.
+const SESSION_STATE_KEY = "terminal-session-state";
+interface PersistedTerminalState {
+	history: TerminalLine[];
+	fsRoot: DirNode;
+	cwd: string[];
+	isHacked: boolean;
+}
+
+function loadPersistedState(): PersistedTerminalState | null {
+	try {
+		const raw = sessionStorage.getItem(SESSION_STATE_KEY);
+		return raw ? (JSON.parse(raw) as PersistedTerminalState) : null;
+	} catch {
+		return null;
+	}
+}
+
+let hasRestored = false;
+// Referencing history/fsRoot/cwd/isHacked directly (not via a helper call)
+// so Svelte's static dependency analysis actually re-runs this on change —
+// see the livePromptLabel comment above for why a wrapped function call
+// wouldn't be tracked.
+$: if (hasRestored && typeof window !== "undefined") {
+	sessionStorage.setItem(
+		SESSION_STATE_KEY,
+		JSON.stringify({ history, fsRoot, cwd, isHacked }),
+	);
+}
+
 // --- Lifecycle ---
 onMount(async () => {
+	const persisted = loadPersistedState();
+	if (persisted) {
+		history = persisted.history;
+		fsRoot = persisted.fsRoot;
+		cwd = persisted.cwd;
+		isHacked = persisted.isHacked;
+	}
+	hasRestored = true;
+
 	const expiry = localStorage.getItem(storageKey);
 	const now = Date.now();
+	const snoozed = !!expiry && now < Number.parseInt(expiry, 10);
 
-	if (expiry && now < Number.parseInt(expiry, 10)) {
-		isOpen = false;
-	} else {
+	if (isHomePage && !snoozed) {
 		isOpen = true;
-		// Start auto-typing --help sequence
-		await tick();
-		startAutoTypeSequence();
+		if (!persisted) {
+			// Only run the intro auto-type once, on a genuinely fresh terminal
+			await tick();
+			startAutoTypeSequence();
+		}
 	}
 
 	window.addEventListener("keydown", handleGlobalKeydown);
+	window.addEventListener(TERMINAL_OPEN_EVENT, handleExternalOpen);
 });
 
 onDestroy(() => {
 	if (typeof window !== "undefined") {
 		window.removeEventListener("keydown", handleGlobalKeydown);
+		window.removeEventListener(TERMINAL_OPEN_EVENT, handleExternalOpen);
 	}
 });
+
+// Triggered by the manual terminal button (e.g. next to PixelCat) on pages
+// other than home. Always opens, ignoring the "don't show today" snooze —
+// that snooze only governs the unprompted auto-open on the home page.
+function handleExternalOpen() {
+	isOpen = true;
+}
 
 // --- Logic ---
 

@@ -173,7 +173,7 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 	>
 		<ConfigCarrier></ConfigCarrier>
 
-        <CampaignPopup client:load />
+        <CampaignPopup client:load isHomePage={isHomePage} />
         <ConsoleEasterEgg />
         <PixelCat client:idle />
         <MouseTrailer client:idle />

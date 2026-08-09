@@ -1,6 +1,7 @@
 <script lang="ts">
 import { fade } from "svelte/transition";
 import { getFlag } from "@utils/achievements";
+import { TERMINAL_OPEN_EVENT } from "@utils/terminal-events";
 
 let state: "sleeping" | "awake" | "meowing" = "sleeping";
 let meowTimeout: ReturnType<typeof setTimeout>;
@@ -48,6 +49,13 @@ function meow() {
 		state = "awake"; // Go back to awake (hover logic usually keeps it awake)
 	}, 2000);
 }
+
+// Opens the terminal easter-egg popup on demand. It only auto-opens on the
+// home page, so this is how it's reachable from every other page.
+function openTerminal(event: MouseEvent) {
+	event.stopPropagation();
+	window.dispatchEvent(new CustomEvent(TERMINAL_OPEN_EVENT));
+}
 </script>
 
 <!-- Fixed Bottom Right Container -->
@@ -60,6 +68,17 @@ function meow() {
   on:click={meow}
 >
   
+  <!-- Terminal Toggle Button -->
+  <button
+    type="button"
+    on:click={openTerminal}
+    title="터미널 열기"
+    aria-label="터미널 열기"
+    class="terminal-btn mb-2 mr-1 w-12 h-12 rounded-full bg-zinc-800 dark:bg-zinc-200 border-2 border-black dark:border-white shadow-lg flex items-center justify-center text-emerald-400 dark:text-emerald-600 hover:scale-110 active:scale-95 transition-transform"
+  >
+    <span class="text-base font-mono font-bold leading-none">&gt;_</span>
+  </button>
+
   <!-- Speech Bubble -->
   {#if state === 'meowing'}
     <div 
