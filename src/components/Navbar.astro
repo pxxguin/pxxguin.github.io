@@ -42,7 +42,7 @@ let links: (NavBarLink | NavBarDropdown)[] = navBarConfig.links.map(
         <div class="flex flex-1 items-center justify-start">
             <a href={url('/')} class="btn-plain scale-animation rounded-lg h-[3.25rem] px-5 font-bold active:scale-95 flex items-center">
                 <div id="nav-logo" class="flex flex-row text-[var(--primary)] items-center text-xl cursor-pointer">
-                    <Icon name="fa6-solid:compact-disc" class="text-[2rem] mr-2 animate-[spin_5s_linear_infinite]" />
+                    <span class="logo-prompt font-mono font-bold text-[1.75rem] leading-none mr-2 select-none" aria-hidden="true">&gt;<span class="logo-cursor">_</span></span>
                     {siteConfig.title}
                 </div>
             </a>
@@ -235,5 +235,13 @@ if (document.readyState === 'loading') {
         animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
         color: #ff00ff !important; /* Cyberpunk Pink */
         text-shadow: 2px 0 #00ffff; /* Cyberpunk Cyan shadow */
+    }
+
+    @keyframes logo-cursor-blink {
+        0%, 50% { opacity: 1; }
+        51%, 100% { opacity: 0; }
+    }
+    .logo-cursor {
+        animation: logo-cursor-blink 1s step-end infinite;
     }
 </style>
