@@ -1,0 +1,198 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1786251371718,
+  "projectRoot": "/home/pxxguin/Develop/pxxguin.github.io",
+  "techStack": {
+    "languages": [
+      {
+        "name": "JavaScript/TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "package.json"
+        ]
+      },
+      {
+        "name": "TypeScript",
+        "version": null,
+        "confidence": "high",
+        "markers": [
+          "tsconfig.json"
+        ]
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "astro",
+        "version": "5.18.1",
+        "category": "fullstack"
+      },
+      {
+        "name": "svelte",
+        "version": "5.53.7",
+        "category": "frontend"
+      },
+      {
+        "name": "playwright",
+        "version": "1.58.2",
+        "category": "testing"
+      }
+    ],
+    "packageManager": "pnpm",
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": "pnpm build",
+    "testCommand": null,
+    "lintCommand": "pnpm lint",
+    "devCommand": "pnpm dev",
+    "scripts": {
+      "dev": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro dev",
+      "start": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro dev",
+      "check": "astro check",
+      "build": "node scripts/assign-post-ids.js && node scripts/generate-graph-data.js && astro build && pagefind --site dist",
+      "preview": "astro preview",
+      "astro": "astro",
+      "type-check": "tsc --noEmit --isolatedDeclarations",
+      "new-post": "node scripts/new-post.js",
+      "format": "biome format --write ./src",
+      "lint": "biome check --write ./src",
+      "preinstall": "npx only-allow pnpm"
+    }
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": "type-based"
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "public",
+      "scripts",
+      "src"
+    ],
+    "gitBranches": {
+      "defaultBranch": "master",
+      "branchingStrategy": null
+    }
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "dist": {
+      "path": "dist",
+      "purpose": "Distribution/build output",
+      "fileCount": 8,
+      "lastAccessed": 1786251371709,
+      "keyFiles": [
+        "404.html",
+        "google071cc8b452095fe0.html",
+        "graph-data.json",
+        "index.html",
+        "robots.txt"
+      ]
+    },
+    "public": {
+      "path": "public",
+      "purpose": "Public files",
+      "fileCount": 2,
+      "lastAccessed": 1786251371710,
+      "keyFiles": [
+        "google071cc8b452095fe0.html",
+        "graph-data.json"
+      ]
+    },
+    "scripts": {
+      "path": "scripts",
+      "purpose": "Build/utility scripts",
+      "fileCount": 3,
+      "lastAccessed": 1786251371713,
+      "keyFiles": [
+        "assign-post-ids.js",
+        "generate-graph-data.js",
+        "new-post.js"
+      ]
+    },
+    "src": {
+      "path": "src",
+      "purpose": "Source code",
+      "fileCount": 3,
+      "lastAccessed": 1786251371714,
+      "keyFiles": [
+        "config.ts",
+        "env.d.ts",
+        "global.d.ts"
+      ]
+    },
+    "src/assets": {
+      "path": "src/assets",
+      "purpose": "Static assets",
+      "fileCount": 0,
+      "lastAccessed": 1786251371716,
+      "keyFiles": []
+    },
+    "src/components": {
+      "path": "src/components",
+      "purpose": "UI components",
+      "fileCount": 19,
+      "lastAccessed": 1786251371716,
+      "keyFiles": [
+        "ArchivePanel.svelte",
+        "CategoryCard.astro",
+        "ConfigCarrier.astro"
+      ]
+    },
+    "src/data": {
+      "path": "src/data",
+      "purpose": "Data files",
+      "fileCount": 3,
+      "lastAccessed": 1786251371716,
+      "keyFiles": [
+        "experience.ts",
+        "projects.ts",
+        "skills.ts"
+      ]
+    }
+  },
+  "hotPaths": [
+    {
+      "path": "src/components/misc/CampaignPopup.svelte",
+      "accessCount": 11,
+      "lastAccessed": 1786252581407,
+      "type": "file"
+    },
+    {
+      "path": "src/utils/access-key.ts",
+      "accessCount": 2,
+      "lastAccessed": 1786252244178,
+      "type": "file"
+    },
+    {
+      "path": "src/components/misc/LoginTerminal.svelte",
+      "accessCount": 2,
+      "lastAccessed": 1786252244197,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/login.astro",
+      "accessCount": 1,
+      "lastAccessed": 1786252206122,
+      "type": "file"
+    },
+    {
+      "path": "src/pages/secret.astro",
+      "accessCount": 1,
+      "lastAccessed": 1786252206655,
+      "type": "file"
+    },
+    {
+      "path": "src/components/misc/ConsoleEasterEgg.astro",
+      "accessCount": 1,
+      "lastAccessed": 1786252211423,
+      "type": "file"
+    }
+  ],
+  "userDirectives": []
+}

@@ -1,7 +1,7 @@
 <script lang="ts">
 import { onDestroy, onMount, tick } from "svelte";
 import { fade, scale } from "svelte/transition";
-import { getAccessKey } from "@utils/access-key";
+import { getAccessKey, grantAccess, hasAccess } from "@utils/access-key";
 import { getFlag } from "@utils/achievements";
 
 export let storageKey = "campaign-popup";
@@ -24,6 +24,12 @@ let inputElement: HTMLInputElement;
 let terminalContainer: HTMLDivElement;
 let isAutoTyping = false;
 let isShake = false;
+
+// --- Inline /login flow state ---
+// While set, Enter key input is routed to handleLoginInput() instead of
+// processCommand(), so the terminal can prompt for username then password.
+type LoginStep = "username" | "password";
+let loginFlow: { step: LoginStep; username: string } | null = null;
 
 // --- Virtual Filesystem State ---
 interface FileNode {
@@ -148,10 +154,24 @@ function pathDisplay(path: string[]): string {
 }
 
 function currentPromptLabel(): string {
+	if (loginFlow?.step === "username") return "username:";
+	if (loginFlow?.step === "password") return "password:";
 	return isHacked
 		? `root@server:${pathDisplay(cwd)}#`
 		: `➜ ${pathDisplay(cwd)}`;
 }
+
+// Svelte only tracks identifiers referenced directly in a template expression,
+// so the live input-line prompt needs its own reactive binding — calling
+// currentPromptLabel() from the markup would not re-render on state changes
+// since loginFlow/isHacked/cwd are only read inside that function's body.
+$: livePromptLabel = loginFlow?.step === "username"
+	? "username:"
+	: loginFlow?.step === "password"
+		? "password:"
+		: isHacked
+			? `root@server:${pathDisplay(cwd)}#`
+			: `➜ ${pathDisplay(cwd)}`;
 
 function buildSystemConfContent(): string {
 	return `SERVER_KEY=${getAccessKey()}\nADMIN_USER=admin\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!\nTry /login with these credentials. This key resets every session.\n\n[TROPHY]\n${getFlag("system-conf")}`;
@@ -280,15 +300,57 @@ function handleGlobalKeydown(e: KeyboardEvent) {
 // Terminal Input Handler
 async function handleInputKeydown(e: KeyboardEvent) {
 	if (e.key === "Enter" && !isAutoTyping) {
-		const command = inputValue.trim();
+		const raw = inputValue;
+		inputValue = "";
+
+		if (loginFlow) {
+			await handleLoginInput(raw.trim());
+			return;
+		}
+
+		const command = raw.trim();
 
 		// Add user input to history
 		addToHistory("user-input", command, undefined, currentPromptLabel());
-		inputValue = "";
 
 		// Process command
 		await processCommand(command);
 	}
+}
+
+// Handles a line typed while the /login prompt is active: first line is the
+// username, second line is the password, checked against the session key.
+async function handleLoginInput(value: string) {
+	const promptLabel = currentPromptLabel();
+
+	if (loginFlow!.step === "username") {
+		addToHistory("user-input", value, undefined, promptLabel);
+		loginFlow = { step: "password", username: value };
+		return;
+	}
+
+	// Mask the password in the transcript instead of echoing it back.
+	addToHistory("user-input", "••••••••", undefined, promptLabel);
+	const { username } = loginFlow!;
+	const validKey = getAccessKey();
+	loginFlow = null;
+
+	await new Promise((r) => setTimeout(r, 200));
+
+	if (username === "admin" && value === validKey && validKey) {
+		grantAccess();
+		addToHistory("system-output", "Access granted. Redirecting to /secret/ ...");
+		await new Promise((r) => setTimeout(r, 500));
+		window.location.href = "/secret/";
+		return;
+	}
+
+	addToHistory("system-output", "Access denied: invalid credentials.");
+	isShake = true;
+	setTimeout(() => {
+		isShake = false;
+	}, 500);
+	scrollToBottom();
 }
 
 function addToHistory(
@@ -346,6 +408,7 @@ async function processCommand(cmd: string) {
 			output("  whoami          Print current user");
 			output("  clear           Clear terminal screen");
 			output("  exit            Close terminal");
+			output("  /login          Authenticate and enter /secret/");
 			break;
 		case "ls": {
 			const targetArg = args.find((a) => !a.startsWith("-"));
@@ -554,6 +617,17 @@ async function processCommand(cmd: string) {
 			output("☕️ Brewing coffee... [██████████] 100% Done!");
 			output("Here is your virtual drink! 🍺");
 			break;
+		case "/login":
+			if (hasAccess()) {
+				output("Session already authenticated. Redirecting to /secret/ ...");
+				setTimeout(() => {
+					window.location.href = "/secret/";
+				}, 500);
+			} else {
+				output("Restricted area. Authorized personnel only.");
+				loginFlow = { step: "username", username: "" };
+			}
+			break;
 		default:
 			output(`zsh: command not found: ${mainCmd}`);
 	}
@@ -685,11 +759,11 @@ async function startAutoTypeSequence() {
         <!-- Input Line -->
         <div class="flex flex-row items-center">
             <span class="mr-2 shrink-0 font-bold transition-colors" class:text-blue-400={!isHacked} class:text-red-500={isHacked}>
-                {currentPromptLabel()}
+                {livePromptLabel}
             </span>
             <input
                 bind:this={inputElement}
-                type="text"
+                type={loginFlow?.step === "password" ? "password" : "text"}
                 class="bg-transparent border-none outline-none text-white w-full caret-gray-400 p-0 m-0"
                 bind:value={inputValue}
                 on:keydown={handleInputKeydown}
