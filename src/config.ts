@@ -51,7 +51,21 @@ export const navBarConfig: NavBarConfig = {
 			url: "/about/",
 		},
 		{
-			name: "Basic",
+			name: "AI",
+			categories: [
+				{
+					name: "Machine Learning",
+					links: [
+						{
+							name: "Deep Learning",
+							url: "/archive/?category=MachineL",
+						},
+					],
+				},
+			],
+		},
+		{
+			name: "Backend",
 			categories: [
 				{
 					name: "Language",
@@ -60,110 +74,36 @@ export const navBarConfig: NavBarConfig = {
 							name: "Python",
 							url: "/archive/?category=Python",
 						},
-						{
-							name: "C++",
-							url: "/archive/?category=C++",
-						},
-						{
-							name: "Problem Solving",
-							url: "/archive/?category=ProblemSolving",
-						},
 					],
 				},
 				{
-					name: "Computer Science",
+					name: "Framework",
 					links: [
-						{
-							name: "Network",
-							url: "/archive/?category=Network",
-						},
-						{
-							name: "Database",
-							url: "/archive/?category=Database",
-						},
-						{
-							name: "Operating System",
-							url: "/archive/?category=OperatingSystem",
-						},
-						{
-							name: "Computer Architecture",
-							url: "/archive/?category=ComputerArchitecture",
-						},
-					],
-				},
-			],
-		},
-		{
-			name: "AI",
-			categories: [
-				{
-					name: "Machine Learning",
-					links: [
-						{
-							name: "Deep Learning",
-							url: "/archive/?category=MachineL&tag=DeepL&tag!=Paper",
-						},
-						{
-							name: "Natural Language Processing",
-							url: "/archive/?category=MachineL&tag=NLP&tag!=Paper",
-						},
-						{
-							name: "Computer Vision",
-							url: "/archive/?category=MachineL&tag=CV&tag!=Paper",
-						},
-						{
-							name: "Data Science",
-							url: "/archive/?category=MachineL&tag=DS",
-						},
-					],
-				},
-				{
-					name: "Academic",
-					links: [
-						{
-							name: "Paper Review",
-							url: "/archive/?category=MachineL&tag=Paper",
-						},
-					],
-				},
-			],
-			promoImage: "/images/demo-banner.png", // Replace with a software anatomy image later
-			promoUrl: "/about/",
-		},
-		{
-			name: "MLOps",
-			categories: [
-				{
-					name: "Backend",
-					links: [
-						{
-							name: "Spring Boot",
-							url: "/archive/?category=SpringBoot",
-						},
 						{
 							name: "FastAPI",
-							url: "/archive/?category=FastAPI",
-							external: true, // Show an external link icon and will open in a new tab
-						},
-						{
-							name: "Database",
-							url: "/archive/?category=Database",
-							external: true, // Show an external link icon and will open in a new tab
-						},
-						{
-							name: "CI/CD",
-							url: "/archive/?category=CI/CD",
-							external: true, // Show an external link icon and will open in a new tab
+							url: "/archive/?category=MLOps",
 						},
 					],
 				},
+			],
+		},
+		{
+			name: "Infra",
+			categories: [
 				{
-					name: "Orchestration",
+					name: "DevOps",
 					links: [
-						{ name: "Docker", url: "/archive/?category=Docker" },
 						{
-							name: "Nginx",
-							url: "/archive/?category=Nginx",
+							name: "GitHub",
+							url: "/archive/?category=Github",
+						},
+						{
+							name: "Docker",
+							url: "/archive/?category=Docker",
+						},
+						{
+							name: "Terraform",
+							url: "/archive/?category=Terraform",
 						},
 						{
 							name: "Airflow",

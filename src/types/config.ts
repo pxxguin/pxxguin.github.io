@@ -64,8 +64,6 @@ export type NavBarMenuCategory = {
 export type NavBarDropdown = {
 	name: string;
 	categories: NavBarMenuCategory[];
-	promoImage?: string;
-	promoUrl?: string;
 };
 
 export type NavBarConfig = {
