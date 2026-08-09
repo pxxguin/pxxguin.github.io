@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"pkill -f \\\"astro dev\\\" 2>/dev/null; sleep 1; pgrep -fl \\\"astro dev\\\" || echo \\\"dev server stopped\\\"\"}",
-  "error": "Exit code 144",
-  "timestamp": "2026-08-08T12:30:45.870Z",
-  "retry_count": 1
-}
