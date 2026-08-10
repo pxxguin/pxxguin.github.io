@@ -111,6 +111,11 @@ export type ExpressiveCodeConfig = {
 	theme: string;
 };
 
+export type GoatCounterConfig = {
+	enable: boolean;
+	endpoint: string;
+};
+
 export type GiscusConfig = {
 	enable: boolean;
 	repo: string;

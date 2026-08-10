@@ -10,7 +10,7 @@ import CampaignPopup from "@components/misc/CampaignPopup.svelte";
 import ConsoleEasterEgg from "@components/misc/ConsoleEasterEgg.astro";
 import MouseTrailer from "@components/misc/MouseTrailer.svelte";
 import PixelCat from "@components/misc/PixelCat.svelte";
-import { profileConfig, siteConfig } from "@/config";
+import { goatCounterConfig, profileConfig, siteConfig } from "@/config";
 import {
 	AUTO_MODE,
 	BANNER_HEIGHT,
@@ -164,6 +164,11 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 		<slot name="head"></slot>
 
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
+
+		{goatCounterConfig.enable && (
+			<script data-goatcounter={goatCounterConfig.endpoint}
+					async src="//gc.zgo.at/count.js"></script>
+		)}
 
 	</head>
 	<body class=" min-h-screen transition " class:list={[{"lg:is-home": isHomePage, "enable-banner": enableBanner}]}
@@ -507,6 +512,14 @@ const setup = () => {
 
 	initCharts();
 	window.swup.hooks.on('page:view', initCharts);
+
+	/* GoatCounter: count.js only auto-counts the very first real page load,
+	   so client-side Swup transitions need an explicit count() call. */
+	window.swup.hooks.on('page:view', () => {
+		window.goatcounter?.count?.({
+			path: location.pathname + location.search + location.hash,
+		});
+	});
 
 	window.swup.hooks.on('visit:end', () => {
 		// Accessibility: Reset focus to the main content
