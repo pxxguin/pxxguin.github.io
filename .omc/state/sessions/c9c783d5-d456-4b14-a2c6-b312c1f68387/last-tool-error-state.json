@@ -1,7 +1,0 @@
-{
-  "tool_name": "Bash",
-  "tool_input_preview": "{\"command\":\"pkill -f \\\"astro dev\\\" 2>/dev/null; pkill -f \\\"node_modules/.bin/astro dev\\\" 2>/dev/null; lsof -ti:4322 | xargs -r kill 2>/dev/null; echo done\",\"description\":\"Stop the test dev server\"}",
-  "error": "Exit code 144",
-  "timestamp": "2026-08-09T05:19:26.033Z",
-  "retry_count": 1
-}

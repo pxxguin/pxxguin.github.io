@@ -29,3 +29,7 @@ yarn.lock
 # ide
 .idea
 *.iml
+
+# oh-my-claudecode operational state (skills/ is the committable exception)
+.omc/*
+!.omc/skills
