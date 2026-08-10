@@ -1,7 +1,7 @@
 <script lang="ts">
+import { getUnlocked, TROPHIES } from "@utils/achievements";
 import confetti from "canvas-confetti";
 import { onDestroy, onMount } from "svelte";
-import { getUnlocked, TROPHIES } from "@utils/achievements";
 
 const TOTAL = TROPHIES.length;
 
