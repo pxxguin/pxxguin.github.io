@@ -86,6 +86,7 @@ export function redeem(id: string, guess: string): boolean {
 	const unlocked = getUnlocked();
 	if (!unlocked.includes(id)) {
 		localStorage.setItem(STORAGE_KEY, JSON.stringify([...unlocked, id]));
+		window.dispatchEvent(new CustomEvent("trophies-updated"));
 	}
 	return true;
 }
