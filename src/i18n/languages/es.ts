@@ -24,6 +24,9 @@ export const es: Translation = {
 	[Key.postCount]: "publicación",
 	[Key.postsCount]: "publicaciones",
 
+	[Key.sortNewest]: "Más recientes",
+	[Key.sortOldest]: "Más antiguos",
+
 	[Key.themeColor]: "Color del tema",
 
 	[Key.lightMode]: "Claro",

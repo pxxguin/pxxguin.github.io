@@ -24,6 +24,9 @@ export const en: Translation = {
 	[Key.postCount]: "post",
 	[Key.postsCount]: "posts",
 
+	[Key.sortNewest]: "Newest",
+	[Key.sortOldest]: "Oldest",
+
 	[Key.themeColor]: "Theme Color",
 
 	[Key.lightMode]: "Light",

@@ -24,6 +24,9 @@ export const zh_TW: Translation = {
 	[Key.postCount]: "篇文章",
 	[Key.postsCount]: "篇文章",
 
+	[Key.sortNewest]: "最新",
+	[Key.sortOldest]: "最舊",
+
 	[Key.themeColor]: "主題色",
 
 	[Key.lightMode]: "亮色",
