@@ -1,5 +1,9 @@
 @import "./main.css";
 .custom-md {
+    /* Nudge the whole post's type scale up a bit; every prose element below
+       sizes itself in em relative to this, so this scales everything at once. */
+    font-size: 1.0625rem !important;
+
     h1 {
         @apply text-3xl;
     }
