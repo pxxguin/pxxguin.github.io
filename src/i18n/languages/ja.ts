@@ -24,6 +24,9 @@ export const ja: Translation = {
 	[Key.postCount]: "件の投稿",
 	[Key.postsCount]: "件の投稿",
 
+	[Key.sortNewest]: "新しい順",
+	[Key.sortOldest]: "古い順",
+
 	[Key.themeColor]: "テーマカラー",
 
 	[Key.lightMode]: "ライト",

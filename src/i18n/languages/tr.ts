@@ -24,6 +24,9 @@ export const tr: Translation = {
 	[Key.postCount]: "gönderi",
 	[Key.postsCount]: "gönderiler",
 
+	[Key.sortNewest]: "En yeni",
+	[Key.sortOldest]: "En eski",
+
 	[Key.themeColor]: "Tema Rengi",
 
 	[Key.lightMode]: "Aydınlık",

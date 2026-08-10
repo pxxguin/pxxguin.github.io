@@ -21,6 +21,9 @@ enum I18nKey {
 	postCount = "postCount",
 	postsCount = "postsCount",
 
+	sortNewest = "sortNewest",
+	sortOldest = "sortOldest",
+
 	themeColor = "themeColor",
 
 	lightMode = "lightMode",

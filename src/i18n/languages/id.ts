@@ -24,6 +24,9 @@ export const id: Translation = {
 	[Key.postCount]: "postingan",
 	[Key.postsCount]: "postingan",
 
+	[Key.sortNewest]: "Terbaru",
+	[Key.sortOldest]: "Terlama",
+
 	[Key.themeColor]: "Warna Tema",
 
 	[Key.lightMode]: "Terang",

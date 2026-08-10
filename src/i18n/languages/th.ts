@@ -24,6 +24,9 @@ export const th: Translation = {
 	[Key.postCount]: "โพสต์",
 	[Key.postsCount]: "โพสต์",
 
+	[Key.sortNewest]: "ใหม่ล่าสุด",
+	[Key.sortOldest]: "เก่าที่สุด",
+
 	[Key.themeColor]: "สีของธีม",
 
 	[Key.lightMode]: "สว่าง",

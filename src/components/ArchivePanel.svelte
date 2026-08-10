@@ -40,7 +40,8 @@ interface Group {
 	posts: Post[];
 }
 
-let groups: Group[] = [];
+let filteredPosts: Post[] = [];
+let sortOrder: "newest" | "oldest" = "newest";
 
 function formatDate(date: Date) {
 	const month = (date.getMonth() + 1).toString().padStart(2, "0");
@@ -52,36 +53,15 @@ function formatTag(tagList: string[]) {
 	return tagList.map((t) => `#${t}`).join(" ");
 }
 
-onMount(async () => {
-	let filteredPosts: Post[] = sortedPosts;
+function buildGroups(posts: Post[], order: "newest" | "oldest"): Group[] {
+	const sorted = [...posts].sort((a, b) => {
+		const diff =
+			new Date(a.data.published).getTime() -
+			new Date(b.data.published).getTime();
+		return order === "newest" ? -diff : diff;
+	});
 
-	if (tags.length > 0) {
-		filteredPosts = filteredPosts.filter(
-			(post) =>
-				Array.isArray(post.data.tags) &&
-				post.data.tags.some((tag) => tags.includes(tag)),
-		);
-	}
-
-	if (excludeTags.length > 0) {
-		filteredPosts = filteredPosts.filter(
-			(post) =>
-				!Array.isArray(post.data.tags) ||
-				!post.data.tags.some((tag) => excludeTags.includes(tag)),
-		);
-	}
-
-	if (categories.length > 0) {
-		filteredPosts = filteredPosts.filter(
-			(post) => post.data.category && categories.includes(post.data.category),
-		);
-	}
-
-	if (uncategorized) {
-		filteredPosts = filteredPosts.filter((post) => !post.data.category);
-	}
-
-	const grouped = filteredPosts.reduce(
+	const grouped = sorted.reduce(
 		(acc, post) => {
 			const year = new Date(post.data.published).getFullYear();
 			if (!acc[year]) {
@@ -98,53 +78,108 @@ onMount(async () => {
 		posts: grouped[Number.parseInt(yearStr, 10)],
 	}));
 
-	groupedPostsArray.sort((a, b) => b.year - a.year);
+	groupedPostsArray.sort((a, b) =>
+		order === "newest" ? b.year - a.year : a.year - b.year,
+	);
 
-	groups = groupedPostsArray;
+	return groupedPostsArray;
+}
+
+$: groups = buildGroups(filteredPosts, sortOrder);
+
+onMount(async () => {
+	let posts: Post[] = sortedPosts;
+
+	if (tags.length > 0) {
+		posts = posts.filter(
+			(post) =>
+				Array.isArray(post.data.tags) &&
+				post.data.tags.some((tag) => tags.includes(tag)),
+		);
+	}
+
+	if (excludeTags.length > 0) {
+		posts = posts.filter(
+			(post) =>
+				!Array.isArray(post.data.tags) ||
+				!post.data.tags.some((tag) => excludeTags.includes(tag)),
+		);
+	}
+
+	if (categories.length > 0) {
+		posts = posts.filter(
+			(post) => post.data.category && categories.includes(post.data.category),
+		);
+	}
+
+	if (uncategorized) {
+		posts = posts.filter((post) => !post.data.category);
+	}
+
+	filteredPosts = posts;
 });
 </script>
 
 
 <div class="px-4 py-4 md:px-0">
-    {#if isFiltered}
-        <div class="flex flex-wrap items-center gap-2 mb-8 pl-4 md:pl-0">
-            {#if categories.length > 0}
-                {#each categories as cat}
-                    <span class="inline-flex items-center gap-1.5 bg-[var(--primary)] text-white text-sm font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/>
-                        </svg>
-                        {cat}
-                    </span>
-                {/each}
+    <div class="flex flex-wrap items-center justify-between gap-2 mb-8 pl-4 md:pl-0">
+        <div class="flex flex-wrap items-center gap-2">
+            {#if isFiltered}
+                {#if categories.length > 0}
+                    {#each categories as cat}
+                        <span class="inline-flex items-center gap-1.5 bg-[var(--primary)] text-white text-sm font-semibold px-3.5 py-1.5 rounded-full shadow-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2z"/>
+                            </svg>
+                            {cat}
+                        </span>
+                    {/each}
+                {/if}
+                {#if tags.length > 0}
+                    {#each tags as tag}
+                        <span class="inline-flex items-center gap-1.5 bg-black/10 dark:bg-white/10 text-75 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
+                                <line x1="7" y1="7" x2="7.01" y2="7"/>
+                            </svg>
+                            #{tag}
+                        </span>
+                    {/each}
+                {/if}
+                {#if excludeTags.length > 0}
+                    {#each excludeTags as tag}
+                        <span class="inline-flex items-center gap-1.5 bg-red-500/10 text-red-600 dark:text-red-400 text-sm font-medium px-3.5 py-1.5 rounded-full">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"/>
+                                <line x1="6" y1="6" x2="18" y2="18"/>
+                            </svg>
+                            -{tag}
+                        </span>
+                    {/each}
+                {/if}
+                <span class="text-50 text-sm ml-1">
+                    · {groups.reduce((sum, g) => sum + g.posts.length, 0)} {i18n(groups.reduce((sum, g) => sum + g.posts.length, 0) === 1 ? I18nKey.postCount : I18nKey.postsCount)}
+                </span>
             {/if}
-            {#if tags.length > 0}
-                {#each tags as tag}
-                    <span class="inline-flex items-center gap-1.5 bg-black/10 dark:bg-white/10 text-75 text-sm font-medium px-3.5 py-1.5 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/>
-                            <line x1="7" y1="7" x2="7.01" y2="7"/>
-                        </svg>
-                        #{tag}
-                    </span>
-                {/each}
-            {/if}
-            {#if excludeTags.length > 0}
-                {#each excludeTags as tag}
-                    <span class="inline-flex items-center gap-1.5 bg-red-500/10 text-red-600 dark:text-red-400 text-sm font-medium px-3.5 py-1.5 rounded-full">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <line x1="18" y1="6" x2="6" y2="18"/>
-                            <line x1="6" y1="6" x2="18" y2="18"/>
-                        </svg>
-                        -{tag}
-                    </span>
-                {/each}
-            {/if}
-            <span class="text-50 text-sm ml-1">
-                · {groups.reduce((sum, g) => sum + g.posts.length, 0)} {i18n(groups.reduce((sum, g) => sum + g.posts.length, 0) === 1 ? I18nKey.postCount : I18nKey.postsCount)}
-            </span>
         </div>
-    {/if}
+
+        <div class="inline-flex items-center rounded-full bg-black/5 dark:bg-white/5 p-1">
+            <button
+                type="button"
+                class={`px-3.5 py-1.5 text-sm font-medium rounded-full transition ${sortOrder === "newest" ? "bg-[var(--primary)] text-white shadow-sm" : "text-50 hover:text-75"}`}
+                onclick={() => (sortOrder = "newest")}
+            >
+                {i18n(I18nKey.sortNewest)}
+            </button>
+            <button
+                type="button"
+                class={`px-3.5 py-1.5 text-sm font-medium rounded-full transition ${sortOrder === "oldest" ? "bg-[var(--primary)] text-white shadow-sm" : "text-50 hover:text-75"}`}
+                onclick={() => (sortOrder = "oldest")}
+            >
+                {i18n(I18nKey.sortOldest)}
+            </button>
+        </div>
+    </div>
 
     {#each groups as group (group.year)}
         <div class="mb-12">
