@@ -1,0 +1,40 @@
+name: Check for Broken Links
+
+on:
+  schedule:
+    - cron: "0 3 * * 1" # 매주 월요일 03:00 UTC (한국 시간 정오)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  lychee:
+    runs-on: ubuntu-latest
+    name: Lychee Link Checker
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Link Checker
+        id: lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: >-
+            --verbose --no-progress
+            --exclude-mail
+            --exclude 'localhost'
+            --exclude 'pxxguin\.github\.io'
+            './src/content/**/*.md'
+          format: markdown
+          output: ./lychee-report.md
+          fail: false
+
+      - name: Create Issue on Broken Links
+        if: steps.lychee.outputs.exit_code != 0
+        uses: peter-evans/create-issue-from-file@v5
+        with:
+          title: "🔗 깨진 링크 발견 (자동 점검)"
+          content-filepath: ./lychee-report.md
+          labels: broken-links, automated

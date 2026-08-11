@@ -81,6 +81,79 @@ jobs:
         with:
           path: ./dist # Astro의 기본 출력 폴더
 
+      # 4. lighthouse/smoke-test job이 재빌드 없이 재사용할 수 있도록 dist를 일반 아티팩트로도 업로드
+      - name: Upload dist for downstream jobs
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+          retention-days: 1
+
+  lighthouse:
+    # 배포를 막지 않는 비차단 성능 점검. deploy는 build만 기다리고 이 job을 기다리지 않는다.
+    needs: build
+    runs-on: ubuntu-latest
+    name: Lighthouse CI (성능 회귀 점검)
+    continue-on-error: true
+    steps:
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+      - name: Run Lighthouse CI
+        uses: treosh/lighthouse-ci-action@v11
+        with:
+          staticDistDir: ./dist
+          urls: |
+            /index.html
+            /archive/index.html
+            /about/index.html
+          uploadArtifacts: true
+          temporaryPublicStorage: true
+
+  smoke-test:
+    # 실제 브라우저로 핵심 페이지의 콘솔/네트워크 에러를 확인 (배포는 막지 않음)
+    needs: build
+    runs-on: ubuntu-latest
+    name: Browser Smoke Test
+    continue-on-error: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          run_install: false
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Install Playwright browsers
+        run: npx playwright install --with-deps chromium
+
+      - name: Download dist artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: ./dist
+
+      - name: Serve built site
+        run: npx serve -l 4321 ./dist &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:4321
+
+      - name: Run smoke test
+        run: node scripts/smoke-check.mjs
+
   deploy:
     # build Job이 성공적으로 완료된 후에만 실행
     needs: build
