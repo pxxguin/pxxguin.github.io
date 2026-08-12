@@ -342,6 +342,108 @@
         }
     }
 }
+
+/* Footnotes (GFM syntax: text[^1] ... [^1]: content) */
+.custom-md {
+    sup [data-footnote-ref] {
+        @apply text-[var(--primary)] font-medium transition-colors;
+        background: none !important; /* override generic link pill background */
+        padding: 0 1px !important;
+        margin: 0 !important;
+        border-radius: 0.2em;
+        text-decoration: none !important;
+        border-bottom: 1px solid transparent;
+
+        &:hover {
+            background: var(--btn-regular-bg) !important;
+            border-bottom-color: var(--primary);
+        }
+
+        &::after {
+            content: none !important;
+        }
+    }
+
+    /* Styled like the plain admonitions (:::important::: etc.) — a colored
+       accent bar + icon/label title, no boxed card — instead of the bare
+       "Footnotes" <h2> that remark-rehype generates by default */
+    .footnotes {
+        @apply relative my-8 pl-5;
+        font-size: 0.9375em;
+
+        &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.15em;
+            bottom: 0.15em;
+            width: 0.25rem;
+            border-radius: 999px;
+            background: var(--primary);
+        }
+
+        > h2 {
+            @apply flex items-center gap-2 font-bold not-italic;
+            font-size: 0.9375em;
+            color: var(--primary) !important;
+            margin: 0 0 0.6rem 0 !important;
+
+            &::before {
+                content: "🔖";
+                font-size: 1em;
+            }
+        }
+
+        ol {
+            padding-left: 1.25rem;
+            margin: 0 !important;
+        }
+
+        li {
+            margin-bottom: 0.4rem;
+            scroll-margin-top: 6rem;
+
+            &::marker {
+                color: var(--primary);
+                font-weight: 600;
+            }
+        }
+
+        p {
+            margin: 0 !important;
+        }
+
+        a[data-footnote-backref] {
+            @apply text-[var(--primary)];
+            background: none !important;
+            padding: 0 !important;
+            margin-left: 0.25rem !important;
+            text-decoration: none !important;
+            display: inline-block !important;
+
+            &:hover {
+                text-decoration: underline !important;
+            }
+
+            &::after {
+                content: none !important;
+            }
+        }
+    }
+
+    /* Briefly flash the landing spot so a footnote jump (there and back) is easy to follow */
+    sup a[data-footnote-ref]:target,
+    .footnotes li:target {
+        animation: footnote-flash 2s ease;
+        border-radius: 0.25em;
+    }
+}
+
+@keyframes footnote-flash {
+    from { background-color: color-mix(in srgb, var(--primary) 25%, transparent); }
+    to { background-color: transparent; }
+}
+
 mark:not(.reading-highlight) {
     background: linear-gradient(90deg, #fff9c4, #fff59d); /* pale yellow */
     padding: 0.08em 0.28em;
