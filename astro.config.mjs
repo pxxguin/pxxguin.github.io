@@ -152,8 +152,8 @@ export default defineConfig({
 			],
 		],
 		remarkRehype: {
-			footnoteLabel: "각주",
-			footnoteBackLabel: "본문으로 돌아가기",
+			footnoteLabel: "Footnotes",
+			footnoteBackLabel: "Back to content",
 		},
 	},
 	vite: {
