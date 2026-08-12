@@ -61,6 +61,10 @@ export const navBarConfig: NavBarConfig = {
 							name: "Deep Learning",
 							url: "/archive/?category=MachineL",
 						},
+						{
+							name: "Paper Review",
+							url: "/archive/?category=Paper",
+						},
 					],
 				},
 			],

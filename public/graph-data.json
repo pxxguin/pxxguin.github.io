@@ -168,6 +168,17 @@
       "val": 1
     },
     {
+      "id": "[Kafka] 하위~~",
+      "title": "[Kafka] 하위~~",
+      "postId": 27,
+      "tags": [
+        "Distribution Streaming Platform"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -187,6 +198,18 @@
         "smtplib"
       ],
       "category": "Python",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "title": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "postId": 28,
+      "tags": [
+        "LLM Security",
+        "Prompt Injection"
+      ],
+      "category": "AI Security",
       "type": "post",
       "val": 1
     },
@@ -289,6 +312,12 @@
       "val": 5
     },
     {
+      "id": "Distribution Streaming Platform",
+      "name": "Distribution Streaming Platform",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -303,6 +332,18 @@
     {
       "id": "smtplib",
       "name": "smtplib",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM Security",
+      "name": "LLM Security",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Prompt Injection",
+      "name": "Prompt Injection",
       "type": "tag",
       "val": 5
     },
@@ -367,8 +408,20 @@
       "val": 10
     },
     {
+      "id": "Kafka",
+      "name": "Kafka",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Python",
       "name": "Python",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "AI Security",
+      "name": "AI Security",
       "type": "category",
       "val": 10
     },
@@ -545,6 +598,14 @@
       "target": "Github"
     },
     {
+      "source": "[Kafka] 하위~~",
+      "target": "Distribution Streaming Platform"
+    },
+    {
+      "source": "[Kafka] 하위~~",
+      "target": "Kafka"
+    },
+    {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
@@ -563,6 +624,18 @@
     {
       "source": "[Python] 메일 라이브러리 smtplib를 활용한 레포지토리 관리",
       "target": "Python"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "target": "Prompt Injection"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "target": "AI Security"
     },
     {
       "source": "[Terraform] Terraform의 기본 개념 & 설치 방법",
