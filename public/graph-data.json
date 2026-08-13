@@ -168,11 +168,13 @@
       "val": 1
     },
     {
-      "id": "[Kafka] 하위~~",
-      "title": "[Kafka] 하위~~",
+      "id": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
+      "title": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
       "postId": 27,
       "tags": [
-        "Distribution Streaming Platform"
+        "Kafka",
+        "Message Queue",
+        "Streaming"
       ],
       "category": "Kafka",
       "type": "post",
@@ -209,7 +211,7 @@
         "LLM Security",
         "Prompt Injection"
       ],
-      "category": "AI Security",
+      "category": "MachineL",
       "type": "post",
       "val": 1
     },
@@ -312,8 +314,20 @@
       "val": 5
     },
     {
-      "id": "Distribution Streaming Platform",
-      "name": "Distribution Streaming Platform",
+      "id": "Kafka",
+      "name": "Kafka",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Message Queue",
+      "name": "Message Queue",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Streaming",
+      "name": "Streaming",
       "type": "tag",
       "val": 5
     },
@@ -416,12 +430,6 @@
     {
       "id": "Python",
       "name": "Python",
-      "type": "category",
-      "val": 10
-    },
-    {
-      "id": "AI Security",
-      "name": "AI Security",
       "type": "category",
       "val": 10
     },
@@ -598,11 +606,19 @@
       "target": "Github"
     },
     {
-      "source": "[Kafka] 하위~~",
-      "target": "Distribution Streaming Platform"
+      "source": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
+      "target": "Kafka"
     },
     {
-      "source": "[Kafka] 하위~~",
+      "source": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
+      "target": "Message Queue"
+    },
+    {
+      "source": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
+      "target": "Streaming"
+    },
+    {
+      "source": "[Kafka] Kafka, 데이터의 흐름을 다루는 방법",
       "target": "Kafka"
     },
     {
@@ -635,7 +651,7 @@
     },
     {
       "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
-      "target": "AI Security"
+      "target": "MachineL"
     },
     {
       "source": "[Terraform] Terraform의 기본 개념 & 설치 방법",
