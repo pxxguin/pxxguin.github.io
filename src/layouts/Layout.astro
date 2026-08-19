@@ -479,7 +479,7 @@ const setup = () => {
 */
 	/* Mermaid Diagram — themed to match the site's hue/light-dark design system */
 	const initMermaid = async () => {
-		const nodes = document.querySelectorAll('.mermaid');
+		const nodes = document.querySelectorAll<HTMLElement>('.mermaid');
 		if (nodes.length === 0) return;
 
 		const mermaid = (await import('mermaid')).default;
