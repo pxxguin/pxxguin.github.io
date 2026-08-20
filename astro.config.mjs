@@ -18,6 +18,7 @@ import { remarkSectionize } from "./src/plugins/remark-sectionize.mjs";
 import { expressiveCodeConfig } from "./src/config.ts";
 import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-copy-button.js";
 import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
+import { pluginTerminalPrompt } from "./src/plugins/expressive-code/terminal-prompt.js";
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { LinkCardComponent } from "./src/plugins/rehype-component-link-card.mjs"; // 1. 파일 import 추가
@@ -68,6 +69,7 @@ export default defineConfig({
 				pluginLineNumbers(),
 				pluginLanguageBadge(),
 				pluginCustomCopyButton(),
+				pluginTerminalPrompt(),
 			],
 			defaultProps: {
 				wrap: true,
@@ -92,14 +94,17 @@ export default defineConfig({
 				codePaddingInline: "1.5rem",
 				frames: {
 					editorBackground: "var(--codeblock-bg)",
-					terminalBackground: "var(--codeblock-bg)",
-					terminalTitlebarBackground: "var(--codeblock-topbar-bg)",
+					// Dracula palette, fixed regardless of site theme, so terminal blocks
+					// read as an actual terminal instead of blending into editor code blocks
+					terminalBackground: "#282a36",
+					terminalTitlebarBackground: "#21222c",
+					terminalTitlebarForeground: "#f8f8f2",
+					terminalTitlebarBorderBottomColor: "#191a21",
 					editorTabBarBackground: "var(--codeblock-topbar-bg)",
 					editorActiveTabBackground: "none",
 					editorActiveTabIndicatorBottomColor: "var(--primary)",
 					editorActiveTabIndicatorTopColor: "none",
 					editorTabBarBorderBottomColor: "var(--codeblock-topbar-bg)",
-					terminalTitlebarBorderBottomColor: "none",
 				},
 				textMarkers: {
 					delHue: 0,

@@ -9,6 +9,57 @@
         font-family: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
+    /* Real terminal window (Dracula theme): distinct from editor code blocks */
+    .frame.is-terminal {
+        border-color: rgba(189, 147, 249, 0.35) !important;
+
+        .header {
+            padding-inline-start: 4.75rem;
+
+            &::before {
+                top: 50%;
+                left: 1.1rem;
+                width: 0.7rem;
+                height: 0.7rem;
+                border-radius: 50%;
+                background-color: #ff5f56;
+                box-shadow: 1.15rem 0 0 #ffbd2e, 2.3rem 0 0 #27c93f;
+                mask-image: none;
+                -webkit-mask-image: none;
+                opacity: 1;
+                transform: translateY(-50%);
+            }
+
+            .title {
+                font-size: 0.8rem;
+                color: rgba(248, 248, 242, 0.45);
+
+                &:empty::before {
+                    content: "pxxguin@root: ~";
+                }
+            }
+        }
+
+        /* Per-line shell prompt, injected by the terminal-prompt EC plugin.
+           It's a sibling of `.code` (not inside it), so copy/selection skip it. */
+        .term-prompt {
+            display: flex;
+            align-items: baseline;
+            padding-inline-start: 1.5rem;
+            white-space: nowrap;
+            user-select: none;
+            border-right: none !important;
+
+            .term-user {
+                color: #50fa7b;
+            }
+
+            .term-sep {
+                color: #6272a4;
+            }
+        }
+    }
+
     /* Subtle Line Numbers */
     .gutter {
         color: rgba(255, 255, 255, 0.3) !important;
