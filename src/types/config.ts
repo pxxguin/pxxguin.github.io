@@ -44,12 +44,6 @@ export type Favicon = {
 	sizes?: string;
 };
 
-export enum LinkPreset {
-	Home = 0,
-	Archive = 1,
-	About = 2,
-}
-
 export type NavBarLink = {
 	name: string;
 	url: string;
@@ -67,7 +61,7 @@ export type NavBarDropdown = {
 };
 
 export type NavBarConfig = {
-	links: (NavBarLink | LinkPreset | NavBarDropdown)[];
+	links: (NavBarLink | NavBarDropdown)[];
 };
 
 export type ProfileConfig = {

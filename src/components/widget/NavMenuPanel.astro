@@ -1,17 +1,13 @@
 ---
 import { Icon } from "astro-icon/components";
-import type {
-	LinkPreset,
-	NavBarDropdown,
-	NavBarLink,
-} from "../../types/config";
+import type { NavBarDropdown, NavBarLink } from "../../types/config";
 import { url } from "../../utils/url-utils";
 
 interface Props {
-	links: (NavBarLink | LinkPreset | NavBarDropdown)[];
+	links: (NavBarLink | NavBarDropdown)[];
 }
 
-const links = Astro.props.links as (NavBarLink | NavBarDropdown)[];
+const { links } = Astro.props;
 ---
 <div id="nav-menu-panel" class:list={["float-panel float-panel-closed absolute transition-all fixed right-4 px-2 py-2 md:hidden"]}>
     {links.map((link) => {
