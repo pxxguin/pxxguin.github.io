@@ -57,11 +57,15 @@ const colors = [
 	},
 ];
 
-export function getTagColor(tag: string): string {
+export function hashTagName(tag: string): number {
 	let hash = 0;
 	for (let i = 0; i < tag.length; i++) {
 		hash = tag.charCodeAt(i) + ((hash << 5) - hash);
 	}
-	const index = Math.abs(hash) % colors.length;
+	return Math.abs(hash);
+}
+
+export function getTagColor(tag: string): string {
+	const index = hashTagName(tag) % colors.length;
 	return colors[index].class;
 }

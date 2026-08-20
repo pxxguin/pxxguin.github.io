@@ -4,24 +4,11 @@ import matter from "gray-matter";
 
 const POSTS_DIR = path.join(process.cwd(), "src/content/posts");
 
-// Recursive function to get all markdown files
 function getMarkdownFiles(dir) {
-	let results = [];
-	const list = fs.readdirSync(dir);
-	list.forEach((file) => {
-		file = path.join(dir, file);
-		const stat = fs.statSync(file);
-		if (stat?.isDirectory()) {
-			/* Recurse into a subdirectory */
-			results = results.concat(getMarkdownFiles(file));
-		} else {
-			/* Is a file */
-			if (file.endsWith(".md") || file.endsWith(".mdx")) {
-				results.push(file);
-			}
-		}
-	});
-	return results;
+	return fs
+		.readdirSync(dir, { recursive: true })
+		.filter((file) => file.endsWith(".md") || file.endsWith(".mdx"))
+		.map((file) => path.join(dir, file));
 }
 
 function assignPostIds() {

@@ -5,22 +5,11 @@ import matter from "gray-matter";
 const CONTENT_DIR = path.join(process.cwd(), "src/content/posts");
 const OUTPUT_FILE = path.join(process.cwd(), "public/graph-data.json");
 
-function getAllFiles(dirPath, arrayOfFiles) {
-	const files = fs.readdirSync(dirPath);
-
-	arrayOfFiles = arrayOfFiles || [];
-
-	files.forEach((file) => {
-		if (fs.statSync(`${dirPath}/${file}`).isDirectory()) {
-			arrayOfFiles = getAllFiles(`${dirPath}/${file}`, arrayOfFiles);
-		} else {
-			if (file.endsWith(".md")) {
-				arrayOfFiles.push(path.join(dirPath, "/", file));
-			}
-		}
-	});
-
-	return arrayOfFiles;
+function getAllFiles(dirPath) {
+	return fs
+		.readdirSync(dirPath, { recursive: true })
+		.filter((file) => file.endsWith(".md"))
+		.map((file) => path.join(dirPath, file));
 }
 
 async function generateGraph() {
