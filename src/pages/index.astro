@@ -11,6 +11,7 @@ import GridPostCard from "../components/GridPostCard.astro";
 import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
+import { hashTagName } from "../utils/color-utils";
 import { getCategoryList, getSortedPosts } from "../utils/content-utils";
 import { getPostUrl } from "../utils/url-utils";
 
@@ -26,19 +27,11 @@ const allPosts = await getCollection("posts");
 
 // Hash color functions for tags
 function hashStringToColor(str: string) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash % 360);
+    const hue = hashTagName(str) % 360;
     return `hsl(${hue}, 70%, 45%)`;
 }
 function hashStringToDarkColor(str: string) {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-        hash = str.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const hue = Math.abs(hash % 360);
+    const hue = hashTagName(str) % 360;
     return `hsl(${hue}, 80%, 75%)`;
 }
 
