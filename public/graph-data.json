@@ -69,6 +69,18 @@
       "val": 1
     },
     {
+      "id": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "title": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "postId": 28,
+      "tags": [
+        "LLM Security",
+        "Prompt Injection"
+      ],
+      "category": "MachineL",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Docker] Docker 한 번에 이해하기",
       "title": "[Docker] Docker 한 번에 이해하기",
       "postId": 6,
@@ -181,6 +193,78 @@
       "val": 1
     },
     {
+      "id": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "title": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "postId": 29,
+      "tags": [
+        "Kafka",
+        "RabbitMQ",
+        "Message Queue"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "title": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "postId": 30,
+      "tags": [
+        "Kafka",
+        "Producer",
+        "Consumer",
+        "Offset"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "title": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "postId": 31,
+      "tags": [
+        "Kafka",
+        "Python",
+        "Producer",
+        "Consumer",
+        "Partition"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "title": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "postId": 35,
+      "tags": [
+        "Kafka",
+        "Python",
+        "Producer",
+        "Idempotence",
+        "Reliability"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "title": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "postId": 36,
+      "tags": [
+        "Kafka",
+        "Python",
+        "Consumer",
+        "Rebalancing",
+        "Consumer Group"
+      ],
+      "category": "Kafka",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -204,14 +288,29 @@
       "val": 1
     },
     {
-      "id": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
-      "title": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
-      "postId": 28,
+      "id": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "title": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "postId": 32,
+      "tags": [
+        "uv",
+        "Poetry",
+        "Virtual Environment"
+      ],
+      "category": "Python",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "title": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "postId": 34,
       "tags": [
         "LLM Security",
-        "Prompt Injection"
+        "AI Agent",
+        "Behavioral Detection",
+        "Gateway"
       ],
-      "category": "MachineL",
+      "category": "Security",
       "type": "post",
       "val": 1
     },
@@ -256,6 +355,18 @@
     {
       "id": "DeepL",
       "name": "DeepL",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM Security",
+      "name": "LLM Security",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Prompt Injection",
+      "name": "Prompt Injection",
       "type": "tag",
       "val": 5
     },
@@ -332,6 +443,66 @@
       "val": 5
     },
     {
+      "id": "RabbitMQ",
+      "name": "RabbitMQ",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Producer",
+      "name": "Producer",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Consumer",
+      "name": "Consumer",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Offset",
+      "name": "Offset",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Python",
+      "name": "Python",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Partition",
+      "name": "Partition",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Idempotence",
+      "name": "Idempotence",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Reliability",
+      "name": "Reliability",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Rebalancing",
+      "name": "Rebalancing",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Consumer Group",
+      "name": "Consumer Group",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -350,14 +521,38 @@
       "val": 5
     },
     {
-      "id": "LLM Security",
-      "name": "LLM Security",
+      "id": "uv",
+      "name": "uv",
       "type": "tag",
       "val": 5
     },
     {
-      "id": "Prompt Injection",
-      "name": "Prompt Injection",
+      "id": "Poetry",
+      "name": "Poetry",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Virtual Environment",
+      "name": "Virtual Environment",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "AI Agent",
+      "name": "AI Agent",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Behavioral Detection",
+      "name": "Behavioral Detection",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Gateway",
+      "name": "Gateway",
       "type": "tag",
       "val": 5
     },
@@ -434,6 +629,12 @@
       "val": 10
     },
     {
+      "id": "Security",
+      "name": "Security",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Terraform",
       "name": "Terraform",
       "type": "category",
@@ -495,6 +696,18 @@
     },
     {
       "source": "[DeepL] What is optimizer and how they work?",
+      "target": "MachineL"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "target": "Prompt Injection"
+    },
+    {
+      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
       "target": "MachineL"
     },
     {
@@ -622,6 +835,114 @@
       "target": "Kafka"
     },
     {
+      "source": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "target": "RabbitMQ"
+    },
+    {
+      "source": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "target": "Message Queue"
+    },
+    {
+      "source": "[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "target": "Producer"
+    },
+    {
+      "source": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "target": "Consumer"
+    },
+    {
+      "source": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "target": "Offset"
+    },
+    {
+      "source": "[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Python"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Producer"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Consumer"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Partition"
+    },
+    {
+      "source": "[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Python"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Producer"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Idempotence"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Reliability"
+    },
+    {
+      "source": "[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Kafka"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Python"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Consumer"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Rebalancing"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Consumer Group"
+    },
+    {
+      "source": "[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기",
+      "target": "Kafka"
+    },
+    {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
@@ -642,16 +963,40 @@
       "target": "Python"
     },
     {
-      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
+      "source": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "target": "uv"
+    },
+    {
+      "source": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "target": "Poetry"
+    },
+    {
+      "source": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "target": "Virtual Environment"
+    },
+    {
+      "source": "[Python] uv와 Poetry로 개발 환경 관리하기",
+      "target": "Python"
+    },
+    {
+      "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
       "target": "LLM Security"
     },
     {
-      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
-      "target": "Prompt Injection"
+      "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "AI Agent"
     },
     {
-      "source": "[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가",
-      "target": "MachineL"
+      "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "Behavioral Detection"
+    },
+    {
+      "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "Gateway"
+    },
+    {
+      "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "Security"
     },
     {
       "source": "[Terraform] Terraform의 기본 개념 & 설치 방법",
