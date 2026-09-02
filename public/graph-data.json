@@ -315,6 +315,20 @@
       "val": 1
     },
     {
+      "id": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "title": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "postId": 37,
+      "tags": [
+        "LLM Security",
+        "AI Agent",
+        "Execution Provenance",
+        "Observability"
+      ],
+      "category": "Security",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Terraform] Terraform의 기본 개념 & 설치 방법",
       "title": "[Terraform] Terraform의 기본 개념 & 설치 방법",
       "postId": 21,
@@ -553,6 +567,18 @@
     {
       "id": "Gateway",
       "name": "Gateway",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Execution Provenance",
+      "name": "Execution Provenance",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Observability",
+      "name": "Observability",
       "type": "tag",
       "val": 5
     },
@@ -996,6 +1022,26 @@
     },
     {
       "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "Security"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "target": "Execution Provenance"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
+      "target": "Observability"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
       "target": "Security"
     },
     {
