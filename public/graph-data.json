@@ -133,6 +133,19 @@
       "val": 1
     },
     {
+      "id": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "title": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "postId": 38,
+      "tags": [
+        "Elasticsearch",
+        "Search Engine",
+        "Inverted Index"
+      ],
+      "category": "Elasticsearch",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Github] CI/CD란 무엇인가?",
       "title": "[Github] CI/CD란 무엇인가?",
       "postId": 23,
@@ -265,6 +278,20 @@
       "val": 1
     },
     {
+      "id": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "title": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "postId": 37,
+      "tags": [
+        "LLM Security",
+        "AI Agent",
+        "Execution Provenance",
+        "Observability"
+      ],
+      "category": "Security",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -309,20 +336,6 @@
         "AI Agent",
         "Behavioral Detection",
         "Gateway"
-      ],
-      "category": "Security",
-      "type": "post",
-      "val": 1
-    },
-    {
-      "id": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "title": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "postId": 37,
-      "tags": [
-        "LLM Security",
-        "AI Agent",
-        "Execution Provenance",
-        "Observability"
       ],
       "category": "Security",
       "type": "post",
@@ -399,6 +412,24 @@
     {
       "id": "Repository",
       "name": "Repository",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Elasticsearch",
+      "name": "Elasticsearch",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Search Engine",
+      "name": "Search Engine",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Inverted Index",
+      "name": "Inverted Index",
       "type": "tag",
       "val": 5
     },
@@ -517,6 +548,24 @@
       "val": 5
     },
     {
+      "id": "AI Agent",
+      "name": "AI Agent",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Execution Provenance",
+      "name": "Execution Provenance",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Observability",
+      "name": "Observability",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -553,12 +602,6 @@
       "val": 5
     },
     {
-      "id": "AI Agent",
-      "name": "AI Agent",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Behavioral Detection",
       "name": "Behavioral Detection",
       "type": "tag",
@@ -567,18 +610,6 @@
     {
       "id": "Gateway",
       "name": "Gateway",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Execution Provenance",
-      "name": "Execution Provenance",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Observability",
-      "name": "Observability",
       "type": "tag",
       "val": 5
     },
@@ -637,6 +668,12 @@
       "val": 10
     },
     {
+      "id": "Elasticsearch",
+      "name": "Elasticsearch",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Github",
       "name": "Github",
       "type": "category",
@@ -649,14 +686,14 @@
       "val": 10
     },
     {
-      "id": "Python",
-      "name": "Python",
+      "id": "Security",
+      "name": "Security",
       "type": "category",
       "val": 10
     },
     {
-      "id": "Security",
-      "name": "Security",
+      "id": "Python",
+      "name": "Python",
       "type": "category",
       "val": 10
     },
@@ -799,6 +836,22 @@
     {
       "source": "[Docker] docker-compose.yml로 여러 컨테이너 한 번에 관리하기",
       "target": "Docker"
+    },
+    {
+      "source": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "target": "Elasticsearch"
+    },
+    {
+      "source": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "target": "Search Engine"
+    },
+    {
+      "source": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "target": "Inverted Index"
+    },
+    {
+      "source": "[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?",
+      "target": "Elasticsearch"
     },
     {
       "source": "[Github] CI/CD란 무엇인가?",
@@ -969,6 +1022,26 @@
       "target": "Kafka"
     },
     {
+      "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "Execution Provenance"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "Observability"
+    },
+    {
+      "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "Security"
+    },
+    {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
@@ -1022,26 +1095,6 @@
     },
     {
       "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
-      "target": "Security"
-    },
-    {
-      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "target": "LLM Security"
-    },
-    {
-      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "target": "AI Agent"
-    },
-    {
-      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "target": "Execution Provenance"
-    },
-    {
-      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
-      "target": "Observability"
-    },
-    {
-      "source": "[Security] 정답만 맞으면 믿을 수 있을까? LLM 에이전트의 실행 출처 추적",
       "target": "Security"
     },
     {
