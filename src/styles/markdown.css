@@ -120,6 +120,103 @@
         }
     }
 
+    /* Keep frequent bullet lists light: the outer item uses a soft accent dot,
+       while nested items use a hollow dot to make hierarchy easy to scan. */
+    ul {
+        @apply list-none pl-0;
+
+        li {
+            @apply relative pl-5;
+
+            &::before {
+                content: "";
+                @apply absolute rounded-full bg-[var(--primary)];
+                left: 0.2rem;
+                top: 0.72em;
+                width: 0.38rem;
+                height: 0.38rem;
+                box-shadow: 0 0 0 3px var(--btn-regular-bg);
+                transform: translateY(-50%);
+            }
+        }
+
+        ul li::before {
+            background: transparent;
+            border: 1.5px solid var(--primary);
+            box-shadow: none;
+        }
+
+        ol li::before {
+            content: none;
+        }
+
+        ol li {
+            padding-left: 0;
+        }
+
+        ol {
+            @apply list-decimal pl-6;
+
+            li::marker {
+                @apply text-[var(--primary)];
+            }
+        }
+    }
+
+    /* A top-level bullet list is a separate block of information, not just a
+       paragraph with markers. Keep nested lists plain so panels never stack. */
+    > ul,
+    > section > ul {
+        margin-block: 1rem;
+        padding: 0.8rem 1rem 0.8rem 1.1rem;
+        background: var(--btn-regular-bg);
+        border: 1px solid var(--line-color);
+        border-left: 4px solid var(--primary);
+        border-radius: 0.75rem;
+
+        > li {
+            padding-left: 1.35rem;
+        }
+    }
+
+    /* Ordered lists share the panel treatment but use numbered badges and a
+       dashed outline, making sequences distinct from unordered summaries. */
+    > ol,
+    > section > ol {
+        list-style: none;
+        counter-reset: ordered-item;
+        margin-block: 1rem;
+        padding: 0.85rem 1rem;
+        background: color-mix(in srgb, var(--primary) 7%, transparent);
+        border: 1px dashed color-mix(in srgb, var(--primary) 55%, var(--line-color));
+        border-radius: 0.75rem;
+
+        > li {
+            position: relative;
+            counter-increment: ordered-item;
+            padding-left: 2.25rem;
+
+            &::before {
+                content: counter(ordered-item);
+                position: absolute;
+                left: 0;
+                top: 0.1em;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 1.55rem;
+                height: 1.55rem;
+                border: 1px solid var(--primary);
+                border-radius: 0.45rem;
+                background: var(--btn-regular-bg);
+                color: var(--primary);
+                font-size: 0.78em;
+                font-weight: 700;
+                line-height: 1;
+            }
+        }
+    }
+
     blockquote {
         @apply not-italic border-transparent relative;
         font-weight: inherit;
