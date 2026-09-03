@@ -1,6 +1,21 @@
 {
   "nodes": [
     {
+      "id": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "title": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "postId": 43,
+      "tags": [
+        "AI Agent",
+        "LLM",
+        "Agentic System",
+        "Workflow",
+        "1장"
+      ],
+      "category": "AI",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Airflow] Apache Airflow ",
       "title": "[Airflow] Apache Airflow ",
       "postId": 1,
@@ -8,6 +23,50 @@
         "DAG"
       ],
       "category": "Airflow",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "title": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "postId": 39,
+      "tags": [
+        "Software Architecture",
+        "Architecture Decision",
+        "Trade-off",
+        "Architect",
+        "1장"
+      ],
+      "category": "Architecture",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "title": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "postId": 41,
+      "tags": [
+        "Software Architecture",
+        "Architectural Thinking",
+        "Trade-off",
+        "2장"
+      ],
+      "category": "Architecture",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "title": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "postId": 42,
+      "tags": [
+        "Software Architecture",
+        "Modularity",
+        "Cohesion",
+        "Coupling",
+        "3장"
+      ],
+      "category": "Architecture",
       "type": "post",
       "val": 1
     },
@@ -328,6 +387,19 @@
       "val": 1
     },
     {
+      "id": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "title": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "postId": 40,
+      "tags": [
+        "Redis",
+        "NoSQL",
+        "In-Memory Database"
+      ],
+      "category": "Redis",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
       "title": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
       "postId": 34,
@@ -368,8 +440,98 @@
       "val": 1
     },
     {
+      "id": "AI Agent",
+      "name": "AI Agent",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM",
+      "name": "LLM",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Agentic System",
+      "name": "Agentic System",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Workflow",
+      "name": "Workflow",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "1장",
+      "name": "1장",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "DAG",
       "name": "DAG",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Software Architecture",
+      "name": "Software Architecture",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Architecture Decision",
+      "name": "Architecture Decision",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Trade-off",
+      "name": "Trade-off",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Architect",
+      "name": "Architect",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Architectural Thinking",
+      "name": "Architectural Thinking",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "2장",
+      "name": "2장",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Modularity",
+      "name": "Modularity",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Cohesion",
+      "name": "Cohesion",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Coupling",
+      "name": "Coupling",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "3장",
+      "name": "3장",
       "type": "tag",
       "val": 5
     },
@@ -548,12 +710,6 @@
       "val": 5
     },
     {
-      "id": "AI Agent",
-      "name": "AI Agent",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Execution Provenance",
       "name": "Execution Provenance",
       "type": "tag",
@@ -598,6 +754,24 @@
     {
       "id": "Virtual Environment",
       "name": "Virtual Environment",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Redis",
+      "name": "Redis",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "NoSQL",
+      "name": "NoSQL",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "In-Memory Database",
+      "name": "In-Memory Database",
       "type": "tag",
       "val": 5
     },
@@ -650,8 +824,20 @@
       "val": 5
     },
     {
+      "id": "AI",
+      "name": "AI",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Airflow",
       "name": "Airflow",
+      "type": "category",
+      "val": 10
+    },
+    {
+      "id": "Architecture",
+      "name": "Architecture",
       "type": "category",
       "val": 10
     },
@@ -698,6 +884,12 @@
       "val": 10
     },
     {
+      "id": "Redis",
+      "name": "Redis",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Terraform",
       "name": "Terraform",
       "type": "category",
@@ -706,12 +898,104 @@
   ],
   "links": [
     {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "LLM"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "Agentic System"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "Workflow"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "1장"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "AI"
+    },
+    {
       "source": "[Airflow] Apache Airflow ",
       "target": "DAG"
     },
     {
       "source": "[Airflow] Apache Airflow ",
       "target": "Airflow"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "Software Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "Architecture Decision"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "Trade-off"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "Architect"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "1장"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?",
+      "target": "Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "Software Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "Architectural Thinking"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "Trade-off"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "2장"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Software Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Modularity"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Cohesion"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Coupling"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "3장"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Architecture"
     },
     {
       "source": "[NLP] What is Attention Algorithms?",
@@ -1076,6 +1360,22 @@
     {
       "source": "[Python] uv와 Poetry로 개발 환경 관리하기",
       "target": "Python"
+    },
+    {
+      "source": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "target": "Redis"
+    },
+    {
+      "source": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "target": "NoSQL"
+    },
+    {
+      "source": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "target": "In-Memory Database"
+    },
+    {
+      "source": "[Redis] 레디스는 그냥 빠른 캐시 아닌가요?",
+      "target": "Redis"
     },
     {
       "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
