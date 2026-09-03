@@ -252,6 +252,32 @@
         overflow-x: auto;
         margin: 1em 0;
     }
+
+    blockquote.admonition.bdm-book {
+        &::before {
+            background: #c7653c;
+        }
+
+        .bdm-title {
+            color: #c7653c;
+
+            &::before {
+                content: "📚";
+                width: 1.1rem;
+                height: 1.1rem;
+                background: none;
+                mask-image: none;
+                -webkit-mask-image: none;
+                transform: none;
+                line-height: 1;
+            }
+        }
+
+        a {
+            color: #c7653c;
+        }
+    }
+
     .admonition.bdm-objective {
         @apply px-6 py-6 !not-italic relative;
         margin: 1.5rem 0 !important;

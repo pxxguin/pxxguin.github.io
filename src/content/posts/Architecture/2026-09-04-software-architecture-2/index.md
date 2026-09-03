@@ -1,5 +1,5 @@
 ---
-title: '[Architecture] 아키텍트는 코드를 어디까지 알아야 할까?'
+title: '[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?'
 image: /images/cs.png
 published: 2026-09-04T00:00:00.000Z
 description: 아키텍처와 설계의 경계를 나누는 대신 피드백 루프로 연결하고, 기술의 폭과 깊이, 비즈니스 목표, 트레이드오프로 판단하는 아키텍처 사고를 알아봅니다.
@@ -7,6 +7,7 @@ tags:
   - Software Architecture
   - Architectural Thinking
   - Trade-off
+  - 2장
 category: Architecture
 draft: false
 postId: 41
