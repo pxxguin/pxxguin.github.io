@@ -12,7 +12,7 @@ tags:
 category: AI
 draft: false
 postId: 44
-github: https://github.com/pxxguin/pxxguin.github.io
+github: https://gist.github.com/sc0tfree/11c86116df4c2281a976d796f9493cd7
 ---
 
 ## 🤖 들어가기에 앞서
