@@ -1,6 +1,36 @@
 {
   "nodes": [
     {
+      "id": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "title": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "postId": 43,
+      "tags": [
+        "AI Agent",
+        "LLM",
+        "Agentic System",
+        "Workflow",
+        "1장"
+      ],
+      "category": "AI",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "title": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "postId": 44,
+      "tags": [
+        "Claude Code",
+        "Auto Mode",
+        "AI Agent",
+        "LLM Security",
+        "Prompt Injection"
+      ],
+      "category": "AI",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Airflow] Apache Airflow ",
       "title": "[Airflow] Apache Airflow ",
       "postId": 1,
@@ -35,6 +65,21 @@
         "Architectural Thinking",
         "Trade-off",
         "2장"
+      ],
+      "category": "Architecture",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "title": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "postId": 42,
+      "tags": [
+        "Software Architecture",
+        "Modularity",
+        "Cohesion",
+        "Coupling",
+        "3장"
       ],
       "category": "Architecture",
       "type": "post",
@@ -410,6 +455,60 @@
       "val": 1
     },
     {
+      "id": "AI Agent",
+      "name": "AI Agent",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM",
+      "name": "LLM",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Agentic System",
+      "name": "Agentic System",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Workflow",
+      "name": "Workflow",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "1장",
+      "name": "1장",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Claude Code",
+      "name": "Claude Code",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Auto Mode",
+      "name": "Auto Mode",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM Security",
+      "name": "LLM Security",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Prompt Injection",
+      "name": "Prompt Injection",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "DAG",
       "name": "DAG",
       "type": "tag",
@@ -440,12 +539,6 @@
       "val": 5
     },
     {
-      "id": "1장",
-      "name": "1장",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Architectural Thinking",
       "name": "Architectural Thinking",
       "type": "tag",
@@ -458,6 +551,30 @@
       "val": 5
     },
     {
+      "id": "Modularity",
+      "name": "Modularity",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Cohesion",
+      "name": "Cohesion",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Coupling",
+      "name": "Coupling",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "3장",
+      "name": "3장",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "NLP",
       "name": "NLP",
       "type": "tag",
@@ -466,18 +583,6 @@
     {
       "id": "DeepL",
       "name": "DeepL",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "LLM Security",
-      "name": "LLM Security",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Prompt Injection",
-      "name": "Prompt Injection",
       "type": "tag",
       "val": 5
     },
@@ -632,12 +737,6 @@
       "val": 5
     },
     {
-      "id": "AI Agent",
-      "name": "AI Agent",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Execution Provenance",
       "name": "Execution Provenance",
       "type": "tag",
@@ -752,6 +851,12 @@
       "val": 5
     },
     {
+      "id": "AI",
+      "name": "AI",
+      "type": "category",
+      "val": 10
+    },
+    {
       "id": "Airflow",
       "name": "Airflow",
       "type": "category",
@@ -820,6 +925,54 @@
   ],
   "links": [
     {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "LLM"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "Agentic System"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "Workflow"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "1장"
+    },
+    {
+      "source": "[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?",
+      "target": "AI"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "Claude Code"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "Auto Mode"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "Prompt Injection"
+    },
+    {
+      "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "AI"
+    },
+    {
       "source": "[Airflow] Apache Airflow ",
       "target": "DAG"
     },
@@ -869,6 +1022,30 @@
     },
     {
       "source": "[소프트웨어 아키텍처] 아키텍트는 코드를 어디까지 알아야 할까?",
+      "target": "Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Software Architecture"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Modularity"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Cohesion"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "Coupling"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
+      "target": "3장"
+    },
+    {
+      "source": "[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?",
       "target": "Architecture"
     },
     {
