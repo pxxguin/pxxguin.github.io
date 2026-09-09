@@ -31,6 +31,21 @@
       "val": 1
     },
     {
+      "id": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "title": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "postId": 45,
+      "tags": [
+        "AI Agent",
+        "Agent Runtime",
+        "Agent Memory",
+        "LLM Gateway",
+        "MCP"
+      ],
+      "category": "AI",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Airflow] Apache Airflow ",
       "title": "[Airflow] Apache Airflow ",
       "postId": 1,
@@ -366,6 +381,20 @@
       "val": 1
     },
     {
+      "id": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "title": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "postId": 46,
+      "tags": [
+        "LLM Security",
+        "AI Agent",
+        "Prompt Injection",
+        "Causal Attribution"
+      ],
+      "category": "Security",
+      "type": "post",
+      "val": 1
+    },
+    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -505,6 +534,30 @@
     {
       "id": "Prompt Injection",
       "name": "Prompt Injection",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Agent Runtime",
+      "name": "Agent Runtime",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Agent Memory",
+      "name": "Agent Memory",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "LLM Gateway",
+      "name": "LLM Gateway",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "MCP",
+      "name": "MCP",
       "type": "tag",
       "val": 5
     },
@@ -749,6 +802,12 @@
       "val": 5
     },
     {
+      "id": "Causal Attribution",
+      "name": "Causal Attribution",
+      "type": "tag",
+      "val": 5
+    },
+    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -970,6 +1029,30 @@
     },
     {
       "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
+      "target": "AI"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "target": "Agent Runtime"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "target": "Agent Memory"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "target": "LLM Gateway"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
+      "target": "MCP"
+    },
+    {
+      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
       "target": "AI"
     },
     {
@@ -1374,6 +1457,26 @@
     },
     {
       "source": "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?",
+      "target": "Security"
+    },
+    {
+      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "target": "LLM Security"
+    },
+    {
+      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "target": "Prompt Injection"
+    },
+    {
+      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
+      "target": "Causal Attribution"
+    },
+    {
+      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
       "target": "Security"
     },
     {
