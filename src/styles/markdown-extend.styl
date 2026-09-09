@@ -76,6 +76,110 @@
       &:before
         background: var(--admonitions-color-caution)
 
+  .example-block
+    margin: 1.75rem 0
+    padding: 1rem 1.3rem 1.1rem
+    border: 1px solid var(--example-border)
+    border-left: 3px solid var(--example-accent)
+    border-radius: 0.75rem
+    background: var(--example-bg)
+
+    > *
+      margin-top: 0.6rem
+      margin-bottom: 0.6rem
+
+    > :last-child
+      margin-bottom: 0
+
+    .ex-label
+      display: flex
+      align-items: center
+      gap: 0.45rem
+      margin-top: 0
+      margin-bottom: 0.8rem
+      font-size: 0.78rem
+      font-weight: 700
+      letter-spacing: 0.02em
+      color: var(--example-accent)
+
+      &:before
+        content: ' '
+        display: inline-block
+        flex: none
+        width: 1.05em
+        height: 1.05em
+        background: var(--example-accent)
+        mask-size: contain
+        mask-position: center
+        mask-repeat: no-repeat
+        mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5Zm4 5h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5Zm0 5h6.5a.75.75 0 0 1 0 1.5h-6.5a.75.75 0 0 1 0-1.5ZM2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0Z'%3E%3C/path%3E%3C/svg%3E")
+
+    .ex-line
+      --ex-role-hue: var(--hue)
+      display: grid
+      grid-template-columns: max-content 1fr
+      gap: 0 0.8rem
+      align-items: baseline
+
+      &[data-role="user"]
+        --ex-role-hue: 250
+      &[data-role="external"]
+        --ex-role-hue: 55
+      &[data-role="tool"]
+        --ex-role-hue: 180
+      &[data-role="model"]
+        --ex-role-hue: 300
+      &[data-role="system"]
+        --ex-role-hue: 25
+
+    .ex-speaker
+      justify-self: start
+      padding: 0.1rem 0.5rem
+      border-radius: 0.4rem
+      font-size: 0.72rem
+      font-weight: 700
+      line-height: 1.65
+      white-space: nowrap
+      color: oklch(0.42 0.11 var(--ex-role-hue))
+      background: oklch(0.93 0.045 var(--ex-role-hue))
+
+    .ex-said
+      color: var(--example-said)
+      font-size: 0.94rem
+      line-height: 1.75
+
+    &.ex-good
+      border-left-color: var(--example-accent-good)
+      background: var(--example-bg-good)
+
+      .ex-label
+        color: var(--example-accent-good)
+
+        &:before
+          background: var(--example-accent-good)
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M8 16A8 8 0 1 1 8 0a8 8 0 0 1 0 16Zm3.78-9.72a.751.751 0 0 0-.018-1.042.751.751 0 0 0-1.042-.018L6.75 9.19 5.28 7.72a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042l2 2a.75.75 0 0 0 1.06 0Z'%3E%3C/path%3E%3C/svg%3E")
+
+    &.ex-bad
+      border-left-color: var(--example-accent-bad)
+      background: var(--example-bg-bad)
+
+      .ex-label
+        color: var(--example-accent-bad)
+
+        &:before
+          background: var(--example-accent-bad)
+          mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' width='16' height='16' aria-hidden='true'%3E%3Cpath d='M2.343 13.657A8 8 0 1 1 13.658 2.343 8 8 0 0 1 2.343 13.657ZM6.03 4.97a.751.751 0 0 0-1.042.018.751.751 0 0 0-.018 1.042L6.94 8 4.97 9.97a.749.749 0 0 0 .326 1.275.749.749 0 0 0 .734-.215L8 9.06l1.97 1.97a.749.749 0 0 0 1.275-.326.749.749 0 0 0-.215-.734L9.06 8l1.97-1.97a.749.749 0 0 0-.326-1.275.749.749 0 0 0-.734.215L8 6.94Z'%3E%3C/path%3E%3C/svg%3E")
+
+    html.dark &
+      .ex-speaker
+        color: oklch(0.88 0.075 var(--ex-role-hue))
+        background: oklch(0.34 0.055 var(--ex-role-hue))
+
+    @media (max-width: 480px)
+      .ex-line
+        grid-template-columns: 1fr
+        gap: 0.3rem 0
+
   img
     border-radius: 0.75rem
     display: block
