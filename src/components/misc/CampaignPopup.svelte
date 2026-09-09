@@ -67,7 +67,7 @@ function createInitialFs(): DirNode {
 								special: "notice",
 								protected: true,
 								content:
-									"# 공지사항 v2.2.0\n\n안녕하세요. 개발자 PXXGUIN 입니다.\n부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.\n\n// [26.08.09] 업데이트 내용\n[FEAT] 게시글 이미지 캡션 기능 추가\n[FEAT] 터미널 가상 파일시스템 구현 (cd, mkdir, cat, echo 등)\n[FEAT] /login, /secret 페이지 및 트로피 이스터에그 시스템 추가\n[FEAT] 트로피 전부 획득 시 폭죽 이펙트 추가\n\n유익한 정보로 찾아 뵙겠습니다.\n감사합니다.",
+									"# 공지사항 v2.3.4\n\n안녕하세요. 개발자 PXXGUIN 입니다.\n부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.\n\n// [26.09.09] 업데이트 내용\n[FEAT] 포스트용 예시 블록(:::example) 추가\n[FEAT] 아카이브 페이지 최신순/오래된순 정렬 토글 추가\n[FEAT] /secret 독립 해커 터미널 페이지 분리\n[FEAT] 방문 통계(GoatCounter) 연동 및 Discord 링크 추가\n[STYLE] 기본 다크 테마 적용, bash 코드블록 터미널 외형 개선\n[STYLE] 각주·마크다운 리스트 가독성 개선\n[FIX] 포스트별 OG 썸네일이 대표 이미지로 노출되도록 수정\n\n유익한 정보로 찾아 뵙겠습니다.\n감사합니다.",
 							},
 							"secret.txt": {
 								type: "file",
@@ -787,17 +787,20 @@ async function startAutoTypeSequence() {
                 {:else if line.type === "component" && line.component === "notice"}
                      <!-- The HTML Notice Content -->
                      <div class="my-4 p-4 border border-dashed border-gray-600 rounded bg-black/20 text-gray-200">
-                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 v2.2.0</h1>
+                        <h1 class="text-xl font-bold text-white mb-4"># 공지사항 v2.3.4</h1>
                         <p class="mb-4 text-gray-300">
                             안녕하세요. 개발자 PXXGUIN 입니다.👋<br>
                             부족하지만, 항상 도움이 되는 포스팅을 제공하겠습니다.
                         </p>
-                        <p class="text-green-400 font-bold text-sm mb-2">// [26.08.09] 업데이트 내용</p>
+                        <p class="text-green-400 font-bold text-sm mb-2">// [26.09.09] 업데이트 내용</p>
                         <ul class="list-none space-y-1 pl-2 border-l-2 border-gray-700 ml-1 text-sm">
-                            <li><span class="text-emerald-500">[FEAT]</span> 게시글 이미지 캡션 기능 추가</li>
-                            <li><span class="text-emerald-500">[FEAT]</span> 터미널 가상 파일시스템 구현 (cd, mkdir, cat, echo 등)</li>
-                            <li><span class="text-emerald-500">[FEAT]</span> /login, /secret 페이지 및 트로피 이스터에그 시스템 추가</li>
-                            <li><span class="text-emerald-500">[FEAT]</span> 트로피 전부 획득 시 폭죽 이펙트 추가</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 포스트용 예시 블록(:::example) 추가</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 아카이브 페이지 최신순/오래된순 정렬 토글 추가</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> /secret 독립 해커 터미널 페이지 분리</li>
+                            <li><span class="text-emerald-500">[FEAT]</span> 방문 통계(GoatCounter) 연동 및 Discord 링크 추가</li>
+                            <li><span class="text-sky-400">[STYLE]</span> 기본 다크 테마 적용, bash 코드블록 터미널 외형 개선</li>
+                            <li><span class="text-sky-400">[STYLE]</span> 각주·마크다운 리스트 가독성 개선</li>
+                            <li><span class="text-amber-500">[FIX]</span> 포스트별 OG 썸네일이 대표 이미지로 노출되도록 수정</li>
                         </ul>
                         <div class="mt-4 text-sm text-gray-500">
                             유익한 정보로 찾아 뵙겠습니다.<br/>
