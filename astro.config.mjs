@@ -20,6 +20,7 @@ import { pluginCustomCopyButton } from "./src/plugins/expressive-code/custom-cop
 import { pluginLanguageBadge } from "./src/plugins/expressive-code/language-badge.ts";
 import { pluginTerminalPrompt } from "./src/plugins/expressive-code/terminal-prompt.js";
 import { AdmonitionComponent } from "./src/plugins/rehype-component-admonition.mjs";
+import { ExampleComponent } from "./src/plugins/rehype-component-example.mjs";
 import { GithubCardComponent } from "./src/plugins/rehype-component-github-card.mjs";
 import { LinkCardComponent } from "./src/plugins/rehype-component-link-card.mjs"; // 1. 파일 import 추가
 import rehypeFigure from "./src/plugins/rehype-figure.mjs";
@@ -153,6 +154,7 @@ export default defineConfig({
 						book: (x, y) => AdmonitionComponent(x, y, "book"),
 						objective: (x, y) => AdmonitionComponent(x, y, "objective"),
 						vocabulary: (x, y) => AdmonitionComponent(x, y, "vocabulary"),
+						example: (x, y) => ExampleComponent(x, y),
 					},
 				},
 			],
