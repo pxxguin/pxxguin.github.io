@@ -2,6 +2,13 @@ import type { AstroIntegration } from "@swup/astro";
 
 declare global {
 	interface Window {
+		goatcounter?: {
+			count?: (event: {
+				path: string;
+				title?: string;
+				event?: boolean;
+			}) => void;
+		};
 		// type from '@swup/astro' is incorrect
 		swup: AstroIntegration;
 		pagefind: {

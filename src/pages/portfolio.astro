@@ -3,9 +3,7 @@ import { Icon } from "astro-icon/components";
 import Footer from "../components/Footer.astro";
 import { profileConfig } from "../config";
 import { projects } from "../data/projects";
-import { skills } from "../data/skills";
 import Layout from "../layouts/Layout.astro";
-import { url } from "../utils/url-utils";
 
 const title = "Portfolio";
 const description = "My Portfolio - Skills, Projects, and Story";
@@ -253,6 +251,17 @@ const description = "My Portfolio - Skills, Projects, and Story";
 </Layout>
 
 <script>
+    type Project = {
+        title: string;
+        description: string;
+        detailDescription?: string;
+        image: string;
+        tags: string[];
+        demoUrl?: string;
+        repoUrl?: string;
+        video?: string;
+        media?: { type: "image" | "video"; url: string }[];
+    };
 function setupPortfolio() {
     const modal = document.getElementById('skill-modal');
     if (!modal) return; // Not on portfolio page
@@ -264,14 +273,10 @@ function setupPortfolio() {
     
     // View 1 Elements
     const viewList = document.getElementById('modal-view-list');
-    const modalTitle = document.getElementById('modal-skill-name');
-    const modalIcon = document.getElementById('modal-icon');
-    const modalList = document.getElementById('modal-projects-list');
     
     // View 2 Elements
     const viewDetail = document.getElementById('modal-view-detail');
     const detailBackBtn = document.getElementById('detail-back-btn');
-    const detailMedia = document.getElementById('detail-media-container');
     const carouselTrack = document.getElementById('carousel-track');
     const detailTitle = document.getElementById('detail-title');
     const detailDesc = document.getElementById('detail-description');
@@ -284,14 +289,14 @@ function setupPortfolio() {
     const nextBtn = document.getElementById('carousel-next');
     const dotsContainer = document.getElementById('carousel-dots');
     
-    let currentProject = null;
+    let currentProject: Project | null = null;
     let currentMediaIndex = 0; // Visual index (0 to length-1)
     let currentTrackIndex = 1; // Track index (including clones, starts at 1)
     let isTransitioning = false;
 
     const projectCards = document.querySelectorAll('.project-card-trigger');
 
-    function showDetailView(project) {
+    function showDetailView(project: Project) {
         if (!modal) return;
 
         currentProject = project;
@@ -305,7 +310,7 @@ function setupPortfolio() {
         detailDesc.textContent = project.detailDescription || project.description;
         
         // Tags
-        detailTags.innerHTML = project.tags.map(tag => 
+        detailTags.innerHTML = project.tags.map((tag: string) =>
             `<span class="px-3 py-1 text-xs font-bold uppercase tracking-wider bg-white/10 rounded-full text-white/90">${tag}</span>`
         ).join('');
 
@@ -344,7 +349,7 @@ function setupPortfolio() {
         document.body.style.overflow = 'hidden';
     }
     
-    function createSlide(media) {
+    function createSlide(media: { type: "image" | "video"; url: string }) {
         const slide = document.createElement('div');
         slide.className = 'w-full h-full shrink-0 flex items-center justify-center bg-black';
         
@@ -454,7 +459,7 @@ function setupPortfolio() {
         });
     }
     
-    function updateButtons(totalSlides) {
+    function updateButtons(totalSlides: number) {
         // Update Dots
         if (totalSlides > 1) {
             prevBtn.classList.remove('hidden');
@@ -496,7 +501,7 @@ function setupPortfolio() {
         });
     }
     
-    function goToSlide(index) {
+    function goToSlide(index: number) {
         if (isTransitioning) return;
         
         currentTrackIndex = index + 1;
@@ -584,7 +589,7 @@ function setupPortfolio() {
     
     // Global Event Listeners (ensure we only add them once)
     document.removeEventListener('keydown', (window as any).portfolioKeydownHandler);
-    (window as any).portfolioKeydownHandler = (e) => {
+    (window as any).portfolioKeydownHandler = (e: KeyboardEvent) => {
         const modalEl = document.getElementById('skill-modal');
         if (!modalEl || modalEl.classList.contains('hidden')) return;
         
@@ -606,7 +611,6 @@ function setupPortfolio() {
         let charIndex = words[0].length; 
         let isDeleting = true; 
         let typeSpeed = 100;
-        let typingTimeout;
 
         function type() {
             const currentTypingText = document.getElementById('typing-text');
@@ -633,7 +637,7 @@ function setupPortfolio() {
                 typeSpeed = 500; 
             }
 
-            typingTimeout = setTimeout(type, typeSpeed);
+            setTimeout(type, typeSpeed);
         }
 
         // Only start if not already typing

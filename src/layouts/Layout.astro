@@ -166,7 +166,7 @@ if (banner && typeof banner === "string" && banner.trim() !== "") {
 		<link rel="alternate" type="application/rss+xml" title={profileConfig.name} href={`${Astro.site}rss.xml`}/>
 
 		{goatCounterConfig.enable && (
-			<script data-goatcounter={goatCounterConfig.endpoint}
+			<script is:inline data-goatcounter={goatCounterConfig.endpoint}
 					async src="//gc.zgo.at/count.js"></script>
 		)}
 

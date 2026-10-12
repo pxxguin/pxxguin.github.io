@@ -31,21 +31,6 @@
       "val": 1
     },
     {
-      "id": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "title": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "postId": 45,
-      "tags": [
-        "AI Agent",
-        "Agent Runtime",
-        "Agent Memory",
-        "LLM Gateway",
-        "MCP"
-      ],
-      "category": "AI",
-      "type": "post",
-      "val": 1
-    },
-    {
       "id": "[Airflow] Apache Airflow ",
       "title": "[Airflow] Apache Airflow ",
       "postId": 1,
@@ -381,20 +366,6 @@
       "val": 1
     },
     {
-      "id": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "title": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "postId": 46,
-      "tags": [
-        "LLM Security",
-        "AI Agent",
-        "Prompt Injection",
-        "Causal Attribution"
-      ],
-      "category": "Security",
-      "type": "post",
-      "val": 1
-    },
-    {
       "id": "[Python] 정규화 라이브러리 re 사용법",
       "title": "[Python] 정규화 라이브러리 re 사용법",
       "postId": 20,
@@ -452,6 +423,34 @@
         "AI Agent",
         "Behavioral Detection",
         "Gateway"
+      ],
+      "category": "Security",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "title": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "postId": 53,
+      "tags": [
+        "Authentication",
+        "Authorization",
+        "Access Control",
+        "Identity"
+      ],
+      "category": "Security",
+      "type": "post",
+      "val": 1
+    },
+    {
+      "id": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "title": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "postId": 54,
+      "tags": [
+        "AI Agent",
+        "Authentication",
+        "Authorization",
+        "Delegation"
       ],
       "category": "Security",
       "type": "post",
@@ -534,30 +533,6 @@
     {
       "id": "Prompt Injection",
       "name": "Prompt Injection",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Agent Runtime",
-      "name": "Agent Runtime",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "Agent Memory",
-      "name": "Agent Memory",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "LLM Gateway",
-      "name": "LLM Gateway",
-      "type": "tag",
-      "val": 5
-    },
-    {
-      "id": "MCP",
-      "name": "MCP",
       "type": "tag",
       "val": 5
     },
@@ -802,12 +777,6 @@
       "val": 5
     },
     {
-      "id": "Causal Attribution",
-      "name": "Causal Attribution",
-      "type": "tag",
-      "val": 5
-    },
-    {
       "id": "Regex",
       "name": "Regex",
       "type": "tag",
@@ -870,6 +839,36 @@
     {
       "id": "Gateway",
       "name": "Gateway",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Authentication",
+      "name": "Authentication",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Authorization",
+      "name": "Authorization",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Access Control",
+      "name": "Access Control",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Identity",
+      "name": "Identity",
+      "type": "tag",
+      "val": 5
+    },
+    {
+      "id": "Delegation",
+      "name": "Delegation",
       "type": "tag",
       "val": 5
     },
@@ -1029,30 +1028,6 @@
     },
     {
       "source": "[Claude] 그래서 Automode 쓰면 안전한가요?",
-      "target": "AI"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "target": "AI Agent"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "target": "Agent Runtime"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "target": "Agent Memory"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "target": "LLM Gateway"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
-      "target": "MCP"
-    },
-    {
-      "source": "[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?",
       "target": "AI"
     },
     {
@@ -1460,26 +1435,6 @@
       "target": "Security"
     },
     {
-      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "target": "LLM Security"
-    },
-    {
-      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "target": "AI Agent"
-    },
-    {
-      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "target": "Prompt Injection"
-    },
-    {
-      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "target": "Causal Attribution"
-    },
-    {
-      "source": "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기",
-      "target": "Security"
-    },
-    {
       "source": "[Python] 정규화 라이브러리 re 사용법",
       "target": "Regex"
     },
@@ -1549,6 +1504,46 @@
     },
     {
       "source": "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?",
+      "target": "Security"
+    },
+    {
+      "source": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "target": "Authentication"
+    },
+    {
+      "source": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "target": "Authorization"
+    },
+    {
+      "source": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "target": "Access Control"
+    },
+    {
+      "source": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "target": "Identity"
+    },
+    {
+      "source": "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?",
+      "target": "Security"
+    },
+    {
+      "source": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "target": "AI Agent"
+    },
+    {
+      "source": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "target": "Authentication"
+    },
+    {
+      "source": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "target": "Authorization"
+    },
+    {
+      "source": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
+      "target": "Delegation"
+    },
+    {
+      "source": "[Agent] 권한이 있으면 Agent가 사용해도 될까?",
       "target": "Security"
     },
     {

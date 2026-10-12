@@ -1,20 +1,17 @@
 ---
 
-import path from "node:path";
-import ImageWrapper from "@components/misc/ImageWrapper.astro";
 import License from "@components/misc/License.astro";
 import Markdown from "@components/misc/Markdown.astro";
 import PetButton from "@components/misc/PetButton.svelte";
 import PostMetadata from "@components/PostMeta.astro";
 import CommentWidget from "@components/widget/CommentWidget.astro";
 import RelatedPosts from "@components/widget/RelatedPosts.astro";
-import SeriesWidget from "@components/widget/SeriesWidget.astro";
 import I18nKey from "@i18n/i18nKey";
 import { i18n } from "@i18n/translation";
 import MainGridLayout from "@layouts/MainGridLayout.astro";
 import { getSortedPosts } from "@utils/content-utils";
 import { formatDateToYYYYMMDD } from "@utils/date-utils";
-import { getDir, getPostUrlBySlug, url } from "@utils/url-utils";
+import { getPostUrlBySlug, url } from "@utils/url-utils";
 import { Icon } from "astro-icon/components";
 import { licenseConfig, profileConfig, siteConfig } from "src/config";
 
@@ -201,7 +198,7 @@ const jsonLd = [
     </div>
 
     <!-- Script to track read posts in series -->
-    <script define:vars={{ postId: entry.id }}>
+    <script is:inline define:vars={{ postId: entry.id }}>
         try {
             const readPosts = JSON.parse(localStorage.getItem('read_series_posts') || '[]');
             if (!readPosts.includes(postId)) {

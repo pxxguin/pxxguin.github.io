@@ -2,8 +2,6 @@
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import CommentWidget from "../components/widget/CommentWidget.astro";
-import I18nKey from "../i18n/i18nKey";
-import { i18n } from "../i18n/translation";
 import MainGridLayout from "../layouts/MainGridLayout.astro";
 import { getCategoryList } from "../utils/content-utils";
 
@@ -21,9 +19,6 @@ const sortedPosts = posts.sort(
 	(a, b) =>
 		new Date(a.data.published).getTime() - new Date(b.data.published).getTime(),
 );
-const firstPostDate = sortedPosts[0]?.data.published
-	? new Date(sortedPosts[0].data.published).toLocaleDateString()
-	: "-";
 const runningDays = sortedPosts[0]?.data.published
 	? Math.floor(
 			(Date.now() - new Date(sortedPosts[0].data.published).getTime()) /

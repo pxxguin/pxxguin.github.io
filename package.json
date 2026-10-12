@@ -38,7 +38,6 @@
 		"canvas-confetti": "^1.9.4",
 		"chart.js": "^4.5.1",
 		"d3": "^7.9.0",
-		"fast-xml-parser": "^5.10.1",
 		"hastscript": "^9.0.1",
 		"katex": "^0.16.47",
 		"markdown-it": "^14.3.0",
@@ -47,7 +46,6 @@
 		"overlayscrollbars": "^2.16.0",
 		"pagefind": "^1.5.2",
 		"photoswipe": "^5.4.4",
-		"pnpm": "^10.34.5",
 		"reading-time": "^1.5.0",
 		"rehype-autolink-headings": "^7.1.0",
 		"rehype-components": "^0.3.0",
@@ -79,7 +77,6 @@
 		"@iconify-json/skill-icons": "^1.2.4",
 		"@iconify-json/streamline-plump": "^1.2.0",
 		"@iconify-json/streamline-ultimate-color": "^1.2.2",
-		"@rollup/plugin-yaml": "^4.1.2",
 		"@types/canvas-confetti": "^1.9.0",
 		"@types/hast": "^3.0.5",
 		"@types/markdown-it": "^14.1.2",
@@ -88,8 +85,7 @@
 		"gray-matter": "^4.0.3",
 		"playwright": "^1.62.1",
 		"postcss-import": "^16.1.1",
-		"postcss-nesting": "^13.0.2",
-		"ttf2woff2": "^8.0.1"
+		"postcss-nesting": "^13.0.2"
 	},
 	"packageManager": "pnpm@9.14.4"
 }

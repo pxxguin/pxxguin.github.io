@@ -38,7 +38,7 @@ const map: { [key: string]: Translation } = {
 	tr_tr: tr,
 };
 
-export function getTranslation(lang: string): Translation {
+function getTranslation(lang: string): Translation {
 	return map[lang.toLowerCase()] || defaultTranslation;
 }
 

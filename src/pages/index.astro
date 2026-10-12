@@ -1,10 +1,8 @@
 ---
 import { Image } from "astro:assets";
-import type { CollectionEntry } from "astro:content";
 import { getCollection } from "astro:content";
 import { Icon } from "astro-icon/components";
 import heroBgImage from "../assets/images/hero-bg.gif";
-import CategoryCard from "../components/CategoryCard.astro";
 import DailyPaperWidget from "../components/DailyPaperWidget.svelte";
 import GraphView from "../components/GraphView.svelte";
 import GridPostCard from "../components/GridPostCard.astro";
@@ -12,10 +10,9 @@ import I18nKey from "../i18n/i18nKey";
 import { i18n } from "../i18n/translation";
 import HomeLayout from "../layouts/HomeLayout.astro";
 import { hashTagName } from "../utils/color-utils";
-import { getCategoryList, getSortedPosts } from "../utils/content-utils";
+import { getSortedPosts } from "../utils/content-utils";
 import { getPostUrl } from "../utils/url-utils";
 
-const categories = await getCategoryList();
 const sortedPosts = await getSortedPosts();
 const latestPosts = sortedPosts.slice(0, 4);
 
