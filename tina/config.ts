@@ -30,27 +30,13 @@ export default defineConfig({
 				defaultItem: {
 					draft: true,
 					description: "",
-					slug: "new-post",
 					tags: [],
 				},
 				ui: {
 					filename: {
-						readonly: true,
-						slugify: (values) => {
-							const category = String(values.category || "Draft")
-								.replace(/[^a-zA-Z0-9_-]/g, "-")
-								.replace(/-+/g, "-");
-							const published = String(values.published || "draft").slice(
-								0,
-								10,
-							);
-							const slug = String(values.slug || "new-post")
-								.toLowerCase()
-								.replace(/[^a-z0-9_-]/g, "-")
-								.replace(/-+/g, "-");
-
-							return `${category}/${published}-${slug}/index`;
-						},
+						showFirst: true,
+						description:
+							"Use Category/YYYY-MM-DD-english-slug/index, for example AI/2026-10-12-tina-cms/index",
 					},
 					allowedActions: {
 						create: true,
@@ -65,12 +51,6 @@ export default defineConfig({
 						label: "Title",
 						isTitle: true,
 						required: true,
-					},
-					{
-						type: "string",
-						name: "slug",
-						label: "Slug",
-						description: "URL-safe English name, for example tina-cms-setup",
 					},
 					{
 						type: "datetime",
