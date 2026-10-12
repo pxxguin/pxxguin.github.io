@@ -33,11 +33,6 @@ export default defineConfig({
 					tags: [],
 				},
 				ui: {
-					filename: {
-						showFirst: true,
-						description:
-							"Use Category/YYYY-MM-DD-english-slug/index, for example AI/2026-10-12-tina-cms/index",
-					},
 					allowedActions: {
 						create: true,
 						delete: true,
