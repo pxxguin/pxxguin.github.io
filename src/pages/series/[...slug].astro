@@ -21,7 +21,9 @@ const seriesPosts = allPosts
 	.sort((a, b) => (a.data.seriesOrder || 999) - (b.data.seriesOrder || 999));
 
 // Extract unique categories for sub-category tabs
-const subCategories = [...new Set(seriesPosts.map(post => post.data.category).filter(Boolean))];
+const subCategories = [
+	...new Set(seriesPosts.map((post) => post.data.category).filter(Boolean)),
+];
 ---
 
 <MainGridLayout title={series.data.title} description={series.data.description} banner={series.data.image}>

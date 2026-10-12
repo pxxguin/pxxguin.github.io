@@ -16,7 +16,9 @@ export function remarkSectionize() {
 					const isEnd = (n) =>
 						(n.type === "heading" && n.depth <= depth) || n.type === "export";
 					const end = findAfter(parent, start, isEnd);
-					const endIndex = end ? parent.children.indexOf(end) : parent.children.length;
+					const endIndex = end
+						? parent.children.indexOf(end)
+						: parent.children.length;
 
 					const between = parent.children.slice(startIndex, endIndex);
 
@@ -34,7 +36,7 @@ export function remarkSectionize() {
 					// Skip entering the newly created section node to prevent infinite loops,
 					// and continue at the next sibling index.
 					return ["skip", startIndex + 1];
-				}
+				},
 			);
 		}
 	};

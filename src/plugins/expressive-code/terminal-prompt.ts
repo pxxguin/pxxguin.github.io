@@ -56,7 +56,8 @@ export function pluginTerminalPrompt() {
 				function traverse(node: Element) {
 					if (hasClass(node, "ec-line")) {
 						const codeDiv = node.children.find(
-							(child): child is Element => child.type === "element" && hasClass(child, "code"),
+							(child): child is Element =>
+								child.type === "element" && hasClass(child, "code"),
 						);
 						if (codeDiv && textOf(codeDiv).trim()) {
 							node.children.unshift(promptSpan());

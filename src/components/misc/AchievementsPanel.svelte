@@ -1,7 +1,7 @@
 <script lang="ts">
+import { getUnlocked, redeem, TROPHIES } from "@utils/achievements";
 import confetti from "canvas-confetti";
 import { onDestroy, onMount } from "svelte";
-import { redeem, TROPHIES, getUnlocked } from "@utils/achievements";
 
 let unlocked: string[] = [];
 let openId: string | null = null;

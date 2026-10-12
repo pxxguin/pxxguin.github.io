@@ -1,7 +1,7 @@
 <script lang="ts">
-import { fade } from "svelte/transition";
 import { getFlag } from "@utils/achievements";
 import { TERMINAL_OPEN_EVENT } from "@utils/terminal-events";
+import { fade } from "svelte/transition";
 
 let state: "sleeping" | "awake" | "meowing" = "sleeping";
 let meowTimeout: ReturnType<typeof setTimeout>;

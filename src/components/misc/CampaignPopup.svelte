@@ -1,9 +1,9 @@
 <script lang="ts">
-import { onDestroy, onMount, tick } from "svelte";
-import { fade, scale } from "svelte/transition";
 import { getAccessKey, grantAccess, hasAccess } from "@utils/access-key";
 import { getFlag } from "@utils/achievements";
 import { TERMINAL_OPEN_EVENT } from "@utils/terminal-events";
+import { onDestroy, onMount, tick } from "svelte";
+import { fade, scale } from "svelte/transition";
 
 export let storageKey = "campaign-popup";
 // Only the home page auto-opens the terminal unprompted; everywhere else it
@@ -139,7 +139,10 @@ function getNode(path: string[]): VNode | null {
 	return node;
 }
 
-function getParentDir(path: string[]): { parent: DirNode | null; name: string } {
+function getParentDir(path: string[]): {
+	parent: DirNode | null;
+	name: string;
+} {
 	if (path.length === 0) return { parent: null, name: "" };
 	const name = path[path.length - 1];
 	const parentNode = getNode(path.slice(0, -1));
@@ -149,13 +152,16 @@ function getParentDir(path: string[]): { parent: DirNode | null; name: string } 
 
 // Renders a path relative to HOME as "~/..." like a real shell prompt
 function pathDisplay(path: string[]): string {
-	const inHome = HOME.every((h, i) => path[i] === h) && path.length >= HOME.length;
+	const inHome =
+		HOME.every((h, i) => path[i] === h) && path.length >= HOME.length;
 	if (inHome) {
 		const rel = path.slice(HOME.length).join("/");
 		return rel ? `~/${rel}` : "~";
 	}
 	return `/${path.join("/")}`;
 }
+
+let isHacked = false;
 
 function currentPromptLabel(): string {
 	if (loginFlow?.step === "username") return "username:";
@@ -169,13 +175,14 @@ function currentPromptLabel(): string {
 // so the live input-line prompt needs its own reactive binding — calling
 // currentPromptLabel() from the markup would not re-render on state changes
 // since loginFlow/isHacked/cwd are only read inside that function's body.
-$: livePromptLabel = loginFlow?.step === "username"
-	? "username:"
-	: loginFlow?.step === "password"
-		? "password:"
-		: isHacked
-			? `root@server:${pathDisplay(cwd)}#`
-			: `➜ ${pathDisplay(cwd)}`;
+$: livePromptLabel =
+	loginFlow?.step === "username"
+		? "username:"
+		: loginFlow?.step === "password"
+			? "password:"
+			: isHacked
+				? `root@server:${pathDisplay(cwd)}#`
+				: `➜ ${pathDisplay(cwd)}`;
 
 function buildSystemConfContent(): string {
 	return `SERVER_KEY=${getAccessKey()}\nADMIN_USER=admin\nDEBUG_MODE=true\n\n[SECRET_NOTE]\nThank you for visiting my blog!\nTry /login with these credentials. This key resets every session.\n\n[TROPHY]\n${getFlag("system-conf")}`;
@@ -188,7 +195,8 @@ function writeFile(
 ): { ok: boolean; error?: string } {
 	const path = resolvePath(cwd, pathStr);
 	const { parent, name } = getParentDir(path);
-	if (!parent) return { ok: false, error: `bash: ${pathStr}: No such file or directory` };
+	if (!parent)
+		return { ok: false, error: `bash: ${pathStr}: No such file or directory` };
 	const existing = parent.children[name];
 	if (existing && existing.type === "dir")
 		return { ok: false, error: `bash: ${pathStr}: Is a directory` };
@@ -219,7 +227,6 @@ function tokenizeCommand(cmd: string): string[] {
 }
 
 // --- Easter Egg State (Konami) ---
-let isHacked = false;
 const konamiCode = [
 	"arrowup",
 	"arrowup",
@@ -379,9 +386,12 @@ async function handleInputKeydown(e: KeyboardEvent) {
 // Handles a line typed while the /login prompt is active: first line is the
 // username, second line is the password, checked against the session key.
 async function handleLoginInput(value: string) {
+	const flow = loginFlow;
+	if (!flow) return;
+
 	const promptLabel = currentPromptLabel();
 
-	if (loginFlow!.step === "username") {
+	if (flow.step === "username") {
 		addToHistory("user-input", value, undefined, promptLabel);
 		loginFlow = { step: "password", username: value };
 		return;
@@ -389,7 +399,7 @@ async function handleLoginInput(value: string) {
 
 	// Mask the password in the transcript instead of echoing it back.
 	addToHistory("user-input", "••••••••", undefined, promptLabel);
-	const { username } = loginFlow!;
+	const { username } = flow;
 	const validKey = getAccessKey();
 	loginFlow = null;
 
@@ -397,7 +407,10 @@ async function handleLoginInput(value: string) {
 
 	if (username === "admin" && value === validKey && validKey) {
 		grantAccess();
-		addToHistory("system-output", "Access granted. Redirecting to /secret/ ...");
+		addToHistory(
+			"system-output",
+			"Access granted. Redirecting to /secret/ ...",
+		);
 		await new Promise((r) => setTimeout(r, 500));
 		window.location.href = "/secret/";
 		return;
@@ -527,7 +540,9 @@ async function processCommand(cmd: string) {
 							node = node.children[seg] as DirNode;
 						}
 					} else {
-						output(`mkdir: cannot create directory '${t}': No such file or directory`);
+						output(
+							`mkdir: cannot create directory '${t}': No such file or directory`,
+						);
 					}
 					continue;
 				}
@@ -691,7 +706,11 @@ async function processCommand(cmd: string) {
 	}
 
 	if (redirect) {
-		const res = writeFile(redirect.target, outputBuffer.join("\n"), redirect.append);
+		const res = writeFile(
+			redirect.target,
+			outputBuffer.join("\n"),
+			redirect.append,
+		);
 		if (!res.ok && res.error) addToHistory("system-output", res.error);
 	}
 

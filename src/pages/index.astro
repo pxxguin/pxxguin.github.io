@@ -24,12 +24,12 @@ const allPosts = await getCollection("posts");
 
 // Hash color functions for tags
 function hashStringToColor(str: string) {
-    const hue = hashTagName(str) % 360;
-    return `hsl(${hue}, 70%, 45%)`;
+	const hue = hashTagName(str) % 360;
+	return `hsl(${hue}, 70%, 45%)`;
 }
 function hashStringToDarkColor(str: string) {
-    const hue = hashTagName(str) % 360;
-    return `hsl(${hue}, 80%, 75%)`;
+	const hue = hashTagName(str) % 360;
+	return `hsl(${hue}, 80%, 75%)`;
 }
 
 const allSeries = seriesCollection.map((s) => {

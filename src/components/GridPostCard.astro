@@ -54,14 +54,19 @@ const remarkPluginFrontmatter = entry.render
 
 // Function to generate a stable random color class based on the tag name
 const tagColors = [
-    'text-blue-500', 'text-green-500', 'text-purple-500', 
-    'text-pink-500', 'text-indigo-500', 'text-teal-500', 
-    'text-orange-500', 'text-cyan-500'
+	"text-blue-500",
+	"text-green-500",
+	"text-purple-500",
+	"text-pink-500",
+	"text-indigo-500",
+	"text-teal-500",
+	"text-orange-500",
+	"text-cyan-500",
 ];
 
 function getTagColor(tag: string) {
-    if (!tag) return tagColors[0];
-    return tagColors[hashTagName(tag) % tagColors.length];
+	if (!tag) return tagColors[0];
+	return tagColors[hashTagName(tag) % tagColors.length];
 }
 
 const firstTag = tags && tags.length > 0 ? tags[0] : null;

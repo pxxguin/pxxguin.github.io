@@ -40,7 +40,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Lint (Biome)
-        run: npx @biomejs/biome ci ./src
+        run: pnpm exec biome ci ./src
 
       - name: Run Astro Check
         run: pnpm astro check
