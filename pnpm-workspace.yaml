@@ -1,0 +1,5 @@
+packages:
+  - "."
+
+overrides:
+  tinacms: 3.14.3
