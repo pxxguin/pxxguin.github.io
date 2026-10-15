@@ -13,7 +13,13 @@ if (!hasCloudCredentials) {
 
 const result = spawnSync(
 	"pnpm",
-	["exec", "tinacms", "build", "--content=local"],
+	[
+		"exec",
+		"tinacms",
+		"build",
+		"--content=local",
+		"--skip-cloud-checks",
+	],
 	{
 		stdio: "inherit",
 		env: process.env,
