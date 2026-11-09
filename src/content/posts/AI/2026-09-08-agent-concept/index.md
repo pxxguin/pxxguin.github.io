@@ -1,6 +1,6 @@
 ---
 title: '[Agent] Agent, Runtime, Memory는 도대체 뭐가 다른걸까?'
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2026-09-08T00:00:00.000Z
 description: Agent가 파일 하나를 찾는 동안 LLM과 Runtime은 무엇을 하는지 따라가고, Session History와 장기 Memory, AGENTS.md, LLM Gateway의 차이를 정리합니다.
 tags:

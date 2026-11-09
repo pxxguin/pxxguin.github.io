@@ -1,6 +1,6 @@
 ---
 title: "[Github] CI/CD 파이프라인 공급망 공격"
-image: /images/github.png
+image: /images/github.webp
 published: 2026-07-30T00:00:00.000Z
 description: 실제 CI/CD 파이프라인 공급망 공격이 어떻게 일어나는지 확인합니다.
 tags:

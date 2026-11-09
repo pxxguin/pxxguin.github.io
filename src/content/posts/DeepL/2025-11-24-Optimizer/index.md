@@ -1,6 +1,6 @@
 ---
 title: "[DeepL] What is optimizer and how they work?"
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2025-11-24T00:00:00.000Z
 description: DeepL에서 중심이 되는 Optimizer에 대해서 어디까지 알고 있나요?
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "[Terraform] Terraform의 기본 개념 & 설치 방법"
-image: /images/terraform.png
+image: /images/terraform.webp
 published: 2026-07-25T00:00:00.000Z
 description: terraform을 설치하는 방법에 대해서 설명합니다.
 tags:

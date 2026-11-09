@@ -1,6 +1,6 @@
 ---
 title: '[소프트웨어 아키텍처 The Basics] 기능만 동작하면 좋은 시스템일까?'
-image: /images/cs.png
+image: /images/cs.webp
 published: 2026-09-10T00:00:00.000Z
 description: 기능 요구사항만으로 설명할 수 없는 아키텍처 특성과 운영·구조·클라우드·횡단 관심사의 차이, 그리고 가장 덜 나쁜 아키텍처를 선택하는 이유를 알아봅니다.
 tags:

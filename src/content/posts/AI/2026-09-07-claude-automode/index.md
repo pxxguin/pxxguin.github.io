@@ -1,6 +1,6 @@
 ---
 title: '[Claude] 그래서 Automode 쓰면 안전한가요?'
-image: /images/claude.png
+image: /images/claude.webp
 published: 2026-09-07T00:00:00.000Z
 description: Claude Code Auto Mode가 사용자 대신 도구 호출을 승인하는 방법을 Intent Gap, 3단계 권한 경로, 2단계 분류기와 복구 구조로 이해합니다. 아마 우리 프로젝트에서는 분류기가 핵심이 될 것 같습니다.
 tags:

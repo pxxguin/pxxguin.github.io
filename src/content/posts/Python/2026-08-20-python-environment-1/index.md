@@ -1,6 +1,6 @@
 ---
 title: "[Python] uv와 Poetry로 개발 환경 관리하기"
-image: /images/python.png
+image: /images/python.webp
 published: 2026-08-20T00:00:00.000Z
 description: Ubuntu, Windows, macOS에서 uv와 Poetry를 설치하고 프로젝트별 Python 환경을 구성하는 방법을 알아봅니다.
 tags:

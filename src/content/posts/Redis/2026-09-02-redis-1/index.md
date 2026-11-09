@@ -1,6 +1,6 @@
 ---
 title: '[Redis] 레디스는 그냥 빠른 캐시 아닌가요?'
-image: /images/redis.png
+image: /images/redis.webp
 published: 2026-09-02T00:00:00.000Z
 description: '레디스가 정확히 무엇이고 왜 빠른지, RDBMS·멤케시디와는 어떻게 다른지 실전 레디스 1장을 기준으로 정리하고 직접 설치까지 해봅니다.'
 tags:

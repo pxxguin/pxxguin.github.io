@@ -1,6 +1,6 @@
 ---
 title: "[Agent] 권한이 있으면 Agent가 사용해도 될까?"
-image: /images/cs.png
+image: /images/cs.webp
 published: 2026-09-09T00:00:00.000Z
 description: 기존 인증·인가의 가정이 AI Agent 환경에서 왜 충분하지 않을 수 있는지 코딩 Agent의 Tool Call을 따라가며 알아봅니다.
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "[Security] 이 도구 호출은 왜 생겼을까? AttriGuard로 프롬프트 인젝션 막기"
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2026-09-09T00:00:00.000Z
 description: 입력에서 악성 문장을 찾는 대신 도구 호출의 원인을 반사실 실행으로 확인하는 AttriGuard의 구조와 한계를 알아봅니다.
 tags:

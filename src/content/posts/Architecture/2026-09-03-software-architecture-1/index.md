@@ -1,6 +1,6 @@
 ---
 title: '[소프트웨어 아키텍처] 좋은 아키텍처는 정해져있는걸까?'
-image: /images/cs.png
+image: /images/cs.webp
 published: 2026-09-03T00:00:00.000Z
 description: 기술 선택과 아키텍처 결정의 차이를 살펴보고, 요구사항과 제약 속에서 트레이드오프를 판단하는 방법을 알아봅니다.
 tags:

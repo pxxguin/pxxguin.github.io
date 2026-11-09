@@ -1,6 +1,6 @@
 ---
 title: "[Github] AWS credential을 탈취하는 방법"
-image: /images/github.png
+image: /images/github.webp
 published: 2026-08-08T00:00:00.000Z
 description: IMDBv2의 취약한 부분을 바탕으로 AWS 서비스의 Credential을 탈취하는 방법을 PoC합니다.
 tags:

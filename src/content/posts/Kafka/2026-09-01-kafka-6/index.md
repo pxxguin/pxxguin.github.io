@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] Consumer가 죽으면 무슨 일이 생길까? Rebalancing 직접 확인하기'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-09-01T00:00:00.000Z
 description: Consumer가 추가되거나 사라질 때 Partition이 다시 배정되는 과정을 재현하고, 처리 중단과 중복을 줄이는 방법을 알아봅니다.
 tags:

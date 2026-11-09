@@ -1,6 +1,6 @@
 ---
 title: "[Security] LLM Gateway는 에이전트의 잘못된 행동을 어떻게 막을까?"
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2026-08-27T00:00:00.000Z
 description: LLM과 도구 사이에서 실행 궤적을 관찰하고 위험한 행동을 차단하는 행위기반 탐지 엔진의 구조와 설계 원칙을 알아봅니다.
 tags:

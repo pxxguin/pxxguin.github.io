@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] Producer와 Consumer는 실제로 어떻게 동작할까?'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-08-19T00:00:00.000Z
 description: Kafka에 직접 메시지를 보내면서 Producer, Consumer, Consumer Group과 Offset이 어떻게 동작하는지 알아봅니다.
 tags:

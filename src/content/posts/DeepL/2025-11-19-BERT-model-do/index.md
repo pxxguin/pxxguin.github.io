@@ -1,6 +1,6 @@
 ---
 title: "[NLP] How BERT model operate in python?"
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2025-11-18T00:00:00.000Z
 description: '영어를 다루는데 특화된 DistilBERT가 어떻게 동작하고, 코딩되는지 설명합니다.'
 tags:

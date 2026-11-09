@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] 메시지 Key는 왜 필요할까? Python으로 Producer와 Consumer 구현하기'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-08-23T00:00:00.000Z
 description: Python으로 Kafka Producer와 Consumer를 구현하고, 메시지 Key가 Partition과 이벤트 순서를 어떻게 결정하는지 알아봅니다.
 tags:

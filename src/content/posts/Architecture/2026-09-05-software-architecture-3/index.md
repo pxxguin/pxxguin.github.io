@@ -1,6 +1,6 @@
 ---
 title: '[소프트웨어 아키텍처] 코드를 작게 나누면 정말 변경하기 쉬워질까?'
-image: /images/cs.png
+image: /images/cs.webp
 published: 2026-09-05T00:00:00.000Z
 description: 모듈성과 세분도의 차이를 살펴보고, 응집도와 결합도, 동형성으로 변경하기 쉬운 경계를 판단하는 방법을 알아봅니다.
 tags:

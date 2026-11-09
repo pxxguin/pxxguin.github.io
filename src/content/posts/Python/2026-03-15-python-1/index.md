@@ -1,6 +1,6 @@
 ---
 title: "[Python] 정규화 라이브러리 re 사용법"
-image: /images/python.png
+image: /images/python.webp
 published: 2026-03-15T00:00:00.000Z
 description: re 라이브러리를 사용하는 방법을 문제를 통해서 학습합니다.
 tags:

@@ -1,6 +1,6 @@
 ---
 title: "[Agent] 로그인만 하면 모든 요청을 허용해도 될까?"
-image: /images/cs.png
+image: /images/cs.webp
 published: 2026-09-08T00:00:00.000Z
 description: AI Agent가 등장하기 전 기존 시스템은 사용자와 서비스를 어떻게 확인하고, 어떤 리소스에 어떤 행동을 허용했는지 알아봅니다.
 tags:

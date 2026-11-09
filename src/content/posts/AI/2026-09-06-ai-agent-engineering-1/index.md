@@ -1,6 +1,6 @@
 ---
 title: '[AI 에이전트 엔지니어링] 챗봇에 도구를 붙이면 에이전트일까?'
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2026-09-06T00:00:00.000Z
 description: AI 에이전트가 챗봇·RAG·워크플로와 무엇이 다른지 살펴보고, 주문·환불 업무에 정말 에이전트가 필요한지 판단해봅니다.
 tags:

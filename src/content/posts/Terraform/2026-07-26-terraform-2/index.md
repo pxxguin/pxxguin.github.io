@@ -1,6 +1,6 @@
 ---
 title: "[Terraform] Terraform 기본 명령어"
-image: /images/terraform.png
+image: /images/terraform.webp
 published: 2026-07-26T00:00:00.000Z
 description: Terraform의 기본 명령어를 학습합니다.
 tags:

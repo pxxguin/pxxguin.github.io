@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] RabbitMQ vs Kafka, 뭘 써야 할까?'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-08-13T00:00:00.000Z
 description: 메시지 큐를 고르는 기준으로 RabbitMQ와 Kafka는 뭐가 다르고 언제 뭘 써야 하는지 정리합니다.
 tags:

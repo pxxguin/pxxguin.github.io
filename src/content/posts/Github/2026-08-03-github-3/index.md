@@ -1,6 +1,6 @@
 ---
 title: "[Github] Maintainer의 계정 해킹 없이 환경 변수 탈취하는 방법"
-image: /images/github.png
+image: /images/github.webp
 published: 2026-08-03T00:00:00.000Z
 description: PwnRequest 공격과 Expression Injection 공격을 알아봅니다.
 tags:

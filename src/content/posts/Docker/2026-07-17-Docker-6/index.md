@@ -1,6 +1,6 @@
 ---
 title: "[K8S] "
-image: /images/docker.png
+image: /images/docker.webp
 published: 2026-07-17T00:00:00.000Z
 description: is this your chapter?
 series: docker-basics

@@ -1,6 +1,6 @@
 ---
 title: '[Elasticsearch] 데이터가 많은데도 검색은 왜 빠를까?'
-image: /images/elastic.png
+image: /images/elastic.webp
 published: 2026-09-02T00:00:00.000Z
 description: '관계형 데이터베이스의 검색과 Elasticsearch가 무엇이 다른지, 역색인과 Analyzer의 원리를 직접 실습하며 알아봅니다.'
 tags:

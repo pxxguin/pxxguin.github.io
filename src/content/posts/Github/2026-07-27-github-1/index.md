@@ -1,6 +1,6 @@
 ---
 title: "[Github] CI/CD란 무엇인가?"
-image: /images/github.png
+image: /images/github.webp
 published: 2026-07-27T00:00:00.000Z
 description: CI/CD를 사용해야하는 이유를 알아본다.
 tags:

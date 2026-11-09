@@ -1,6 +1,6 @@
 ---
 title: "[Security] 정답만 맞으면 우리가 LLM을 믿을 수 있을까?"
-image: /images/arxiv.png
+image: /images/arxiv.webp
 published: 2026-09-02T00:00:00.000Z
 description: "Review about From Agent Traces to Trust: A Survey of Evidence Tracing and Execution Provenance in LLM Agents"
 tags:

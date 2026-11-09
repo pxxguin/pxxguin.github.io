@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] Producer는 메시지를 어떻게 안전하게 전송할까?'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-08-31T00:00:00.000Z
 description: acks, retry, idempotence를 직접 설정하며 Kafka Producer에서 메시지 유실과 중복이 발생하는 순간을 알아봅니다.
 tags:

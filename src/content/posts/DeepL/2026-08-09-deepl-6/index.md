@@ -1,6 +1,6 @@
 ---
 title: '[DeepL] 행위 기반 프롬프트 인젝션 탐지, 기존 방식과 뭐가 다른가'
-image: /images/deepl.png
+image: /images/deepl.webp
 published: 2026-08-12T00:00:00.000Z
 description: 사전 입력 검증이 아니라 "행동이 왜 일어났는가"를 추적하는 최신 프롬프트 인젝션 방어 패러다임을 정리합니다.
 tags:

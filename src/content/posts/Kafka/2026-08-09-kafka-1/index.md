@@ -1,6 +1,6 @@
 ---
 title: '[Kafka] Kafka, 데이터의 흐름을 다루는 방법'
-image: /images/kafka.png
+image: /images/kafka.webp
 published: 2026-08-09T00:00:00.000Z
 description: 왜 다들 Kafka, Kafka 하는지, 기존 방식과 뭐가 다른지 기본 개념부터 정리합니다.
 tags:
