@@ -51,7 +51,8 @@ const allSeries = seriesCollection.map((s) => {
     <div class="relative w-full h-screen flex items-center justify-center overflow-hidden">
         <!-- Background Image -->
         <div class="absolute inset-0 z-0">
-            <Image src={heroBgImage} alt="Background" class="w-full h-full object-cover" />
+            <!-- This is the LCP element on the home page, so it must not be lazy. -->
+            <Image src={heroBgImage} alt="Background" loading="eager" fetchpriority="high" class="w-full h-full object-cover" />
             <div class="absolute inset-0 bg-black/50"></div> <!-- Overlay -->
         </div>
 
